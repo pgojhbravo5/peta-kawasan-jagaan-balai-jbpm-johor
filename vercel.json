@@ -1,0 +1,12 @@
+{
+    "rewrites": [
+      {
+        "source": "/peta-bomba",
+        "destination": "/"
+      },
+      {
+        "source": "/peta-bomba/:path*",
+        "destination": "/:path*"
+      }
+    ]
+  }
