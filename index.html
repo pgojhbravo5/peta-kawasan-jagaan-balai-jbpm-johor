@@ -96,6 +96,16 @@
       .menu-item:hover {
         background: #e0e0e0;
       }
+      /* GAYA KHAS UNTUK BUTANG KEMBALI (warna berbeza) */
+      .menu-item.back-btn {
+        background: #cc0000;
+        color: #fff;
+        font-weight: bold;
+      }
+      .menu-item.back-btn:hover {
+        background: #990000;
+      }
+
       #filter-zon {
         padding: 8px 12px;
         background: #f9f9f9;
@@ -425,6 +435,11 @@
           <button id="menu-close" onclick="toggleMenu()">✕</button>
         </div>
         <div id="menu-body">
+          <!-- 🔽 BUTANG KEMBALI KE DASHBOARD (TAMBAHAN BARU) 🔽 -->
+          <button class="menu-item back-btn" onclick="window.location.href='/'">
+            🔙 Kembali ke Dashboard
+          </button>
+
           <button class="menu-item" onclick="resetPeta()">🏠 Home</button>
           <button class="menu-item" onclick="toggleFilter()">
             🗺️ Filter Zon
