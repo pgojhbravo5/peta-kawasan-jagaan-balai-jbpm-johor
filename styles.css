@@ -1,0 +1,635 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body,
+html {
+  height: 100%;
+  width: 100%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ============================================ */
+/* PETA */
+/* ============================================ */
+#map {
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+  position: relative;
+}
+
+/* ============================================ */
+/* HAMBURGER BUTTON */
+/* ============================================ */
+#menu-btn {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 1001;
+  background: white;
+  border: 2px solid rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+  width: 42px;
+  height: 42px;
+  font-size: 22px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  transition: all 0.2s ease;
+  color: #cc0000;
+}
+
+#menu-btn:hover {
+  background: #cc0000;
+  color: white;
+  border-color: #cc0000;
+}
+
+#menu-btn:active {
+  transform: scale(0.95);
+}
+
+/* ============================================ */
+/* SIDE MENU (KIRI) */
+/* ============================================ */
+#side-menu {
+  position: absolute;
+  top: 0;
+  left: -320px;
+  width: 300px;
+  height: 100%;
+  background: white;
+  z-index: 1002;
+  box-shadow: 2px 0 20px rgba(0, 0, 0, 0.25);
+  transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  touch-action: pan-y;
+}
+
+#side-menu.open {
+  left: 0;
+}
+
+#menu-header {
+  padding: 16px 18px;
+  background: linear-gradient(135deg, #cc0000, #a30000);
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+  font-size: 16px;
+  border-bottom: 3px solid #fdb813;
+  letter-spacing: 0.5px;
+  flex-shrink: 0;
+}
+
+#menu-close {
+  background: rgba(255, 255, 255, 0.15);
+  border: none;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+
+#menu-close:hover {
+  background: rgba(255, 255, 255, 0.3);
+  color: #fdb813;
+}
+
+#menu-body {
+  padding: 12px;
+  overflow-y: auto;
+  flex: 1;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
+}
+
+.menu-item {
+  display: block;
+  width: 100%;
+  padding: 13px 16px;
+  border: none;
+  background: #fafafa;
+  text-align: left;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 8px;
+  margin-bottom: 6px;
+  transition: all 0.2s ease;
+  border-left: 3px solid transparent;
+  font-weight: 500;
+}
+
+.menu-item:hover {
+  background: #fff3f3;
+  border-left: 3px solid #cc0000;
+  color: #cc0000;
+}
+
+#filter-zon {
+  padding: 12px 16px;
+  font-size: 13px;
+  background: #fafafa;
+  border-radius: 8px;
+  margin: -3px 0 8px 0;
+  border-left: 3px solid #fdb813;
+}
+
+#filter-zon label {
+  display: block;
+  padding: 5px 0;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+#filter-zon input[type='checkbox'] {
+  accent-color: #cc0000;
+  margin-right: 8px;
+}
+
+#list-balai {
+  padding: 8px 12px;
+  font-size: 13px;
+  background: #fafafa;
+  border-radius: 8px;
+  margin: -3px 0 8px 0;
+  border-left: 3px solid #fdb813;
+  max-height: 300px;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+#list-balai div {
+  padding: 8px 4px;
+  border-bottom: 1px solid #f0f0f0;
+  cursor: pointer;
+  transition: all 0.2s;
+  border-radius: 4px;
+}
+
+#list-balai div:hover {
+  color: #cc0000;
+  font-weight: bold;
+  background: #fff8f8;
+  padding-left: 8px;
+}
+
+#list-balai div:last-child {
+  border-bottom: none;
+}
+
+/* ============================================ */
+/* OVERLAY */
+/* ============================================ */
+#overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  display: none;
+}
+
+#overlay.show {
+  display: block;
+}
+
+/* ============================================ */
+/* SEARCH BAR */
+/* ============================================ */
+#search-container {
+  position: absolute;
+  top: 12px;
+  left: 62px;
+  z-index: 1000;
+  width: 320px;
+  display: flex;
+  align-items: center;
+}
+
+#search-input {
+  flex: 1;
+  padding: 11px 38px 11px 16px;
+  border: 2px solid rgba(0, 0, 0, 0.12);
+  border-radius: 8px;
+  font-size: 14px;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  outline: none;
+  transition: all 0.2s ease;
+  height: 42px;
+}
+
+#search-input:focus {
+  border-color: #cc0000;
+  box-shadow: 0 0 0 3px rgba(204, 0, 0, 0.1);
+}
+
+#search-clear {
+  position: absolute;
+  right: 4px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #999;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 6px 8px;
+  border-radius: 50%;
+  transition: all 0.15s;
+  display: none;
+  z-index: 2;
+}
+
+#search-clear:hover {
+  color: #cc0000;
+  background: #fff3f3;
+}
+
+#search-clear.show {
+  display: block;
+}
+
+#search-results {
+  position: absolute;
+  top: 46px;
+  left: 0;
+  width: 100%;
+  background: white;
+  border-radius: 0 0 8px 8px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+  max-height: 280px;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  display: none;
+  touch-action: pan-y;
+}
+
+#search-results.show {
+  display: block;
+}
+
+.search-result-item {
+  padding: 11px 16px;
+  cursor: pointer;
+  border-bottom: 1px solid #f5f5f5;
+  font-size: 13px;
+  transition: all 0.15s;
+}
+
+.search-result-item:hover {
+  background: #fff3f3;
+  color: #cc0000;
+}
+
+.search-result-item:last-child {
+  border-bottom: none;
+}
+
+/* ============================================ */
+/* DRAWER BUTTON (KANAN) */
+/* ============================================ */
+#drawer-btn {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  z-index: 1001;
+  background: #cc0000;
+  color: white;
+  border: none;
+  width: 40px;
+  height: 70px;
+  font-size: 20px;
+  cursor: pointer;
+  border-radius: 12px 0 0 12px;
+  box-shadow: -2px 2px 10px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  writing-mode: vertical-rl;
+  letter-spacing: 2px;
+}
+
+#drawer-btn:hover {
+  background: #a30000;
+  width: 46px;
+}
+
+/* ============================================ */
+/* DRAWER PANEL (KANAN) */
+/* ============================================ */
+#drawer-panel {
+  position: absolute;
+  top: 20%;
+  right: -280px;
+  width: 260px;
+  height: 60%;
+  background: white;
+  z-index: 1002;
+  box-shadow: -2px 0 20px rgba(0, 0, 0, 0.25);
+  transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  border-left: 3px solid #cc0000;
+  border-radius: 12px 0 0 12px;
+  overflow: hidden;
+}
+
+#drawer-panel.open {
+  right: 0;
+}
+
+#drawer-header {
+  padding: 14px 16px;
+  background: linear-gradient(135deg, #cc0000, #a30000);
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+  font-size: 14px;
+  border-bottom: 3px solid #fdb813;
+  flex-shrink: 0;
+}
+
+#drawer-close {
+  background: rgba(255, 255, 255, 0.15);
+  border: none;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+
+#drawer-close:hover {
+  background: rgba(255, 255, 255, 0.3);
+  color: #fdb813;
+}
+
+#drawer-content {
+  padding: 12px;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  flex: 1;
+  font-size: 12px;
+  touch-action: pan-y;
+}
+
+/* ============================================ */
+/* DRAWER BALAI ITEMS */
+/* ============================================ */
+.drawer-balai-item {
+  padding: 10px 8px;
+  border-bottom: 1px solid #f0f0f0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background 0.15s;
+  border-radius: 6px;
+  margin-bottom: 3px;
+  cursor: pointer;
+}
+
+.drawer-balai-item:hover {
+  background: #fffafa;
+}
+
+.drawer-balai-item:last-child {
+  border-bottom: none;
+}
+
+.drawer-balai-nama {
+  font-weight: 600;
+  color: #333;
+  font-size: 12px;
+}
+
+.drawer-balai-jarak {
+  background: #ffebee;
+  color: #cc0000;
+  padding: 3px 8px;
+  border-radius: 14px;
+  font-size: 11px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.drawer-balai-info {
+  font-size: 10px;
+  color: #777;
+  margin-top: 2px;
+}
+
+.drawer-balai-call {
+  color: #cc0000;
+  text-decoration: none;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.drawer-placeholder {
+  text-align: center;
+  color: #aaa;
+  padding: 30px 15px;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.drawer-location {
+  font-size: 10px;
+  color: #999;
+  margin-bottom: 10px;
+  padding: 6px 8px;
+  background: #f9f9f9;
+  border-radius: 6px;
+  word-break: break-all;
+}
+
+/* ============================================ */
+/* FULLSCREEN BUTTON */
+/* ============================================ */
+.leaflet-control-fullscreen {
+  transition: all 0.2s ease !important;
+  border-radius: 8px !important;
+}
+
+.leaflet-control-fullscreen:hover {
+  background: #cc0000 !important;
+  color: white !important;
+  border-color: #cc0000 !important;
+}
+
+/* ============================================ */
+/* POPUP CUSTOM */
+/* ============================================ */
+.leaflet-popup-content-wrapper {
+  border-radius: 10px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  border-top: 3px solid #cc0000;
+}
+
+.leaflet-popup-content {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 8px 12px;
+  line-height: 1.6;
+}
+
+/* ============================================ */
+/* SCROLLBAR CUSTOM */
+/* ============================================ */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #ddd;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #bbb;
+}
+
+/* ============================================ */
+/* MOBILE RESPONSIVE */
+/* ============================================ */
+@media (max-width: 600px) {
+  #menu-btn {
+    top: 8px;
+    left: 8px;
+    width: 38px;
+    height: 38px;
+    font-size: 20px;
+  }
+
+  #side-menu {
+    width: 100%;
+    max-width: 300px;
+    left: -105%;
+  }
+
+  #search-container {
+    top: 8px;
+    left: 50px;
+    width: calc(100% - 58px);
+    max-width: none;
+  }
+
+  #search-input {
+    font-size: 13px;
+    padding: 10px 36px 10px 14px;
+    height: 38px;
+  }
+
+  #search-results {
+    top: 42px;
+    max-height: 220px;
+  }
+
+  .search-result-item {
+    font-size: 12px;
+    padding: 10px 14px;
+  }
+
+  #drawer-btn {
+    width: 34px;
+    height: 55px;
+    font-size: 16px;
+  }
+
+  #drawer-panel {
+    width: 230px;
+    height: 55%;
+    top: 25%;
+    right: -240px;
+  }
+
+  #drawer-header {
+    font-size: 13px;
+    padding: 12px 14px;
+  }
+
+  #drawer-content {
+    padding: 10px;
+    font-size: 11px;
+  }
+
+  .drawer-balai-nama {
+    font-size: 11px;
+  }
+
+  .drawer-balai-jarak {
+    font-size: 10px;
+    padding: 2px 7px;
+  }
+
+  .drawer-balai-info {
+    font-size: 9px;
+  }
+
+  .menu-item {
+    font-size: 13px;
+    padding: 12px 14px;
+  }
+}
+
+/* ============================================ */
+/* MOBILE KECIL (max 380px) */
+/* ============================================ */
+@media (max-width: 380px) {
+  #search-container {
+    left: 46px;
+    width: calc(100% - 54px);
+  }
+
+  #search-input {
+    font-size: 12px;
+    height: 36px;
+    padding: 8px 32px 8px 12px;
+  }
+
+  #drawer-panel {
+    width: 200px;
+    height: 50%;
+    top: 30%;
+    right: -210px;
+  }
+
+  #drawer-btn {
+    width: 30px;
+    height: 45px;
+    font-size: 14px;
+  }
+}
+/* ============================================ */
+/* ADJUST LEAFLET ZOOM CONTROL */
+/* ============================================ */
+.leaflet-top.leaflet-left {
+  top: 0 !important;
+}
+
+.leaflet-control-zoom {
+  margin-top: 60px !important;
+}

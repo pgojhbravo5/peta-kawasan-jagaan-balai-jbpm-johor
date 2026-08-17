@@ -1,0 +1,1173 @@
+// ============================================
+// DATA 34 BALAI BOMBA DAN PENYELAMAT JOHOR
+// ============================================
+const dataBalai = [
+  // ZON 1 - JOHOR BAHRU (13)
+  {
+    nama: 'BBP Larkin (JB)',
+    zon: 1,
+    daerah: 'Johor Bahru',
+    lat: 1.4854561788224945,
+    lng: 103.75081990820912,
+    tel: '07-2234567',
+  },
+  {
+    nama: 'BBP Pasir Gudang',
+    zon: 1,
+    daerah: 'Johor Bahru',
+    lat: 1.4643416318507871,
+    lng: 103.89600906588159,
+    tel: '07-2512345',
+  },
+  {
+    nama: 'BBP Johor Jaya',
+    zon: 1,
+    daerah: 'Johor Bahru',
+    lat: 1.531594273562039,
+    lng: 103.79519160820901,
+    tel: '07-3541234',
+  },
+  {
+    nama: 'BBP Skudai',
+    zon: 1,
+    daerah: 'Johor Bahru',
+    lat: 1.5384054976029675,
+    lng: 103.62618860820908,
+    tel: '07-5561234',
+  },
+  {
+    nama: 'BBP Iskandar Puteri',
+    zon: 1,
+    daerah: 'Johor Bahru',
+    lat: 1.4527885824622484,
+    lng: 103.6205641217007,
+    tel: '07-5091234',
+  },
+  {
+    nama: 'BBP Tebrau',
+    zon: 1,
+    daerah: 'Johor Bahru',
+    lat: 1.5237283247173334,
+    lng: 103.75913396799398,
+    tel: '07-3511234',
+  },
+  {
+    nama: 'BBP Pekan Nenas',
+    zon: 1,
+    daerah: 'Pontian',
+    lat: 1.507244287330929,
+    lng: 103.51410103884008,
+    tel: '07-6991234',
+  },
+  {
+    nama: 'BBP Pontian',
+    zon: 1,
+    daerah: 'Pontian',
+    lat: 1.4921416268747725,
+    lng: 103.38704635239006,
+    tel: '07-6861234',
+  },
+  {
+    nama: 'BBP Pontian Baru',
+    zon: 1,
+    daerah: 'Pontian',
+    lat: 1.4850292041041675,
+    lng: 103.40415745239008,
+    tel: '07-6865678',
+  },
+  {
+    nama: 'BBP Kulai',
+    zon: 1,
+    daerah: 'Kulai',
+    lat: 1.6590302117315279,
+    lng: 103.6057466695133,
+    tel: '07-6631234',
+  },
+  {
+    nama: 'BBP Bandar Baru Kulai',
+    zon: 1,
+    daerah: 'Kulai',
+    lat: 1.6586313961306738,
+    lng: 103.62675774623685,
+    tel: '07-6621234',
+  },
+  {
+    nama: 'BBP Kempas',
+    zon: 1,
+    daerah: 'Johor Bahru',
+    lat: 1.5271427241141524,
+    lng: 103.73291787937283,
+    tel: '07-2351234',
+  },
+  {
+    nama: 'BBP Fire Post Benut',
+    zon: 1,
+    daerah: 'Pontian',
+    lat: 1.63813001403506,
+    lng: 103.25906880820891,
+    tel: '07-6901234',
+  },
+
+  // ZON 2 - KOTA TINGGI (8)
+  {
+    nama: 'BBP Kota Tinggi',
+    zon: 2,
+    daerah: 'Kota Tinggi',
+    lat: 1.7400726715952255,
+    lng: 103.89888355053641,
+    tel: '07-8831234',
+  },
+  {
+    nama: 'BBP Sungai Rengit',
+    zon: 2,
+    daerah: 'Pengerang',
+    lat: 1.3586296957880815,
+    lng: 104.23142533704556,
+    tel: '07-8171234',
+  },
+  {
+    nama: 'BBP Bandar Penawar',
+    zon: 2,
+    daerah: 'Kota Tinggi',
+    lat: 1.5584240268894343,
+    lng: 104.22836464004762,
+    tel: '07-8221234',
+  },
+  {
+    nama: 'BBP Mersing',
+    zon: 2,
+    daerah: 'Mersing',
+    lat: 2.4281597008384166,
+    lng: 103.83968525238902,
+    tel: '07-7991234',
+  },
+  {
+    nama: 'BBP Endau',
+    zon: 2,
+    daerah: 'Mersing',
+    lat: 2.6511667138213197,
+    lng: 103.622388079372,
+    tel: '07-7941234',
+  },
+  {
+    nama: 'BBP Sebana Cove',
+    zon: 2,
+    daerah: 'Kota Tinggi',
+    lat: 1.4111942637295485,
+    lng: 104.20702710820935,
+    tel: '07-8181234',
+  },
+  {
+    nama: 'BBP Punggai',
+    zon: 2,
+    daerah: 'Kota Tinggi',
+    lat: 1.42940813601492,
+    lng: 104.27036571006252,
+    tel: '07-8231234',
+  },
+  {
+    nama: 'BBP Bandar Tenggara',
+    zon: 2,
+    daerah: 'Kulai',
+    lat: 1.8512117790715301,
+    lng: 103.61435888307892,
+    tel: '07-8961234',
+  },
+
+  // ZON 3 - KLUANG (8)
+  {
+    nama: 'BBP Penggaram',
+    zon: 3,
+    daerah: 'Batu Pahat',
+    lat: 1.8587485315341812,
+    lng: 102.94072309627684,
+    tel: '07-4321234',
+  },
+  {
+    nama: 'BBP Kluang',
+    zon: 3,
+    daerah: 'Kluang',
+    lat: 2.0342273939975697,
+    lng: 103.31953787937219,
+    tel: '07-7721234',
+  },
+  {
+    nama: 'BBP Batu Pahat',
+    zon: 3,
+    daerah: 'Batu Pahat',
+    lat: 1.8500697700442517,
+    lng: 102.92987598122569,
+    tel: '07-4341234',
+  },
+  {
+    nama: 'BBP Rengit',
+    zon: 3,
+    daerah: 'Batu Pahat',
+    lat: 1.680160555465549,
+    lng: 103.15828676588123,
+    tel: '07-4241234',
+  },
+  {
+    nama: 'BBP Renggam',
+    zon: 3,
+    daerah: 'Kluang',
+    lat: 1.8839022510131862,
+    lng: 103.3999346812256,
+    tel: '07-7531234',
+  },
+  {
+    nama: 'BBP Yong Peng',
+    zon: 3,
+    daerah: 'Batu Pahat',
+    lat: 2.01252787565433,
+    lng: 103.0631870216999,
+    tel: '07-4671234',
+  },
+  {
+    nama: 'BBP Ayer Hitam',
+    zon: 3,
+    daerah: 'Batu Pahat',
+    lat: 1.9046398311946404,
+    lng: 103.16580533704466,
+    tel: '07-7581234',
+  },
+  {
+    nama: 'BBP Fire Post Parit Sulong',
+    zon: 3,
+    daerah: 'Batu Pahat',
+    lat: 1.9734098250147893,
+    lng: 102.86930995238934,
+    tel: '07-4551234',
+  },
+
+  // ZON 4 - MUAR (7)
+  {
+    nama: 'BBP Muar',
+    zon: 4,
+    daerah: 'Muar',
+    lat: 2.0536025587250952,
+    lng: 102.57234047937226,
+    tel: '06-9521234',
+  },
+  {
+    nama: 'BBP Bandar Baru Segamat',
+    zon: 4,
+    daerah: 'Segamat',
+    lat: 2.498693444757604,
+    lng: 102.87045925238905,
+    tel: '07-9431234',
+  },
+  {
+    nama: 'BBP Segamat',
+    zon: 4,
+    daerah: 'Segamat',
+    lat: 2.5097396869375945,
+    lng: 102.81377777937195,
+    tel: '07-9311234',
+  },
+  {
+    nama: 'BBP Labis',
+    zon: 4,
+    daerah: 'Segamat',
+    lat: 2.380060008820531,
+    lng: 103.01796330820825,
+    tel: '07-9251234',
+  },
+  {
+    nama: 'BBP Bukit Gambir',
+    zon: 4,
+    daerah: 'Tangkak',
+    lat: 2.217126038710606,
+    lng: 102.65990143704445,
+    tel: '06-9761234',
+  },
+  {
+    nama: 'BBP Tangkak',
+    zon: 4,
+    daerah: 'Tangkak',
+    lat: 2.270972287569266,
+    lng: 102.543539523553,
+    tel: '06-9781234',
+  },
+  {
+    nama: 'BBP Pagoh',
+    zon: 4,
+    daerah: 'Muar',
+    lat: 2.136905853626598,
+    lng: 102.73936700820836,
+    tel: '06-9741234',
+  },
+  {
+    nama: 'BBP Jasin Bestari',
+    zon: 4,
+    daerah: 'Jasin',
+    lat: 2.2987006825702365,
+    lng: 102.41515029627601,
+    tel: '06-9741234',
+  },
+];
+
+// ============================================
+// WARNA ZON
+// ============================================
+const warnaZon = {
+  1: '#CC0000',
+  2: '#1A5276',
+  3: '#1E8449',
+  4: '#FDB813',
+};
+
+const namaZon = {
+  1: 'Zon 1 - Johor Bahru',
+  2: 'Zon 2 - Kota Tinggi',
+  3: 'Zon 3 - Kluang',
+  4: 'Zon 4 - Muar',
+};
+
+// ============================================
+// SIMPAN LAYER UNTUK FILTER ZON
+// ============================================
+const layerZon = { 1: [], 2: [], 3: [], 4: [] };
+
+// ============================================
+// INISIALISASI PETA (LOCK KE JOHOR)
+// ============================================
+const map = L.map('map', {
+  maxBounds: [
+    [1.2, 102.3],
+    [3.0, 104.6],
+  ],
+  maxBoundsViscosity: 0.8,
+  minZoom: 8,
+  maxZoom: 18,
+}).setView([1.85, 103.3], 9);
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution: '© OpenStreetMap | JBPM Johor',
+  maxZoom: 19,
+}).addTo(map);
+
+// ============================================
+// SUSUNAN BUTANG ZOOM & FULLSCREEN
+// ============================================
+map.removeControl(map.zoomControl);
+
+L.control.fullscreen = L.Control.extend({
+  onAdd: function () {
+    const btn = L.DomUtil.create('button', 'leaflet-control-fullscreen');
+    btn.innerHTML = '⛶';
+    btn.style.cssText =
+      'width:34px;height:34px;font-size:18px;cursor:pointer;border:2px solid rgba(0,0,0,0.2);border-radius:4px;background:white;';
+    btn.title = 'Skrin Penuh';
+    btn.onclick = function () {
+      const mapDiv = document.getElementById('map');
+      if (!document.fullscreenElement) {
+        mapDiv.requestFullscreen();
+      } else {
+        document.exitFullscreen();
+      }
+    };
+    return btn;
+  },
+  onRemove: function () {},
+});
+new L.control.fullscreen({ position: 'topright' }).addTo(map);
+L.control.zoom({ position: 'topright' }).addTo(map);
+
+// ============================================
+// FUNGSI KIRA JARAK (HAVERSINE)
+// ============================================
+function kiraJarak(lat1, lon1, lat2, lon2) {
+  const R = 6371;
+  const dLat = ((lat2 - lat1) * Math.PI) / 180;
+  const dLon = ((lon2 - lon1) * Math.PI) / 180;
+  const a =
+    Math.sin(dLat / 2) ** 2 +
+    Math.cos((lat1 * Math.PI) / 180) *
+      Math.cos((lat2 * Math.PI) / 180) *
+      Math.sin(dLon / 2) ** 2;
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  return R * c;
+}
+
+// ============================================
+// FUNGSI CARI 4 BALAI TERDEKAT
+// ============================================
+function cariBalaiTerdekat(lat, lng) {
+  const jarakBalai = dataBalai.map((balai) => {
+    const jarak = kiraJarak(lat, lng, balai.lat, balai.lng);
+    return { ...balai, jarak: jarak };
+  });
+
+  jarakBalai.sort((a, b) => a.jarak - b.jarak);
+  return jarakBalai.slice(0, 4);
+}
+
+// ============================================
+// POPUP BALAI TERDEKAT (MODAL)
+// ============================================
+let lokasiTerakhir = null;
+
+function bukaPopupBalai(lat, lng, alamat) {
+  const modal = document.getElementById('popup-modal');
+  const overlay = document.getElementById('popup-overlay');
+  const content = document.getElementById('popup-content');
+
+  if (typeof lat === 'undefined' || lat === null) {
+    if (lokasiTerakhir) {
+      lat = lokasiTerakhir.lat;
+      lng = lokasiTerakhir.lng;
+      alamat = lokasiTerakhir.alamat || 'Lokasi';
+    } else {
+      content.innerHTML =
+        '<div class="popup-placeholder">🔍 Cari lokasi untuk lihat<br />4 balai terdekat.</div>';
+      modal.classList.add('open');
+      overlay.classList.add('show');
+      return;
+    }
+  }
+
+  lokasiTerakhir = { lat, lng, alamat };
+
+  const terdekat = cariBalaiTerdekat(lat, lng);
+  let html = `<div class="popup-location">📍 ${alamat || 'Lokasi'}</div>`;
+
+  terdekat.forEach((b, i) => {
+    html += `
+      <div class="popup-balai-item" onclick="map.flyTo([${b.lat}, ${
+      b.lng
+    }], 15); tutupPopupBalai();">
+        <div>
+          <div class="popup-balai-nama">${i + 1}. ${b.nama}</div>
+          <div class="popup-balai-info">🏢 ${
+            namaZon[b.zon]
+          } | 📞 <a class="popup-balai-call" href="tel:${
+      b.tel
+    }" onclick="event.stopPropagation();">${b.tel}</a></div>
+        </div>
+        <div class="popup-balai-jarak">${b.jarak.toFixed(1)} km</div>
+      </div>
+    `;
+  });
+
+  content.innerHTML = html;
+  modal.classList.add('open');
+  overlay.classList.add('show');
+}
+
+function tutupPopupBalai() {
+  document.getElementById('popup-modal').classList.remove('open');
+  document.getElementById('popup-overlay').classList.remove('show');
+}
+
+// ============================================
+// PLOT SEMUA BALAI (TITIK SAHAJA)
+// ============================================
+dataBalai.forEach((balai) => {
+  const warna = warnaZon[balai.zon];
+
+  const marker = L.circleMarker([balai.lat, balai.lng], {
+    radius: 8,
+    color: '#fff',
+    fillColor: warna,
+    fillOpacity: 1,
+    weight: 2.5,
+  }).addTo(map);
+
+  layerZon[balai.zon].push(marker);
+
+  marker.bindPopup(`
+    <div style="font-family:Arial;font-size:13px;">
+      <strong style="color:${warna};">🔥 ${balai.nama}</strong><br>
+      <b>Zon:</b> ${namaZon[balai.zon]}<br>
+      <b>Daerah:</b> ${balai.daerah}<br>
+      <b>📞 Telefon:</b> <a href="tel:${balai.tel}">${balai.tel}</a><br>
+      <b>📍 Lat,Lng:</b> ${balai.lat}, ${balai.lng}
+    </div>
+  `);
+});
+
+// ============================================
+// SEARCH (MANUAL: BUTANG ATAU ENTER)
+// ============================================
+const searchInput = document.getElementById('search-input');
+const searchResults = document.getElementById('search-results');
+let searchMarker = null;
+
+function cariKM(query) {
+  if (!dataKM || dataKM.length === 0) return null;
+  const match = query.match(/^\s*(?:km\s*)?([\d.]+)\s*(?:km)?\s*$/i);
+  if (!match) return null;
+  const num = parseFloat(match[1]);
+  if (isNaN(num) || num < 0 || num > 174.1) return null;
+  const index = Math.round(num * 10);
+  if (index < 0 || index >= dataKM.length) return null;
+  const coord = dataKM[index];
+  const kmValue = (index / 10).toFixed(1);
+  return { lat: coord[0], lng: coord[1], km: kmValue };
+}
+
+// Fungsi utama carian (dipanggil oleh butang atau Enter)
+function cariLokasi() {
+  const query = searchInput.value.trim();
+  if (query.length === 0) {
+    searchResults.classList.remove('show');
+    return;
+  }
+
+  // 1. Cuba cari KM
+  const kmResult = cariKM(query);
+  if (kmResult) {
+    searchResults.classList.remove('show');
+    map.flyTo([kmResult.lat, kmResult.lng], 15);
+    L.popup()
+      .setLatLng([kmResult.lat, kmResult.lng])
+      .setContent(`<b>📍 ${kmResult.km} KM</b>`)
+      .openOn(map);
+    searchInput.value = `KM ${kmResult.km}`;
+    // Tunjukkan panel PLUS sahaja, TIDAK buka popup balai terdekat
+    updateInfoPanel(parseFloat(kmResult.km));
+    // Simpan lokasi untuk kegunaan butang 🔥 nanti
+    lokasiTerakhir = {
+      lat: kmResult.lat,
+      lng: kmResult.lng,
+      alamat: `KM ${kmResult.km}`,
+    };
+    return;
+  }
+
+  // 2. Cuba cari alamat (Nominatim)
+  if (query.length < 3) {
+    searchResults.innerHTML =
+      '<div class="search-result-item" style="color:#999;">Minimum 3 aksara untuk alamat.</div>';
+    searchResults.classList.add('show');
+    return;
+  }
+
+  searchResults.innerHTML =
+    '<div class="search-result-item" style="color:#999;">Mencari...</div>';
+  searchResults.classList.add('show');
+
+  fetch(
+    `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(
+      query
+    )}&countrycodes=my&limit=5&accept-language=ms`
+  )
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.length === 0) {
+        searchResults.innerHTML =
+          '<div class="search-result-item" style="color:#999;">Tiada hasil dijumpai</div>';
+        searchResults.classList.add('show');
+        return;
+      }
+
+      let html = '';
+      data.forEach((item) => {
+        html += `<div class="search-result-item" onclick="pilihLokasi(${
+          item.lat
+        }, ${item.lon}, '${escapeHtml(item.display_name)}')">📍 ${
+          item.display_name
+        }</div>`;
+      });
+      searchResults.innerHTML = html;
+      searchResults.classList.add('show');
+    })
+    .catch(() => {
+      searchResults.innerHTML =
+        '<div class="search-result-item" style="color:red;">Ralat carian. Cuba lagi.</div>';
+      searchResults.classList.add('show');
+    });
+}
+
+function escapeHtml(text) {
+  const div = document.createElement('div');
+  div.textContent = text;
+  return div.innerHTML.replace(/'/g, "\\'");
+}
+
+function pilihLokasi(lat, lng, alamat) {
+  searchResults.classList.remove('show');
+  searchInput.value =
+    alamat.length > 50 ? alamat.substring(0, 50) + '...' : alamat;
+
+  map.flyTo([lat, lng], 14);
+
+  if (searchMarker) {
+    map.removeLayer(searchMarker);
+  }
+
+  searchMarker = L.marker([lat, lng], {
+    icon: L.icon({
+      iconUrl:
+        'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png',
+      shadowUrl:
+        'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-shadow.png',
+      iconSize: [25, 41],
+      iconAnchor: [12, 41],
+      popupAnchor: [1, -34],
+      shadowSize: [41, 41],
+    }),
+  })
+    .addTo(map)
+    .bindPopup(`📍 <b>Lokasi Carian</b><br>${alamat}`)
+    .openPopup();
+
+  // Simpan lokasi untuk butang 🔥, tapi jangan buka popup
+  lokasiTerakhir = { lat, lng, alamat };
+  // Jangan panggil bukaPopupBalai() di sini
+}
+
+// Event: Tekan Enter untuk carian
+searchInput.addEventListener('keypress', function (e) {
+  if (e.key === 'Enter') {
+    e.preventDefault();
+    cariLokasi();
+  }
+});
+
+// Event: Sembunyi hasil carian bila klik di luar
+document.addEventListener('click', function (e) {
+  if (!document.getElementById('search-container').contains(e.target)) {
+    searchResults.classList.remove('show');
+  }
+});
+
+// Butang clear
+function clearSearch() {
+  searchInput.value = '';
+  searchResults.classList.remove('show');
+  document.getElementById('search-clear').classList.remove('show');
+  searchInput.focus();
+  if (searchMarker) {
+    map.removeLayer(searchMarker);
+    searchMarker = null;
+  }
+}
+
+// Tunjukkan/tutup butang clear berdasarkan input
+searchInput.addEventListener('input', function () {
+  const clearBtn = document.getElementById('search-clear');
+  if (this.value.trim().length > 0) {
+    clearBtn.classList.add('show');
+  } else {
+    clearBtn.classList.remove('show');
+  }
+});
+
+// ============================================
+// SIDE MENU FUNCTIONS
+// ============================================
+function toggleMenu() {
+  document.getElementById('side-menu').classList.toggle('open');
+  document.getElementById('overlay').classList.toggle('show');
+}
+
+function resetPeta() {
+  map.setView([1.85, 103.3], 9);
+  toggleMenu();
+}
+
+function toggleFilter() {
+  const filterDiv = document.getElementById('filter-zon');
+  filterDiv.style.display =
+    filterDiv.style.display === 'none' ? 'block' : 'none';
+}
+
+function toggleZon(zon, checkbox) {
+  layerZon[zon].forEach((layer) => {
+    if (checkbox.checked) map.addLayer(layer);
+    else map.removeLayer(layer);
+  });
+}
+
+function senaraiBalai() {
+  const listDiv = document.getElementById('list-balai');
+
+  if (listDiv.style.display === 'none' || listDiv.style.display === '') {
+    let html = '';
+    dataBalai.forEach((b) => {
+      html += `<div onclick="flyToBalai(${b.lat}, ${b.lng})">🔥 ${
+        b.nama
+      } <small style="color:#999;">(${namaZon[b.zon]})</small></div>`;
+    });
+    listDiv.innerHTML = html;
+    listDiv.style.display = 'block';
+  } else {
+    listDiv.style.display = 'none';
+  }
+}
+
+function flyToBalai(lat, lng) {
+  map.flyTo([lat, lng], 15);
+  toggleMenu();
+}
+
+function infoSistem() {
+  alert(
+    '🚒 Peta Kawasan Jagaan Balai Bomba Johor\n\n' +
+      '🔥 34 Balai Bomba dan Penyelamat\n' +
+      '🗺️ 4 Zon Operasi\n\n' +
+      '📡 Dibangunkan untuk kegunaan\n' +
+      'JBPM Negeri Johor\n\n' +
+      '© 2026 PGO Johor\n' +
+      'Dibangunkan oleh:\n' +
+      'PB Mohamad Aidil\n\n' +
+      'Versi 1.0 - Prototype'
+  );
+}
+
+// ============================================
+// STOP TOUCH/MOUSE EVENT PADA POPUP, SIDE MENU & SEARCH RESULTS
+// ============================================
+const popupModal = document.getElementById('popup-modal');
+const popupContent = document.getElementById('popup-content');
+const sideMenu = document.getElementById('side-menu');
+const menuBody = document.getElementById('menu-body');
+const searchResultsEl = document.getElementById('search-results');
+
+[popupModal, popupContent, sideMenu, menuBody, searchResultsEl].forEach(
+  (el) => {
+    if (el) {
+      el.addEventListener(
+        'touchmove',
+        function (e) {
+          e.stopPropagation();
+        },
+        { passive: false }
+      );
+      el.addEventListener('mousedown', function (e) {
+        e.stopPropagation();
+      });
+      el.addEventListener('mousewheel', function (e) {
+        e.stopPropagation();
+      });
+      el.addEventListener('wheel', function (e) {
+        e.stopPropagation();
+      });
+      el.addEventListener('scroll', function (e) {
+        e.stopPropagation();
+      });
+    }
+  }
+);
+
+// ============================================
+// DATA KAWASAN JAGAAN PLUS (DARIPADA ANDA)
+// ============================================
+const dataKawasanBalai = [
+  // UTARA
+  { balai: 'BBP TEBRAU', kmDari: 0, kmHingga: 8, arah: 'UTARA' },
+  { balai: 'BBP KEMPAS', kmDari: 8, kmHingga: 14, arah: 'UTARA' },
+  { balai: 'BBP SKUDAI', kmDari: 14, kmHingga: 21.5, arah: 'UTARA' },
+  { balai: 'BBP KULAI', kmDari: 27.8, kmHingga: 41.3, arah: 'UTARA' },
+  { balai: 'BBP RENGGAM', kmDari: 41.3, kmHingga: 72.6, arah: 'UTARA' },
+  { balai: 'BBP AYER HITAM', kmDari: 80.5, kmHingga: 99.5, arah: 'UTARA' },
+  { balai: 'BBP YONG PENG', kmDari: 99.5, kmHingga: 142.4, arah: 'UTARA' },
+  { balai: 'BBP PAGOH', kmDari: 142.4, kmHingga: 157, arah: 'UTARA' },
+  { balai: 'BBP BUKIT GAMBIR', kmDari: 157, kmHingga: 169.4, arah: 'UTARA' },
+  { balai: 'BBP TANGKAK', kmDari: 169.4, kmHingga: 180.3, arah: 'UTARA' },
+  // SELATAN
+  { balai: 'BBP KEMPAS', kmDari: 0, kmHingga: 6.8, arah: 'SELATAN' },
+  { balai: 'BBP SKUDAI', kmDari: 6.8, kmHingga: 14.8, arah: 'SELATAN' },
+  { balai: 'BBP KULAI', kmDari: 19.2, kmHingga: 41.3, arah: 'SELATAN' },
+  { balai: 'BBP RENGGAM', kmDari: 41.3, kmHingga: 58.7, arah: 'SELATAN' },
+  { balai: 'BBP RENGGAM', kmDari: 58.7, kmHingga: 72.6, arah: 'SELATAN' },
+  { balai: 'BBP AYER HITAM', kmDari: 72.6, kmHingga: 80.5, arah: 'SELATAN' },
+  { balai: 'BBP YONG PENG', kmDari: 80.5, kmHingga: 94.3, arah: 'SELATAN' },
+  { balai: 'BBP YONG PENG', kmDari: 94.3, kmHingga: 99.4, arah: 'SELATAN' },
+  { balai: 'BBP PAGOH', kmDari: 99.5, kmHingga: 141.8, arah: 'SELATAN' },
+  {
+    balai: 'BBP BUKIT GAMBIR',
+    kmDari: 141.8,
+    kmHingga: 157.5,
+    arah: 'SELATAN',
+  },
+  { balai: 'BBP TANGKAK', kmDari: 157.5, kmHingga: 168.8, arah: 'SELATAN' },
+  { balai: 'BBP JASIN BESTARI', kmDari: 168.8, kmHingga: 180, arah: 'SELATAN' },
+];
+
+function cariBalaiArah(km, arah) {
+  return (
+    dataKawasanBalai.find(
+      (item) => item.arah === arah && km >= item.kmDari && km <= item.kmHingga
+    ) || null
+  );
+}
+
+// ============================================
+// PANEL KAWASAN JAGAAN PLUS (UPDATE FUNCTION)
+// ============================================
+function updateInfoPanel(km) {
+  const panel = document.getElementById('info-panel');
+  if (!panel) return;
+
+  const kmDisplay = document.getElementById('info-km');
+  const utaraDiv = document.getElementById('info-utara');
+  const utaraJulat = document.getElementById('info-utara-julat');
+  const selatanDiv = document.getElementById('info-selatan');
+  const selatanJulat = document.getElementById('info-selatan-julat');
+
+  const utara = cariBalaiArah(km, 'UTARA');
+  const selatan = cariBalaiArah(km, 'SELATAN');
+
+  kmDisplay.textContent = `📍 KM ${km.toFixed(1)}`;
+
+  if (utara) {
+    utaraDiv.textContent = utara.balai;
+    utaraJulat.textContent = `KM ${utara.kmDari} - ${utara.kmHingga}`;
+  } else {
+    utaraDiv.textContent = '-';
+    utaraJulat.textContent = '-';
+  }
+
+  if (selatan) {
+    selatanDiv.textContent = selatan.balai;
+    selatanJulat.textContent = `KM ${selatan.kmDari} - ${selatan.kmHingga}`;
+  } else {
+    selatanDiv.textContent = '-';
+    selatanJulat.textContent = '-';
+  }
+
+  panel.style.display = 'block';
+}
+
+// ============================================
+// DATA KM – MUAT TURUN & PARSE KML
+// ============================================
+let dataKM = [];
+let layerKMMarker = null;
+let kmMarkerVisible = false;
+
+async function loadKMLData() {
+  try {
+    const response = await fetch('KM_0_174_1_ALL_MARKERS.kml.txt');
+    if (!response.ok) throw new Error('Fail KM tidak dijumpai.');
+    const kmlText = await response.text();
+    const parser = new DOMParser();
+    const kmlDoc = parser.parseFromString(kmlText, 'text/xml');
+
+    const pointNodes = kmlDoc.getElementsByTagName('Point');
+    const coords = [];
+    for (let i = 0; i < pointNodes.length; i++) {
+      const coordNode = pointNodes[i].getElementsByTagName('coordinates')[0];
+      if (coordNode) {
+        const coordText = coordNode.textContent.trim();
+        const parts = coordText.split(',').map(Number);
+        coords.push([parts[1], parts[0]]);
+      }
+    }
+    dataKM = coords;
+    console.log(`✅ ${dataKM.length} titik KM berjaya dimuatkan.`);
+    binaLayerKMMarker();
+  } catch (error) {
+    console.error('❌ Gagal memuatkan fail KML KM:', error);
+    alert(
+      'Gagal memuatkan data KM. Sila pastikan fail KM_0_174_1_ALL_MARKERS.kml.txt wujud.'
+    );
+  }
+}
+
+function binaLayerKMMarker() {
+  if (dataKM.length === 0) return;
+
+  layerKMMarker = L.layerGroup();
+
+  dataKM.forEach((coord, index) => {
+    const kmValue = (index / 10).toFixed(1);
+    const marker = L.circleMarker(coord, {
+      radius: 4,
+      fillColor: '#1E90FF',
+      color: '#1E90FF',
+      weight: 1,
+      opacity: 0.8,
+      fillOpacity: 0.9,
+    });
+
+    marker.bindTooltip(`<b>📍 ${kmValue} KM</b>`, {
+      permanent: false,
+      direction: 'top',
+      offset: [0, -8],
+      className: 'km-tooltip',
+    });
+
+    marker.on('click', function () {
+      const kmNum = parseFloat(kmValue);
+      updateInfoPanel(kmNum);
+      // Klik pada penanda KM akan buka popup balai terdekat
+      bukaPopupBalai(coord[0], coord[1], `KM ${kmValue}`);
+    });
+
+    layerKMMarker.addLayer(marker);
+  });
+
+  console.log('✅ Layer KM marker sedia (dengan event click).');
+}
+
+function toggleKMMarker() {
+  if (!layerKMMarker) {
+    alert('Data KM masih dimuatkan. Sila tunggu sebentar.');
+    loadKMLData();
+    return;
+  }
+
+  if (!kmMarkerVisible) {
+    layerKMMarker.addTo(map);
+    kmMarkerVisible = true;
+  } else {
+    map.removeLayer(layerKMMarker);
+    kmMarkerVisible = false;
+  }
+}
+
+// ============================================
+// POLIGON KAWASAN JAGAAN DARI KML (ZON DAN BALAI)
+// ============================================
+let layerPoligonZon = null;
+let layerPoligonBalai = null;
+let poligonZonVisible = false;
+let poligonBalaiVisible = false;
+
+async function loadKMLPolygon() {
+  try {
+    const response = await fetch(
+      'PETA KAWASAN JAGAAN BOMBA NEGERI JOHOR 2025.kml'
+    );
+    if (!response.ok) throw new Error('Fail KML poligon tidak dijumpai.');
+    const kmlText = await response.text();
+    const parser = new DOMParser();
+    const kmlDoc = parser.parseFromString(kmlText, 'text/xml');
+
+    const placemarks = kmlDoc.getElementsByTagName('Placemark');
+    const polygonsZon = [];
+    const polygonsBalai = [];
+
+    for (let i = 0; i < placemarks.length; i++) {
+      const pm = placemarks[i];
+      const name = pm.getElementsByTagName('name')[0]?.textContent || 'Kawasan';
+      const description =
+        pm.getElementsByTagName('description')[0]?.textContent || '';
+
+      let kategori = 'lain';
+      if (/^ZON\s*\d/i.test(name)) {
+        kategori = 'zon';
+      } else if (/PERSEMPADANAN|SEMPADAN/i.test(name)) {
+        kategori = 'sempadan';
+      } else {
+        kategori = 'balai';
+      }
+
+      function tambahPoligon(coords) {
+        if (kategori === 'zon') {
+          polygonsZon.push({ name, description, coordinates: coords });
+        } else if (kategori === 'balai') {
+          polygonsBalai.push({ name, description, coordinates: coords });
+        }
+      }
+
+      const polyNodes = pm.getElementsByTagName('Polygon');
+      if (polyNodes.length > 0) {
+        for (let p = 0; p < polyNodes.length; p++) {
+          const coordsText = polyNodes[p]
+            .getElementsByTagName('coordinates')[0]
+            ?.textContent.trim();
+          if (coordsText) {
+            const coordPairs = coordsText.split(/\s+/).map((pair) => {
+              const [lng, lat] = pair.split(',').map(Number);
+              return [lat, lng];
+            });
+            tambahPoligon(coordPairs);
+          }
+        }
+      }
+
+      const multiGeom = pm.getElementsByTagName('MultiGeometry');
+      if (multiGeom.length > 0) {
+        for (let m = 0; m < multiGeom.length; m++) {
+          const innerPolys = multiGeom[m].getElementsByTagName('Polygon');
+          for (let p = 0; p < innerPolys.length; p++) {
+            const coordsText = innerPolys[p]
+              .getElementsByTagName('coordinates')[0]
+              ?.textContent.trim();
+            if (coordsText) {
+              const coordPairs = coordsText.split(/\s+/).map((pair) => {
+                const [lng, lat] = pair.split(',').map(Number);
+                return [lat, lng];
+              });
+              tambahPoligon(coordPairs);
+            }
+          }
+        }
+      }
+    }
+
+    // Bina layer Zon
+    if (polygonsZon.length > 0) {
+      layerPoligonZon = L.layerGroup();
+      polygonsZon.forEach((poly) => {
+        const zonMatch = poly.name.match(/ZON\s*(\d)/i);
+        let color = '#1E90FF';
+        let fillColor = '#1E90FF';
+        let fillOpacity = 0.3;
+        if (zonMatch) {
+          const zonNum = parseInt(zonMatch[1]);
+          if (warnaZon[zonNum]) {
+            color = warnaZon[zonNum];
+            fillColor = warnaZon[zonNum];
+            fillOpacity = 0.3;
+          }
+        }
+
+        const polygonLayer = L.polygon(poly.coordinates, {
+          color: color,
+          weight: 3,
+          opacity: 0.8,
+          fillColor: fillColor,
+          fillOpacity: fillOpacity,
+          smoothFactor: 1,
+        });
+
+        let popupContent = `<b>${poly.name}</b>`;
+        if (poly.description) {
+          const descText = poly.description
+            .replace(/<[^>]*>/g, '')
+            .substring(0, 200);
+          popupContent += `<br>${descText}`;
+        }
+        polygonLayer.bindPopup(popupContent);
+
+        polygonLayer.on('mouseover', function () {
+          this.setStyle({ fillOpacity: 0.6, weight: 4 });
+        });
+        polygonLayer.on('mouseout', function () {
+          this.setStyle({ fillOpacity: fillOpacity, weight: 3 });
+        });
+
+        layerPoligonZon.addLayer(polygonLayer);
+      });
+      console.log(`✅ ${polygonsZon.length} poligon ZON berjaya dimuatkan.`);
+    }
+
+    // Bina layer Kawasan Balai
+    if (polygonsBalai.length > 0) {
+      layerPoligonBalai = L.layerGroup();
+      polygonsBalai.forEach((poly) => {
+        let color = '#1E90FF';
+        let fillColor = '#1E90FF';
+        let fillOpacity = 0.2;
+
+        const balaiMatch = poly.name.match(/BBP\s+([A-Z\s]+)/i);
+        if (balaiMatch) {
+          const cari = balaiMatch[1].trim();
+          const found = dataBalai.find((b) =>
+            b.nama.toUpperCase().includes(cari.toUpperCase())
+          );
+          if (found && warnaZon[found.zon]) {
+            color = warnaZon[found.zon];
+            fillColor = warnaZon[found.zon];
+            fillOpacity = 0.2;
+          }
+        }
+
+        if (color === '#1E90FF') {
+          const zonMatch = poly.name.match(/ZON\s*(\d)/i);
+          if (zonMatch) {
+            const zonNum = parseInt(zonMatch[1]);
+            if (warnaZon[zonNum]) {
+              color = warnaZon[zonNum];
+              fillColor = warnaZon[zonNum];
+              fillOpacity = 0.2;
+            }
+          }
+        }
+
+        const polygonLayer = L.polygon(poly.coordinates, {
+          color: color,
+          weight: 2,
+          opacity: 0.7,
+          fillColor: fillColor,
+          fillOpacity: fillOpacity,
+          smoothFactor: 1,
+        });
+
+        let popupContent = `<b>${poly.name}</b>`;
+        if (poly.description) {
+          const descText = poly.description
+            .replace(/<[^>]*>/g, '')
+            .substring(0, 200);
+          popupContent += `<br>${descText}`;
+        }
+        polygonLayer.bindPopup(popupContent);
+
+        polygonLayer.on('mouseover', function () {
+          this.setStyle({ fillOpacity: 0.4, weight: 3 });
+        });
+        polygonLayer.on('mouseout', function () {
+          this.setStyle({ fillOpacity: fillOpacity, weight: 2 });
+        });
+
+        layerPoligonBalai.addLayer(polygonLayer);
+      });
+      console.log(
+        `✅ ${polygonsBalai.length} poligon Kawasan Balai berjaya dimuatkan.`
+      );
+    }
+
+    console.log('✅ Layer poligon sedia (tersembunyi).');
+  } catch (error) {
+    console.error('❌ Gagal memuatkan poligon KML:', error);
+    alert(
+      'Gagal memuatkan poligon kawasan. Pastikan fail PETA KAWASAN JAGAAN BOMBA NEGERI JOHOR 2025.kml wujud.'
+    );
+  }
+}
+
+function togglePoligonZon() {
+  if (!layerPoligonZon) {
+    alert(
+      'Poligon Zon masih dimuatkan. Sila tunggu sebentar atau muat semula halaman.'
+    );
+    loadKMLPolygon();
+    return;
+  }
+
+  if (!poligonZonVisible) {
+    layerPoligonZon.addTo(map);
+    poligonZonVisible = true;
+  } else {
+    map.removeLayer(layerPoligonZon);
+    poligonZonVisible = false;
+  }
+}
+
+function togglePoligonBalai() {
+  if (!layerPoligonBalai) {
+    alert(
+      'Poligon Kawasan Balai masih dimuatkan. Sila tunggu sebentar atau muat semula halaman.'
+    );
+    loadKMLPolygon();
+    return;
+  }
+
+  if (!poligonBalaiVisible) {
+    layerPoligonBalai.addTo(map);
+    poligonBalaiVisible = true;
+  } else {
+    map.removeLayer(layerPoligonBalai);
+    poligonBalaiVisible = false;
+  }
+}
+
+// ============================================
+// MUAT DATA KM DAN POLIGON
+// ============================================
+loadKMLData();
+loadKMLPolygon();
+
+// ============================================
+// LOADING SIAP
+// ============================================
+console.log('✅ Peta Kawasan Jagaan JBPM Johor siap!');
+console.log(
+  '🔥 34 Balai | 4 Zon | Search Alamat & KM | Popup Balai Terdekat | Panel Kawasan PLUS'
+);
