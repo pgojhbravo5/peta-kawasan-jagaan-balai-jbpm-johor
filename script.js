@@ -9,7 +9,8 @@ const dataBalai = [
     daerah: 'Johor Bahru',
     lat: 1.4854561788224945,
     lng: 103.75081990820912,
-    tel: '07-2234567',
+    tel: '07-2243444',
+    tel: '07-2247444',
   },
   {
     nama: 'BBP Pasir Gudang',
@@ -17,7 +18,8 @@ const dataBalai = [
     daerah: 'Johor Bahru',
     lat: 1.4643416318507871,
     lng: 103.89600906588159,
-    tel: '07-2512345',
+    tel: '07-2513444',
+    tel: '07-2542544',
   },
   {
     nama: 'BBP Johor Jaya',
@@ -25,7 +27,7 @@ const dataBalai = [
     daerah: 'Johor Bahru',
     lat: 1.531594273562039,
     lng: 103.79519160820901,
-    tel: '07-3541234',
+    tel: '07-3511444',
   },
   {
     nama: 'BBP Skudai',
@@ -33,7 +35,8 @@ const dataBalai = [
     daerah: 'Johor Bahru',
     lat: 1.5384054976029675,
     lng: 103.62618860820908,
-    tel: '07-5561234',
+    tel: '07-5205144',
+    tel: '07-5204144',
   },
   {
     nama: 'BBP Iskandar Puteri',
@@ -41,7 +44,7 @@ const dataBalai = [
     daerah: 'Johor Bahru',
     lat: 1.4527885824622484,
     lng: 103.6205641217007,
-    tel: '07-5091234',
+    tel: '07-5099550',
   },
   {
     nama: 'BBP Tebrau',
@@ -49,7 +52,9 @@ const dataBalai = [
     daerah: 'Johor Bahru',
     lat: 1.5237283247173334,
     lng: 103.75913396799398,
-    tel: '07-3511234',
+    tel: '07-3317523',
+    tel: '07-3317524',
+    tel: '07-3317525',
   },
   {
     nama: 'BBP Pekan Nenas',
@@ -57,7 +62,7 @@ const dataBalai = [
     daerah: 'Pontian',
     lat: 1.507244287330929,
     lng: 103.51410103884008,
-    tel: '07-6991234',
+    tel: '07-6994444',
   },
   {
     nama: 'BBP Pontian',
@@ -65,7 +70,8 @@ const dataBalai = [
     daerah: 'Pontian',
     lat: 1.4921416268747725,
     lng: 103.38704635239006,
-    tel: '07-6861234',
+    tel: '07-6864444',
+    tel: '07-6874444',
   },
   {
     nama: 'BBP Pontian Baru',
@@ -73,7 +79,9 @@ const dataBalai = [
     daerah: 'Pontian',
     lat: 1.4850292041041675,
     lng: 103.40415745239008,
-    tel: '07-6865678',
+    tel: '07-6864044',
+    tel: '07-6866044',
+    tel: '07-6868044',
   },
   {
     nama: 'BBP Kulai',
@@ -81,7 +89,7 @@ const dataBalai = [
     daerah: 'Kulai',
     lat: 1.6590302117315279,
     lng: 103.6057466695133,
-    tel: '07-6631234',
+    tel: '07-6634444',
   },
   {
     nama: 'BBP Bandar Baru Kulai',
@@ -89,7 +97,7 @@ const dataBalai = [
     daerah: 'Kulai',
     lat: 1.6586313961306738,
     lng: 103.62675774623685,
-    tel: '07-6621234',
+    tel: '07-5908711',
   },
   {
     nama: 'BBP Kempas',
@@ -97,7 +105,8 @@ const dataBalai = [
     daerah: 'Johor Bahru',
     lat: 1.5271427241141524,
     lng: 103.73291787937283,
-    tel: '07-2351234',
+    tel: '07-2325474',
+    tel: '07-2327619',
   },
   {
     nama: 'BBP Fire Post Benut',
@@ -105,7 +114,8 @@ const dataBalai = [
     daerah: 'Pontian',
     lat: 1.63813001403506,
     lng: 103.25906880820891,
-    tel: '07-6901234',
+    tel: '07-6905839',
+    tel: '07-6905840',
   },
 
   // ZON 2 - KOTA TINGGI (8)
@@ -115,7 +125,7 @@ const dataBalai = [
     daerah: 'Kota Tinggi',
     lat: 1.7400726715952255,
     lng: 103.89888355053641,
-    tel: '07-8831234',
+    tel: '07-8831444',
   },
   {
     nama: 'BBP Sungai Rengit',
@@ -123,7 +133,7 @@ const dataBalai = [
     daerah: 'Pengerang',
     lat: 1.3586296957880815,
     lng: 104.23142533704556,
-    tel: '07-8171234',
+    tel: '07-8246770',
   },
   {
     nama: 'BBP Bandar Penawar',
@@ -131,7 +141,7 @@ const dataBalai = [
     daerah: 'Kota Tinggi',
     lat: 1.5584240268894343,
     lng: 104.22836464004762,
-    tel: '07-8221234',
+    tel: '07-8223692',
   },
   {
     nama: 'BBP Mersing',
@@ -139,7 +149,7 @@ const dataBalai = [
     daerah: 'Mersing',
     lat: 2.4281597008384166,
     lng: 103.83968525238902,
-    tel: '07-7991234',
+    tel: '07-7994444',
   },
   {
     nama: 'BBP Endau',
@@ -147,7 +157,7 @@ const dataBalai = [
     daerah: 'Mersing',
     lat: 2.6511667138213197,
     lng: 103.622388079372,
-    tel: '07-7941234',
+    tel: '07-7945444',
   },
   {
     nama: 'BBP Sebana Cove',
@@ -155,7 +165,7 @@ const dataBalai = [
     daerah: 'Kota Tinggi',
     lat: 1.4111942637295485,
     lng: 104.20702710820935,
-    tel: '07-8181234',
+    tel: '07-8861641',
   },
   {
     nama: 'BBP Punggai',
@@ -163,7 +173,7 @@ const dataBalai = [
     daerah: 'Kota Tinggi',
     lat: 1.42940813601492,
     lng: 104.27036571006252,
-    tel: '07-8231234',
+    tel: '07-8861952',
   },
   {
     nama: 'BBP Bandar Tenggara',
@@ -171,7 +181,7 @@ const dataBalai = [
     daerah: 'Kulai',
     lat: 1.8512117790715301,
     lng: 103.61435888307892,
-    tel: '07-8961234',
+    tel: '07-8964498',
   },
 
   // ZON 3 - KLUANG (8)
@@ -181,7 +191,7 @@ const dataBalai = [
     daerah: 'Batu Pahat',
     lat: 1.8587485315341812,
     lng: 102.94072309627684,
-    tel: '07-4321234',
+    tel: ' 07-4345757',
   },
   {
     nama: 'BBP Kluang',
@@ -189,7 +199,7 @@ const dataBalai = [
     daerah: 'Kluang',
     lat: 2.0342273939975697,
     lng: 103.31953787937219,
-    tel: '07-7721234',
+    tel: '07-7724444',
   },
   {
     nama: 'BBP Batu Pahat',
@@ -197,7 +207,7 @@ const dataBalai = [
     daerah: 'Batu Pahat',
     lat: 1.8500697700442517,
     lng: 102.92987598122569,
-    tel: '07-4341234',
+    tel: '07-4338444',
   },
   {
     nama: 'BBP Rengit',
@@ -205,7 +215,7 @@ const dataBalai = [
     daerah: 'Batu Pahat',
     lat: 1.680160555465549,
     lng: 103.15828676588123,
-    tel: '07-4241234',
+    tel: '07-4243444',
   },
   {
     nama: 'BBP Renggam',
@@ -213,7 +223,7 @@ const dataBalai = [
     daerah: 'Kluang',
     lat: 1.8839022510131862,
     lng: 103.3999346812256,
-    tel: '07-7531234',
+    tel: '07-7535444',
   },
   {
     nama: 'BBP Yong Peng',
@@ -221,7 +231,7 @@ const dataBalai = [
     daerah: 'Batu Pahat',
     lat: 2.01252787565433,
     lng: 103.0631870216999,
-    tel: '07-4671234',
+    tel: '07-4674444',
   },
   {
     nama: 'BBP Ayer Hitam',
@@ -229,7 +239,7 @@ const dataBalai = [
     daerah: 'Batu Pahat',
     lat: 1.9046398311946404,
     lng: 103.16580533704466,
-    tel: '07-7581234',
+    tel: '07-7582206',
   },
   {
     nama: 'BBP Fire Post Parit Sulong',
@@ -237,7 +247,7 @@ const dataBalai = [
     daerah: 'Batu Pahat',
     lat: 1.9734098250147893,
     lng: 102.86930995238934,
-    tel: '07-4551234',
+    tel: 'n/a',
   },
 
   // ZON 4 - MUAR (7)
@@ -247,7 +257,8 @@ const dataBalai = [
     daerah: 'Muar',
     lat: 2.0536025587250952,
     lng: 102.57234047937226,
-    tel: '06-9521234',
+    tel: '06-9555994',
+    tel: '06-9555992',
   },
   {
     nama: 'BBP Bandar Baru Segamat',
@@ -255,7 +266,7 @@ const dataBalai = [
     daerah: 'Segamat',
     lat: 2.498693444757604,
     lng: 102.87045925238905,
-    tel: '07-9431234',
+    tel: '07-9435844',
   },
   {
     nama: 'BBP Segamat',
@@ -263,7 +274,7 @@ const dataBalai = [
     daerah: 'Segamat',
     lat: 2.5097396869375945,
     lng: 102.81377777937195,
-    tel: '07-9311234',
+    tel: '07-9314444',
   },
   {
     nama: 'BBP Labis',
@@ -271,7 +282,7 @@ const dataBalai = [
     daerah: 'Segamat',
     lat: 2.380060008820531,
     lng: 103.01796330820825,
-    tel: '07-9251234',
+    tel: '07-9254444',
   },
   {
     nama: 'BBP Bukit Gambir',
@@ -279,7 +290,7 @@ const dataBalai = [
     daerah: 'Tangkak',
     lat: 2.217126038710606,
     lng: 102.65990143704445,
-    tel: '06-9761234',
+    tel: '06-9765144',
   },
   {
     nama: 'BBP Tangkak',
@@ -287,7 +298,7 @@ const dataBalai = [
     daerah: 'Tangkak',
     lat: 2.270972287569266,
     lng: 102.543539523553,
-    tel: '06-9781234',
+    tel: '06-9783444',
   },
   {
     nama: 'BBP Pagoh',
@@ -295,15 +306,16 @@ const dataBalai = [
     daerah: 'Muar',
     lat: 2.136905853626598,
     lng: 102.73936700820836,
-    tel: '06-9741234',
+    tel: '06-9741955',
+    tel: '06-9741957',
   },
   {
     nama: 'BBP Jasin Bestari',
     zon: 4,
-    daerah: 'Jasin',
+    daerah: 'Jasin/Negeri Melaka',
     lat: 2.2987006825702365,
     lng: 102.41515029627601,
-    tel: '06-9741234',
+    tel: '06-5293736',
   },
 ];
 
