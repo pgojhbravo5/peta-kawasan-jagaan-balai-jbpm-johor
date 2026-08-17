@@ -712,7 +712,7 @@ function infoSistem() {
       'JBPM Negeri Johor\n\n' +
       '© 2026 PGO Johor\n' +
       'Dibangunkan oleh:\n' +
-      'PB Mohamad Aidil\n\n' +
+      'PB Mohamad Aidil,PB Mohd Shafrie & PB Malik\n\n' +
       'Versi 1.0 - Prototype'
   );
 }
