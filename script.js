@@ -570,7 +570,7 @@ function cariAlamat() {
     '<div class="search-result-item" style="color:#999;">Mencari...</div>';
   searchResults.classList.add('show');
 
-  const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(
+  const url = `/api/geocode?q=${encodeURIComponent(
     query
   )}&countrycodes=my&limit=5&accept-language=ms`;
 
