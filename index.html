@@ -10,6 +10,11 @@
       href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
     />
     <style>
+      /* SAIZ SERAGAM UNTUK BUTANG TOOLBAR (menu, search, popup balai) */
+      :root {
+        --toolbar-h: 44px;
+      }
+
       /* Tooltip KM */
       .km-tooltip {
         background: rgba(0, 0, 0, 0.8);
@@ -38,11 +43,17 @@
         top: 10px;
         left: 10px;
         z-index: 1000;
+        width: var(--toolbar-h);
+        height: var(--toolbar-h);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-sizing: border-box;
         background: #cc0000;
         color: #fff;
         border: none;
-        font-size: 24px;
-        padding: 8px 14px;
+        font-size: 22px;
+        padding: 0;
         border-radius: 4px;
         cursor: pointer;
         box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
@@ -95,6 +106,17 @@
       }
       .menu-item:hover {
         background: #e0e0e0;
+      }
+      .menu-item-keluar {
+        margin-top: 14px;
+        padding-top: 12px;
+        border-top: 1px solid #e0e0e0;
+        background: #fff5f5;
+        color: #cc0000;
+        font-weight: bold;
+      }
+      .menu-item-keluar:hover {
+        background: #ffe5e5;
       }
       #filter-zon {
         padding: 8px 12px;
@@ -188,15 +210,17 @@
         overflow: visible;
         transition: border-color 0.2s;
         flex-wrap: wrap;
-        padding: 2px;
+        padding: 0;
       }
       #search-container:focus-within {
         border-color: #cc0000;
       }
       #search-input {
         flex: 1 1 120px;
+        height: var(--toolbar-h);
+        box-sizing: border-box;
         border: none;
-        padding: 8px 12px;
+        padding: 0 12px;
         font-size: 14px;
         outline: none;
         min-width: 80px;
@@ -211,7 +235,8 @@
         padding: 0 8px;
         display: none;
         flex-shrink: 0;
-        height: 100%;
+        height: var(--toolbar-h);
+        box-sizing: border-box;
       }
       #search-clear.show {
         display: flex;
@@ -224,7 +249,12 @@
       .mode-btn {
         background: #f0f0f0;
         border: 1px solid #ccc;
-        padding: 6px 12px;
+        height: var(--toolbar-h);
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 12px;
         border-radius: 4px;
         cursor: pointer;
         font-size: 13px;
@@ -232,7 +262,7 @@
         color: #333;
         transition: 0.2s;
         white-space: nowrap;
-        margin: 2px;
+        margin: 0;
       }
       .mode-btn:hover {
         background: #e0e0e0;
@@ -252,14 +282,19 @@
         background: #cc0000;
         color: #fff;
         border: none;
-        padding: 8px 16px;
+        height: var(--toolbar-h);
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 16px;
         cursor: pointer;
         font-weight: bold;
         font-size: 13px;
         white-space: nowrap;
         flex-shrink: 0;
         border-radius: 0 20px 20px 0;
-        margin: 2px;
+        margin: 0;
       }
       #search-btn:hover {
         background: #990000;
@@ -303,9 +338,13 @@
         color: #fff;
         border: none;
         border-radius: 50%;
-        width: 56px;
-        height: 56px;
-        font-size: 28px;
+        width: var(--toolbar-h);
+        height: var(--toolbar-h);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-sizing: border-box;
+        font-size: 22px;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
         cursor: pointer;
         transition: 0.2s;
@@ -482,31 +521,34 @@
 
       /* RESPONSIF */
       @media (max-width: 600px) {
+        :root {
+          --toolbar-h: 40px;
+        }
         #search-container {
           left: 10px;
           max-width: calc(100% - 20px);
           width: auto;
           border-radius: 12px;
           flex-wrap: wrap;
-          padding: 4px;
+          padding: 0;
           top: 60px;
         }
         #search-input {
           flex: 1 1 100px;
           font-size: 13px;
-          padding: 6px 10px;
+          padding: 0 10px;
           min-width: 60px;
         }
         #search-btn {
-          padding: 6px 10px;
+          padding: 0 10px;
           font-size: 12px;
           border-radius: 0 12px 12px 0;
-          margin: 2px;
+          margin: 0;
         }
         .mode-btn {
           font-size: 11px;
-          padding: 4px 8px;
-          margin: 2px;
+          padding: 0 8px;
+          margin: 0;
         }
         #search-clear {
           font-size: 14px;
@@ -520,16 +562,13 @@
           top: 10px;
           left: 10px;
           font-size: 20px;
-          padding: 6px 12px;
         }
         #popup-modal {
           width: 90vw;
           right: -100vw;
         }
         #popup-btn {
-          width: 48px;
-          height: 48px;
-          font-size: 22px;
+          font-size: 20px;
           right: 6px;
         }
         #info-panel {
@@ -588,6 +627,9 @@
           </button>
           <div id="list-balai" style="display: none"></div>
           <button class="menu-item" onclick="infoSistem()">ℹ️ Maklumat</button>
+          <button class="menu-item menu-item-keluar" onclick="location.href='/'">
+            ⬅️ Kembali ke Dashboard Utama
+          </button>
         </div>
       </div>
       <div id="overlay" onclick="toggleMenu()"></div>
