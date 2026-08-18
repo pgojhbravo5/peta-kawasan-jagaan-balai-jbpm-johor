@@ -393,7 +393,9 @@ L.control.topBar = L.Control.extend({
 new L.control.topBar({ position: 'topright' }).addTo(map);
 
 // ============================================
-// FUNGSI KIRA JARAK (HAVERSINE)
+// FUNGSI KIRA JARAK (HAVERSINE - GARIS LURUS)
+// Digunakan untuk PRA-TAPIS calon sebelum panggil API route,
+// dan sebagai FALLBACK jika API route gagal/timeout.
 // ============================================
 function kiraJarak(lat1, lon1, lat2, lon2) {
   const R = 6371;
@@ -409,16 +411,70 @@ function kiraJarak(lat1, lon1, lat2, lon2) {
 }
 
 // ============================================
-// FUNGSI CARI 4 BALAI TERDEKAT
+// FUNGSI CARI 4 BALAI TERDEKAT (JARAK JALAN SEBENAR - OSRM)
 // ============================================
-function cariBalaiTerdekat(lat, lng) {
-  const jarakBalai = dataBalai.map((balai) => {
-    const jarak = kiraJarak(lat, lng, balai.lat, balai.lng);
-    return { ...balai, jarak: jarak };
-  });
+const OSRM_TABLE_URL = 'https://router.project-osrm.org/table/v1/driving';
+const OSRM_TIMEOUT_MS = 5000; // had masa tunggu API sebelum guna fallback garis lurus
+const BILANGAN_CALON_PRATAPIS = 8; // pra-tapis Haversine dahulu, hantar 8 calon terdekat sahaja ke OSRM
 
-  jarakBalai.sort((a, b) => a.jarak - b.jarak);
-  return jarakBalai.slice(0, 4);
+async function cariBalaiTerdekat(lat, lng) {
+  // 1) PRA-TAPIS guna Haversine (laju, tiada panggilan rangkaian)
+  const semuaJarakLurus = dataBalai
+    .map((balai) => ({
+      ...balai,
+      jarakLurus: kiraJarak(lat, lng, balai.lat, balai.lng),
+    }))
+    .sort((a, b) => a.jarakLurus - b.jarakLurus);
+
+  const calon = semuaJarakLurus.slice(0, BILANGAN_CALON_PRATAPIS);
+
+  // 2) Cuba dapatkan jarak JALAN SEBENAR untuk calon-calon ini
+  try {
+    const hasilRoute = await panggilOSRMTable(lat, lng, calon);
+    if (hasilRoute.length === 0) throw new Error('Tiada jarak route sah dikembalikan.');
+    hasilRoute.sort((a, b) => a.jarak - b.jarak);
+    return { data: hasilRoute.slice(0, 4), jenis: 'route' };
+  } catch (err) {
+    console.warn('⚠️ Gagal dapatkan jarak jalan (OSRM), guna jarak garis lurus sebagai fallback:', err);
+    // 3) FALLBACK: guna jarak garis lurus jika API gagal / timeout / rangkaian down
+    const fallback = semuaJarakLurus
+      .slice(0, 4)
+      .map((b) => ({ ...b, jarak: b.jarakLurus }));
+    return { data: fallback, jenis: 'lurus' };
+  }
+}
+
+async function panggilOSRMTable(lat, lng, calon) {
+  const koordinat = [`${lng},${lat}`, ...calon.map((b) => `${b.lng},${b.lat}`)].join(';');
+  const destinasi = calon.map((_, i) => i + 1).join(';');
+  const url = `${OSRM_TABLE_URL}/${koordinat}?sources=0&destinations=${destinasi}&annotations=distance`;
+
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), OSRM_TIMEOUT_MS);
+
+  try {
+    const resp = await fetch(url, { signal: controller.signal });
+    if (!resp.ok) throw new Error(`OSRM membalas ralat: ${resp.status}`);
+
+    const data = await resp.json();
+    if (data.code !== 'Ok' || !Array.isArray(data.distances) || !data.distances[0]) {
+      throw new Error('Format respons OSRM tidak dijangka.');
+    }
+
+    const jarakMeter = data.distances[0]; // urutan sepadan dengan array `calon`
+
+    return calon
+      .map((balai, i) => {
+        const meter = jarakMeter[i];
+        return {
+          ...balai,
+          jarak: meter === null || meter === undefined ? null : meter / 1000,
+        };
+      })
+      .filter((b) => b.jarak !== null);
+  } finally {
+    clearTimeout(timeoutId);
+  }
 }
 
 // ============================================
@@ -426,7 +482,7 @@ function cariBalaiTerdekat(lat, lng) {
 // ============================================
 let lokasiTerakhir = null;
 
-function bukaPopupBalai(lat, lng, alamat) {
+async function bukaPopupBalai(lat, lng, alamat) {
   const modal = document.getElementById('popup-modal');
   const overlay = document.getElementById('popup-overlay');
   const content = document.getElementById('popup-content');
@@ -454,8 +510,27 @@ function bukaPopupBalai(lat, lng, alamat) {
   // Simpan lokasi untuk kegunaan akan datang
   lokasiTerakhir = { lat, lng, alamat };
 
-  const terdekat = cariBalaiTerdekat(lat, lng);
-  let html = `<div class="popup-location">📍 ${alamat || 'Lokasi'}</div>`;
+  // Buka modal dahulu dengan status "mengira" — panggilan OSRM ambil ~1-3 saat
+  content.innerHTML = `
+    <div class="popup-placeholder">
+      ⏳ Mengira jarak jalan ke balai berdekatan...
+    </div>
+  `;
+  modal.classList.add('open');
+  overlay.classList.add('show');
+
+  const { data: terdekat, jenis } = await cariBalaiTerdekat(lat, lng);
+
+  // Elak "race condition" — kalau pengguna dah cari lokasi lain semasa tunggu API,
+  // jangan timpa popup dengan hasil lokasi yang lapuk
+  if (!lokasiTerakhir || lokasiTerakhir.lat !== lat || lokasiTerakhir.lng !== lng) return;
+
+  const notaJenis =
+    jenis === 'lurus'
+      ? `<div style="font-size:11px;color:#c2703d;margin-bottom:10px;">⚠️ Jarak jalan tidak dapat dikira buat masa ini — dipaparkan jarak garis lurus (anggaran).</div>`
+      : '';
+
+  let html = `<div class="popup-location">📍 ${alamat || 'Lokasi'}</div>${notaJenis}`;
 
   terdekat.forEach((b, i) => {
     html += `
@@ -476,8 +551,6 @@ function bukaPopupBalai(lat, lng, alamat) {
   });
 
   content.innerHTML = html;
-  modal.classList.add('open');
-  overlay.classList.add('show');
 }
 
 function tutupPopupBalai() {
