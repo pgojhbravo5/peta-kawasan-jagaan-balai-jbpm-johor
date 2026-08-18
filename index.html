@@ -3,19 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<base href="/peta-bomba/" />
     <title>Peta Kawasan Jagaan Balai Bomba Johor</title>
-    <script>
-      // Paksa base URL supaya script.js, .kml, dsb (laluan relatif)
-      // sentiasa resolve dengan betul, sama ada dibuka terus di root
-      // ATAU melalui proxy dashboard di /peta-bomba
-      (function () {
-        if (location.pathname.indexOf('/peta-bomba') === 0) {
-          var base = document.createElement('base');
-          base.href = '/peta-bomba/';
-          document.head.appendChild(base);
-        }
-      })();
-    </script>
     <link
       rel="stylesheet"
       href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
@@ -161,7 +150,7 @@
         background: #fff;
         border-radius: 20px;
         border: 2px solid #ccc;
-        overflow: hidden;
+        overflow: visible;
         transition: border-color 0.2s;
         flex-wrap: wrap;
         padding: 2px;
@@ -609,6 +598,6 @@
     </div>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <script src="script.js"></script>
+    <script src="script.js"></script>    
   </body>
-</html> 
+</html>
