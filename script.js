@@ -348,31 +348,49 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 }).addTo(map);
 
 // ============================================
-// SUSUNAN BUTANG ZOOM & FULLSCREEN
+// SUSUNAN BUTANG ZOOM & FULLSCREEN (MENDATAR - SATU BARIS)
+// Digabung dalam satu kawalan mendatar (bukan menegak) supaya
+// tidak bertindan dengan search bar pada paparan mobile.
 // ============================================
 map.removeControl(map.zoomControl);
 
-L.control.fullscreen = L.Control.extend({
+L.control.topBar = L.Control.extend({
   onAdd: function () {
-    const btn = L.DomUtil.create('button', 'leaflet-control-fullscreen');
-    btn.innerHTML = '⛶';
-    btn.style.cssText =
-      'width:34px;height:34px;font-size:18px;cursor:pointer;border:2px solid rgba(0,0,0,0.2);border-radius:4px;background:white;';
-    btn.title = 'Skrin Penuh';
-    btn.onclick = function () {
+    const container = L.DomUtil.create('div', 'leaflet-bar leaflet-control-topbar');
+
+    const buatBtn = (label, titleTxt, onClick, tambahBorder) => {
+      const a = L.DomUtil.create('a', tambahBorder ? 'topbar-btn topbar-btn-border' : 'topbar-btn', container);
+      a.innerHTML = label;
+      a.href = '#';
+      a.title = titleTxt;
+      a.setAttribute('role', 'button');
+      L.DomEvent.on(a, 'click', L.DomEvent.stop).on(a, 'click', onClick);
+      return a;
+    };
+
+    buatBtn('⛶', 'Skrin Penuh', function () {
       const mapDiv = document.getElementById('map');
       if (!document.fullscreenElement) {
         mapDiv.requestFullscreen();
       } else {
         document.exitFullscreen();
       }
-    };
-    return btn;
+    }, false);
+
+    buatBtn('−', 'Zoom Out', function () {
+      map.zoomOut();
+    }, true);
+
+    buatBtn('+', 'Zoom In', function () {
+      map.zoomIn();
+    }, true);
+
+    L.DomEvent.disableClickPropagation(container);
+    return container;
   },
   onRemove: function () {},
 });
-new L.control.fullscreen({ position: 'topright' }).addTo(map);
-L.control.zoom({ position: 'topright' }).addTo(map);
+new L.control.topBar({ position: 'topright' }).addTo(map);
 
 // ============================================
 // FUNGSI KIRA JARAK (HAVERSINE)

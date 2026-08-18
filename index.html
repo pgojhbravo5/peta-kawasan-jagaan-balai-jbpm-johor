@@ -137,6 +137,41 @@
         display: block;
       }
 
+      /* BUTANG ZOOM + FULLSCREEN MENDATAR (SATU BARIS) */
+      .leaflet-control-topbar {
+        display: flex;
+        flex-direction: row;
+        border-radius: 4px;
+        overflow: hidden;
+      }
+      .leaflet-control-topbar .topbar-btn {
+        width: 34px;
+        height: 34px;
+        line-height: 34px;
+        text-align: center;
+        font-size: 18px;
+        font-weight: bold;
+        color: #333;
+        background: #fff;
+        text-decoration: none;
+        user-select: none;
+        display: block;
+      }
+      .leaflet-control-topbar .topbar-btn-border {
+        border-left: 1px solid rgba(0, 0, 0, 0.2);
+      }
+      .leaflet-control-topbar .topbar-btn:hover {
+        background: #f4f4f4;
+      }
+      @media (max-width: 600px) {
+        .leaflet-control-topbar .topbar-btn {
+          width: 30px;
+          height: 30px;
+          line-height: 30px;
+          font-size: 16px;
+        }
+      }
+
       /* SEARCH CONTAINER */
       #search-container {
         position: absolute;
