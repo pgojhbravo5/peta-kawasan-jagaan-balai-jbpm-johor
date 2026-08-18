@@ -429,10 +429,31 @@
         display: none;
         pointer-events: none;
       }
+      #info-panel-close {
+        position: absolute;
+        top: 6px;
+        right: 8px;
+        width: 22px;
+        height: 22px;
+        border: none;
+        background: transparent;
+        color: #999;
+        font-size: 15px;
+        line-height: 22px;
+        text-align: center;
+        cursor: pointer;
+        border-radius: 50%;
+        pointer-events: auto;
+      }
+      #info-panel-close:hover {
+        background: #f0f0f0;
+        color: #333;
+      }
       #info-panel .info-title {
         font-weight: bold;
         color: #cc0000;
         margin-bottom: 6px;
+        padding-right: 20px;
       }
       #info-panel .info-km {
         font-weight: bold;
@@ -615,6 +636,7 @@
 
       <!-- PANEL KAWASAN JAGAAN PLUS -->
       <div id="info-panel">
+        <button id="info-panel-close" onclick="tutupInfoPanel()" title="Tutup" aria-label="Tutup">✕</button>
         <div class="info-title">🚒 Kawasan Jagaan PLUS</div>
         <div class="info-km" id="info-km">KM 0.0</div>
         <div class="info-row">

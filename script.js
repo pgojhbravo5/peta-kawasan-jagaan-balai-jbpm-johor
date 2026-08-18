@@ -907,6 +907,11 @@ function updateInfoPanel(km) {
   panel.style.display = 'block';
 }
 
+function tutupInfoPanel() {
+  const panel = document.getElementById('info-panel');
+  if (panel) panel.style.display = 'none';
+}
+
 // ============================================
 // DATA KM – MUAT TURUN & PARSE KML
 // ============================================
