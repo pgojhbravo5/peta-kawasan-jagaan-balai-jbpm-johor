@@ -898,7 +898,7 @@ let kmMarkerVisible = false;
 
 async function loadKMLData() {
   try {
-    const response = await fetch('KM_0_174_1_ALL_MARKERS.kml.txt');
+    const response = await fetch('/KM_0_174_1_ALL_MARKERS.kml.txt');
     if (!response.ok) throw new Error('Fail KM tidak dijumpai.');
     const kmlText = await response.text();
     const parser = new DOMParser();
@@ -992,7 +992,7 @@ let poligonBalaiVisible = false;
 async function loadKMLPolygon() {
   try {
     const response = await fetch(
-      'PETA KAWASAN JAGAAN BOMBA NEGERI JOHOR 2025.kml'
+      '/PETA%20KAWASAN%20JAGAAN%20BOMBA%20NEGERI%20JOHOR%202025.kml'
     );
     if (!response.ok) throw new Error('Fail KML poligon tidak dijumpai.');
     const kmlText = await response.text();
