@@ -10,7 +10,6 @@ const dataBalai = [
     lat: 1.4854561788224945,
     lng: 103.75081990820912,
     tel: '07-2243444',
-    tel: '07-2247444',
   },
   {
     nama: 'BBP Pasir Gudang',
@@ -19,7 +18,6 @@ const dataBalai = [
     lat: 1.4643416318507871,
     lng: 103.89600906588159,
     tel: '07-2513444',
-    tel: '07-2542544',
   },
   {
     nama: 'BBP Johor Jaya',
@@ -36,7 +34,6 @@ const dataBalai = [
     lat: 1.5384054976029675,
     lng: 103.62618860820908,
     tel: '07-5205144',
-    tel: '07-5204144',
   },
   {
     nama: 'BBP Iskandar Puteri',
@@ -53,8 +50,6 @@ const dataBalai = [
     lat: 1.5237283247173334,
     lng: 103.75913396799398,
     tel: '07-3317523',
-    tel: '07-3317524',
-    tel: '07-3317525',
   },
   {
     nama: 'BBP Pekan Nenas',
@@ -71,7 +66,6 @@ const dataBalai = [
     lat: 1.4921416268747725,
     lng: 103.38704635239006,
     tel: '07-6864444',
-    tel: '07-6874444',
   },
   {
     nama: 'BBP Pontian Baru',
@@ -80,8 +74,6 @@ const dataBalai = [
     lat: 1.4850292041041675,
     lng: 103.40415745239008,
     tel: '07-6864044',
-    tel: '07-6866044',
-    tel: '07-6868044',
   },
   {
     nama: 'BBP Kulai',
@@ -106,7 +98,6 @@ const dataBalai = [
     lat: 1.5271427241141524,
     lng: 103.73291787937283,
     tel: '07-2325474',
-    tel: '07-2327619',
   },
   {
     nama: 'BBP Fire Post Benut',
@@ -115,7 +106,6 @@ const dataBalai = [
     lat: 1.63813001403506,
     lng: 103.25906880820891,
     tel: '07-6905839',
-    tel: '07-6905840',
   },
 
   // ZON 2 - KOTA TINGGI (8)
@@ -191,7 +181,7 @@ const dataBalai = [
     daerah: 'Batu Pahat',
     lat: 1.8587485315341812,
     lng: 102.94072309627684,
-    tel: ' 07-4345757',
+    tel: '07-4345757',
   },
   {
     nama: 'BBP Kluang',
@@ -258,7 +248,6 @@ const dataBalai = [
     lat: 2.0536025587250952,
     lng: 102.57234047937226,
     tel: '06-9555994',
-    tel: '06-9555992',
   },
   {
     nama: 'BBP Bandar Baru Segamat',
@@ -307,7 +296,6 @@ const dataBalai = [
     lat: 2.136905853626598,
     lng: 102.73936700820836,
     tel: '06-9741955',
-    tel: '06-9741957',
   },
   {
     nama: 'BBP Jasin Bestari',
@@ -342,7 +330,7 @@ const namaZon = {
 const layerZon = { 1: [], 2: [], 3: [], 4: [] };
 
 // ============================================
-// INISIALISASI PETA (LOCK KE JOHOR)
+// INISIALISASI PETA
 // ============================================
 const map = L.map('map', {
   maxBounds: [
@@ -416,7 +404,7 @@ function cariBalaiTerdekat(lat, lng) {
 }
 
 // ============================================
-// POPUP BALAI TERDEKAT (MODAL)
+// POPUP BALAI TERDEKAT (DRAWER KANAN)
 // ============================================
 let lokasiTerakhir = null;
 
@@ -425,20 +413,27 @@ function bukaPopupBalai(lat, lng, alamat) {
   const overlay = document.getElementById('popup-overlay');
   const content = document.getElementById('popup-content');
 
+  // Jika tiada parameter, gunakan lokasiTerakhir
   if (typeof lat === 'undefined' || lat === null) {
     if (lokasiTerakhir) {
       lat = lokasiTerakhir.lat;
       lng = lokasiTerakhir.lng;
       alamat = lokasiTerakhir.alamat || 'Lokasi';
     } else {
-      content.innerHTML =
-        '<div class="popup-placeholder">🔍 Cari lokasi untuk lihat<br />4 balai terdekat.</div>';
+      // Tiada lokasi – tunjuk placeholder
+      content.innerHTML = `
+        <div class="popup-placeholder">
+          🔍 Sila cari lokasi terlebih dahulu,<br />
+          kemudian tekan butang 🔥 untuk lihat 4 balai terdekat.
+        </div>
+      `;
       modal.classList.add('open');
       overlay.classList.add('show');
       return;
     }
   }
 
+  // Simpan lokasi untuk kegunaan akan datang
   lokasiTerakhir = { lat, lng, alamat };
 
   const terdekat = cariBalaiTerdekat(lat, lng);
@@ -500,12 +495,39 @@ dataBalai.forEach((balai) => {
 });
 
 // ============================================
-// SEARCH (MANUAL: BUTANG ATAU ENTER)
+// MODE CARIAN – ALAMAT ATAU KM
+// ============================================
+let modeCarian = 'alamat';
+
+function tukarMode() {
+  const modeBtn = document.getElementById('mode-toggle');
+  const searchInput = document.getElementById('search-input');
+  const resultsDiv = document.getElementById('search-results');
+
+  if (modeCarian === 'alamat') {
+    modeCarian = 'km';
+    modeBtn.textContent = '🔢 KM';
+    modeBtn.className = 'mode-btn active-km';
+    searchInput.placeholder = '🔢 Masukkan nombor KM (cth: 23.5)';
+  } else {
+    modeCarian = 'alamat';
+    modeBtn.textContent = '📍 Alamat';
+    modeBtn.className = 'mode-btn active-alamat';
+    searchInput.placeholder = '🔍 Cari alamat atau tempat...';
+  }
+  resultsDiv.classList.remove('show');
+  searchInput.focus();
+  console.log('Mod carian sekarang:', modeCarian);
+}
+
+// ============================================
+// SEARCH (SATU BUTANG + TOGGLE MODE)
 // ============================================
 const searchInput = document.getElementById('search-input');
 const searchResults = document.getElementById('search-results');
 let searchMarker = null;
 
+// Fungsi parse KM
 function cariKM(query) {
   if (!dataKM || dataKM.length === 0) return null;
   const match = query.match(/^\s*(?:km\s*)?([\d.]+)\s*(?:km)?\s*$/i);
@@ -519,36 +541,24 @@ function cariKM(query) {
   return { lat: coord[0], lng: coord[1], km: kmValue };
 }
 
-// Fungsi utama carian (dipanggil oleh butang atau Enter)
-function cariLokasi() {
+// Fungsi utama cari()
+function cari() {
+  console.log('Fungsi cari() dipanggil, mode:', modeCarian);
+  if (modeCarian === 'alamat') {
+    cariAlamat();
+  } else {
+    cariKMPlus();
+  }
+}
+
+// Carian Alamat (global)
+function cariAlamat() {
   const query = searchInput.value.trim();
+  console.log('Carian alamat untuk:', query);
   if (query.length === 0) {
     searchResults.classList.remove('show');
     return;
   }
-
-  // 1. Cuba cari KM
-  const kmResult = cariKM(query);
-  if (kmResult) {
-    searchResults.classList.remove('show');
-    map.flyTo([kmResult.lat, kmResult.lng], 15);
-    L.popup()
-      .setLatLng([kmResult.lat, kmResult.lng])
-      .setContent(`<b>📍 ${kmResult.km} KM</b>`)
-      .openOn(map);
-    searchInput.value = `KM ${kmResult.km}`;
-    // Tunjukkan panel PLUS sahaja, TIDAK buka popup balai terdekat
-    updateInfoPanel(parseFloat(kmResult.km));
-    // Simpan lokasi untuk kegunaan butang 🔥 nanti
-    lokasiTerakhir = {
-      lat: kmResult.lat,
-      lng: kmResult.lng,
-      alamat: `KM ${kmResult.km}`,
-    };
-    return;
-  }
-
-  // 2. Cuba cari alamat (Nominatim)
   if (query.length < 3) {
     searchResults.innerHTML =
       '<div class="search-result-item" style="color:#999;">Minimum 3 aksara untuk alamat.</div>';
@@ -560,20 +570,27 @@ function cariLokasi() {
     '<div class="search-result-item" style="color:#999;">Mencari...</div>';
   searchResults.classList.add('show');
 
-  fetch(
-    `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(
-      query
-    )}&countrycodes=my&limit=5&accept-language=ms`
-  )
-    .then((response) => response.json())
+  const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(
+    query
+  )}&countrycodes=my&limit=5&accept-language=ms`;
+
+  console.log('Fetching:', url);
+
+  fetch(url)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      return response.json();
+    })
     .then((data) => {
+      console.log('Data diterima:', data);
       if (data.length === 0) {
         searchResults.innerHTML =
           '<div class="search-result-item" style="color:#999;">Tiada hasil dijumpai</div>';
         searchResults.classList.add('show');
         return;
       }
-
       let html = '';
       data.forEach((item) => {
         html += `<div class="search-result-item" onclick="pilihLokasi(${
@@ -585,11 +602,43 @@ function cariLokasi() {
       searchResults.innerHTML = html;
       searchResults.classList.add('show');
     })
-    .catch(() => {
+    .catch((error) => {
+      console.error('Ralat carian alamat:', error);
       searchResults.innerHTML =
-        '<div class="search-result-item" style="color:red;">Ralat carian. Cuba lagi.</div>';
+        '<div class="search-result-item" style="color:red;">Ralat carian. Sila semak sambungan internet atau cuba lagi.</div>';
       searchResults.classList.add('show');
     });
+}
+
+// Carian KM PLUS
+function cariKMPlus() {
+  const query = searchInput.value.trim();
+  if (query.length === 0) {
+    searchResults.classList.remove('show');
+    return;
+  }
+
+  const kmResult = cariKM(query);
+  if (kmResult) {
+    searchResults.classList.remove('show');
+    map.flyTo([kmResult.lat, kmResult.lng], 15);
+    L.popup()
+      .setLatLng([kmResult.lat, kmResult.lng])
+      .setContent(`<b>📍 ${kmResult.km} KM</b>`)
+      .openOn(map);
+    searchInput.value = `KM ${kmResult.km}`;
+    updateInfoPanel(parseFloat(kmResult.km));
+    // Simpan lokasi tetapi TIDAK buka popup
+    lokasiTerakhir = {
+      lat: kmResult.lat,
+      lng: kmResult.lng,
+      alamat: `KM ${kmResult.km}`,
+    };
+  } else {
+    searchResults.innerHTML =
+      '<div class="search-result-item" style="color:#999;">Format KM tidak sah. Contoh: 23.5, km 45, 100</div>';
+    searchResults.classList.add('show');
+  }
 }
 
 function escapeHtml(text) {
@@ -625,27 +674,26 @@ function pilihLokasi(lat, lng, alamat) {
     .bindPopup(`📍 <b>Lokasi Carian</b><br>${alamat}`)
     .openPopup();
 
-  // Simpan lokasi untuk butang 🔥, tapi jangan buka popup
+  // Simpan lokasi tetapi TIDAK buka popup
   lokasiTerakhir = { lat, lng, alamat };
-  // Jangan panggil bukaPopupBalai() di sini
 }
 
-// Event: Tekan Enter untuk carian
+// Event: Enter
 searchInput.addEventListener('keypress', function (e) {
   if (e.key === 'Enter') {
     e.preventDefault();
-    cariLokasi();
+    cari();
   }
 });
 
-// Event: Sembunyi hasil carian bila klik di luar
+// Klik di luar
 document.addEventListener('click', function (e) {
   if (!document.getElementById('search-container').contains(e.target)) {
     searchResults.classList.remove('show');
   }
 });
 
-// Butang clear
+// Clear
 function clearSearch() {
   searchInput.value = '';
   searchResults.classList.remove('show');
@@ -657,7 +705,6 @@ function clearSearch() {
   }
 }
 
-// Tunjukkan/tutup butang clear berdasarkan input
 searchInput.addEventListener('input', function () {
   const clearBtn = document.getElementById('search-clear');
   if (this.value.trim().length > 0) {
@@ -765,10 +812,9 @@ const searchResultsEl = document.getElementById('search-results');
 );
 
 // ============================================
-// DATA KAWASAN JAGAAN PLUS (DARIPADA ANDA)
+// DATA KAWASAN JAGAAN PLUS
 // ============================================
 const dataKawasanBalai = [
-  // UTARA
   { balai: 'BBP TEBRAU', kmDari: 0, kmHingga: 8, arah: 'UTARA' },
   { balai: 'BBP KEMPAS', kmDari: 8, kmHingga: 14, arah: 'UTARA' },
   { balai: 'BBP SKUDAI', kmDari: 14, kmHingga: 21.5, arah: 'UTARA' },
@@ -779,7 +825,6 @@ const dataKawasanBalai = [
   { balai: 'BBP PAGOH', kmDari: 142.4, kmHingga: 157, arah: 'UTARA' },
   { balai: 'BBP BUKIT GAMBIR', kmDari: 157, kmHingga: 169.4, arah: 'UTARA' },
   { balai: 'BBP TANGKAK', kmDari: 169.4, kmHingga: 180.3, arah: 'UTARA' },
-  // SELATAN
   { balai: 'BBP KEMPAS', kmDari: 0, kmHingga: 6.8, arah: 'SELATAN' },
   { balai: 'BBP SKUDAI', kmDari: 6.8, kmHingga: 14.8, arah: 'SELATAN' },
   { balai: 'BBP KULAI', kmDari: 19.2, kmHingga: 41.3, arah: 'SELATAN' },
@@ -808,7 +853,7 @@ function cariBalaiArah(km, arah) {
 }
 
 // ============================================
-// PANEL KAWASAN JAGAAN PLUS (UPDATE FUNCTION)
+// PANEL KAWASAN JAGAAN PLUS
 // ============================================
 function updateInfoPanel(km) {
   const panel = document.getElementById('info-panel');
@@ -906,8 +951,12 @@ function binaLayerKMMarker() {
     marker.on('click', function () {
       const kmNum = parseFloat(kmValue);
       updateInfoPanel(kmNum);
-      // Klik pada penanda KM akan buka popup balai terdekat
-      bukaPopupBalai(coord[0], coord[1], `KM ${kmValue}`);
+      // Klik marker KM juga hanya simpan lokasi, tidak buka popup automatik
+      lokasiTerakhir = {
+        lat: coord[0],
+        lng: coord[1],
+        alamat: `KM ${kmValue}`,
+      };
     });
 
     layerKMMarker.addLayer(marker);
@@ -933,7 +982,7 @@ function toggleKMMarker() {
 }
 
 // ============================================
-// POLIGON KAWASAN JAGAAN DARI KML (ZON DAN BALAI)
+// POLIGON KAWASAN JAGAAN DARI KML
 // ============================================
 let layerPoligonZon = null;
 let layerPoligonBalai = null;

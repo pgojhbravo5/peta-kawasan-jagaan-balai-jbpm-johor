@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <base href="/peta-bomba/" />
+<base href="/peta-bomba/" />
     <title>Peta Kawasan Jagaan Balai Bomba Johor</title>
     <link
       rel="stylesheet"
@@ -96,16 +96,6 @@
       .menu-item:hover {
         background: #e0e0e0;
       }
-      /* GAYA KHAS UNTUK BUTANG KEMBALI (warna berbeza) */
-      .menu-item.back-btn {
-        background: #cc0000;
-        color: #fff;
-        font-weight: bold;
-      }
-      .menu-item.back-btn:hover {
-        background: #990000;
-      }
-
       #filter-zon {
         padding: 8px 12px;
         background: #f9f9f9;
@@ -147,13 +137,14 @@
         display: block;
       }
 
-      /* SEARCH - DIBETULKAN DENGAN FLEXBOX */
+      /* SEARCH CONTAINER */
       #search-container {
         position: absolute;
         top: 10px;
         left: 70px;
         z-index: 1000;
-        width: 340px;
+        max-width: 520px;
+        width: auto;
         display: flex;
         align-items: center;
         background: #fff;
@@ -161,33 +152,20 @@
         border: 2px solid #ccc;
         overflow: hidden;
         transition: border-color 0.2s;
+        flex-wrap: wrap;
+        padding: 2px;
       }
       #search-container:focus-within {
         border-color: #cc0000;
       }
       #search-input {
-        flex: 1;
+        flex: 1 1 120px;
         border: none;
         padding: 8px 12px;
         font-size: 14px;
         outline: none;
-        min-width: 0;
+        min-width: 80px;
         background: transparent;
-      }
-      #search-btn {
-        background: #cc0000;
-        color: #fff;
-        border: none;
-        padding: 8px 16px;
-        cursor: pointer;
-        font-weight: bold;
-        font-size: 13px;
-        height: 100%;
-        white-space: nowrap;
-        flex-shrink: 0;
-      }
-      #search-btn:hover {
-        background: #990000;
       }
       #search-clear {
         background: none;
@@ -207,6 +185,51 @@
       #search-clear:hover {
         color: #333;
       }
+
+      .mode-btn {
+        background: #f0f0f0;
+        border: 1px solid #ccc;
+        padding: 6px 12px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 13px;
+        font-weight: bold;
+        color: #333;
+        transition: 0.2s;
+        white-space: nowrap;
+        margin: 2px;
+      }
+      .mode-btn:hover {
+        background: #e0e0e0;
+      }
+      .mode-btn.active-alamat {
+        background: #1e90ff;
+        color: #fff;
+        border-color: #1e90ff;
+      }
+      .mode-btn.active-km {
+        background: #cc0000;
+        color: #fff;
+        border-color: #cc0000;
+      }
+
+      #search-btn {
+        background: #cc0000;
+        color: #fff;
+        border: none;
+        padding: 8px 16px;
+        cursor: pointer;
+        font-weight: bold;
+        font-size: 13px;
+        white-space: nowrap;
+        flex-shrink: 0;
+        border-radius: 0 20px 20px 0;
+        margin: 2px;
+      }
+      #search-btn:hover {
+        background: #990000;
+      }
+
       #search-results {
         position: absolute;
         top: 42px;
@@ -234,11 +257,12 @@
         background: #f0f0f0;
       }
 
-      /* BUTANG POPUP BALAI TERDEKAT */
+      /* BUTANG POPUP BALAI TERDEKAT – DI TENGAH KANAN */
       #popup-btn {
-        position: absolute;
-        bottom: 30px;
-        right: 20px;
+        position: fixed;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
         z-index: 1000;
         background: #cc0000;
         color: #fff;
@@ -249,28 +273,47 @@
         font-size: 28px;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
         cursor: pointer;
+        transition: 0.2s;
+      }
+      #popup-btn:hover {
+        transform: translateY(-50%) scale(1.05);
+        background: #990000;
       }
 
-      /* POPUP MODAL BALAI TERDEKAT */
+      /* POPUP MODAL – DRAWER KANAN */
+      #popup-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.4);
+        z-index: 2500;
+        display: none;
+      }
+      #popup-overlay.show {
+        display: block;
+      }
+
       #popup-modal {
         position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 90%;
-        max-width: 420px;
-        max-height: 80vh;
+        top: 0;
+        right: -420px;
+        width: 380px;
+        max-width: 90vw;
+        height: 100%;
         background: #fff;
-        border-radius: 16px;
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+        box-shadow: -4px 0 20px rgba(0, 0, 0, 0.3);
         z-index: 3000;
-        display: none;
-        overflow: hidden;
+        transition: right 0.3s ease-in-out;
+        display: flex;
         flex-direction: column;
+        overflow: hidden;
       }
       #popup-modal.open {
-        display: flex;
+        right: 0;
       }
+
       #popup-header {
         display: flex;
         justify-content: space-between;
@@ -334,25 +377,12 @@
         font-weight: bold;
         color: #333;
       }
-      #popup-overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.5);
-        z-index: 2500;
-        display: none;
-      }
-      #popup-overlay.show {
-        display: block;
-      }
 
       /* PANEL KAWASAN JAGAAN PLUS */
       #info-panel {
         position: absolute;
         bottom: 100px;
-        right: 20px;
+        right: 80px; /* alihkan sedikit ke kiri supaya tidak bertindan dengan butang 🔥 */
         background: rgba(255, 255, 255, 0.95);
         padding: 14px 18px;
         border-radius: 10px;
@@ -398,29 +428,60 @@
       @media (max-width: 600px) {
         #search-container {
           left: 10px;
-          width: 240px;
+          max-width: calc(100% - 20px);
+          width: auto;
+          border-radius: 12px;
+          flex-wrap: wrap;
+          padding: 4px;
+          top: 60px;
+        }
+        #search-input {
+          flex: 1 1 100px;
+          font-size: 13px;
+          padding: 6px 10px;
+          min-width: 60px;
         }
         #search-btn {
           padding: 6px 10px;
+          font-size: 12px;
+          border-radius: 0 12px 12px 0;
+          margin: 2px;
+        }
+        .mode-btn {
           font-size: 11px;
+          padding: 4px 8px;
+          margin: 2px;
+        }
+        #search-clear {
+          font-size: 14px;
+          padding: 0 4px;
+        }
+        #search-results {
+          top: 38px;
+          max-height: 150px;
+        }
+        #menu-btn {
+          top: 10px;
+          left: 10px;
+          font-size: 20px;
+          padding: 6px 12px;
         }
         #popup-modal {
-          width: 95%;
-          max-height: 90vh;
-        }
-        #info-panel {
-          bottom: 80px;
-          right: 10px;
-          min-width: 160px;
-          padding: 10px 12px;
-          font-size: 11px;
+          width: 90vw;
+          right: -100vw;
         }
         #popup-btn {
-          bottom: 20px;
-          right: 10px;
           width: 48px;
           height: 48px;
           font-size: 22px;
+          right: 6px;
+        }
+        #info-panel {
+          bottom: 80px;
+          right: 70px;
+          min-width: 160px;
+          padding: 10px 12px;
+          font-size: 11px;
         }
       }
     </style>
@@ -435,11 +496,6 @@
           <button id="menu-close" onclick="toggleMenu()">✕</button>
         </div>
         <div id="menu-body">
-          <!-- 🔽 BUTANG KEMBALI KE DASHBOARD (TAMBAHAN BARU) 🔽 -->
-          <button class="menu-item back-btn" onclick="window.location.href='/'">
-            🔙 Kembali ke Dashboard
-          </button>
-
           <button class="menu-item" onclick="resetPeta()">🏠 Home</button>
           <button class="menu-item" onclick="toggleFilter()">
             🗺️ Filter Zon
@@ -480,27 +536,34 @@
       </div>
       <div id="overlay" onclick="toggleMenu()"></div>
 
-      <!-- SEARCH - SUSUNAN SEKATA -->
+      <!-- SEARCH -->
       <div id="search-container">
         <input
           type="text"
           id="search-input"
-          placeholder="🔍 Cari alamat atau km..."
+          placeholder="🔍 Cari alamat atau tempat..."
           autocomplete="off"
         />
         <button id="search-clear" onclick="clearSearch()" title="Kosongkan">
           ✕
         </button>
-        <button id="search-btn" onclick="cariLokasi()">Cari</button>
+        <button
+          id="mode-toggle"
+          onclick="tukarMode()"
+          class="mode-btn active-alamat"
+        >
+          📍 Alamat
+        </button>
+        <button id="search-btn" onclick="cari()">Cari</button>
         <div id="search-results"></div>
       </div>
 
-      <!-- BUTANG POPUP BALAI TERDEKAT -->
+      <!-- BUTANG POPUP BALAI TERDEKAT (di tengah kanan) -->
       <button id="popup-btn" onclick="bukaPopupBalai()" title="Balai Terdekat">
         🔥
       </button>
 
-      <!-- POPUP MODAL BALAI TERDEKAT -->
+      <!-- POPUP MODAL DRAWER KANAN -->
       <div id="popup-overlay" onclick="tutupPopupBalai()"></div>
       <div id="popup-modal">
         <div id="popup-header">
@@ -509,7 +572,8 @@
         </div>
         <div id="popup-content">
           <div class="popup-placeholder">
-            🔍 Cari lokasi untuk lihat<br />4 balai terdekat.
+            🔍 Sila cari lokasi terlebih dahulu,<br />kemudian tekan butang 🔥
+            untuk lihat 4 balai terdekat.
           </div>
         </div>
       </div>
