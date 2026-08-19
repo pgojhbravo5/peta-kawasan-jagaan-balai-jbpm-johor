@@ -838,7 +838,10 @@ function pilihLokasi(lat, lng, alamat) {
   lokasiTerakhir = { lat, lng, alamat };
 }
 
-// Event: Enter
+// ============================================
+// EVENT LISTENERS UNTUK CARIAN
+// ============================================
+// Enter pada input
 searchInput.addEventListener('keypress', function (e) {
   if (e.key === 'Enter') {
     e.preventDefault();
@@ -846,7 +849,13 @@ searchInput.addEventListener('keypress', function (e) {
   }
 });
 
-// Klik di luar
+// Butang Cari (untuk memastikan ia sama dengan Enter)
+document.getElementById('search-btn').addEventListener('click', function(e) {
+  e.preventDefault();
+  cari();
+});
+
+// Klik di luar untuk tutup hasil carian
 document.addEventListener('click', function (e) {
   if (!document.getElementById('search-container').contains(e.target)) {
     searchResults.classList.remove('show');
