@@ -761,10 +761,24 @@ function cariKMPlus(query) {
   if (kmResult) {
     searchResults.classList.remove('show');
     map.flyTo([kmResult.lat, kmResult.lng], 15);
-    L.popup()
-      .setLatLng([kmResult.lat, kmResult.lng])
-      .setContent(`<b>📍 ${kmResult.km} KM (PLUS)</b>`)
-      .openOn(map);
+
+    if (searchMarker) {
+      map.removeLayer(searchMarker);
+    }
+    searchMarker = L.marker([kmResult.lat, kmResult.lng], {
+      icon: L.icon({
+        iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png',
+        shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-shadow.png',
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        shadowSize: [41, 41],
+      }),
+    })
+      .addTo(map)
+      .bindPopup(`<b>📍 ${kmResult.km} KM (PLUS)</b>`)
+      .openPopup();
+
     searchInput.value = `KM ${kmResult.km}`;
     updateInfoPanel(parseFloat(kmResult.km));
     lokasiTerakhir = {
@@ -790,10 +804,24 @@ function cariKMPGPlus(query) {
   if (kmResult) {
     searchResults.classList.remove('show');
     map.flyTo([kmResult.lat, kmResult.lng], 15);
-    L.popup()
-      .setLatLng([kmResult.lat, kmResult.lng])
-      .setContent(`<b>🛣️ ${kmResult.km} KM (Pasir Gudang)</b>`)
-      .openOn(map);
+
+    if (searchMarker) {
+      map.removeLayer(searchMarker);
+    }
+    searchMarker = L.marker([kmResult.lat, kmResult.lng], {
+      icon: L.icon({
+        iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png',
+        shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-shadow.png',
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        shadowSize: [41, 41],
+      }),
+    })
+      .addTo(map)
+      .bindPopup(`<b>🛣️ ${kmResult.km} KM (Pasir Gudang)</b>`)
+      .openPopup();
+
     searchInput.value = `PG KM ${kmResult.km}`;
     lokasiTerakhir = {
       lat: kmResult.lat,
