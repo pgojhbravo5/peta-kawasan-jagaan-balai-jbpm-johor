@@ -437,19 +437,14 @@ async function cariBalaiTerdekat(lat, lng) {
   }
 }
 
-// ============================================
-// PANGGIL OSRM TABLE – JARAK DARI BALAI KE LOKASI (DIBETULKAN)
-// ============================================
 async function panggilOSRMTable(lat, lng, calon) {
-  // Bina koordinat: semua balai dahulu, kemudian lokasi pengguna di hujung
   const koordinatBalai = calon.map((b) => `${b.lng},${b.lat}`).join(';');
   const koordinatLokasi = `${lng},${lat}`;
   const koordinat = `${koordinatBalai};${koordinatLokasi}`;
   
   const N = calon.length;
-  // Indeks balai: 0,1,...,N-1. Indeks lokasi: N
   const sources = Array.from({ length: N }, (_, i) => i).join(';');
-  const destinations = `${N}`; // indeks lokasi
+  const destinations = `${N}`;
   const url = `${OSRM_TABLE_URL}/${koordinat}?sources=${sources}&destinations=${destinations}&annotations=distance`;
 
   const controller = new AbortController();
@@ -464,7 +459,6 @@ async function panggilOSRMTable(lat, lng, calon) {
       throw new Error('Format respons OSRM tidak dijangka.');
     }
 
-    // data.distances[i][0] = jarak dari balai ke-i ke lokasi
     return calon
       .map((balai, i) => {
         const meter = data.distances[i]?.[0];
@@ -485,7 +479,6 @@ async function panggilOSRMTable(lat, lng, calon) {
 let routeLayer = null;
 
 async function tunjukRoute(lat1, lng1, lat2, lng2, namaBalai) {
-  // Padam route sebelum ini
   if (routeLayer) {
     map.removeLayer(routeLayer);
     routeLayer = null;
@@ -587,7 +580,6 @@ async function bukaPopupBalai(lat, lng, alamat) {
 function tutupPopupBalai() {
   document.getElementById('popup-modal').classList.remove('open');
   document.getElementById('popup-overlay').classList.remove('show');
-  // Padam route jika ada
   if (routeLayer) {
     map.removeLayer(routeLayer);
     routeLayer = null;
@@ -653,7 +645,7 @@ function tukarMode() {
 }
 
 // ============================================
-// SEARCH (SATU BUTANG + TOGGLE MODE)
+// SEARCH (SATU BUTANG + TOGGLE MODE) – DIPERBAIKI
 // ============================================
 const searchInput = document.getElementById('search-input');
 const searchResults = document.getElementById('search-results');
@@ -688,21 +680,22 @@ function cariKMPG(query) {
   return { lat: coord.lat, lng: coord.lng, km: kmValue };
 }
 
-// Fungsi utama cari()
+// Fungsi utama cari() – baca query sekali dan hantar ke fungsi mod
 function cari() {
   console.log('Fungsi cari() dipanggil, mode:', modeCarian);
+  // Pastikan kita dapat nilai terkini dari input
+  const query = searchInput.value.trim();
   if (modeCarian === 'alamat') {
-    cariAlamat();
+    cariAlamat(query);
   } else if (modeCarian === 'km') {
-    cariKMPlus();
+    cariKMPlus(query);
   } else if (modeCarian === 'pg') {
-    cariKMPGPlus();
+    cariKMPGPlus(query);
   }
 }
 
-// Carian Alamat (dengan auto-pilih hasil pertama jika hanya satu)
-function cariAlamat() {
-  const query = searchInput.value.trim();
+// Carian Alamat (dengan auto-pilih hasil pertama)
+function cariAlamat(query) {
   if (query.length === 0) {
     searchResults.classList.remove('show');
     return;
@@ -758,8 +751,7 @@ function cariAlamat() {
 }
 
 // Carian KM PLUS
-function cariKMPlus() {
-  const query = searchInput.value.trim();
+function cariKMPlus(query) {
   if (query.length === 0) {
     searchResults.classList.remove('show');
     return;
@@ -780,7 +772,6 @@ function cariKMPlus() {
       lng: kmResult.lng,
       alamat: `KM ${kmResult.km} (PLUS)`,
     };
-    // Tidak ada marker khas, hanya popup
   } else {
     searchResults.innerHTML =
       '<div class="search-result-item" style="color:#999;">Format KM tidak sah. Contoh: 23.5, km 45, 100</div>';
@@ -789,8 +780,7 @@ function cariKMPlus() {
 }
 
 // Carian KM Pasir Gudang
-function cariKMPGPlus() {
-  const query = searchInput.value.trim();
+function cariKMPGPlus(query) {
   if (query.length === 0) {
     searchResults.classList.remove('show');
     return;
@@ -810,7 +800,6 @@ function cariKMPGPlus() {
       lng: kmResult.lng,
       alamat: `PG KM ${kmResult.km}`,
     };
-    // Tidak ada marker khas, hanya popup
   } else {
     searchResults.innerHTML =
       '<div class="search-result-item" style="color:#999;">Format KM tidak sah. Contoh: 10.5, km 15, 20</div>';
@@ -852,19 +841,23 @@ function pilihLokasi(lat, lng, alamat) {
 }
 
 // ============================================
-// EVENT LISTENERS UNTUK CARIAN
+// EVENT LISTENERS UNTUK CARIAN – DIPERBAIKI
 // ============================================
-// Enter pada input
-searchInput.addEventListener('keypress', function (e) {
+// Enter pada input – gunakan keydown (lebih stabil)
+searchInput.addEventListener('keydown', function (e) {
   if (e.key === 'Enter') {
     e.preventDefault();
+    // Fokus kembali ke input untuk pastikan nilai terkini
+    searchInput.focus();
     cari();
   }
 });
 
-// Butang Cari (tanpa onclick di HTML)
+// Klik pada butang Cari
 searchBtn.addEventListener('click', function (e) {
   e.preventDefault();
+  // Fokus kembali ke input untuk pastikan nilai terkini
+  searchInput.focus();
   cari();
 });
 
