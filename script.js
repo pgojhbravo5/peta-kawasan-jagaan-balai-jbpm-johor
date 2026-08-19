@@ -349,8 +349,6 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
 // ============================================
 // SUSUNAN BUTANG ZOOM & FULLSCREEN (MENDATAR - SATU BARIS)
-// Digabung dalam satu kawalan mendatar (bukan menegak) supaya
-// tidak bertindan dengan search bar pada paparan mobile.
 // ============================================
 map.removeControl(map.zoomControl);
 
@@ -394,8 +392,6 @@ new L.control.topBar({ position: 'topright' }).addTo(map);
 
 // ============================================
 // FUNGSI KIRA JARAK (HAVERSINE - GARIS LURUS)
-// Digunakan untuk PRA-TAPIS calon sebelum panggil API route,
-// dan sebagai FALLBACK jika API route gagal/timeout.
 // ============================================
 function kiraJarak(lat1, lon1, lat2, lon2) {
   const R = 6371;
@@ -414,11 +410,10 @@ function kiraJarak(lat1, lon1, lat2, lon2) {
 // FUNGSI CARI 4 BALAI TERDEKAT (JARAK JALAN SEBENAR - OSRM)
 // ============================================
 const OSRM_TABLE_URL = 'https://router.project-osrm.org/table/v1/driving';
-const OSRM_TIMEOUT_MS = 5000; // had masa tunggu API sebelum guna fallback garis lurus
-const BILANGAN_CALON_PRATAPIS = 8; // pra-tapis Haversine dahulu, hantar 8 calon terdekat sahaja ke OSRM
+const OSRM_TIMEOUT_MS = 5000;
+const BILANGAN_CALON_PRATAPIS = 8;
 
 async function cariBalaiTerdekat(lat, lng) {
-  // 1) PRA-TAPIS guna Haversine (laju, tiada panggilan rangkaian)
   const semuaJarakLurus = dataBalai
     .map((balai) => ({
       ...balai,
@@ -428,7 +423,6 @@ async function cariBalaiTerdekat(lat, lng) {
 
   const calon = semuaJarakLurus.slice(0, BILANGAN_CALON_PRATAPIS);
 
-  // 2) Cuba dapatkan jarak JALAN SEBENAR untuk calon-calon ini
   try {
     const hasilRoute = await panggilOSRMTable(lat, lng, calon);
     if (hasilRoute.length === 0) throw new Error('Tiada jarak route sah dikembalikan.');
@@ -436,7 +430,6 @@ async function cariBalaiTerdekat(lat, lng) {
     return { data: hasilRoute.slice(0, 4), jenis: 'route' };
   } catch (err) {
     console.warn('⚠️ Gagal dapatkan jarak jalan (OSRM), guna jarak garis lurus sebagai fallback:', err);
-    // 3) FALLBACK: guna jarak garis lurus jika API gagal / timeout / rangkaian down
     const fallback = semuaJarakLurus
       .slice(0, 4)
       .map((b) => ({ ...b, jarak: b.jarakLurus }));
@@ -461,7 +454,7 @@ async function panggilOSRMTable(lat, lng, calon) {
       throw new Error('Format respons OSRM tidak dijangka.');
     }
 
-    const jarakMeter = data.distances[0]; // urutan sepadan dengan array `calon`
+    const jarakMeter = data.distances[0];
 
     return calon
       .map((balai, i) => {
@@ -478,6 +471,47 @@ async function panggilOSRMTable(lat, lng, calon) {
 }
 
 // ============================================
+// FUNGSI ROUTE / LALUAN KE BALAI
+// ============================================
+let routeLayer = null;
+
+async function tunjukRoute(lat1, lng1, lat2, lng2, namaBalai) {
+  // Padam route sebelum ini
+  if (routeLayer) {
+    map.removeLayer(routeLayer);
+    routeLayer = null;
+  }
+
+  try {
+    const url = `https://router.project-osrm.org/route/v1/driving/${lng1},${lat1};${lng2},${lat2}?geometries=geojson&overview=full&steps=false`;
+    const response = await fetch(url);
+    if (!response.ok) throw new Error('Gagal dapatkan route');
+    const data = await response.json();
+    if (data.code !== 'Ok' || !data.routes || data.routes.length === 0) {
+      throw new Error('Tiada route ditemui');
+    }
+
+    const route = data.routes[0];
+    const coords = route.geometry.coordinates.map(coord => [coord[1], coord[0]]);
+
+    routeLayer = L.polyline(coords, {
+      color: '#1E90FF',
+      weight: 5,
+      opacity: 0.8,
+      dashArray: null,
+    }).addTo(map);
+
+    const jarakKm = (route.distance / 1000).toFixed(1);
+    routeLayer.bindPopup(`🚒 Laluan ke ${namaBalai}<br>📏 ${jarakKm} km`);
+
+    map.fitBounds(routeLayer.getBounds(), { padding: [50, 50] });
+  } catch (error) {
+    console.error('Ralat route:', error);
+    alert('Gagal memaparkan laluan. Sila cuba lagi.');
+  }
+}
+
+// ============================================
 // POPUP BALAI TERDEKAT (DRAWER KANAN)
 // ============================================
 let lokasiTerakhir = null;
@@ -487,14 +521,12 @@ async function bukaPopupBalai(lat, lng, alamat) {
   const overlay = document.getElementById('popup-overlay');
   const content = document.getElementById('popup-content');
 
-  // Jika tiada parameter, gunakan lokasiTerakhir
   if (typeof lat === 'undefined' || lat === null) {
     if (lokasiTerakhir) {
       lat = lokasiTerakhir.lat;
       lng = lokasiTerakhir.lng;
       alamat = lokasiTerakhir.alamat || 'Lokasi';
     } else {
-      // Tiada lokasi – tunjuk placeholder
       content.innerHTML = `
         <div class="popup-placeholder">
           🔍 Sila cari lokasi terlebih dahulu,<br />
@@ -507,10 +539,8 @@ async function bukaPopupBalai(lat, lng, alamat) {
     }
   }
 
-  // Simpan lokasi untuk kegunaan akan datang
   lokasiTerakhir = { lat, lng, alamat };
 
-  // Buka modal dahulu dengan status "mengira" — panggilan OSRM ambil ~1-3 saat
   content.innerHTML = `
     <div class="popup-placeholder">
       ⏳ Mengira jarak jalan ke balai berdekatan...
@@ -521,8 +551,6 @@ async function bukaPopupBalai(lat, lng, alamat) {
 
   const { data: terdekat, jenis } = await cariBalaiTerdekat(lat, lng);
 
-  // Elak "race condition" — kalau pengguna dah cari lokasi lain semasa tunggu API,
-  // jangan timpa popup dengan hasil lokasi yang lapuk
   if (!lokasiTerakhir || lokasiTerakhir.lat !== lat || lokasiTerakhir.lng !== lng) return;
 
   const notaJenis =
@@ -534,7 +562,7 @@ async function bukaPopupBalai(lat, lng, alamat) {
 
   terdekat.forEach((b, i) => {
     html += `
-      <div class="popup-balai-item" onclick="map.flyTo([${b.lat}, ${b.lng}], 15); tutupPopupBalai();">
+      <div class="popup-balai-item" onclick="tunjukRoute(${lat}, ${lng}, ${b.lat}, ${b.lng}, '${b.nama}'); map.flyTo([${b.lat}, ${b.lng}], 15); tutupPopupBalai();">
         <div>
           <div class="popup-balai-nama">${i + 1}. ${b.nama}</div>
           <div class="popup-balai-info">🏢 ${namaZon[b.zon]} | 📞 <a class="popup-balai-call" href="tel:${b.tel}" onclick="event.stopPropagation();">${b.tel}</a></div>
@@ -550,6 +578,11 @@ async function bukaPopupBalai(lat, lng, alamat) {
 function tutupPopupBalai() {
   document.getElementById('popup-modal').classList.remove('open');
   document.getElementById('popup-overlay').classList.remove('show');
+  // Padam route jika ada
+  if (routeLayer) {
+    map.removeLayer(routeLayer);
+    routeLayer = null;
+  }
 }
 
 // ============================================
@@ -582,7 +615,7 @@ dataBalai.forEach((balai) => {
 // ============================================
 // MODE CARIAN – ALAMAT, KM PLUS, KM PASIR GUDANG
 // ============================================
-let modeCarian = 'alamat'; // 'alamat', 'km', 'pg'
+let modeCarian = 'alamat';
 
 function tukarMode() {
   const modeBtn = document.getElementById('mode-toggle');
@@ -599,7 +632,7 @@ function tukarMode() {
     modeBtn.textContent = '🛣️ KM PG';
     modeBtn.className = 'mode-btn active-pg';
     searchInput.placeholder = '🛣️ Masukkan KM Pasir Gudang (cth: 10.5)';
-  } else { // 'pg'
+  } else {
     modeCarian = 'alamat';
     modeBtn.textContent = '📍 Alamat';
     modeBtn.className = 'mode-btn active-alamat';
@@ -637,7 +670,7 @@ function cariKMPG(query) {
   const match = query.match(/^\s*(?:km\s*)?([\d.]+)\s*(?:km)?\s*$/i);
   if (!match) return null;
   const num = parseFloat(match[1]);
-  if (isNaN(num) || num < 0 || num > 28.5) return null; // anggaran km terakhir
+  if (isNaN(num) || num < 0 || num > 28.5) return null;
   const index = Math.round(num * 10);
   if (index < 0 || index >= dataKMPG.length) return null;
   const coord = dataKMPG[index];
@@ -657,10 +690,9 @@ function cari() {
   }
 }
 
-// Carian Alamat (global)
+// Carian Alamat
 function cariAlamat() {
   const query = searchInput.value.trim();
-  console.log('Carian alamat untuk:', query);
   if (query.length === 0) {
     searchResults.classList.remove('show');
     return;
@@ -676,21 +708,14 @@ function cariAlamat() {
     '<div class="search-result-item" style="color:#999;">Mencari...</div>';
   searchResults.classList.add('show');
 
-  const url = `api/geocode?q=${encodeURIComponent(
-    query
-  )}&countrycodes=my&limit=5&accept-language=ms`;
-
-  console.log('Fetching:', url);
+  const url = `api/geocode?q=${encodeURIComponent(query)}&countrycodes=my&limit=5&accept-language=ms`;
 
   fetch(url)
     .then((response) => {
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
+      if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
       return response.json();
     })
     .then((data) => {
-      console.log('Data diterima:', data);
       if (data.length === 0) {
         searchResults.innerHTML =
           '<div class="search-result-item" style="color:#999;">Tiada hasil dijumpai</div>';
@@ -730,7 +755,6 @@ function cariKMPlus() {
       .openOn(map);
     searchInput.value = `KM ${kmResult.km}`;
     updateInfoPanel(parseFloat(kmResult.km));
-    // Simpan lokasi tetapi TIDAK buka popup
     lokasiTerakhir = {
       lat: kmResult.lat,
       lng: kmResult.lng,
@@ -760,7 +784,6 @@ function cariKMPGPlus() {
       .setContent(`<b>🛣️ ${kmResult.km} KM (Pasir Gudang)</b>`)
       .openOn(map);
     searchInput.value = `PG KM ${kmResult.km}`;
-    // Tiada panel PLUS untuk PG, jadi kita hanya simpan lokasi
     lokasiTerakhir = {
       lat: kmResult.lat,
       lng: kmResult.lng,
@@ -781,8 +804,7 @@ function escapeHtml(text) {
 
 function pilihLokasi(lat, lng, alamat) {
   searchResults.classList.remove('show');
-  searchInput.value =
-    alamat.length > 50 ? alamat.substring(0, 50) + '...' : alamat;
+  searchInput.value = alamat.length > 50 ? alamat.substring(0, 50) + '...' : alamat;
 
   map.flyTo([lat, lng], 14);
 
@@ -792,10 +814,8 @@ function pilihLokasi(lat, lng, alamat) {
 
   searchMarker = L.marker([lat, lng], {
     icon: L.icon({
-      iconUrl:
-        'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png',
-      shadowUrl:
-        'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-shadow.png',
+      iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png',
+      shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-shadow.png',
       iconSize: [25, 41],
       iconAnchor: [12, 41],
       popupAnchor: [1, -34],
@@ -806,7 +826,6 @@ function pilihLokasi(lat, lng, alamat) {
     .bindPopup(`📍 <b>Lokasi Carian</b><br>${alamat}`)
     .openPopup();
 
-  // Simpan lokasi tetapi TIDAK buka popup
   lokasiTerakhir = { lat, lng, alamat };
 }
 
@@ -861,8 +880,7 @@ function resetPeta() {
 
 function toggleFilter() {
   const filterDiv = document.getElementById('filter-zon');
-  filterDiv.style.display =
-    filterDiv.style.display === 'none' ? 'block' : 'none';
+  filterDiv.style.display = filterDiv.style.display === 'none' ? 'block' : 'none';
 }
 
 function toggleZon(zon, checkbox) {
@@ -874,7 +892,6 @@ function toggleZon(zon, checkbox) {
 
 function senaraiBalai() {
   const listDiv = document.getElementById('list-balai');
-
   if (listDiv.style.display === 'none' || listDiv.style.display === '') {
     let html = '';
     dataBalai.forEach((b) => {
@@ -901,7 +918,7 @@ function infoSistem() {
       'JBPM Negeri Johor\n\n' +
       '© 2026 PGO Johor\n' +
       'Dibangunkan oleh:\n' +
-      'PB Mohamad Aidil,PB Mohd Shafrie & PB Malik\n\n' +
+      'PB Mohamad Aidil, PB Mohd Shafrie & PB Malik\n\n' +
       'Versi 1.0 - Prototype'
   );
 }
@@ -915,31 +932,15 @@ const sideMenu = document.getElementById('side-menu');
 const menuBody = document.getElementById('menu-body');
 const searchResultsEl = document.getElementById('search-results');
 
-[popupModal, popupContent, sideMenu, menuBody, searchResultsEl].forEach(
-  (el) => {
-    if (el) {
-      el.addEventListener(
-        'touchmove',
-        function (e) {
-          e.stopPropagation();
-        },
-        { passive: false }
-      );
-      el.addEventListener('mousedown', function (e) {
-        e.stopPropagation();
-      });
-      el.addEventListener('mousewheel', function (e) {
-        e.stopPropagation();
-      });
-      el.addEventListener('wheel', function (e) {
-        e.stopPropagation();
-      });
-      el.addEventListener('scroll', function (e) {
-        e.stopPropagation();
-      });
-    }
+[popupModal, popupContent, sideMenu, menuBody, searchResultsEl].forEach((el) => {
+  if (el) {
+    el.addEventListener('touchmove', function (e) { e.stopPropagation(); }, { passive: false });
+    el.addEventListener('mousedown', function (e) { e.stopPropagation(); });
+    el.addEventListener('mousewheel', function (e) { e.stopPropagation(); });
+    el.addEventListener('wheel', function (e) { e.stopPropagation(); });
+    el.addEventListener('scroll', function (e) { e.stopPropagation(); });
   }
-);
+});
 
 // ============================================
 // DATA KAWASAN JAGAAN PLUS
@@ -966,22 +967,13 @@ const dataKawasanBalai = [
   { balai: 'BBP YONG PENG', kmDari: 80.5, kmHingga: 94.3, arah: 'SELATAN' },
   { balai: 'BBP YONG PENG', kmDari: 94.3, kmHingga: 99.4, arah: 'SELATAN' },
   { balai: 'BBP PAGOH', kmDari: 99.5, kmHingga: 141.8, arah: 'SELATAN' },
-  {
-    balai: 'BBP BUKIT GAMBIR',
-    kmDari: 141.8,
-    kmHingga: 157.5,
-    arah: 'SELATAN',
-  },
+  { balai: 'BBP BUKIT GAMBIR', kmDari: 141.8, kmHingga: 157.5, arah: 'SELATAN' },
   { balai: 'BBP TANGKAK', kmDari: 157.5, kmHingga: 168.8, arah: 'SELATAN' },
   { balai: 'BBP JASIN BESTARI', kmDari: 168.8, kmHingga: 180, arah: 'SELATAN' },
 ];
 
 function cariBalaiArah(km, arah) {
-  return (
-    dataKawasanBalai.find(
-      (item) => item.arah === arah && km >= item.kmDari && km <= item.kmHingga
-    ) || null
-  );
+  return dataKawasanBalai.find(item => item.arah === arah && km >= item.kmDari && km <= item.kmHingga) || null;
 }
 
 // ============================================
@@ -1056,9 +1048,7 @@ async function loadKMLData() {
     binaLayerKMMarker();
   } catch (error) {
     console.error('❌ Gagal memuatkan fail KML KM PLUS:', error);
-    alert(
-      'Gagal memuatkan data KM PLUS. Sila pastikan fail KM_0_174_1_ALL_MARKERS.kml.txt wujud.'
-    );
+    alert('Gagal memuatkan data KM PLUS. Sila pastikan fail KM_0_174_1_ALL_MARKERS.kml.txt wujud.');
   }
 }
 
@@ -1140,32 +1130,22 @@ async function loadKMLPolygon() {
     for (let i = 0; i < placemarks.length; i++) {
       const pm = placemarks[i];
       const name = pm.getElementsByTagName('name')[0]?.textContent || 'Kawasan';
-      const description =
-        pm.getElementsByTagName('description')[0]?.textContent || '';
+      const description = pm.getElementsByTagName('description')[0]?.textContent || '';
 
       let kategori = 'lain';
-      if (/^ZON\s*\d/i.test(name)) {
-        kategori = 'zon';
-      } else if (/PERSEMPADANAN|SEMPADAN/i.test(name)) {
-        kategori = 'sempadan';
-      } else {
-        kategori = 'balai';
-      }
+      if (/^ZON\s*\d/i.test(name)) kategori = 'zon';
+      else if (/PERSEMPADANAN|SEMPADAN/i.test(name)) kategori = 'sempadan';
+      else kategori = 'balai';
 
       function tambahPoligon(coords) {
-        if (kategori === 'zon') {
-          polygonsZon.push({ name, description, coordinates: coords });
-        } else if (kategori === 'balai') {
-          polygonsBalai.push({ name, description, coordinates: coords });
-        }
+        if (kategori === 'zon') polygonsZon.push({ name, description, coordinates: coords });
+        else if (kategori === 'balai') polygonsBalai.push({ name, description, coordinates: coords });
       }
 
       const polyNodes = pm.getElementsByTagName('Polygon');
       if (polyNodes.length > 0) {
         for (let p = 0; p < polyNodes.length; p++) {
-          const coordsText = polyNodes[p]
-            .getElementsByTagName('coordinates')[0]
-            ?.textContent.trim();
+          const coordsText = polyNodes[p].getElementsByTagName('coordinates')[0]?.textContent.trim();
           if (coordsText) {
             const coordPairs = coordsText.split(/\s+/).map((pair) => {
               const [lng, lat] = pair.split(',').map(Number);
@@ -1181,9 +1161,7 @@ async function loadKMLPolygon() {
         for (let m = 0; m < multiGeom.length; m++) {
           const innerPolys = multiGeom[m].getElementsByTagName('Polygon');
           for (let p = 0; p < innerPolys.length; p++) {
-            const coordsText = innerPolys[p]
-              .getElementsByTagName('coordinates')[0]
-              ?.textContent.trim();
+            const coordsText = innerPolys[p].getElementsByTagName('coordinates')[0]?.textContent.trim();
             if (coordsText) {
               const coordPairs = coordsText.split(/\s+/).map((pair) => {
                 const [lng, lat] = pair.split(',').map(Number);
@@ -1224,9 +1202,7 @@ async function loadKMLPolygon() {
 
         let popupContent = `<b>${poly.name}</b>`;
         if (poly.description) {
-          const descText = poly.description
-            .replace(/<[^>]*>/g, '')
-            .substring(0, 200);
+          const descText = poly.description.replace(/<[^>]*>/g, '').substring(0, 200);
           popupContent += `<br>${descText}`;
         }
         polygonLayer.bindPopup(popupContent);
@@ -1254,9 +1230,7 @@ async function loadKMLPolygon() {
         const balaiMatch = poly.name.match(/BBP\s+([A-Z\s]+)/i);
         if (balaiMatch) {
           const cari = balaiMatch[1].trim();
-          const found = dataBalai.find((b) =>
-            b.nama.toUpperCase().includes(cari.toUpperCase())
-          );
+          const found = dataBalai.find((b) => b.nama.toUpperCase().includes(cari.toUpperCase()));
           if (found && warnaZon[found.zon]) {
             color = warnaZon[found.zon];
             fillColor = warnaZon[found.zon];
@@ -1287,9 +1261,7 @@ async function loadKMLPolygon() {
 
         let popupContent = `<b>${poly.name}</b>`;
         if (poly.description) {
-          const descText = poly.description
-            .replace(/<[^>]*>/g, '')
-            .substring(0, 200);
+          const descText = poly.description.replace(/<[^>]*>/g, '').substring(0, 200);
           popupContent += `<br>${descText}`;
         }
         polygonLayer.bindPopup(popupContent);
@@ -1303,29 +1275,22 @@ async function loadKMLPolygon() {
 
         layerPoligonBalai.addLayer(polygonLayer);
       });
-      console.log(
-        `✅ ${polygonsBalai.length} poligon Kawasan Balai berjaya dimuatkan.`
-      );
+      console.log(`✅ ${polygonsBalai.length} poligon Kawasan Balai berjaya dimuatkan.`);
     }
 
     console.log('✅ Layer poligon sedia (tersembunyi).');
   } catch (error) {
     console.error('❌ Gagal memuatkan poligon KML:', error);
-    alert(
-      'Gagal memuatkan poligon kawasan. Pastikan fail PETA KAWASAN JAGAAN BOMBA NEGERI JOHOR 2025.kml wujud.'
-    );
+    alert('Gagal memuatkan poligon kawasan. Pastikan fail PETA KAWASAN JAGAAN BOMBA NEGERI JOHOR 2025.kml wujud.');
   }
 }
 
 function togglePoligonZon() {
   if (!layerPoligonZon) {
-    alert(
-      'Poligon Zon masih dimuatkan. Sila tunggu sebentar atau muat semula halaman.'
-    );
+    alert('Poligon Zon masih dimuatkan. Sila tunggu sebentar atau muat semula halaman.');
     loadKMLPolygon();
     return;
   }
-
   if (!poligonZonVisible) {
     layerPoligonZon.addTo(map);
     poligonZonVisible = true;
@@ -1337,13 +1302,10 @@ function togglePoligonZon() {
 
 function togglePoligonBalai() {
   if (!layerPoligonBalai) {
-    alert(
-      'Poligon Kawasan Balai masih dimuatkan. Sila tunggu sebentar atau muat semula halaman.'
-    );
+    alert('Poligon Kawasan Balai masih dimuatkan. Sila tunggu sebentar atau muat semula halaman.');
     loadKMLPolygon();
     return;
   }
-
   if (!poligonBalaiVisible) {
     layerPoligonBalai.addTo(map);
     poligonBalaiVisible = true;
@@ -1358,7 +1320,7 @@ function togglePoligonBalai() {
 // ============================================
 let layerLebuhraya = null;
 let lebuhrayaVisible = false;
-let dataKMPG = []; // untuk carian KM Pasir Gudang
+let dataKMPG = [];
 
 async function loadKMLPasirGudang() {
   try {
@@ -1418,11 +1380,9 @@ async function loadKMLPasirGudang() {
 
     points.sort((a, b) => a.fid - b.fid);
 
-    // Simpan ke dataKMPG untuk carian
     dataKMPG = points.map(p => ({ lat: p.lat, lng: p.lng }));
     console.log(`✅ ${dataKMPG.length} titik KM Pasir Gudang disimpan untuk carian.`);
 
-    // Bina polyline
     const latlngs = points.map(p => [p.lat, p.lng]);
     layerLebuhraya = L.layerGroup();
     const polyline = L.polyline(latlngs, {
@@ -1447,7 +1407,6 @@ function toggleLebuhraya() {
     loadKMLPasirGudang();
     return;
   }
-
   if (!lebuhrayaVisible) {
     layerLebuhraya.addTo(map);
     lebuhrayaVisible = true;
@@ -1468,6 +1427,4 @@ loadKMLPasirGudang();
 // LOADING SIAP
 // ============================================
 console.log('✅ Peta Kawasan Jagaan JBPM Johor siap!');
-console.log(
-  '🔥 34 Balai | 4 Zon | Search Alamat, KM PLUS & KM Pasir Gudang | Popup Balai Terdekat | Panel Kawasan PLUS'
-);
+console.log('🔥 34 Balai | 4 Zon | Search Alamat, KM PLUS & KM Pasir Gudang | Popup Balai Terdekat + Route | Panel Kawasan PLUS');
