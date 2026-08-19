@@ -471,7 +471,7 @@ async function panggilOSRMTable(lat, lng, calon) {
 }
 
 // ============================================
-// FUNGSI ROUTE / LALUAN KE BALAI
+// FUNGSI ROUTE / LALUAN DARI BALAI KE LOKASI
 // ============================================
 let routeLayer = null;
 
@@ -502,7 +502,8 @@ async function tunjukRoute(lat1, lng1, lat2, lng2, namaBalai) {
     }).addTo(map);
 
     const jarakKm = (route.distance / 1000).toFixed(1);
-    routeLayer.bindPopup(`🚒 Laluan ke ${namaBalai}<br>📏 ${jarakKm} km`);
+    // Popup menunjukkan arah dari balai ke lokasi
+    routeLayer.bindPopup(`🚒 Laluan dari ${namaBalai} ke lokasi<br>📏 ${jarakKm} km`);
 
     map.fitBounds(routeLayer.getBounds(), { padding: [50, 50] });
   } catch (error) {
@@ -562,7 +563,7 @@ async function bukaPopupBalai(lat, lng, alamat) {
 
   terdekat.forEach((b, i) => {
     html += `
-      <div class="popup-balai-item" onclick="tunjukRoute(${lat}, ${lng}, ${b.lat}, ${b.lng}, '${b.nama}'); map.flyTo([${b.lat}, ${b.lng}], 15); tutupPopupBalai();">
+      <div class="popup-balai-item" onclick="tunjukRoute(${b.lat}, ${b.lng}, ${lat}, ${lng}, '${b.nama}'); map.flyTo([${b.lat}, ${b.lng}], 15); tutupPopupBalai();">
         <div>
           <div class="popup-balai-nama">${i + 1}. ${b.nama}</div>
           <div class="popup-balai-info">🏢 ${namaZon[b.zon]} | 📞 <a class="popup-balai-call" href="tel:${b.tel}" onclick="event.stopPropagation();">${b.tel}</a></div>
@@ -1427,4 +1428,4 @@ loadKMLPasirGudang();
 // LOADING SIAP
 // ============================================
 console.log('✅ Peta Kawasan Jagaan JBPM Johor siap!');
-console.log('🔥 34 Balai | 4 Zon | Search Alamat, KM PLUS & KM Pasir Gudang | Popup Balai Terdekat + Route | Panel Kawasan PLUS');
+console.log('🔥 34 Balai | 4 Zon | Search Alamat, KM PLUS & KM Pasir Gudang | Popup Balai Terdekat + Route (dari balai ke lokasi) | Panel Kawasan PLUS');
