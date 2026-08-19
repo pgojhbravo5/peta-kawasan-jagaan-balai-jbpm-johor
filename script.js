@@ -657,6 +657,7 @@ function tukarMode() {
 // ============================================
 const searchInput = document.getElementById('search-input');
 const searchResults = document.getElementById('search-results');
+const searchBtn = document.getElementById('search-btn');
 let searchMarker = null;
 
 // Fungsi parse KM PLUS
@@ -699,7 +700,7 @@ function cari() {
   }
 }
 
-// Carian Alamat
+// Carian Alamat (dengan auto-pilih hasil pertama jika hanya satu)
 function cariAlamat() {
   const query = searchInput.value.trim();
   if (query.length === 0) {
@@ -731,6 +732,16 @@ function cariAlamat() {
         searchResults.classList.add('show');
         return;
       }
+
+      // Jika hanya satu hasil, pilih secara automatik
+      if (data.length === 1) {
+        const item = data[0];
+        pilihLokasi(item.lat, item.lon, item.display_name);
+        searchResults.classList.remove('show');
+        return;
+      }
+
+      // Jika lebih dari satu, paparkan senarai
       let html = '';
       data.forEach((item) => {
         html += `<div class="search-result-item" onclick="pilihLokasi(${item.lat}, ${item.lon}, '${escapeHtml(item.display_name)}')">📍 ${item.display_name}</div>`;
@@ -769,6 +780,7 @@ function cariKMPlus() {
       lng: kmResult.lng,
       alamat: `KM ${kmResult.km} (PLUS)`,
     };
+    // Tidak ada marker khas, hanya popup
   } else {
     searchResults.innerHTML =
       '<div class="search-result-item" style="color:#999;">Format KM tidak sah. Contoh: 23.5, km 45, 100</div>';
@@ -798,6 +810,7 @@ function cariKMPGPlus() {
       lng: kmResult.lng,
       alamat: `PG KM ${kmResult.km}`,
     };
+    // Tidak ada marker khas, hanya popup
   } else {
     searchResults.innerHTML =
       '<div class="search-result-item" style="color:#999;">Format KM tidak sah. Contoh: 10.5, km 15, 20</div>';
@@ -849,8 +862,8 @@ searchInput.addEventListener('keypress', function (e) {
   }
 });
 
-// Butang Cari (untuk memastikan ia sama dengan Enter)
-document.getElementById('search-btn').addEventListener('click', function(e) {
+// Butang Cari (tanpa onclick di HTML)
+searchBtn.addEventListener('click', function (e) {
   e.preventDefault();
   cari();
 });
