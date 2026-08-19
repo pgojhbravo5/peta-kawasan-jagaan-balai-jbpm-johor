@@ -853,6 +853,16 @@ searchInput.addEventListener('keydown', function (e) {
   }
 });
 
+// Elak input 'blur' & keyboard skrin tertutup sebelum klik sempat berlaku
+// (punca butang Cari gagal pada mobile: reflow/keyboard-collapse mengubah
+// kedudukan butang sebelum event 'click' sempat fire dengan tepat)
+searchBtn.addEventListener('mousedown', function (e) {
+  e.preventDefault();
+});
+searchBtn.addEventListener('touchstart', function (e) {
+  e.preventDefault();
+}, { passive: false });
+
 // Klik pada butang Cari
 searchBtn.addEventListener('click', function (e) {
   e.preventDefault();
