@@ -407,7 +407,7 @@ function kiraJarak(lat1, lon1, lat2, lon2) {
 }
 
 // ============================================
-// FUNGSI CARI 4 BALAI TERDEKAT (JARAK JALAN SEBENAR - OSRM)
+// FUNGSI CARI 4 BALAI TERDEKAT (JARAK JALAN SEBENAR - OSRM) - JARAK DARI BALAI KE LOKASI
 // ============================================
 const OSRM_TABLE_URL = 'https://router.project-osrm.org/table/v1/driving';
 const OSRM_TIMEOUT_MS = 5000;
@@ -438,9 +438,16 @@ async function cariBalaiTerdekat(lat, lng) {
 }
 
 async function panggilOSRMTable(lat, lng, calon) {
-  const koordinat = [`${lng},${lat}`, ...calon.map((b) => `${b.lng},${b.lat}`)].join(';');
-  const destinasi = calon.map((_, i) => i + 1).join(';');
-  const url = `${OSRM_TABLE_URL}/${koordinat}?sources=0&destinations=${destinasi}&annotations=distance`;
+  // Bina koordinat: semua balai dahulu, kemudian lokasi pengguna di hujung
+  const koordinatBalai = calon.map((b) => `${b.lng},${b.lat}`).join(';');
+  const koordinatLokasi = `${lng},${lat}`;
+  const koordinat = `${koordinatBalai};${koordinatLokasi}`;
+  
+  // sources = indeks balai (1..N), destinations = indeks lokasi (N)
+  const N = calon.length;
+  const sources = Array.from({ length: N }, (_, i) => i + 1).join(';');
+  const destinations = '0'; // indeks lokasi
+  const url = `${OSRM_TABLE_URL}/${koordinat}?sources=${sources}&destinations=${destinations}&annotations=distance`;
 
   const controller = new AbortController();
   const timeoutId = setTimeout(() => controller.abort(), OSRM_TIMEOUT_MS);
@@ -450,15 +457,14 @@ async function panggilOSRMTable(lat, lng, calon) {
     if (!resp.ok) throw new Error(`OSRM membalas ralat: ${resp.status}`);
 
     const data = await resp.json();
-    if (data.code !== 'Ok' || !Array.isArray(data.distances) || !data.distances[0]) {
+    if (data.code !== 'Ok' || !Array.isArray(data.distances) || data.distances.length !== N) {
       throw new Error('Format respons OSRM tidak dijangka.');
     }
 
-    const jarakMeter = data.distances[0];
-
+    // data.distances[i][0] = jarak dari balai ke-i ke lokasi
     return calon
       .map((balai, i) => {
-        const meter = jarakMeter[i];
+        const meter = data.distances[i]?.[0];
         return {
           ...balai,
           jarak: meter === null || meter === undefined ? null : meter / 1000,
@@ -502,7 +508,6 @@ async function tunjukRoute(lat1, lng1, lat2, lng2, namaBalai) {
     }).addTo(map);
 
     const jarakKm = (route.distance / 1000).toFixed(1);
-    // Popup menunjukkan arah dari balai ke lokasi
     routeLayer.bindPopup(`🚒 Laluan dari ${namaBalai} ke lokasi<br>📏 ${jarakKm} km`);
 
     map.fitBounds(routeLayer.getBounds(), { padding: [50, 50] });
