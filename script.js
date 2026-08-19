@@ -437,16 +437,19 @@ async function cariBalaiTerdekat(lat, lng) {
   }
 }
 
+// ============================================
+// PANGGIL OSRM TABLE – JARAK DARI BALAI KE LOKASI (DIBETULKAN)
+// ============================================
 async function panggilOSRMTable(lat, lng, calon) {
   // Bina koordinat: semua balai dahulu, kemudian lokasi pengguna di hujung
   const koordinatBalai = calon.map((b) => `${b.lng},${b.lat}`).join(';');
   const koordinatLokasi = `${lng},${lat}`;
   const koordinat = `${koordinatBalai};${koordinatLokasi}`;
   
-  // sources = indeks balai (1..N), destinations = indeks lokasi (N)
   const N = calon.length;
-  const sources = Array.from({ length: N }, (_, i) => i + 1).join(';');
-  const destinations = '0'; // indeks lokasi
+  // Indeks balai: 0,1,...,N-1. Indeks lokasi: N
+  const sources = Array.from({ length: N }, (_, i) => i).join(';');
+  const destinations = `${N}`; // indeks lokasi
   const url = `${OSRM_TABLE_URL}/${koordinat}?sources=${sources}&destinations=${destinations}&annotations=distance`;
 
   const controller = new AbortController();
