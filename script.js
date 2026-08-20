@@ -1218,7 +1218,14 @@ function parseKMLPoints(kmlText) {
   return coords;
 }
 
-// Fungsi parse KML untuk PG (struktur {lat, lng} dengan fid)
+// Fungsi parse KML untuk PG (struktur {lat, lng})
+// NOTA PEMBAIKAN: fail KML PG sebenar (disahkan oleh pengguna) mempunyai
+// 'fid' yang SAMA (cth. selalu "1") untuk SEMUA Placemark - bukan bernombor
+// urutan seperti yang dijangka asalnya. Menyusun ikut 'fid' dalam keadaan ini
+// tidak boleh dipercayai. Fail PG sentiasa menyenaraikan titik-titik dalam
+// urutan laluan sebenar (Placemark demi Placemark), sama seperti fail PLUS -
+// jadi kita terus guna urutan dokumen (macam parseKMLPoints untuk PLUS),
+// tanpa cuba tafsir 'fid' langsung.
 function parseKMLPointsPG(kmlText) {
   const parser = new DOMParser();
   const kmlDoc = parser.parseFromString(kmlText, 'text/xml');
@@ -1226,28 +1233,6 @@ function parseKMLPointsPG(kmlText) {
   const points = [];
   for (let i = 0; i < placemarks.length; i++) {
     const pm = placemarks[i];
-    let fid = null;
-    const extendedData = pm.getElementsByTagName('ExtendedData')[0];
-    if (extendedData) {
-      const schemaData = extendedData.getElementsByTagName('SchemaData')[0];
-      if (schemaData) {
-        const simpleDataList = schemaData.getElementsByTagName('SimpleData');
-        for (let j = 0; j < simpleDataList.length; j++) {
-          const sd = simpleDataList[j];
-          if (sd.getAttribute('name') === 'fid') {
-            fid = parseInt(sd.textContent);
-            break;
-          }
-        }
-      }
-    }
-    if (fid === null) {
-      const idAttr = pm.getAttribute('id');
-      if (idAttr) {
-        const match = idAttr.match(/interpolated_points\.(\d+)/);
-        if (match) fid = parseInt(match[1]);
-      }
-    }
     const pointNode = pm.getElementsByTagName('Point')[0];
     if (!pointNode) continue;
     const coordNode = pointNode.getElementsByTagName('coordinates')[0];
@@ -1257,22 +1242,11 @@ function parseKMLPointsPG(kmlText) {
     if (parts.length < 2) continue;
     const lng = parts[0];
     const lat = parts[1];
-    // NOTA PEMBAIKAN: sebelum ini titik yang gagal dapatkan 'fid' terus DIBUANG,
-    // jadi kalau kebanyakan Placemark tiada fid sah, hanya sikit titik (cth. awal & akhir)
-    // sahaja tersimpan -> lebuhraya nampak sebagai garis lurus A-B. Sekarang semua titik
-    // yang ada koordinat sah tetap disimpan, dengan urutan dokumen (i) sebagai fallback.
     if (!isNaN(lat) && !isNaN(lng)) {
-      points.push({ fid: fid !== null && !isNaN(fid) ? fid : null, urutan: i, lat, lng });
+      points.push({ lat, lng });
     }
   }
-  // Guna 'fid' untuk susun hanya jika SEMUA titik ada fid yang sah; jika tidak, guna urutan dokumen.
-  const semuaAdaFidSah = points.length > 0 && points.every((p) => p.fid !== null);
-  if (semuaAdaFidSah) {
-    points.sort((a, b) => a.fid - b.fid);
-  } else {
-    points.sort((a, b) => a.urutan - b.urutan);
-  }
-  return points.map(p => ({ lat: p.lat, lng: p.lng }));
+  return points;
 }
 
 // ============================================
