@@ -196,7 +196,7 @@
         top: 10px;
         left: 70px;
         z-index: 1000;
-        max-width: 520px;
+        max-width: 680px;
         width: auto;
         display: flex;
         align-items: center;
@@ -274,9 +274,36 @@
         border-color: #cc0000;
       }
       .mode-btn.active-pg {
-        background: #FFA500;
+        background: #ffa500;
         color: #fff;
-        border-color: #FFA500;
+        border-color: #ffa500;
+      }
+
+      /* BUTANG ARAH (UTARA/SELATAN / PASIR GUDANG/PERLING) */
+      .arah-btn {
+        background: #f0f0f0;
+        border: 1px solid #ccc;
+        height: var(--toolbar-h);
+        box-sizing: border-box;
+        display: none; /* default hidden, diubah oleh JS */
+        align-items: center;
+        justify-content: center;
+        padding: 0 10px;
+        cursor: pointer;
+        font-size: 12px;
+        font-weight: bold;
+        color: #333;
+        transition: 0.2s;
+        white-space: nowrap;
+        margin: 0;
+      }
+      .arah-btn.active-arah {
+        background: #cc0000;
+        color: #fff;
+        border-color: #cc0000;
+      }
+      .arah-btn:hover {
+        background: #e0e0e0;
       }
 
       #search-btn {
@@ -547,6 +574,11 @@
           padding: 0 8px;
           margin: 0;
         }
+        .arah-btn {
+          font-size: 10px;
+          padding: 0 6px;
+          margin: 0;
+        }
         #search-clear {
           font-size: 14px;
           padding: 0 4px;
@@ -593,10 +625,38 @@
             🗺️ Filter Zon
           </button>
           <div id="filter-zon" style="display: none">
-            <label><input type="checkbox" checked onchange="toggleZon(1, this)" /> Zon 1 - Johor Bahru</label><br />
-            <label><input type="checkbox" checked onchange="toggleZon(2, this)" /> Zon 2 - Kota Tinggi</label><br />
-            <label><input type="checkbox" checked onchange="toggleZon(3, this)" /> Zon 3 - Kluang</label><br />
-            <label><input type="checkbox" checked onchange="toggleZon(4, this)" /> Zon 4 - Muar</label>
+            <label
+              ><input
+                type="checkbox"
+                checked
+                onchange="toggleZon(1, this)"
+              />
+              Zon 1 - Johor Bahru</label
+            ><br />
+            <label
+              ><input
+                type="checkbox"
+                checked
+                onchange="toggleZon(2, this)"
+              />
+              Zon 2 - Kota Tinggi</label
+            ><br />
+            <label
+              ><input
+                type="checkbox"
+                checked
+                onchange="toggleZon(3, this)"
+              />
+              Zon 3 - Kluang</label
+            ><br />
+            <label
+              ><input
+                type="checkbox"
+                checked
+                onchange="toggleZon(4, this)"
+              />
+              Zon 4 - Muar</label
+            >
           </div>
           <button class="menu-item" onclick="toggleKMMarker()">
             🛣️ Tunjuk/Sembunyi Marker KM
@@ -615,7 +675,10 @@
           </button>
           <div id="list-balai" style="display: none"></div>
           <button class="menu-item" onclick="infoSistem()">ℹ️ Maklumat</button>
-          <button class="menu-item menu-item-keluar" onclick="location.href='/'">
+          <button
+            class="menu-item menu-item-keluar"
+            onclick="location.href='/'"
+          >
             ⬅️ Kembali ke Dashboard Utama
           </button>
         </div>
@@ -633,6 +696,25 @@
         <button id="search-clear" onclick="clearSearch()" title="Kosongkan">
           ✕
         </button>
+
+        <!-- DUA BUTANG ARAH (disembunyi secara default) -->
+        <button
+          id="arah-btn-1"
+          class="arah-btn"
+          style="display: none"
+          onclick="pilihArah('utara')"
+        >
+          ⬆ Utara
+        </button>
+        <button
+          id="arah-btn-2"
+          class="arah-btn"
+          style="display: none"
+          onclick="pilihArah('selatan')"
+        >
+          ⬇ Selatan
+        </button>
+
         <button
           id="mode-toggle"
           onclick="tukarMode()"
@@ -666,7 +748,14 @@
 
       <!-- PANEL KAWASAN JAGAAN PLUS -->
       <div id="info-panel">
-        <button id="info-panel-close" onclick="tutupInfoPanel()" title="Tutup" aria-label="Tutup">✕</button>
+        <button
+          id="info-panel-close"
+          onclick="tutupInfoPanel()"
+          title="Tutup"
+          aria-label="Tutup"
+        >
+          ✕
+        </button>
         <div class="info-title">🚒 Kawasan Jagaan PLUS</div>
         <div class="info-km" id="info-km">KM 0.0</div>
         <div class="info-row">

@@ -407,7 +407,7 @@ function kiraJarak(lat1, lon1, lat2, lon2) {
 }
 
 // ============================================
-// FUNGSI CARI 4 BALAI TERDEKAT (JARAK JALAN SEBENAR - OSRM) - JARAK DARI BALAI KE LOKASI
+// FUNGSI CARI 4 BALAI TERDEKAT (JARAK JALAN SEBENAR - OSRM)
 // ============================================
 const OSRM_TABLE_URL = 'https://router.project-osrm.org/table/v1/driving';
 const OSRM_TIMEOUT_MS = 5000;
@@ -614,9 +614,32 @@ dataBalai.forEach((balai) => {
 });
 
 // ============================================
-// MODE CARIAN – ALAMAT, KM PLUS, KM PASIR GUDANG
+// MODE CARIAN – ALAMAT, KM PLUS, KM PG (DENGAN TOGGLE ARAH)
 // ============================================
 let modeCarian = 'alamat';
+let arahCarian = 'utara'; // 'utara', 'selatan', 'pasirgudang', 'perling'
+
+// Dapatkan rujukan ke butang arah
+const arahBtn1 = document.getElementById('arah-btn-1');
+const arahBtn2 = document.getElementById('arah-btn-2');
+
+function pilihArah(arah) {
+  arahCarian = arah;
+  // Toggle class active
+  arahBtn1.classList.remove('active-arah');
+  arahBtn2.classList.remove('active-arah');
+  if (arah === 'utara' || arah === 'pasirgudang') {
+    arahBtn1.classList.add('active-arah');
+  } else {
+    arahBtn2.classList.add('active-arah');
+  }
+  // Jika ada query, boleh cari semula? Biar pengguna tekan Cari semula.
+  // Kita boleh trigger carian automatik? Untuk kemudahan, kita boleh panggil cari() jika input tidak kosong.
+  const query = document.getElementById('search-input').value.trim();
+  if (query.length > 0) {
+    cari();
+  }
+}
 
 function tukarMode() {
   const modeBtn = document.getElementById('mode-toggle');
@@ -628,62 +651,92 @@ function tukarMode() {
     modeBtn.textContent = '🔢 KM PLUS';
     modeBtn.className = 'mode-btn active-km';
     searchInput.placeholder = '🔢 Masukkan KM PLUS (cth: 23.5)';
+    // Tunjukkan butang arah, set default utara
+    arahBtn1.style.display = 'flex';
+    arahBtn2.style.display = 'flex';
+    arahBtn1.textContent = '⬆ Utara';
+    arahBtn2.textContent = '⬇ Selatan';
+    arahCarian = 'utara';
+    pilihArah('utara');
   } else if (modeCarian === 'km') {
     modeCarian = 'pg';
     modeBtn.textContent = '🛣️ KM PG';
     modeBtn.className = 'mode-btn active-pg';
     searchInput.placeholder = '🛣️ Masukkan KM Pasir Gudang (cth: 10.5)';
+    // Tunjukkan butang arah, set default pasirgudang
+    arahBtn1.style.display = 'flex';
+    arahBtn2.style.display = 'flex';
+    arahBtn1.textContent = '⬆ Pasir Gudang';
+    arahBtn2.textContent = '⬇ Perling';
+    arahCarian = 'pasirgudang';
+    pilihArah('pasirgudang');
   } else {
     modeCarian = 'alamat';
     modeBtn.textContent = '📍 Alamat';
     modeBtn.className = 'mode-btn active-alamat';
     searchInput.placeholder = '🔍 Cari alamat atau tempat...';
+    // Sembunyikan butang arah
+    arahBtn1.style.display = 'none';
+    arahBtn2.style.display = 'none';
   }
   resultsDiv.classList.remove('show');
   searchInput.focus();
-  console.log('Mod carian sekarang:', modeCarian);
+  console.log('Mod carian sekarang:', modeCarian, 'Arah:', arahCarian);
 }
 
 // ============================================
-// SEARCH (SATU BUTANG + TOGGLE MODE) – DIPERBAIKI
+// SEARCH (SATU BUTANG + TOGGLE MODE) – DIPERBAIKI DENGAN ARAH
 // ============================================
 const searchInput = document.getElementById('search-input');
 const searchResults = document.getElementById('search-results');
 const searchBtn = document.getElementById('search-btn');
 let searchMarker = null;
 
-// Fungsi parse KM PLUS
+// Fungsi parse KM PLUS (dengan arah)
 function cariKM(query) {
-  if (!dataKM || dataKM.length === 0) return null;
   const match = query.match(/^\s*(?:km\s*)?([\d.]+)\s*(?:km)?\s*$/i);
   if (!match) return null;
   const num = parseFloat(match[1]);
   if (isNaN(num) || num < 0 || num > 174.1) return null;
   const index = Math.round(num * 10);
-  if (index < 0 || index >= dataKM.length) return null;
-  const coord = dataKM[index];
+  if (index < 0) return null;
+  
+  let coord = null;
+  let arah = arahCarian;
+  if (arah === 'utara') {
+    if (index < dataKM_Utara.length) coord = dataKM_Utara[index];
+  } else if (arah === 'selatan') {
+    if (index < dataKM_Selatan.length) coord = dataKM_Selatan[index];
+  }
+  if (!coord) return null;
   const kmValue = (index / 10).toFixed(1);
-  return { lat: coord[0], lng: coord[1], km: kmValue };
+  return { lat: coord[0], lng: coord[1], km: kmValue, arah: arah };
 }
 
-// Fungsi parse KM Pasir Gudang
+// Fungsi parse KM Pasir Gudang (dengan arah)
 function cariKMPG(query) {
-  if (!dataKMPG || dataKMPG.length === 0) return null;
   const match = query.match(/^\s*(?:km\s*)?([\d.]+)\s*(?:km)?\s*$/i);
   if (!match) return null;
   const num = parseFloat(match[1]);
   if (isNaN(num) || num < 0 || num > 28.5) return null;
   const index = Math.round(num * 10);
-  if (index < 0 || index >= dataKMPG.length) return null;
-  const coord = dataKMPG[index];
+  if (index < 0) return null;
+  
+  let coord = null;
+  let arah = arahCarian;
+  if (arah === 'pasirgudang') {
+    if (index < dataKMPG_PasirGudang.length) coord = dataKMPG_PasirGudang[index];
+  } else if (arah === 'perling') {
+    if (index < dataKMPG_Perling.length) coord = dataKMPG_Perling[index];
+  }
+  if (!coord) return null;
   const kmValue = (index / 10).toFixed(1);
-  return { lat: coord.lat, lng: coord.lng, km: kmValue };
+  return { lat: coord.lat, lng: coord.lng, km: kmValue, arah: arah };
 }
 
-// Fungsi utama cari() – baca query sekali dan hantar ke fungsi mod
+// Fungsi utama cari()
 function cari() {
-  console.log('Fungsi cari() dipanggil, mode:', modeCarian);
-  // Pastikan kita dapat nilai terkini dari input
+  console.log('Fungsi cari() dipanggil, mode:', modeCarian, 'arah:', arahCarian);
   const query = searchInput.value.trim();
   if (modeCarian === 'alamat') {
     cariAlamat(query);
@@ -694,7 +747,7 @@ function cari() {
   }
 }
 
-// Carian Alamat (dengan auto-pilih hasil pertama)
+// Carian Alamat (sama)
 function cariAlamat(query) {
   if (query.length === 0) {
     searchResults.classList.remove('show');
@@ -726,7 +779,6 @@ function cariAlamat(query) {
         return;
       }
 
-      // Jika hanya satu hasil, pilih secara automatik
       if (data.length === 1) {
         const item = data[0];
         pilihLokasi(item.lat, item.lon, item.display_name);
@@ -734,7 +786,6 @@ function cariAlamat(query) {
         return;
       }
 
-      // Jika lebih dari satu, paparkan senarai
       let html = '';
       data.forEach((item) => {
         html += `<div class="search-result-item" onclick="pilihLokasi(${item.lat}, ${item.lon}, '${escapeHtml(item.display_name)}')">📍 ${item.display_name}</div>`;
@@ -757,6 +808,13 @@ function cariKMPlus(query) {
     return;
   }
 
+  // Pastikan arah dipilih (jika tiada, mesej)
+  if (arahCarian !== 'utara' && arahCarian !== 'selatan') {
+    searchResults.innerHTML = '<div class="search-result-item" style="color:#cc0000;">Sila pilih arah (⬆ Utara / ⬇ Selatan) terlebih dahulu.</div>';
+    searchResults.classList.add('show');
+    return;
+  }
+
   const kmResult = cariKM(query);
   if (kmResult) {
     searchResults.classList.remove('show');
@@ -765,6 +823,7 @@ function cariKMPlus(query) {
     if (searchMarker) {
       map.removeLayer(searchMarker);
     }
+    const arahLabel = kmResult.arah === 'utara' ? 'Utara' : 'Selatan';
     searchMarker = L.marker([kmResult.lat, kmResult.lng], {
       icon: L.icon({
         iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png',
@@ -776,19 +835,19 @@ function cariKMPlus(query) {
       }),
     })
       .addTo(map)
-      .bindPopup(`<b>📍 ${kmResult.km} KM (PLUS)</b>`)
+      .bindPopup(`<b>📍 KM ${kmResult.km} (PLUS - ${arahLabel})</b>`)
       .openPopup();
 
-    searchInput.value = `KM ${kmResult.km}`;
-    updateInfoPanel(parseFloat(kmResult.km));
+    searchInput.value = `KM ${kmResult.km} (${arahLabel})`;
+    updateInfoPanel(parseFloat(kmResult.km), 'PLUS', arahLabel);
     lokasiTerakhir = {
       lat: kmResult.lat,
       lng: kmResult.lng,
-      alamat: `KM ${kmResult.km} (PLUS)`,
+      alamat: `KM ${kmResult.km} (PLUS - ${arahLabel})`,
     };
   } else {
     searchResults.innerHTML =
-      '<div class="search-result-item" style="color:#999;">Format KM tidak sah. Contoh: 23.5, km 45, 100</div>';
+      '<div class="search-result-item" style="color:#999;">Format KM tidak sah atau arah ini tiada data. Contoh: 23.5, km 45, 100</div>';
     searchResults.classList.add('show');
   }
 }
@@ -800,6 +859,12 @@ function cariKMPGPlus(query) {
     return;
   }
 
+  if (arahCarian !== 'pasirgudang' && arahCarian !== 'perling') {
+    searchResults.innerHTML = '<div class="search-result-item" style="color:#cc0000;">Sila pilih arah (⬆ Pasir Gudang / ⬇ Perling) terlebih dahulu.</div>';
+    searchResults.classList.add('show');
+    return;
+  }
+
   const kmResult = cariKMPG(query);
   if (kmResult) {
     searchResults.classList.remove('show');
@@ -808,6 +873,7 @@ function cariKMPGPlus(query) {
     if (searchMarker) {
       map.removeLayer(searchMarker);
     }
+    const arahLabel = kmResult.arah === 'pasirgudang' ? 'Pasir Gudang' : 'Perling';
     searchMarker = L.marker([kmResult.lat, kmResult.lng], {
       icon: L.icon({
         iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png',
@@ -819,18 +885,20 @@ function cariKMPGPlus(query) {
       }),
     })
       .addTo(map)
-      .bindPopup(`<b>🛣️ ${kmResult.km} KM (Pasir Gudang)</b>`)
+      .bindPopup(`<b>🛣️ KM ${kmResult.km} (PG - ${arahLabel})</b>`)
       .openPopup();
 
-    searchInput.value = `PG KM ${kmResult.km}`;
+    searchInput.value = `PG KM ${kmResult.km} (${arahLabel})`;
+    // Untuk panel PLUS tidak berkaitan dengan PG, jadi kita tak update panel PLUS.
+    // Tapi kita simpan lokasiTerakhir
     lokasiTerakhir = {
       lat: kmResult.lat,
       lng: kmResult.lng,
-      alamat: `PG KM ${kmResult.km}`,
+      alamat: `PG KM ${kmResult.km} (${arahLabel})`,
     };
   } else {
     searchResults.innerHTML =
-      '<div class="search-result-item" style="color:#999;">Format KM tidak sah. Contoh: 10.5, km 15, 20</div>';
+      '<div class="search-result-item" style="color:#999;">Format KM tidak sah atau arah ini tiada data. Contoh: 10.5, km 15, 20</div>';
     searchResults.classList.add('show');
   }
 }
@@ -869,21 +937,16 @@ function pilihLokasi(lat, lng, alamat) {
 }
 
 // ============================================
-// EVENT LISTENERS UNTUK CARIAN – DIPERBAIKI
+// EVENT LISTENERS UNTUK CARIAN
 // ============================================
-// Enter pada input – gunakan keydown (lebih stabil)
 searchInput.addEventListener('keydown', function (e) {
   if (e.key === 'Enter') {
     e.preventDefault();
-    // Fokus kembali ke input untuk pastikan nilai terkini
     searchInput.focus();
     cari();
   }
 });
 
-// Elak input 'blur' & keyboard skrin tertutup sebelum klik sempat berlaku
-// (punca butang Cari gagal pada mobile: reflow/keyboard-collapse mengubah
-// kedudukan butang sebelum event 'click' sempat fire dengan tepat)
 searchBtn.addEventListener('mousedown', function (e) {
   e.preventDefault();
 });
@@ -891,22 +954,18 @@ searchBtn.addEventListener('touchstart', function (e) {
   e.preventDefault();
 }, { passive: false });
 
-// Klik pada butang Cari
 searchBtn.addEventListener('click', function (e) {
   e.preventDefault();
-  // Fokus kembali ke input untuk pastikan nilai terkini
   searchInput.focus();
   cari();
 });
 
-// Klik di luar untuk tutup hasil carian
 document.addEventListener('click', function (e) {
   if (!document.getElementById('search-container').contains(e.target)) {
     searchResults.classList.remove('show');
   }
 });
 
-// Clear
 function clearSearch() {
   searchInput.value = '';
   searchResults.classList.remove('show');
@@ -928,7 +987,7 @@ searchInput.addEventListener('input', function () {
 });
 
 // ============================================
-// SIDE MENU FUNCTIONS
+// SIDE MENU FUNCTIONS (SAMA)
 // ============================================
 function toggleMenu() {
   document.getElementById('side-menu').classList.toggle('open');
@@ -1005,7 +1064,7 @@ const searchResultsEl = document.getElementById('search-results');
 });
 
 // ============================================
-// DATA KAWASAN JAGAAN PLUS
+// DATA KAWASAN JAGAAN PLUS (SAMA)
 // ============================================
 const dataKawasanBalai = [
   { balai: 'BBP TEBRAU', kmDari: 0, kmHingga: 8, arah: 'UTARA' },
@@ -1039,9 +1098,9 @@ function cariBalaiArah(km, arah) {
 }
 
 // ============================================
-// PANEL KAWASAN JAGAAN PLUS
+// PANEL KAWASAN JAGAAN PLUS (DIUBAH UNTUK TUNJUK ARAH)
 // ============================================
-function updateInfoPanel(km) {
+function updateInfoPanel(km, jenis = 'PLUS', arahLabel = '') {
   const panel = document.getElementById('info-panel');
   if (!panel) return;
 
@@ -1054,7 +1113,7 @@ function updateInfoPanel(km) {
   const utara = cariBalaiArah(km, 'UTARA');
   const selatan = cariBalaiArah(km, 'SELATAN');
 
-  kmDisplay.textContent = `📍 KM ${km.toFixed(1)} (PLUS)`;
+  kmDisplay.textContent = `📍 KM ${km.toFixed(1)} (${jenis}${arahLabel ? ' - ' + arahLabel : ''})`;
 
   if (utara) {
     utaraDiv.textContent = utara.balai;
@@ -1081,78 +1140,209 @@ function tutupInfoPanel() {
 }
 
 // ============================================
-// DATA KM – MUAT TURUN & PARSE KML (PLUS)
+// DATA KM – MUAT TURUN 4 FAIL KML (2 PLUS + 2 PG)
 // ============================================
-let dataKM = [];
+let dataKM_Utara = [];
+let dataKM_Selatan = [];
+let dataKMPG_PasirGudang = [];
+let dataKMPG_Perling = [];
+
 let layerKMMarker = null;
 let kmMarkerVisible = false;
 
 async function loadKMLData() {
   try {
-    const response = await fetch('KM_0_174_1_ALL_MARKERS.kml.txt');
-    if (!response.ok) throw new Error('Fail KM tidak dijumpai.');
-    const kmlText = await response.text();
-    const parser = new DOMParser();
-    const kmlDoc = parser.parseFromString(kmlText, 'text/xml');
+    // Muat dua fail PLUS serentak
+    const [respUtara, respSelatan] = await Promise.all([
+      fetch('PLUS HALA UTARA.kml'),
+      fetch('PLUS HALA SELATAN.kml')
+    ]);
+    if (!respUtara.ok) throw new Error('Fail PLUS HALA UTARA tidak dijumpai.');
+    if (!respSelatan.ok) throw new Error('Fail PLUS HALA SELATAN tidak dijumpai.');
+    
+    const [textUtara, textSelatan] = await Promise.all([
+      respUtara.text(),
+      respSelatan.text()
+    ]);
 
-    const pointNodes = kmlDoc.getElementsByTagName('Point');
-    const coords = [];
-    for (let i = 0; i < pointNodes.length; i++) {
-      const coordNode = pointNodes[i].getElementsByTagName('coordinates')[0];
-      if (coordNode) {
-        const coordText = coordNode.textContent.trim();
-        const parts = coordText.split(',').map(Number);
-        coords.push([parts[1], parts[0]]);
-      }
-    }
-    dataKM = coords;
-    console.log(`✅ ${dataKM.length} titik KM PLUS berjaya dimuatkan.`);
+    dataKM_Utara = parseKMLPoints(textUtara);
+    dataKM_Selatan = parseKMLPoints(textSelatan);
+    console.log(`✅ PLUS Utara: ${dataKM_Utara.length} titik, PLUS Selatan: ${dataKM_Selatan.length} titik`);
+    
     binaLayerKMMarker();
   } catch (error) {
-    console.error('❌ Gagal memuatkan fail KML KM PLUS:', error);
-    alert('Gagal memuatkan data KM PLUS. Sila pastikan fail KM_0_174_1_ALL_MARKERS.kml.txt wujud.');
+    console.error('❌ Gagal memuatkan fail KML PLUS:', error);
+    alert('Gagal memuatkan data KM PLUS. Pastikan fail "PLUS HALA UTARA.kml" dan "PLUS HALA SELATAN.kml" wujud.');
   }
 }
 
+async function loadKMLPasirGudang() {
+  try {
+    const [respPG, respPerling] = await Promise.all([
+      fetch('PG HALA PASIR GUDANG.kml'),
+      fetch('PG HALA PERLING.kml')
+    ]);
+    if (!respPG.ok) throw new Error('Fail PG HALA PASIR GUDANG tidak dijumpai.');
+    if (!respPerling.ok) throw new Error('Fail PG HALA PERLING tidak dijumpai.');
+    
+    const [textPG, textPerling] = await Promise.all([
+      respPG.text(),
+      respPerling.text()
+    ]);
+
+    dataKMPG_PasirGudang = parseKMLPointsPG(textPG);
+    dataKMPG_Perling = parseKMLPointsPG(textPerling);
+    console.log(`✅ PG Pasir Gudang: ${dataKMPG_PasirGudang.length} titik, PG Perling: ${dataKMPG_Perling.length} titik`);
+    
+    binaLayerLebuhraya();
+  } catch (error) {
+    console.error('❌ Gagal memuatkan fail KML PG:', error);
+    alert('Gagal memuatkan data KM Pasir Gudang. Pastikan fail "PG HALA PASIR GUDANG.kml" dan "PG HALA PERLING.kml" wujud.');
+  }
+}
+
+// Fungsi parse KML untuk PLUS (koordinat [lat, lng])
+function parseKMLPoints(kmlText) {
+  const parser = new DOMParser();
+  const kmlDoc = parser.parseFromString(kmlText, 'text/xml');
+  const pointNodes = kmlDoc.getElementsByTagName('Point');
+  const coords = [];
+  for (let i = 0; i < pointNodes.length; i++) {
+    const coordNode = pointNodes[i].getElementsByTagName('coordinates')[0];
+    if (coordNode) {
+      const coordText = coordNode.textContent.trim();
+      const parts = coordText.split(',').map(Number);
+      coords.push([parts[1], parts[0]]);
+    }
+  }
+  return coords;
+}
+
+// Fungsi parse KML untuk PG (struktur {lat, lng} dengan fid)
+function parseKMLPointsPG(kmlText) {
+  const parser = new DOMParser();
+  const kmlDoc = parser.parseFromString(kmlText, 'text/xml');
+  const placemarks = kmlDoc.getElementsByTagName('Placemark');
+  const points = [];
+  for (let i = 0; i < placemarks.length; i++) {
+    const pm = placemarks[i];
+    let fid = null;
+    const extendedData = pm.getElementsByTagName('ExtendedData')[0];
+    if (extendedData) {
+      const schemaData = extendedData.getElementsByTagName('SchemaData')[0];
+      if (schemaData) {
+        const simpleDataList = schemaData.getElementsByTagName('SimpleData');
+        for (let j = 0; j < simpleDataList.length; j++) {
+          const sd = simpleDataList[j];
+          if (sd.getAttribute('name') === 'fid') {
+            fid = parseInt(sd.textContent);
+            break;
+          }
+        }
+      }
+    }
+    if (fid === null) {
+      const idAttr = pm.getAttribute('id');
+      if (idAttr) {
+        const match = idAttr.match(/interpolated_points\.(\d+)/);
+        if (match) fid = parseInt(match[1]);
+      }
+    }
+    const pointNode = pm.getElementsByTagName('Point')[0];
+    if (!pointNode) continue;
+    const coordNode = pointNode.getElementsByTagName('coordinates')[0];
+    if (!coordNode) continue;
+    const coordText = coordNode.textContent.trim();
+    const parts = coordText.split(',').map(Number);
+    if (parts.length < 2) continue;
+    const lng = parts[0];
+    const lat = parts[1];
+    if (fid !== null && !isNaN(lat) && !isNaN(lng)) {
+      points.push({ fid, lat, lng });
+    }
+  }
+  points.sort((a, b) => a.fid - b.fid);
+  return points.map(p => ({ lat: p.lat, lng: p.lng }));
+}
+
+// ============================================
+// BINA LAYER MARKER KM PLUS (DUA ARAH DENGAN WARNA BERBEZA)
+// ============================================
 function binaLayerKMMarker() {
-  if (dataKM.length === 0) return;
+  if (dataKM_Utara.length === 0 && dataKM_Selatan.length === 0) return;
 
   layerKMMarker = L.layerGroup();
 
-  dataKM.forEach((coord, index) => {
-    const kmValue = (index / 10).toFixed(1);
-    const marker = L.circleMarker(coord, {
-      radius: 4,
-      fillColor: '#1E90FF',
-      color: '#1E90FF',
-      weight: 1,
-      opacity: 0.8,
-      fillOpacity: 0.9,
+  // Fungsi tambah marker untuk satu array dengan warna
+  function tambahMarkerArray(arr, warna, labelArah) {
+    arr.forEach((coord, index) => {
+      const kmValue = (index / 10).toFixed(1);
+      const marker = L.circleMarker(coord, {
+        radius: 4,
+        fillColor: warna,
+        color: warna,
+        weight: 1,
+        opacity: 0.8,
+        fillOpacity: 0.9,
+      });
+      marker.bindTooltip(`<b>📍 ${kmValue} KM (${labelArah})</b>`, {
+        permanent: false,
+        direction: 'top',
+        offset: [0, -8],
+        className: 'km-tooltip',
+      });
+      marker.on('click', function () {
+        const kmNum = parseFloat(kmValue);
+        updateInfoPanel(kmNum, 'PLUS', labelArah);
+        lokasiTerakhir = {
+          lat: coord[0],
+          lng: coord[1],
+          alamat: `KM ${kmValue} (PLUS - ${labelArah})`,
+        };
+      });
+      layerKMMarker.addLayer(marker);
     });
+  }
 
-    marker.bindTooltip(`<b>📍 ${kmValue} KM</b>`, {
-      permanent: false,
-      direction: 'top',
-      offset: [0, -8],
-      className: 'km-tooltip',
-    });
+  tambahMarkerArray(dataKM_Utara, '#2196F3', 'Utara');
+  tambahMarkerArray(dataKM_Selatan, '#F44336', 'Selatan');
 
-    marker.on('click', function () {
-      const kmNum = parseFloat(kmValue);
-      updateInfoPanel(kmNum);
-      lokasiTerakhir = {
-        lat: coord[0],
-        lng: coord[1],
-        alamat: `KM ${kmValue} (PLUS)`,
-      };
-    });
-
-    layerKMMarker.addLayer(marker);
-  });
-
-  console.log('✅ Layer KM PLUS marker sedia (dengan event click).');
+  console.log('✅ Layer KM PLUS marker sedia (dua arah).');
 }
 
+// ============================================
+// BINA LAYER LEBUHRAYA PG (DUA ARAH DENGAN WARNA BERBEZA)
+// ============================================
+let layerLebuhraya = null;
+let lebuhrayaVisible = false;
+
+function binaLayerLebuhraya() {
+  if (dataKMPG_PasirGudang.length === 0 && dataKMPG_Perling.length === 0) return;
+
+  layerLebuhraya = L.layerGroup();
+
+  function tambahGarisan(arr, warna, labelArah) {
+    if (arr.length === 0) return;
+    const latlngs = arr.map(p => [p.lat, p.lng]);
+    const polyline = L.polyline(latlngs, {
+      color: warna,
+      weight: 6,
+      opacity: 0.9,
+      smoothFactor: 1,
+    });
+    polyline.bindPopup(`🛣️ Lebuhraya Pasir Gudang - ${labelArah}`);
+    layerLebuhraya.addLayer(polyline);
+  }
+
+  tambahGarisan(dataKMPG_PasirGudang, '#FF9800', 'Pasir Gudang');
+  tambahGarisan(dataKMPG_Perling, '#4CAF50', 'Perling');
+
+  console.log('✅ Layer Lebuhraya PG sedia (dua arah).');
+}
+
+// ============================================
+// TOGGLE UNTUK MARKER KM DAN LEBUHRAYA (PAPAR DUA-DUA ARAH)
+// ============================================
 function toggleKMMarker() {
   if (!layerKMMarker) {
     alert('Data KM PLUS masih dimuatkan. Sila tunggu sebentar.');
@@ -1169,8 +1359,23 @@ function toggleKMMarker() {
   }
 }
 
+function toggleLebuhraya() {
+  if (!layerLebuhraya) {
+    alert('Data Lebuhraya Pasir Gudang masih dimuatkan. Sila tunggu sebentar.');
+    loadKMLPasirGudang();
+    return;
+  }
+  if (!lebuhrayaVisible) {
+    layerLebuhraya.addTo(map);
+    lebuhrayaVisible = true;
+  } else {
+    map.removeLayer(layerLebuhraya);
+    lebuhrayaVisible = false;
+  }
+}
+
 // ============================================
-// POLIGON KAWASAN JAGAAN DARI KML
+// POLIGON ZON DAN BALAI (SAMA SEPERTI SEBELUM INI, TIDAK BERUBAH)
 // ============================================
 let layerPoligonZon = null;
 let layerPoligonBalai = null;
@@ -1343,7 +1548,7 @@ async function loadKMLPolygon() {
     console.log('✅ Layer poligon sedia (tersembunyi).');
   } catch (error) {
     console.error('❌ Gagal memuatkan poligon KML:', error);
-    alert('Gagal memuatkan poligon kawasan. Pastikan fail PETA KAWASAN JAGAAN BOMBA NEGERI JOHOR 2025.kml wujud.');
+    alert('Gagal memuatkan poligon kawasan. Pastikan fail "PETA KAWASAN JAGAAN BOMBA NEGERI JOHOR 2025.kml" wujud.');
   }
 }
 
@@ -1378,115 +1583,14 @@ function togglePoligonBalai() {
 }
 
 // ============================================
-// LAPISAN LEBUHRAYA PASIR GUDANG (dari titik KML)
-// ============================================
-let layerLebuhraya = null;
-let lebuhrayaVisible = false;
-let dataKMPG = [];
-
-async function loadKMLPasirGudang() {
-  try {
-    const response = await fetch('Lebuhraya_Pasir_gudang.kml');
-    if (!response.ok) throw new Error('Fail KML Lebuhraya Pasir Gudang tidak dijumpai.');
-    const kmlText = await response.text();
-    const parser = new DOMParser();
-    const kmlDoc = parser.parseFromString(kmlText, 'text/xml');
-
-    const placemarks = kmlDoc.getElementsByTagName('Placemark');
-    const points = [];
-
-    for (let i = 0; i < placemarks.length; i++) {
-      const pm = placemarks[i];
-      let fid = null;
-      const extendedData = pm.getElementsByTagName('ExtendedData')[0];
-      if (extendedData) {
-        const schemaData = extendedData.getElementsByTagName('SchemaData')[0];
-        if (schemaData) {
-          const simpleDataList = schemaData.getElementsByTagName('SimpleData');
-          for (let j = 0; j < simpleDataList.length; j++) {
-            const sd = simpleDataList[j];
-            if (sd.getAttribute('name') === 'fid') {
-              fid = parseInt(sd.textContent);
-              break;
-            }
-          }
-        }
-      }
-      if (fid === null) {
-        const idAttr = pm.getAttribute('id');
-        if (idAttr) {
-          const match = idAttr.match(/interpolated_points\.(\d+)/);
-          if (match) fid = parseInt(match[1]);
-        }
-      }
-
-      const pointNode = pm.getElementsByTagName('Point')[0];
-      if (!pointNode) continue;
-      const coordNode = pointNode.getElementsByTagName('coordinates')[0];
-      if (!coordNode) continue;
-      const coordText = coordNode.textContent.trim();
-      const parts = coordText.split(',').map(Number);
-      if (parts.length < 2) continue;
-      const lng = parts[0];
-      const lat = parts[1];
-
-      if (fid !== null && !isNaN(lat) && !isNaN(lng)) {
-        points.push({ fid, lat, lng });
-      }
-    }
-
-    if (points.length === 0) {
-      console.warn('Tiada titik koordinat dijumpai dalam KML.');
-      return;
-    }
-
-    points.sort((a, b) => a.fid - b.fid);
-
-    dataKMPG = points.map(p => ({ lat: p.lat, lng: p.lng }));
-    console.log(`✅ ${dataKMPG.length} titik KM Pasir Gudang disimpan untuk carian.`);
-
-    const latlngs = points.map(p => [p.lat, p.lng]);
-    layerLebuhraya = L.layerGroup();
-    const polyline = L.polyline(latlngs, {
-      color: '#FFA500',
-      weight: 6,
-      opacity: 0.9,
-      smoothFactor: 1,
-    });
-    polyline.bindPopup('🛣️ Lebuhraya Pasir Gudang');
-    layerLebuhraya.addLayer(polyline);
-
-    console.log(`✅ Lebuhraya Pasir Gudang dimuatkan dengan ${points.length} titik.`);
-  } catch (error) {
-    console.error('❌ Gagal memuatkan KML Lebuhraya Pasir Gudang:', error);
-    alert('Gagal memuatkan data Lebuhraya Pasir Gudang. Pastikan fail KML wujud.');
-  }
-}
-
-function toggleLebuhraya() {
-  if (!layerLebuhraya) {
-    alert('Data Lebuhraya Pasir Gudang masih dimuatkan. Sila tunggu sebentar.');
-    loadKMLPasirGudang();
-    return;
-  }
-  if (!lebuhrayaVisible) {
-    layerLebuhraya.addTo(map);
-    lebuhrayaVisible = true;
-  } else {
-    map.removeLayer(layerLebuhraya);
-    lebuhrayaVisible = false;
-  }
-}
-
-// ============================================
-// MUAT DATA KM, POLIGON DAN LEBUHRAYA
+// MUAT SEMUA DATA SECARA AUTOMATIK
 // ============================================
 loadKMLData();
-loadKMLPolygon();
 loadKMLPasirGudang();
+loadKMLPolygon();
 
 // ============================================
 // LOADING SIAP
 // ============================================
 console.log('✅ Peta Kawasan Jagaan JBPM Johor siap!');
-console.log('🔥 34 Balai | 4 Zon | Search Alamat, KM PLUS & KM Pasir Gudang | Popup Balai Terdekat + Route (dari balai ke lokasi) | Panel Kawasan PLUS');
+console.log('🔥 34 Balai | 4 Zon | Search dengan toggle arah untuk KM PLUS dan KM PG');
