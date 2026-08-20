@@ -713,7 +713,7 @@ function cariKM(query) {
   return { lat: coord[0], lng: coord[1], km: kmValue, arah: arah };
 }
 
-// Fungsi parse KM Pasir Gudang (dengan arah) – DIPERBAIKI
+// Fungsi parse KM Pasir Gudang (dengan arah)
 function cariKMPG(query) {
   const match = query.match(/^\s*(?:km\s*)?([\d.]+)\s*(?:km)?\s*$/i);
   if (!match) return null;
@@ -725,13 +725,9 @@ function cariKMPG(query) {
   let coord = null;
   let arah = arahCarian;
   if (arah === 'pasirgudang') {
-    if (index < dataKMPG_PasirGudang.length && dataKMPG_PasirGudang[index] !== null) {
-      coord = dataKMPG_PasirGudang[index];
-    }
+    if (index < dataKMPG_PasirGudang.length) coord = dataKMPG_PasirGudang[index];
   } else if (arah === 'perling') {
-    if (index < dataKMPG_Perling.length && dataKMPG_Perling[index] !== null) {
-      coord = dataKMPG_Perling[index];
-    }
+    if (index < dataKMPG_Perling.length) coord = dataKMPG_Perling[index];
   }
   if (!coord) return null;
   const kmValue = (index / 10).toFixed(1);
@@ -1222,17 +1218,15 @@ function parseKMLPoints(kmlText) {
   return coords;
 }
 
-// Fungsi parse KML untuk PG – DIPERBAIKI: gunakan fid sebagai indeks terus
+// Fungsi parse KML untuk PG (struktur {lat, lng} dengan fid)
 function parseKMLPointsPG(kmlText) {
   const parser = new DOMParser();
   const kmlDoc = parser.parseFromString(kmlText, 'text/xml');
   const placemarks = kmlDoc.getElementsByTagName('Placemark');
   const points = [];
-
   for (let i = 0; i < placemarks.length; i++) {
     const pm = placemarks[i];
     let fid = null;
-    // Cari fid dalam ExtendedData
     const extendedData = pm.getElementsByTagName('ExtendedData')[0];
     if (extendedData) {
       const schemaData = extendedData.getElementsByTagName('SchemaData')[0];
@@ -1247,7 +1241,6 @@ function parseKMLPointsPG(kmlText) {
         }
       }
     }
-    // Jika tiada ExtendedData, cuba dari id atribut
     if (fid === null) {
       const idAttr = pm.getAttribute('id');
       if (idAttr) {
@@ -1268,20 +1261,8 @@ function parseKMLPointsPG(kmlText) {
       points.push({ fid, lat, lng });
     }
   }
-
-  // Cari fid maksimum
-  const maxFid = points.reduce((max, p) => Math.max(max, p.fid), -1);
-  if (maxFid < 0) return [];
-
-  // Bina array dengan panjang maxFid+1, isi dengan null
-  const result = new Array(maxFid + 1).fill(null);
-  points.forEach(p => {
-    result[p.fid] = { lat: p.lat, lng: p.lng };
-  });
-
-  // (Pilihan) Potong array pada fid terakhir yang ada untuk menjimatkan saiz
-  // Biarkan sahaja, kita akan gunakan semak null dalam cariKMPG
-  return result;
+  points.sort((a, b) => a.fid - b.fid);
+  return points.map(p => ({ lat: p.lat, lng: p.lng }));
 }
 
 // ============================================
@@ -1330,7 +1311,7 @@ function binaLayerKMMarker() {
 }
 
 // ============================================
-// BINA LAYER LEBUHRAYA PG (DUA ARAH DENGAN WARNA BERBEZA + MARKER)
+// BINA LAYER LEBUHRAYA PG (DUA ARAH DENGAN WARNA BERBEZA)
 // ============================================
 let layerLebuhraya = null;
 let lebuhrayaVisible = false;
@@ -1340,13 +1321,9 @@ function binaLayerLebuhraya() {
 
   layerLebuhraya = L.layerGroup();
 
-  // Fungsi tambah garisan
   function tambahGarisan(arr, warna, labelArah) {
     if (arr.length === 0) return;
-    // Tapis titik null (jika ada)
-    const valid = arr.filter(p => p !== null);
-    if (valid.length === 0) return;
-    const latlngs = valid.map(p => [p.lat, p.lng]);
+    const latlngs = arr.map(p => [p.lat, p.lng]);
     const polyline = L.polyline(latlngs, {
       color: warna,
       weight: 6,
@@ -1357,49 +1334,10 @@ function binaLayerLebuhraya() {
     layerLebuhraya.addLayer(polyline);
   }
 
-  // Fungsi tambah marker setiap 100 meter (sama seperti PLUS)
-  function tambahMarkerPG(arr, warna, labelArah) {
-    arr.forEach((p, index) => {
-      if (p === null) return; // skip jika tiada data
-      const kmValue = (index / 10).toFixed(1);
-      // Hanya tambah marker jika KM tidak melebihi had (contoh 28.5)
-      if (parseFloat(kmValue) > 28.5) return;
-      const marker = L.circleMarker([p.lat, p.lng], {
-        radius: 4,
-        fillColor: warna,
-        color: warna,
-        weight: 1,
-        opacity: 0.8,
-        fillOpacity: 0.9,
-      });
-      marker.bindTooltip(`<b>🛣️ ${kmValue} KM (PG - ${labelArah})</b>`, {
-        permanent: false,
-        direction: 'top',
-        offset: [0, -8],
-        className: 'km-tooltip',
-      });
-      marker.on('click', function () {
-        // Simpan lokasi
-        lokasiTerakhir = {
-          lat: p.lat,
-          lng: p.lng,
-          alamat: `PG KM ${kmValue} (${labelArah})`,
-        };
-        // Boleh tambah update panel jika perlu
-      });
-      layerLebuhraya.addLayer(marker);
-    });
-  }
-
-  // Pasir Gudang
   tambahGarisan(dataKMPG_PasirGudang, '#FF9800', 'Pasir Gudang');
-  tambahMarkerPG(dataKMPG_PasirGudang, '#FF9800', 'Pasir Gudang');
-
-  // Perling
   tambahGarisan(dataKMPG_Perling, '#4CAF50', 'Perling');
-  tambahMarkerPG(dataKMPG_Perling, '#4CAF50', 'Perling');
 
-  console.log('✅ Layer Lebuhraya PG dengan garisan dan marker sedia.');
+  console.log('✅ Layer Lebuhraya PG sedia (dua arah).');
 }
 
 // ============================================
