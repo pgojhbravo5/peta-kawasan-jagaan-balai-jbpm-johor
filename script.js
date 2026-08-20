@@ -1073,7 +1073,7 @@ const dataKawasanBalai = [
   { balai: 'BBP BANDAR BARU KULAI', kmDari: 21.5, kmHingga: 27.8, arah: 'UTARA' },
   { balai: 'BBP KULAI', kmDari: 27.8, kmHingga: 41.3, arah: 'UTARA' },
   { balai: 'BBP RENGGAM', kmDari: 41.3, kmHingga: 72.6, arah: 'UTARA' },
-  { balai: 'BBP AYER HITAM', kmDari: 80.5, kmHingga: 99.5, arah: 'UTARA' },
+  { balai: 'BBP AYER HITAM', kmDari: 72.6, kmHingga: 99.5, arah: 'UTARA' },
   { balai: 'BBP YONG PENG', kmDari: 99.5, kmHingga: 142.4, arah: 'UTARA' },
   { balai: 'BBP PAGOH', kmDari: 142.4, kmHingga: 157, arah: 'UTARA' },
   { balai: 'BBP BUKIT GAMBIR', kmDari: 157, kmHingga: 169.4, arah: 'UTARA' },
