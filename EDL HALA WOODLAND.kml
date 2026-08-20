@@ -1,0 +1,1224 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document id="root_doc">
+<Schema name="interpolated_points" id="interpolated_points">
+	<SimpleField name="fid" type="float"></SimpleField>
+	<SimpleField name="id" type="string"></SimpleField>
+	<SimpleField name="timestamp" type="string"></SimpleField>
+	<SimpleField name="begin" type="string"></SimpleField>
+	<SimpleField name="end" type="string"></SimpleField>
+	<SimpleField name="altitudeMode" type="string"></SimpleField>
+	<SimpleField name="tessellate" type="int"></SimpleField>
+	<SimpleField name="extrude" type="int"></SimpleField>
+	<SimpleField name="visibility" type="int"></SimpleField>
+	<SimpleField name="drawOrder" type="int"></SimpleField>
+	<SimpleField name="icon" type="string"></SimpleField>
+	<SimpleField name="distance" type="float"></SimpleField>
+	<SimpleField name="angle" type="float"></SimpleField>
+	<SimpleField name="KM" type="string"></SimpleField>
+	<SimpleField name="Latitude" type="float"></SimpleField>
+	<SimpleField name="Longitude" type="float"></SimpleField>
+</Schema>
+<Folder><name>interpolated_points</name>
+  <Placemark id="interpolated_points.1">
+	<name>EDL HALA WOODLAND</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">0</SimpleData>
+		<SimpleData name="angle">63.6125169042818</SimpleData>
+		<SimpleData name="KM">KM 0.0</SimpleData>
+		<SimpleData name="Latitude">1.4684800000</SimpleData>
+		<SimpleData name="Longitude">103.7695300000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.76953,1.46848,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.2">
+	<name>EDL HALA WOODLAND</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">100</SimpleData>
+		<SimpleData name="angle">72.3927535001284</SimpleData>
+		<SimpleData name="KM">KM 0.1</SimpleData>
+		<SimpleData name="Latitude">1.4688809870</SimpleData>
+		<SimpleData name="Longitude">103.7703305843</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.770330584305,1.46888098697999,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.3">
+	<name>EDL HALA WOODLAND</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">200</SimpleData>
+		<SimpleData name="angle">78.4144934278115</SimpleData>
+		<SimpleData name="KM">KM 0.2</SimpleData>
+		<SimpleData name="Latitude">1.4690759160</SimpleData>
+		<SimpleData name="Longitude">103.7712069273</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.77120692734,1.46907591600469,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.4">
+	<name>EDL HALA WOODLAND</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">300</SimpleData>
+		<SimpleData name="angle">80.3306520933938</SimpleData>
+		<SimpleData name="KM">KM 0.3</SimpleData>
+		<SimpleData name="Latitude">1.4692355253</SimpleData>
+		<SimpleData name="Longitude">103.7720914909</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.772091490887,1.46923552534952,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.5">
+	<name>EDL HALA WOODLAND</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">400</SimpleData>
+		<SimpleData name="angle">77.9180937791477</SimpleData>
+		<SimpleData name="KM">KM 0.4</SimpleData>
+		<SimpleData name="Latitude">1.4694092859</SimpleData>
+		<SimpleData name="Longitude">103.7729733602</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.772973360195,1.46940928587253,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.6">
+	<name>EDL HALA WOODLAND</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">500</SimpleData>
+		<SimpleData name="angle">71.7059472307956</SimpleData>
+		<SimpleData name="KM">KM 0.5</SimpleData>
+		<SimpleData name="Latitude">1.4696036282</SimpleData>
+		<SimpleData name="Longitude">103.7738508846</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.773850884591,1.46960362819716,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.7">
+	<name>EDL HALA WOODLAND</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">600</SimpleData>
+		<SimpleData name="angle">50.5540830729628</SimpleData>
+		<SimpleData name="KM">KM 0.6</SimpleData>
+		<SimpleData name="Latitude">1.4700638467</SimpleData>
+		<SimpleData name="Longitude">103.7746176563</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.774617656255,1.47006384666256,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.8">
+	<name>EDL HALA WOODLAND</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">700</SimpleData>
+		<SimpleData name="angle">51.5499028981051</SimpleData>
+		<SimpleData name="KM">KM 0.7</SimpleData>
+		<SimpleData name="Latitude">1.4706353592</SimpleData>
+		<SimpleData name="Longitude">103.7753141991</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.775314199055,1.47063535924445,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.9">
+	<name>EDL HALA WOODLAND</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">800</SimpleData>
+		<SimpleData name="angle">26.7430434117376</SimpleData>
+		<SimpleData name="KM">KM 0.8</SimpleData>
+		<SimpleData name="Latitude">1.4711954005</SimpleData>
+		<SimpleData name="Longitude">103.7760177002</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.776017700249,1.47119540049832,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.10">
+	<name>EDL HALA WOODLAND</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">900</SimpleData>
+		<SimpleData name="angle">50.4055976886449</SimpleData>
+		<SimpleData name="KM">KM 0.9</SimpleData>
+		<SimpleData name="Latitude">1.4717654963</SimpleData>
+		<SimpleData name="Longitude">103.7767145955</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.776714595504,1.47176549625335,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.11">
+	<name>EDL HALA WOODLAND</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">1000</SimpleData>
+		<SimpleData name="angle">50.7382924853271</SimpleData>
+		<SimpleData name="KM">KM 1.0</SimpleData>
+		<SimpleData name="Latitude">1.4723261947</SimpleData>
+		<SimpleData name="Longitude">103.7774182364</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.777418236368,1.47232619465806,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.12">
+	<name>EDL HALA WOODLAND</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">1100</SimpleData>
+		<SimpleData name="angle">53.584993609484</SimpleData>
+		<SimpleData name="KM">KM 1.1</SimpleData>
+		<SimpleData name="Latitude">1.4728687323</SimpleData>
+		<SimpleData name="Longitude">103.7781372035</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.778137203463,1.47286873232354,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.13">
+	<name>EDL HALA WOODLAND</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">1200</SimpleData>
+		<SimpleData name="angle">51.8417318636017</SimpleData>
+		<SimpleData name="KM">KM 1.2</SimpleData>
+		<SimpleData name="Latitude">1.4734121917</SimpleData>
+		<SimpleData name="Longitude">103.7788554000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.778855400002,1.47341219166899,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.14">
+	<name>EDL HALA WOODLAND</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">1300</SimpleData>
+		<SimpleData name="angle">50.7382505068092</SimpleData>
+		<SimpleData name="KM">KM 1.3</SimpleData>
+		<SimpleData name="Latitude">1.4739690568</SimpleData>
+		<SimpleData name="Longitude">103.7795631404</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.779563140447,1.47396905683953,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.15">
+	<name>EDL HALA WOODLAND</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">1400</SimpleData>
+		<SimpleData name="angle">41.8465476740952</SimpleData>
+		<SimpleData name="KM">KM 1.4</SimpleData>
+		<SimpleData name="Latitude">1.4745816441</SimpleData>
+		<SimpleData name="Longitude">103.7802214614</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.780221461442,1.47458164412209,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.16">
+	<name>EDL HALA WOODLAND</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">1500</SimpleData>
+		<SimpleData name="angle">21.959167602952</SimpleData>
+		<SimpleData name="KM">KM 1.5</SimpleData>
+		<SimpleData name="Latitude">1.4753536476</SimpleData>
+		<SimpleData name="Longitude">103.7806794590</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.780679459038,1.47535364759512,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.17">
+	<name>EDL HALA WOODLAND</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">1600</SimpleData>
+		<SimpleData name="angle">9.08519955291678</SimpleData>
+		<SimpleData name="KM">KM 1.6</SimpleData>
+		<SimpleData name="Latitude">1.4762416467</SimpleData>
+		<SimpleData name="Longitude">103.7808445941</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.780844594094,1.47624164671678,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.18">
+	<name>EDL HALA WOODLAND</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">1700</SimpleData>
+		<SimpleData name="angle">9.08519955291678</SimpleData>
+		<SimpleData name="KM">KM 1.7</SimpleData>
+		<SimpleData name="Latitude">1.4771348967</SimpleData>
+		<SimpleData name="Longitude">103.7809860253</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.780986025313,1.47713489668885,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.19">
+	<name>EDL HALA WOODLAND</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">1800</SimpleData>
+		<SimpleData name="angle">21.959188122573</SimpleData>
+		<SimpleData name="KM">KM 1.8</SimpleData>
+		<SimpleData name="Latitude">1.4780229701</SimpleData>
+		<SimpleData name="Longitude">103.7811551880</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.781155188035,1.47802297008753,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.20">
+	<name>EDL HALA WOODLAND</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">1900</SimpleData>
+		<SimpleData name="angle">26.7429852202608</SimpleData>
+		<SimpleData name="KM">KM 1.9</SimpleData>
+		<SimpleData name="Latitude">1.4788558269</SimpleData>
+		<SimpleData name="Longitude">103.7815029135</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.781502913466,1.4788558269322,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.21">
+	<name>EDL HALA WOODLAND</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">2000</SimpleData>
+		<SimpleData name="angle">26.0195196663462</SimpleData>
+		<SimpleData name="KM">KM 2.0</SimpleData>
+		<SimpleData name="Latitude">1.4796742190</SimpleData>
+		<SimpleData name="Longitude">103.7818856373</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.781885637345,1.4796742190365,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.22">
+	<name>EDL HALA WOODLAND</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">2100</SimpleData>
+		<SimpleData name="angle">26.7429825241556</SimpleData>
+		<SimpleData name="KM">KM 2.1</SimpleData>
+		<SimpleData name="Latitude">1.4804835197</SimpleData>
+		<SimpleData name="Longitude">103.7822867599</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.782286759858,1.48048351971579,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.23">
+	<name>EDL HALA WOODLAND</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">2200</SimpleData>
+		<SimpleData name="angle">26.4085866939661</SimpleData>
+		<SimpleData name="KM">KM 2.2</SimpleData>
+		<SimpleData name="Latitude">1.4812954381</SimpleData>
+		<SimpleData name="Longitude">103.7826807956</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.782680795579,1.48129543809118,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.24">
+	<name>EDL HALA WOODLAND</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">2300</SimpleData>
+		<SimpleData name="angle">26.7429790790618</SimpleData>
+		<SimpleData name="KM">KM 2.3</SimpleData>
+		<SimpleData name="Latitude">1.4821086151</SimpleData>
+		<SimpleData name="Longitude">103.7830743076</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.783074307559,1.48210861511749,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.25">
+	<name>EDL HALA WOODLAND</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">2400</SimpleData>
+		<SimpleData name="angle">25.4649396842981</SimpleData>
+		<SimpleData name="KM">KM 2.4</SimpleData>
+		<SimpleData name="Latitude">1.4829208020</SimpleData>
+		<SimpleData name="Longitude">103.7834698295</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.783469829508,1.48292080198252,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.26">
+	<name>EDL HALA WOODLAND</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">2500</SimpleData>
+		<SimpleData name="angle">25.4649396842981</SimpleData>
+		<SimpleData name="KM">KM 2.5</SimpleData>
+		<SimpleData name="Latitude">1.4837376604</SimpleData>
+		<SimpleData name="Longitude">103.7838558175</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.783855817528,1.48373766035143,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.27">
+	<name>EDL HALA WOODLAND</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">2600</SimpleData>
+		<SimpleData name="angle">25.2971961777614</SimpleData>
+		<SimpleData name="KM">KM 2.6</SimpleData>
+		<SimpleData name="Latitude">1.4845536231</SimpleData>
+		<SimpleData name="Longitude">103.7842408025</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.784240802541,1.48455362307214,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.28">
+	<name>EDL HALA WOODLAND</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">2700</SimpleData>
+		<SimpleData name="angle">25.2971961777614</SimpleData>
+		<SimpleData name="KM">KM 2.7</SimpleData>
+		<SimpleData name="Latitude">1.4853716155</SimpleData>
+		<SimpleData name="Longitude">103.7846244128</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.784624412799,1.48537161553829,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.29">
+	<name>EDL HALA WOODLAND</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">2800</SimpleData>
+		<SimpleData name="angle">30.9277245821494</SimpleData>
+		<SimpleData name="KM">KM 2.8</SimpleData>
+		<SimpleData name="Latitude">1.4861779652</SimpleData>
+		<SimpleData name="Longitude">103.7850306820</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.785030681995,1.4861779651749,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.30">
+	<name>EDL HALA WOODLAND</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">2900</SimpleData>
+		<SimpleData name="angle">31.6987715522316</SimpleData>
+		<SimpleData name="KM">KM 2.9</SimpleData>
+		<SimpleData name="Latitude">1.4869500091</SimpleData>
+		<SimpleData name="Longitude">103.7854974249</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.785497424923,1.48695000909602,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.31">
+	<name>EDL HALA WOODLAND</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">3000</SimpleData>
+		<SimpleData name="angle">31.6987715522316</SimpleData>
+		<SimpleData name="KM">KM 3.0</SimpleData>
+		<SimpleData name="Latitude">1.4877198570</SimpleData>
+		<SimpleData name="Longitude">103.7859692672</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.785969267217,1.48771985704462,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.32">
+	<name>EDL HALA WOODLAND</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">3100</SimpleData>
+		<SimpleData name="angle">8.61604533748276</SimpleData>
+		<SimpleData name="KM">KM 3.1</SimpleData>
+		<SimpleData name="Latitude">1.4885658711</SimpleData>
+		<SimpleData name="Longitude">103.7862618807</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.786261880666,1.48856587110012,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.33">
+	<name>EDL HALA WOODLAND</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">3200</SimpleData>
+		<SimpleData name="angle">346.956686441056</SimpleData>
+		<SimpleData name="KM">KM 3.2</SimpleData>
+		<SimpleData name="Latitude">1.4894674686</SimpleData>
+		<SimpleData name="Longitude">103.7862490457</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.786249045702,1.48946746863148,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.34">
+	<name>EDL HALA WOODLAND</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">3300</SimpleData>
+		<SimpleData name="angle">331.267359916272</SimpleData>
+		<SimpleData name="KM">KM 3.3</SimpleData>
+		<SimpleData name="Latitude">1.4902930142</SimpleData>
+		<SimpleData name="Longitude">103.7858947197</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.785894719696,1.49029301416046,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.35">
+	<name>EDL HALA WOODLAND</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">3400</SimpleData>
+		<SimpleData name="angle">331.267359916272</SimpleData>
+		<SimpleData name="KM">KM 3.4</SimpleData>
+		<SimpleData name="Latitude">1.4910859236</SimpleData>
+		<SimpleData name="Longitude">103.7854622238</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.785462223814,1.4910859236377,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.36">
+	<name>EDL HALA WOODLAND</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">3500</SimpleData>
+		<SimpleData name="angle">331.485617167657</SimpleData>
+		<SimpleData name="KM">KM 3.5</SimpleData>
+		<SimpleData name="Latitude">1.4918791012</SimpleData>
+		<SimpleData name="Longitude">103.7850302156</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.785030215615,1.49187910123436,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.37">
+	<name>EDL HALA WOODLAND</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">3600</SimpleData>
+		<SimpleData name="angle">331.485617167657</SimpleData>
+		<SimpleData name="KM">KM 3.6</SimpleData>
+		<SimpleData name="Latitude">1.4926736623</SimpleData>
+		<SimpleData name="Longitude">103.7846007232</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.784600723166,1.49267366230928,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.38">
+	<name>EDL HALA WOODLAND</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">3700</SimpleData>
+		<SimpleData name="angle">334.776239340343</SimpleData>
+		<SimpleData name="KM">KM 3.7</SimpleData>
+		<SimpleData name="Latitude">1.4934862125</SimpleData>
+		<SimpleData name="Longitude">103.7842064629</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.784206462914,1.49348621245882,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.39">
+	<name>EDL HALA WOODLAND</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">3800</SimpleData>
+		<SimpleData name="angle">0.0317202497801728</SimpleData>
+		<SimpleData name="KM">KM 3.8</SimpleData>
+		<SimpleData name="Latitude">1.4942864718</SimpleData>
+		<SimpleData name="Longitude">103.7837900000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.78379,1.49428647183287,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.40">
+	<name>EDL HALA WOODLAND</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">3900</SimpleData>
+		<SimpleData name="angle">333.022408621382</SimpleData>
+		<SimpleData name="KM">KM 3.9</SimpleData>
+		<SimpleData name="Latitude">1.4950884994</SimpleData>
+		<SimpleData name="Longitude">103.7833753055</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.783375305505,1.49508849943458,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.41">
+	<name>EDL HALA WOODLAND</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">4000</SimpleData>
+		<SimpleData name="angle">333.00616284843</SimpleData>
+		<SimpleData name="KM">KM 4.0</SimpleData>
+		<SimpleData name="Latitude">1.4958924183</SimpleData>
+		<SimpleData name="Longitude">103.7829635688</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.782963568815,1.49589241830629,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.42">
+	<name>EDL HALA WOODLAND</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">4100</SimpleData>
+		<SimpleData name="angle">332.532696117144</SimpleData>
+		<SimpleData name="KM">KM 4.1</SimpleData>
+		<SimpleData name="Latitude">1.4966977079</SimpleData>
+		<SimpleData name="Longitude">103.7825542890</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.782554289003,1.49669770794665,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.43">
+	<name>EDL HALA WOODLAND</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">4200</SimpleData>
+		<SimpleData name="angle">332.235552282388</SimpleData>
+		<SimpleData name="KM">KM 4.2</SimpleData>
+		<SimpleData name="Latitude">1.4974973489</SimpleData>
+		<SimpleData name="Longitude">103.7821342458</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.782134245796,1.49749734894505,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.44">
+	<name>EDL HALA WOODLAND</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">4300</SimpleData>
+		<SimpleData name="angle">326.632616378513</SimpleData>
+		<SimpleData name="KM">KM 4.3</SimpleData>
+		<SimpleData name="Latitude">1.4982776002</SimpleData>
+		<SimpleData name="Longitude">103.7816829517</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.78168295165,1.49827760018052,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.45">
+	<name>EDL HALA WOODLAND</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">4400</SimpleData>
+		<SimpleData name="angle">321.000098870861</SimpleData>
+		<SimpleData name="KM">KM 4.4</SimpleData>
+		<SimpleData name="Latitude">1.4990032351</SimpleData>
+		<SimpleData name="Longitude">103.7811471162</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.781147116209,1.49900323506752,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.46">
+	<name>EDL HALA WOODLAND</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">4500</SimpleData>
+		<SimpleData name="angle">316.89527278672</SimpleData>
+		<SimpleData name="KM">KM 4.5</SimpleData>
+		<SimpleData name="Latitude">1.4996844750</SimpleData>
+		<SimpleData name="Longitude">103.7805568681</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.780556868084,1.49968447504269,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.47">
+	<name>EDL HALA WOODLAND</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">4600</SimpleData>
+		<SimpleData name="angle">314.064745042809</SimpleData>
+		<SimpleData name="KM">KM 4.6</SimpleData>
+		<SimpleData name="Latitude">1.5003248298</SimpleData>
+		<SimpleData name="Longitude">103.7799222583</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.779922258262,1.50032482982739,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.48">
+	<name>EDL HALA WOODLAND</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">4700</SimpleData>
+		<SimpleData name="angle">312.496895317748</SimpleData>
+		<SimpleData name="KM">KM 4.7</SimpleData>
+		<SimpleData name="Latitude">1.5009428224</SimpleData>
+		<SimpleData name="Longitude">103.7792660788</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.779266078791,1.50094282244126,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.49">
+	<name>EDL HALA WOODLAND</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">4800</SimpleData>
+		<SimpleData name="angle">312.496895317748</SimpleData>
+		<SimpleData name="KM">KM 4.8</SimpleData>
+		<SimpleData name="Latitude">1.5015534976</SimpleData>
+		<SimpleData name="Longitude">103.7786030598</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.778603059847,1.50155349759169,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.50">
+	<name>EDL HALA WOODLAND</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">4900</SimpleData>
+		<SimpleData name="angle">313.022030988176</SimpleData>
+		<SimpleData name="KM">KM 4.9</SimpleData>
+		<SimpleData name="Latitude">1.5021694992</SimpleData>
+		<SimpleData name="Longitude">103.7779449296</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.777944929643,1.502169499213,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.51">
+	<name>EDL HALA WOODLAND</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">5000</SimpleData>
+		<SimpleData name="angle">313.576821870229</SimpleData>
+		<SimpleData name="KM">KM 5.0</SimpleData>
+		<SimpleData name="Latitude">1.5027910698</SimpleData>
+		<SimpleData name="Longitude">103.7772920635</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.77729206347,1.50279106980764,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.52">
+	<name>EDL HALA WOODLAND</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">5100</SimpleData>
+		<SimpleData name="angle">312.875210120293</SimpleData>
+		<SimpleData name="KM">KM 5.1</SimpleData>
+		<SimpleData name="Latitude">1.5034127308</SimpleData>
+		<SimpleData name="Longitude">103.7766392170</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.776639216963,1.50341273083833,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.53">
+	<name>EDL HALA WOODLAND</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">5200</SimpleData>
+		<SimpleData name="angle">313.381180909299</SimpleData>
+		<SimpleData name="KM">KM 5.2</SimpleData>
+		<SimpleData name="Latitude">1.5040365122</SimpleData>
+		<SimpleData name="Longitude">103.7759884082</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.775988408202,1.50403651221807,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.54">
+	<name>EDL HALA WOODLAND</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">5300</SimpleData>
+		<SimpleData name="angle">312.403413435443</SimpleData>
+		<SimpleData name="KM">KM 5.3</SimpleData>
+		<SimpleData name="Latitude">1.5046512614</SimpleData>
+		<SimpleData name="Longitude">103.7753291618</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.775329161821,1.50465126136283,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.55">
+	<name>EDL HALA WOODLAND</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">5400</SimpleData>
+		<SimpleData name="angle">313.452857140198</SimpleData>
+		<SimpleData name="KM">KM 5.4</SimpleData>
+		<SimpleData name="Latitude">1.5052643127</SimpleData>
+		<SimpleData name="Longitude">103.7746684717</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.774668471728,1.50526431268048,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.56">
+	<name>EDL HALA WOODLAND</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">5500</SimpleData>
+		<SimpleData name="angle">318.030720421051</SimpleData>
+		<SimpleData name="KM">KM 5.5</SimpleData>
+		<SimpleData name="Latitude">1.5059068922</SimpleData>
+		<SimpleData name="Longitude">103.7740369912</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.774036991171,1.50590689222616,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.57">
+	<name>EDL HALA WOODLAND</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">5600</SimpleData>
+		<SimpleData name="angle">325.48171098081</SimpleData>
+		<SimpleData name="KM">KM 5.6</SimpleData>
+		<SimpleData name="Latitude">1.5066240871</SimpleData>
+		<SimpleData name="Longitude">103.7734908878</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.773490887758,1.50662408712493,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.58">
+	<name>EDL HALA WOODLAND</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">5700</SimpleData>
+		<SimpleData name="angle">327.953456235437</SimpleData>
+		<SimpleData name="KM">KM 5.7</SimpleData>
+		<SimpleData name="Latitude">1.5073762611</SimpleData>
+		<SimpleData name="Longitude">103.7729962760</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.772996276049,1.5073762610795,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.59">
+	<name>EDL HALA WOODLAND</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">5800</SimpleData>
+		<SimpleData name="angle">327.953456235437</SimpleData>
+		<SimpleData name="KM">KM 5.8</SimpleData>
+		<SimpleData name="Latitude">1.5081426741</SimpleData>
+		<SimpleData name="Longitude">103.7725189487</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.772518948723,1.5081426741179,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.60">
+	<name>EDL HALA WOODLAND</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">5900</SimpleData>
+		<SimpleData name="angle">327.519806196449</SimpleData>
+		<SimpleData name="KM">KM 5.9</SimpleData>
+		<SimpleData name="Latitude">1.5089068003</SimpleData>
+		<SimpleData name="Longitude">103.7720380265</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.772038026493,1.50890680033033,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.61">
+	<name>EDL HALA WOODLAND</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">6000</SimpleData>
+		<SimpleData name="angle">325.876961601751</SimpleData>
+		<SimpleData name="KM">KM 6.0</SimpleData>
+		<SimpleData name="Latitude">1.5096609375</SimpleData>
+		<SimpleData name="Longitude">103.7715420647</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.771542064723,1.50966093751296,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.62">
+	<name>EDL HALA WOODLAND</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">6100</SimpleData>
+		<SimpleData name="angle">326.173806518893</SimpleData>
+		<SimpleData name="KM">KM 6.1</SimpleData>
+		<SimpleData name="Latitude">1.5104108039</SimpleData>
+		<SimpleData name="Longitude">103.7710394640</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.771039464043,1.51041080394614,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.63">
+	<name>EDL HALA WOODLAND</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">6200</SimpleData>
+		<SimpleData name="angle">319.538347191378</SimpleData>
+		<SimpleData name="KM">KM 6.2</SimpleData>
+		<SimpleData name="Latitude">1.5111146458</SimpleData>
+		<SimpleData name="Longitude">103.7704754522</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.770475452171,1.51111464576079,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.64">
+	<name>EDL HALA WOODLAND</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">6300</SimpleData>
+		<SimpleData name="angle">317.577226828652</SimpleData>
+		<SimpleData name="KM">KM 6.3</SimpleData>
+		<SimpleData name="Latitude">1.5117900844</SimpleData>
+		<SimpleData name="Longitude">103.7698799233</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.769879923262,1.51179008441196,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.65">
+	<name>EDL HALA WOODLAND</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">6400</SimpleData>
+		<SimpleData name="angle">318.011580501805</SimpleData>
+		<SimpleData name="KM">KM 6.4</SimpleData>
+		<SimpleData name="Latitude">1.5124612903</SimpleData>
+		<SimpleData name="Longitude">103.7692774496</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.769277449578,1.51246129025333,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.66">
+	<name>EDL HALA WOODLAND</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">6500</SimpleData>
+		<SimpleData name="angle">320.564308435898</SimpleData>
+		<SimpleData name="KM">KM 6.5</SimpleData>
+		<SimpleData name="Latitude">1.5131284845</SimpleData>
+		<SimpleData name="Longitude">103.7686712400</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.768671239952,1.51312848450333,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.67">
+	<name>EDL HALA WOODLAND</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">6600</SimpleData>
+		<SimpleData name="angle">321.194775569607</SimpleData>
+		<SimpleData name="KM">KM 6.6</SimpleData>
+		<SimpleData name="Latitude">1.5138278284</SimpleData>
+		<SimpleData name="Longitude">103.7681017374</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.768101737361,1.51382782840355,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.68">
+	<name>EDL HALA WOODLAND</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">6700</SimpleData>
+		<SimpleData name="angle">321.747833439771</SimpleData>
+		<SimpleData name="KM">KM 6.7</SimpleData>
+		<SimpleData name="Latitude">1.5145350990</SimpleData>
+		<SimpleData name="Longitude">103.7675414910</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.767541491028,1.51453509899379,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.69">
+	<name>EDL HALA WOODLAND</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">6800</SimpleData>
+		<SimpleData name="angle">328.907788384783</SimpleData>
+		<SimpleData name="KM">KM 6.8</SimpleData>
+		<SimpleData name="Latitude">1.5152799262</SimpleData>
+		<SimpleData name="Longitude">103.7670340443</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.767034044277,1.51527992620716,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.70">
+	<name>EDL HALA WOODLAND</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">6900</SimpleData>
+		<SimpleData name="angle">335.934575680959</SimpleData>
+		<SimpleData name="KM">KM 6.9</SimpleData>
+		<SimpleData name="Latitude">1.5160669564</SimpleData>
+		<SimpleData name="Longitude">103.7665924638</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.76659246381,1.5160669564288,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.71">
+	<name>EDL HALA WOODLAND</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">7000</SimpleData>
+		<SimpleData name="angle">337.283108568273</SimpleData>
+		<SimpleData name="KM">KM 7.0</SimpleData>
+		<SimpleData name="Latitude">1.5168913036</SimpleData>
+		<SimpleData name="Longitude">103.7662227902</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.76622279018,1.5168913035814,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.72">
+	<name>EDL HALA WOODLAND</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">7100</SimpleData>
+		<SimpleData name="angle">336.565805270988</SimpleData>
+		<SimpleData name="KM">KM 7.1</SimpleData>
+		<SimpleData name="Latitude">1.5177260563</SimpleData>
+		<SimpleData name="Longitude">103.7658767993</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.765876799254,1.51772605633955,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.73">
+	<name>EDL HALA WOODLAND</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">7200</SimpleData>
+		<SimpleData name="angle">334.777528727386</SimpleData>
+		<SimpleData name="KM">KM 7.2</SimpleData>
+		<SimpleData name="Latitude">1.5185482390</SimpleData>
+		<SimpleData name="Longitude">103.7655023880</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.76550238801,1.51854823897045,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.74">
+	<name>EDL HALA WOODLAND</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">7300</SimpleData>
+		<SimpleData name="angle">337.945518465471</SimpleData>
+		<SimpleData name="KM">KM 7.3</SimpleData>
+		<SimpleData name="Latitude">1.5193815161</SimpleData>
+		<SimpleData name="Longitude">103.7651530984</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.765153098398,1.51938151608143,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.75">
+	<name>EDL HALA WOODLAND</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">7400</SimpleData>
+		<SimpleData name="angle">337.945518465471</SimpleData>
+		<SimpleData name="KM">KM 7.4</SimpleData>
+		<SimpleData name="Latitude">1.5202196495</SimpleData>
+		<SimpleData name="Longitude">103.7648151414</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.764815141441,1.52021964952744,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.76">
+	<name>EDL HALA WOODLAND</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">7500</SimpleData>
+		<SimpleData name="angle">332.330286662832</SimpleData>
+		<SimpleData name="KM">KM 7.5</SimpleData>
+		<SimpleData name="Latitude">1.5210504622</SimpleData>
+		<SimpleData name="Longitude">103.7644619328</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.764461932771,1.52105046223132,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.77">
+	<name>EDL HALA WOODLAND</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">7600</SimpleData>
+		<SimpleData name="angle">326.174388981443</SimpleData>
+		<SimpleData name="KM">KM 7.6</SimpleData>
+		<SimpleData name="Latitude">1.5218413008</SimpleData>
+		<SimpleData name="Longitude">103.7640291328</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.764029132786,1.52184130082191,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.78">
+	<name>EDL HALA WOODLAND</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">7700</SimpleData>
+		<SimpleData name="angle">316.896515958374</SimpleData>
+		<SimpleData name="KM">KM 7.7</SimpleData>
+		<SimpleData name="Latitude">1.5225461554</SimpleData>
+		<SimpleData name="Longitude">103.7634680622</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.763468062241,1.52254615538886,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.79">
+	<name>EDL HALA WOODLAND</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">7800</SimpleData>
+		<SimpleData name="angle">314.850720353984</SimpleData>
+		<SimpleData name="KM">KM 7.8</SimpleData>
+		<SimpleData name="Latitude">1.5231865638</SimpleData>
+		<SimpleData name="Longitude">103.7628334362</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.762833436219,1.52318656379081,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.80">
+	<name>EDL HALA WOODLAND</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">7900</SimpleData>
+		<SimpleData name="angle">305.278087623883</SimpleData>
+		<SimpleData name="KM">KM 7.9</SimpleData>
+		<SimpleData name="Latitude">1.5237270340</SimpleData>
+		<SimpleData name="Longitude">103.7621163584</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.7621163584,1.52372703403926,0</coordinates></Point>
+  </Placemark>
+</Folder>
+</Document></kml>

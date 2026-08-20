@@ -1,0 +1,1209 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document id="root_doc">
+<Schema name="interpolated_points_edl_hala_pandan" id="interpolated_points_edl_hala_pandan">
+	<SimpleField name="fid" type="float"></SimpleField>
+	<SimpleField name="id" type="string"></SimpleField>
+	<SimpleField name="timestamp" type="string"></SimpleField>
+	<SimpleField name="begin" type="string"></SimpleField>
+	<SimpleField name="end" type="string"></SimpleField>
+	<SimpleField name="altitudeMode" type="string"></SimpleField>
+	<SimpleField name="tessellate" type="int"></SimpleField>
+	<SimpleField name="extrude" type="int"></SimpleField>
+	<SimpleField name="visibility" type="int"></SimpleField>
+	<SimpleField name="drawOrder" type="int"></SimpleField>
+	<SimpleField name="icon" type="string"></SimpleField>
+	<SimpleField name="distance" type="float"></SimpleField>
+	<SimpleField name="angle" type="float"></SimpleField>
+	<SimpleField name="KM" type="string"></SimpleField>
+	<SimpleField name="Latitude" type="float"></SimpleField>
+	<SimpleField name="Longitude" type="float"></SimpleField>
+</Schema>
+<Folder><name>interpolated_points_edl_hala_pandan</name>
+  <Placemark id="interpolated_points_edl_hala_pandan.1">
+	<name>EDL HALA PANDAN</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points_edl_hala_pandan">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">0</SimpleData>
+		<SimpleData name="angle">59.2289141167173</SimpleData>
+		<SimpleData name="KM">KM 0.0</SimpleData>
+		<SimpleData name="Latitude">1.4686000000</SimpleData>
+		<SimpleData name="Longitude">103.7694300000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.76943,1.4686,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points_edl_hala_pandan.2">
+	<name>EDL HALA PANDAN</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points_edl_hala_pandan">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">100</SimpleData>
+		<SimpleData name="angle">74.7028754892775</SimpleData>
+		<SimpleData name="KM">KM 0.1</SimpleData>
+		<SimpleData name="Latitude">1.4690116362</SimpleData>
+		<SimpleData name="Longitude">103.7702259313</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.770225931293,1.46901163621896,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points_edl_hala_pandan.3">
+	<name>EDL HALA PANDAN</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points_edl_hala_pandan">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">200</SimpleData>
+		<SimpleData name="angle">79.3142492403594</SimpleData>
+		<SimpleData name="KM">KM 0.2</SimpleData>
+		<SimpleData name="Latitude">1.4692030807</SimpleData>
+		<SimpleData name="Longitude">103.7711036736</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.771103673565,1.46920308070897,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points_edl_hala_pandan.4">
+	<name>EDL HALA PANDAN</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points_edl_hala_pandan">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">300</SimpleData>
+		<SimpleData name="angle">79.8244603048672</SimpleData>
+		<SimpleData name="KM">KM 0.3</SimpleData>
+		<SimpleData name="Latitude">1.4693709857</SimpleData>
+		<SimpleData name="Longitude">103.7719865505</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.771986550494,1.46937098573958,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points_edl_hala_pandan.5">
+	<name>EDL HALA PANDAN</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points_edl_hala_pandan">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">400</SimpleData>
+		<SimpleData name="angle">79.8244603048672</SimpleData>
+		<SimpleData name="KM">KM 0.4</SimpleData>
+		<SimpleData name="Latitude">1.4695312709</SimpleData>
+		<SimpleData name="Longitude">103.7728710874</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.772871087442,1.46953127094606,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points_edl_hala_pandan.6">
+	<name>EDL HALA PANDAN</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points_edl_hala_pandan">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">500</SimpleData>
+		<SimpleData name="angle">70.1655289102521</SimpleData>
+		<SimpleData name="KM">KM 0.5</SimpleData>
+		<SimpleData name="Latitude">1.4697280199</SimpleData>
+		<SimpleData name="Longitude">103.7737470548</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.773747054772,1.46972801991774,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points_edl_hala_pandan.7">
+	<name>EDL HALA PANDAN</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points_edl_hala_pandan">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">600</SimpleData>
+		<SimpleData name="angle">54.0860865762573</SimpleData>
+		<SimpleData name="KM">KM 0.6</SimpleData>
+		<SimpleData name="Latitude">1.4701742075</SimpleData>
+		<SimpleData name="Longitude">103.7745224325</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.774522432506,1.47017420751198,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points_edl_hala_pandan.8">
+	<name>EDL HALA PANDAN</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points_edl_hala_pandan">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">700</SimpleData>
+		<SimpleData name="angle">53.336929994</SimpleData>
+		<SimpleData name="KM">KM 0.7</SimpleData>
+		<SimpleData name="Latitude">1.4707398980</SimpleData>
+		<SimpleData name="Longitude">103.7752231973</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.775223197338,1.47073989800751,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points_edl_hala_pandan.9">
+	<name>EDL HALA PANDAN</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points_edl_hala_pandan">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">800</SimpleData>
+		<SimpleData name="angle">53.7368383925599</SimpleData>
+		<SimpleData name="KM">KM 0.8</SimpleData>
+		<SimpleData name="Latitude">1.4712847730</SimpleData>
+		<SimpleData name="Longitude">103.7759405753</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.775940575289,1.47128477304247,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points_edl_hala_pandan.10">
+	<name>EDL HALA PANDAN</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points_edl_hala_pandan">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">900</SimpleData>
+		<SimpleData name="angle">50.7383091007661</SimpleData>
+		<SimpleData name="KM">KM 0.9</SimpleData>
+		<SimpleData name="Latitude">1.4718453016</SimpleData>
+		<SimpleData name="Longitude">103.7766457234</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.77664572341,1.47184530164934,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points_edl_hala_pandan.11">
+	<name>EDL HALA PANDAN</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points_edl_hala_pandan">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">1000</SimpleData>
+		<SimpleData name="angle">52.6394030557405</SimpleData>
+		<SimpleData name="KM">KM 1.0</SimpleData>
+		<SimpleData name="Latitude">1.4724060456</SimpleData>
+		<SimpleData name="Longitude">103.7773508592</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.777350859216,1.47240604555112,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points_edl_hala_pandan.12">
+	<name>EDL HALA PANDAN</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points_edl_hala_pandan">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">1100</SimpleData>
+		<SimpleData name="angle">52.903591497799</SimpleData>
+		<SimpleData name="KM">KM 1.1</SimpleData>
+		<SimpleData name="Latitude">1.4729585157</SimpleData>
+		<SimpleData name="Longitude">103.7780624269</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.778062426858,1.47295851570767,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points_edl_hala_pandan.13">
+	<name>EDL HALA PANDAN</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points_edl_hala_pandan">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">1200</SimpleData>
+		<SimpleData name="angle">50.4055581107493</SimpleData>
+		<SimpleData name="KM">KM 1.2</SimpleData>
+		<SimpleData name="Latitude">1.4734959633</SimpleData>
+		<SimpleData name="Longitude">103.7787851559</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.778785155929,1.47349596327536,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points_edl_hala_pandan.14">
+	<name>EDL HALA PANDAN</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points_edl_hala_pandan">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">1300</SimpleData>
+		<SimpleData name="angle">50.5667497812278</SimpleData>
+		<SimpleData name="KM">KM 1.3</SimpleData>
+		<SimpleData name="Latitude">1.4740557939</SimpleData>
+		<SimpleData name="Longitude">103.7794900961</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.779490096077,1.47405579390103,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points_edl_hala_pandan.15">
+	<name>EDL HALA PANDAN</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points_edl_hala_pandan">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">1400</SimpleData>
+		<SimpleData name="angle">45.2142042584268</SimpleData>
+		<SimpleData name="KM">KM 1.4</SimpleData>
+		<SimpleData name="Latitude">1.4746590167</SimpleData>
+		<SimpleData name="Longitude">103.7801590167</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.780159016686,1.47465901668677,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points_edl_hala_pandan.16">
+	<name>EDL HALA PANDAN</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points_edl_hala_pandan">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">1500</SimpleData>
+		<SimpleData name="angle">14.1539111943904</SimpleData>
+		<SimpleData name="KM">KM 1.5</SimpleData>
+		<SimpleData name="Latitude">1.4754446212</SimpleData>
+		<SimpleData name="Longitude">103.7805886553</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.780588655312,1.47544462124778,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points_edl_hala_pandan.17">
+	<name>EDL HALA PANDAN</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points_edl_hala_pandan">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">1600</SimpleData>
+		<SimpleData name="angle">8.45008856727529</SimpleData>
+		<SimpleData name="KM">KM 1.6</SimpleData>
+		<SimpleData name="Latitude">1.4763297974</SimpleData>
+		<SimpleData name="Longitude">103.7807673232</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.780767323152,1.47632979742099,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points_edl_hala_pandan.18">
+	<name>EDL HALA PANDAN</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points_edl_hala_pandan">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">1700</SimpleData>
+		<SimpleData name="angle">9.17891305186139</SimpleData>
+		<SimpleData name="KM">KM 1.7</SimpleData>
+		<SimpleData name="Latitude">1.4772250343</SimpleData>
+		<SimpleData name="Longitude">103.7808936055</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.780893605495,1.47722503431579,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points_edl_hala_pandan.19">
+	<name>EDL HALA PANDAN</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points_edl_hala_pandan">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">1800</SimpleData>
+		<SimpleData name="angle">23.3626741203137</SimpleData>
+		<SimpleData name="KM">KM 1.8</SimpleData>
+		<SimpleData name="Latitude">1.4781080409</SimpleData>
+		<SimpleData name="Longitude">103.7810805889</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.78108058894,1.4781080408603,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points_edl_hala_pandan.20">
+	<name>EDL HALA PANDAN</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points_edl_hala_pandan">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">1900</SimpleData>
+		<SimpleData name="angle">24.1298858231527</SimpleData>
+		<SimpleData name="KM">KM 1.9</SimpleData>
+		<SimpleData name="Latitude">1.4789457440</SimpleData>
+		<SimpleData name="Longitude">103.7814158862</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.781415886206,1.47894574396382,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points_edl_hala_pandan.21">
+	<name>EDL HALA PANDAN</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points_edl_hala_pandan">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">2000</SimpleData>
+		<SimpleData name="angle">25.1887013183452</SimpleData>
+		<SimpleData name="KM">KM 2.0</SimpleData>
+		<SimpleData name="Latitude">1.4797649226</SimpleData>
+		<SimpleData name="Longitude">103.7817969639</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.781796963874,1.4797649225892,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points_edl_hala_pandan.22">
+	<name>EDL HALA PANDAN</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points_edl_hala_pandan">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">2100</SimpleData>
+		<SimpleData name="angle">28.3399764546409</SimpleData>
+		<SimpleData name="KM">KM 2.1</SimpleData>
+		<SimpleData name="Latitude">1.4805649596</SimpleData>
+		<SimpleData name="Longitude">103.7822158939</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.782215893888,1.48056495963582,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points_edl_hala_pandan.23">
+	<name>EDL HALA PANDAN</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points_edl_hala_pandan">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">2200</SimpleData>
+		<SimpleData name="angle">26.050026096338</SimpleData>
+		<SimpleData name="KM">KM 2.2</SimpleData>
+		<SimpleData name="Latitude">1.4813768748</SimpleData>
+		<SimpleData name="Longitude">103.7826119572</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.782611957228,1.48137687480274,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points_edl_hala_pandan.24">
+	<name>EDL HALA PANDAN</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points_edl_hala_pandan">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">2300</SimpleData>
+		<SimpleData name="angle">26.050026096338</SimpleData>
+		<SimpleData name="KM">KM 2.3</SimpleData>
+		<SimpleData name="Latitude">1.4821897235</SimpleData>
+		<SimpleData name="Longitude">103.7830062132</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.783006213204,1.48218972352403,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points_edl_hala_pandan.25">
+	<name>EDL HALA PANDAN</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points_edl_hala_pandan">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">2400</SimpleData>
+		<SimpleData name="angle">24.1298808398023</SimpleData>
+		<SimpleData name="KM">KM 2.4</SimpleData>
+		<SimpleData name="Latitude">1.4829986536</SimpleData>
+		<SimpleData name="Longitude">103.7834082905</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.783408290507,1.48299865364098,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points_edl_hala_pandan.26">
+	<name>EDL HALA PANDAN</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points_edl_hala_pandan">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">2500</SimpleData>
+		<SimpleData name="angle">25.3171077856986</SimpleData>
+		<SimpleData name="KM">KM 2.5</SimpleData>
+		<SimpleData name="Latitude">1.4838046571</SimpleData>
+		<SimpleData name="Longitude">103.7838148390</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.783814839025,1.48380465705724,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points_edl_hala_pandan.27">
+	<name>EDL HALA PANDAN</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points_edl_hala_pandan">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">2600</SimpleData>
+		<SimpleData name="angle">21.9591896036649</SimpleData>
+		<SimpleData name="KM">KM 2.6</SimpleData>
+		<SimpleData name="Latitude">1.4846223478</SimpleData>
+		<SimpleData name="Longitude">103.7841989391</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.784198939103,1.48462234775708,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points_edl_hala_pandan.28">
+	<name>EDL HALA PANDAN</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points_edl_hala_pandan">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">2700</SimpleData>
+		<SimpleData name="angle">25.3254719850399</SimpleData>
+		<SimpleData name="KM">KM 2.7</SimpleData>
+		<SimpleData name="Latitude">1.4854421191</SimpleData>
+		<SimpleData name="Longitude">103.7845784733</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.784578473321,1.48544211911636,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points_edl_hala_pandan.29">
+	<name>EDL HALA PANDAN</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points_edl_hala_pandan">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">2800</SimpleData>
+		<SimpleData name="angle">31.5511711309993</SimpleData>
+		<SimpleData name="KM">KM 2.8</SimpleData>
+		<SimpleData name="Latitude">1.4862471679</SimpleData>
+		<SimpleData name="Longitude">103.7849870242</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.784987024202,1.486247167926,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points_edl_hala_pandan.30">
+	<name>EDL HALA PANDAN</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points_edl_hala_pandan">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">2900</SimpleData>
+		<SimpleData name="angle">32.9976019425925</SimpleData>
+		<SimpleData name="KM">KM 2.9</SimpleData>
+		<SimpleData name="Latitude">1.4870149465</SimpleData>
+		<SimpleData name="Longitude">103.7854620766</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.785462076632,1.48701494651914,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points_edl_hala_pandan.31">
+	<name>EDL HALA PANDAN</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points_edl_hala_pandan">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">3000</SimpleData>
+		<SimpleData name="angle">26.7429654373135</SimpleData>
+		<SimpleData name="KM">KM 3.0</SimpleData>
+		<SimpleData name="Latitude">1.4877779635</SimpleData>
+		<SimpleData name="Longitude">103.7859439818</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.785943981756,1.48777796351318,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points_edl_hala_pandan.32">
+	<name>EDL HALA PANDAN</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points_edl_hala_pandan">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">3100</SimpleData>
+		<SimpleData name="angle">1.95289232263957</SimpleData>
+		<SimpleData name="KM">KM 3.1</SimpleData>
+		<SimpleData name="Latitude">1.4886344418</SimpleData>
+		<SimpleData name="Longitude">103.7862111481</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.786211148061,1.48863444177844,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points_edl_hala_pandan.33">
+	<name>EDL HALA PANDAN</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points_edl_hala_pandan">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">3200</SimpleData>
+		<SimpleData name="angle">341.486763947828</SimpleData>
+		<SimpleData name="KM">KM 3.2</SimpleData>
+		<SimpleData name="Latitude">1.4895307622</SimpleData>
+		<SimpleData name="Longitude">103.7861364126</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.786136412589,1.48953076223382,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points_edl_hala_pandan.34">
+	<name>EDL HALA PANDAN</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points_edl_hala_pandan">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">3300</SimpleData>
+		<SimpleData name="angle">331.890760410998</SimpleData>
+		<SimpleData name="KM">KM 3.3</SimpleData>
+		<SimpleData name="Latitude">1.4903506199</SimpleData>
+		<SimpleData name="Longitude">103.7857618385</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.785761838457,1.49035061986263,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points_edl_hala_pandan.35">
+	<name>EDL HALA PANDAN</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points_edl_hala_pandan">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">3400</SimpleData>
+		<SimpleData name="angle">331.890760410998</SimpleData>
+		<SimpleData name="KM">KM 3.4</SimpleData>
+		<SimpleData name="Latitude">1.4911482181</SimpleData>
+		<SimpleData name="Longitude">103.7853379403</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.785337940302,1.49114821805429,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points_edl_hala_pandan.36">
+	<name>EDL HALA PANDAN</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points_edl_hala_pandan">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">3500</SimpleData>
+		<SimpleData name="angle">331.57820248262</SimpleData>
+		<SimpleData name="KM">KM 3.5</SimpleData>
+		<SimpleData name="Latitude">1.4919457100</SimpleData>
+		<SimpleData name="Longitude">103.7849138485</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.784913848497,1.49194570999239,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points_edl_hala_pandan.37">
+	<name>EDL HALA PANDAN</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points_edl_hala_pandan">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">3600</SimpleData>
+		<SimpleData name="angle">330.399110056772</SimpleData>
+		<SimpleData name="KM">KM 3.6</SimpleData>
+		<SimpleData name="Latitude">1.4927398211</SimpleData>
+		<SimpleData name="Longitude">103.7844835794</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.784483579365,1.4927398211363,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points_edl_hala_pandan.38">
+	<name>EDL HALA PANDAN</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points_edl_hala_pandan">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">3700</SimpleData>
+		<SimpleData name="angle">332.407553867289</SimpleData>
+		<SimpleData name="KM">KM 3.7</SimpleData>
+		<SimpleData name="Latitude">1.4935317414</SimpleData>
+		<SimpleData name="Longitude">103.7840494946</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.784049494554,1.49353174141568,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points_edl_hala_pandan.39">
+	<name>EDL HALA PANDAN</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points_edl_hala_pandan">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">3800</SimpleData>
+		<SimpleData name="angle">331.929353443729</SimpleData>
+		<SimpleData name="KM">KM 3.8</SimpleData>
+		<SimpleData name="Latitude">1.4943330077</SimpleData>
+		<SimpleData name="Longitude">103.7836324857</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.783632485735,1.49433300769987,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points_edl_hala_pandan.40">
+	<name>EDL HALA PANDAN</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points_edl_hala_pandan">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">3900</SimpleData>
+		<SimpleData name="angle">331.929353443729</SimpleData>
+		<SimpleData name="KM">KM 3.9</SimpleData>
+		<SimpleData name="Latitude">1.4951308914</SimpleData>
+		<SimpleData name="Longitude">103.7832091191</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.783209119142,1.49513089136164,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points_edl_hala_pandan.41">
+	<name>EDL HALA PANDAN</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points_edl_hala_pandan">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">4000</SimpleData>
+		<SimpleData name="angle">334.948004025414</SimpleData>
+		<SimpleData name="KM">KM 4.0</SimpleData>
+		<SimpleData name="Latitude">1.4959304790</SimpleData>
+		<SimpleData name="Longitude">103.7827897772</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.782789777201,1.49593047901845,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points_edl_hala_pandan.42">
+	<name>EDL HALA PANDAN</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points_edl_hala_pandan">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">4100</SimpleData>
+		<SimpleData name="angle">332.056772902409</SimpleData>
+		<SimpleData name="KM">KM 4.1</SimpleData>
+		<SimpleData name="Latitude">1.4967496103</SimpleData>
+		<SimpleData name="Longitude">103.7824096501</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.78240965015,1.49674961025611,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points_edl_hala_pandan.43">
+	<name>EDL HALA PANDAN</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points_edl_hala_pandan">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">4200</SimpleData>
+		<SimpleData name="angle">330.399332130994</SimpleData>
+		<SimpleData name="KM">KM 4.2</SimpleData>
+		<SimpleData name="Latitude">1.4975468850</SimpleData>
+		<SimpleData name="Longitude">103.7819852389</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.78198523892,1.49754688500026,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points_edl_hala_pandan.44">
+	<name>EDL HALA PANDAN</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points_edl_hala_pandan">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">4300</SimpleData>
+		<SimpleData name="angle">323.699638901491</SimpleData>
+		<SimpleData name="KM">KM 4.3</SimpleData>
+		<SimpleData name="Latitude">1.4983024839</SimpleData>
+		<SimpleData name="Longitude">103.7814931849</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.781493184884,1.49830248385984,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points_edl_hala_pandan.45">
+	<name>EDL HALA PANDAN</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points_edl_hala_pandan">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">4400</SimpleData>
+		<SimpleData name="angle">322.621086975998</SimpleData>
+		<SimpleData name="KM">KM 4.4</SimpleData>
+		<SimpleData name="Latitude">1.4990138475</SimpleData>
+		<SimpleData name="Longitude">103.7809382759</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.780938275923,1.49901384748468,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points_edl_hala_pandan.46">
+	<name>EDL HALA PANDAN</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points_edl_hala_pandan">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">4500</SimpleData>
+		<SimpleData name="angle">315.930479916253</SimpleData>
+		<SimpleData name="KM">KM 4.5</SimpleData>
+		<SimpleData name="Latitude">1.4997041805</SimpleData>
+		<SimpleData name="Longitude">103.7803607892</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.780360789169,1.49970418049725,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points_edl_hala_pandan.47">
+	<name>EDL HALA PANDAN</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points_edl_hala_pandan">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">4600</SimpleData>
+		<SimpleData name="angle">313.301624184697</SimpleData>
+		<SimpleData name="KM">KM 4.6</SimpleData>
+		<SimpleData name="Latitude">1.5003355640</SimpleData>
+		<SimpleData name="Longitude">103.7797174603</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.779717460282,1.50033556395124,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points_edl_hala_pandan.48">
+	<name>EDL HALA PANDAN</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points_edl_hala_pandan">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">4700</SimpleData>
+		<SimpleData name="angle">313.031641897377</SimpleData>
+		<SimpleData name="KM">KM 4.7</SimpleData>
+		<SimpleData name="Latitude">1.5009646513</SimpleData>
+		<SimpleData name="Longitude">103.7790717651</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.779071765052,1.50096465129218,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points_edl_hala_pandan.49">
+	<name>EDL HALA PANDAN</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points_edl_hala_pandan">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">4800</SimpleData>
+		<SimpleData name="angle">314.159362120775</SimpleData>
+		<SimpleData name="KM">KM 4.8</SimpleData>
+		<SimpleData name="Latitude">1.5015828139</SimpleData>
+		<SimpleData name="Longitude">103.7784156541</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.778415654121,1.50158281385813,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points_edl_hala_pandan.50">
+	<name>EDL HALA PANDAN</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points_edl_hala_pandan">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">4900</SimpleData>
+		<SimpleData name="angle">310.723980789544</SimpleData>
+		<SimpleData name="KM">KM 4.9</SimpleData>
+		<SimpleData name="Latitude">1.5021946242</SimpleData>
+		<SimpleData name="Longitude">103.7777542121</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.777754212119,1.50219462418424,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points_edl_hala_pandan.51">
+	<name>EDL HALA PANDAN</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points_edl_hala_pandan">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">5000</SimpleData>
+		<SimpleData name="angle">312.559668969428</SimpleData>
+		<SimpleData name="KM">KM 5.0</SimpleData>
+		<SimpleData name="Latitude">1.5028028413</SimpleData>
+		<SimpleData name="Longitude">103.7770894219</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.777089421933,1.50280284133257,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points_edl_hala_pandan.52">
+	<name>EDL HALA PANDAN</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points_edl_hala_pandan">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">5100</SimpleData>
+		<SimpleData name="angle">316.585684049403</SimpleData>
+		<SimpleData name="KM">KM 5.1</SimpleData>
+		<SimpleData name="Latitude">1.5034260526</SimpleData>
+		<SimpleData name="Longitude">103.7764384211</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.776438421055,1.50342605263622,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points_edl_hala_pandan.53">
+	<name>EDL HALA PANDAN</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points_edl_hala_pandan">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">5200</SimpleData>
+		<SimpleData name="angle">311.988285008476</SimpleData>
+		<SimpleData name="KM">KM 5.2</SimpleData>
+		<SimpleData name="Latitude">1.5040499469</SimpleData>
+		<SimpleData name="Longitude">103.7757879534</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.775787953382,1.50404994694425,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points_edl_hala_pandan.54">
+	<name>EDL HALA PANDAN</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points_edl_hala_pandan">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">5300</SimpleData>
+		<SimpleData name="angle">313.140294500951</SimpleData>
+		<SimpleData name="KM">KM 5.3</SimpleData>
+		<SimpleData name="Latitude">1.5046643051</SimpleData>
+		<SimpleData name="Longitude">103.7751283531</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.775128353129,1.50466430512357,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points_edl_hala_pandan.55">
+	<name>EDL HALA PANDAN</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points_edl_hala_pandan">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">5400</SimpleData>
+		<SimpleData name="angle">314.159582160549</SimpleData>
+		<SimpleData name="KM">KM 5.4</SimpleData>
+		<SimpleData name="Latitude">1.5052819242</SimpleData>
+		<SimpleData name="Longitude">103.7744719313</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.774471931309,1.50528192424105,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points_edl_hala_pandan.56">
+	<name>EDL HALA PANDAN</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points_edl_hala_pandan">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">5500</SimpleData>
+		<SimpleData name="angle">320.29334159183</SimpleData>
+		<SimpleData name="KM">KM 5.5</SimpleData>
+		<SimpleData name="Latitude">1.5059455111</SimpleData>
+		<SimpleData name="Longitude">103.7738624039</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.77386240391,1.50594551106482,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points_edl_hala_pandan.57">
+	<name>EDL HALA PANDAN</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points_edl_hala_pandan">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">5600</SimpleData>
+		<SimpleData name="angle">328.907333632888</SimpleData>
+		<SimpleData name="KM">KM 5.6</SimpleData>
+		<SimpleData name="Latitude">1.5066634183</SimpleData>
+		<SimpleData name="Longitude">103.7733179490</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.773317949026,1.50666341829529,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points_edl_hala_pandan.58">
+	<name>EDL HALA PANDAN</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points_edl_hala_pandan">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">5700</SimpleData>
+		<SimpleData name="angle">326.881702764102</SimpleData>
+		<SimpleData name="KM">KM 5.7</SimpleData>
+		<SimpleData name="Latitude">1.5074225589</SimpleData>
+		<SimpleData name="Longitude">103.7728293989</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.772829398888,1.50742255894422,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points_edl_hala_pandan.59">
+	<name>EDL HALA PANDAN</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points_edl_hala_pandan">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">5800</SimpleData>
+		<SimpleData name="angle">326.881702764102</SimpleData>
+		<SimpleData name="KM">KM 5.8</SimpleData>
+		<SimpleData name="Latitude">1.5081798526</SimpleData>
+		<SimpleData name="Longitude">103.7723379106</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.772337910587,1.50817985260134,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points_edl_hala_pandan.60">
+	<name>EDL HALA PANDAN</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points_edl_hala_pandan">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">5900</SimpleData>
+		<SimpleData name="angle">328.907447467969</SimpleData>
+		<SimpleData name="KM">KM 5.9</SimpleData>
+		<SimpleData name="Latitude">1.5089411556</SimpleData>
+		<SimpleData name="Longitude">103.7718533067</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.771853306669,1.50894115555285,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points_edl_hala_pandan.61">
+	<name>EDL HALA PANDAN</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points_edl_hala_pandan">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">6000</SimpleData>
+		<SimpleData name="angle">326.621633554985</SimpleData>
+		<SimpleData name="KM">KM 6.0</SimpleData>
+		<SimpleData name="Latitude">1.5096979727</SimpleData>
+		<SimpleData name="Longitude">103.7713611610</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.771361161007,1.50969797265189,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points_edl_hala_pandan.62">
+	<name>EDL HALA PANDAN</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points_edl_hala_pandan">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">6100</SimpleData>
+		<SimpleData name="angle">324.985823345926</SimpleData>
+		<SimpleData name="KM">KM 6.1</SimpleData>
+		<SimpleData name="Latitude">1.5104502609</SimpleData>
+		<SimpleData name="Longitude">103.7708622424</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.770862242425,1.51045026089383,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points_edl_hala_pandan.63">
+	<name>EDL HALA PANDAN</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points_edl_hala_pandan">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">6200</SimpleData>
+		<SimpleData name="angle">320.047417572464</SimpleData>
+		<SimpleData name="KM">KM 6.2</SimpleData>
+		<SimpleData name="Latitude">1.5111571179</SimpleData>
+		<SimpleData name="Longitude">103.7703024018</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.77030240175,1.51115711790039,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points_edl_hala_pandan.64">
+	<name>EDL HALA PANDAN</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points_edl_hala_pandan">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">6300</SimpleData>
+		<SimpleData name="angle">317.188009536931</SimpleData>
+		<SimpleData name="KM">KM 6.3</SimpleData>
+		<SimpleData name="Latitude">1.5118269934</SimpleData>
+		<SimpleData name="Longitude">103.7696986532</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.769698653208,1.5118269933897,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points_edl_hala_pandan.65">
+	<name>EDL HALA PANDAN</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points_edl_hala_pandan">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">6400</SimpleData>
+		<SimpleData name="angle">317.453456428518</SimpleData>
+		<SimpleData name="KM">KM 6.4</SimpleData>
+		<SimpleData name="Latitude">1.5124910001</SimpleData>
+		<SimpleData name="Longitude">103.7690886521</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.769088652128,1.51249100009017,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points_edl_hala_pandan.66">
+	<name>EDL HALA PANDAN</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points_edl_hala_pandan">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">6500</SimpleData>
+		<SimpleData name="angle">321.980711555199</SimpleData>
+		<SimpleData name="KM">KM 6.5</SimpleData>
+		<SimpleData name="Latitude">1.5131675522</SimpleData>
+		<SimpleData name="Longitude">103.7684930149</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.768493014947,1.51316755221626,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points_edl_hala_pandan.67">
+	<name>EDL HALA PANDAN</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points_edl_hala_pandan">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">6600</SimpleData>
+		<SimpleData name="angle">321.283449278016</SimpleData>
+		<SimpleData name="KM">KM 6.6</SimpleData>
+		<SimpleData name="Latitude">1.5138589949</SimpleData>
+		<SimpleData name="Longitude">103.7679162447</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.767916244696,1.51385899487084,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points_edl_hala_pandan.68">
+	<name>EDL HALA PANDAN</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points_edl_hala_pandan">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">6700</SimpleData>
+		<SimpleData name="angle">322.854674340076</SimpleData>
+		<SimpleData name="KM">KM 6.7</SimpleData>
+		<SimpleData name="Latitude">1.5145748983</SimpleData>
+		<SimpleData name="Longitude">103.7673670332</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.767367033209,1.51457489833746,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points_edl_hala_pandan.69">
+	<name>EDL HALA PANDAN</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points_edl_hala_pandan">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">6800</SimpleData>
+		<SimpleData name="angle">330.400313442867</SimpleData>
+		<SimpleData name="KM">KM 6.8</SimpleData>
+		<SimpleData name="Latitude">1.5153231782</SimpleData>
+		<SimpleData name="Longitude">103.7668773341</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.766877334065,1.51532317820434,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points_edl_hala_pandan.70">
+	<name>EDL HALA PANDAN</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points_edl_hala_pandan">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">6900</SimpleData>
+		<SimpleData name="angle">336.701781224165</SimpleData>
+		<SimpleData name="KM">KM 6.9</SimpleData>
+		<SimpleData name="Latitude">1.5161164600</SimpleData>
+		<SimpleData name="Longitude">103.7664472314</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.766447231428,1.51611646000662,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points_edl_hala_pandan.71">
+	<name>EDL HALA PANDAN</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points_edl_hala_pandan">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">7000</SimpleData>
+		<SimpleData name="angle">335.451117977598</SimpleData>
+		<SimpleData name="KM">KM 7.0</SimpleData>
+		<SimpleData name="Latitude">1.5169378146</SimpleData>
+		<SimpleData name="Longitude">103.7660855388</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.766085538846,1.51693781458647,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points_edl_hala_pandan.72">
+	<name>EDL HALA PANDAN</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points_edl_hala_pandan">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">7100</SimpleData>
+		<SimpleData name="angle">341.48812638528</SimpleData>
+		<SimpleData name="KM">KM 7.1</SimpleData>
+		<SimpleData name="Latitude">1.5177733742</SimpleData>
+		<SimpleData name="Longitude">103.7657422086</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.765742208604,1.51777337418934,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points_edl_hala_pandan.73">
+	<name>EDL HALA PANDAN</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points_edl_hala_pandan">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">7200</SimpleData>
+		<SimpleData name="angle">337.701445435161</SimpleData>
+		<SimpleData name="KM">KM 7.2</SimpleData>
+		<SimpleData name="Latitude">1.5185963487</SimpleData>
+		<SimpleData name="Longitude">103.7653698577</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.765369857685,1.5185963487327,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points_edl_hala_pandan.74">
+	<name>EDL HALA PANDAN</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points_edl_hala_pandan">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">7300</SimpleData>
+		<SimpleData name="angle">336.470805751251</SimpleData>
+		<SimpleData name="KM">KM 7.3</SimpleData>
+		<SimpleData name="Latitude">1.5194281101</SimpleData>
+		<SimpleData name="Longitude">103.7650168190</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.765016818986,1.51942811006607,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points_edl_hala_pandan.75">
+	<name>EDL HALA PANDAN</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points_edl_hala_pandan">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">7400</SimpleData>
+		<SimpleData name="angle">337.15154707761</SimpleData>
+		<SimpleData name="KM">KM 7.4</SimpleData>
+		<SimpleData name="Latitude">1.5202594709</SimpleData>
+		<SimpleData name="Longitude">103.7646640929</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.764664092883,1.52025947090499,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points_edl_hala_pandan.76">
+	<name>EDL HALA PANDAN</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points_edl_hala_pandan">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">7500</SimpleData>
+		<SimpleData name="angle">335.451299865362</SimpleData>
+		<SimpleData name="KM">KM 7.5</SimpleData>
+		<SimpleData name="Latitude">1.5210943515</SimpleData>
+		<SimpleData name="Longitude">103.7643189312</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.764318931151,1.52109435150839,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points_edl_hala_pandan.77">
+	<name>EDL HALA PANDAN</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points_edl_hala_pandan">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">7600</SimpleData>
+		<SimpleData name="angle">328.9080924848</SimpleData>
+		<SimpleData name="KM">KM 7.6</SimpleData>
+		<SimpleData name="Latitude">1.5218754167</SimpleData>
+		<SimpleData name="Longitude">103.7638707500</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.76387074997,1.52187541671922,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points_edl_hala_pandan.78">
+	<name>EDL HALA PANDAN</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points_edl_hala_pandan">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">7700</SimpleData>
+		<SimpleData name="angle">322.987929949214</SimpleData>
+		<SimpleData name="KM">KM 7.7</SimpleData>
+		<SimpleData name="Latitude">1.5225845308</SimpleData>
+		<SimpleData name="Longitude">103.7633166019</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.763316601935,1.5225845307543,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points_edl_hala_pandan.79">
+	<name>EDL HALA PANDAN</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points_edl_hala_pandan">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">7800</SimpleData>
+		<SimpleData name="angle">309.464734692896</SimpleData>
+		<SimpleData name="KM">KM 7.8</SimpleData>
+		<SimpleData name="Latitude">1.5232167654</SimpleData>
+		<SimpleData name="Longitude">103.7626780751</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.76267807511,1.52321676543198,0</coordinates></Point>
+  </Placemark>
+</Folder>
+</Document></kml>

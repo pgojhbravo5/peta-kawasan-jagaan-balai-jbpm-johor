@@ -1,0 +1,3561 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document id="root_doc">
+<Schema name="interpolated_points" id="interpolated_points">
+	<SimpleField name="fid" type="float"></SimpleField>
+	<SimpleField name="id" type="string"></SimpleField>
+	<SimpleField name="timestamp" type="string"></SimpleField>
+	<SimpleField name="begin" type="string"></SimpleField>
+	<SimpleField name="end" type="string"></SimpleField>
+	<SimpleField name="altitudeMode" type="string"></SimpleField>
+	<SimpleField name="tessellate" type="int"></SimpleField>
+	<SimpleField name="extrude" type="int"></SimpleField>
+	<SimpleField name="visibility" type="int"></SimpleField>
+	<SimpleField name="drawOrder" type="int"></SimpleField>
+	<SimpleField name="icon" type="string"></SimpleField>
+	<SimpleField name="distance" type="float"></SimpleField>
+	<SimpleField name="angle" type="float"></SimpleField>
+</Schema>
+<Folder><name>interpolated_points</name>
+  <Placemark id="interpolated_points.1">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">0</SimpleData>
+		<SimpleData name="angle">307.648408436032</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.62052,1.36025,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.2">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">100</SimpleData>
+		<SimpleData name="angle">306.725983917039</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.619805424108,1.3607984320084,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.3">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">200</SimpleData>
+		<SimpleData name="angle">308.011182254838</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.619087296035,1.36134212454428,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.4">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">300</SimpleData>
+		<SimpleData name="angle">308.94650237478</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.618373249423,1.36189110986274,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.5">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">400</SimpleData>
+		<SimpleData name="angle">311.670025514798</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.617692571632,1.36248138330529,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.6">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">500</SimpleData>
+		<SimpleData name="angle">314.848694670992</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.617038655577,1.36310134448777,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.7">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">600</SimpleData>
+		<SimpleData name="angle">317.785323447182</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.616405008019,1.36374201816576,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.8">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">700</SimpleData>
+		<SimpleData name="angle">320.562901471879</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.61581388522,1.36442302918744,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.9">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">800</SimpleData>
+		<SimpleData name="angle">322.207085384253</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.615245525126,1.36512357856167,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.10">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">900</SimpleData>
+		<SimpleData name="angle">324.218596907487</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.61471024314,1.36584992407275,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.11">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">1000</SimpleData>
+		<SimpleData name="angle">324.800237795328</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.61420085695,1.36659452885495,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.12">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">1100</SimpleData>
+		<SimpleData name="angle">328.906593379317</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.613748711039,1.36737548160661,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.13">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">1200</SimpleData>
+		<SimpleData name="angle">328.906633162871</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.6133261161,1.36817313983554,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.14">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">1300</SimpleData>
+		<SimpleData name="angle">331.318628797913</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.612903262664,1.36897098263718,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.15">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">1400</SimpleData>
+		<SimpleData name="angle">328.108653642629</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.612463602384,1.36975956541811,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.16">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">1500</SimpleData>
+		<SimpleData name="angle">326.172979721945</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.611979136499,1.37052129525136,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.17">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">1600</SimpleData>
+		<SimpleData name="angle">320.968688912248</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.61145128355,1.37125240842042,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.18">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">1700</SimpleData>
+		<SimpleData name="angle">316.042799718883</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.61087183082,1.37194192109772,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.19">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">1800</SimpleData>
+		<SimpleData name="angle">311.484082698954</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.610228488486,1.3725724547433,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.20">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">1900</SimpleData>
+		<SimpleData name="angle">308.513666417214</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.609556576911,1.37316673847157,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.21">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">2000</SimpleData>
+		<SimpleData name="angle">302.770907938007</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.608834640445,1.37370287971459,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.22">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">2100</SimpleData>
+		<SimpleData name="angle">300.338296119094</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.608070391758,1.37417859308715,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.23">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">2200</SimpleData>
+		<SimpleData name="angle">297.778725934026</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.607279509825,1.37460790657943,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.24">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">2300</SimpleData>
+		<SimpleData name="angle">293.670273077666</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.606459030868,1.37497637929007,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.25">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">2400</SimpleData>
+		<SimpleData name="angle">290.46878508297</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.605615232975,1.37528678763505,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.26">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">2500</SimpleData>
+		<SimpleData name="angle">288.819223927005</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.604764804563,1.37557907599759,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.27">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">2600</SimpleData>
+		<SimpleData name="angle">288.133024159335</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.60391178788,1.37586362244566,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.28">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">2700</SimpleData>
+		<SimpleData name="angle">289.132128777744</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.60305941059,1.37614869028644,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.29">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">2800</SimpleData>
+		<SimpleData name="angle">288.564184598158</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.602207085073,1.37643447733632,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.30">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">2900</SimpleData>
+		<SimpleData name="angle">288.358417540941</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.601354936091,1.37672168797143,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.31">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">3000</SimpleData>
+		<SimpleData name="angle">316.697554996119</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.600608395396,1.37720104491228,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.32">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">3100</SimpleData>
+		<SimpleData name="angle">297.779017336233</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.599947879312,1.3777999462488,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.33">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">3200</SimpleData>
+		<SimpleData name="angle">289.433962990963</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.599104523459,1.37811105501696,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.34">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">3300</SimpleData>
+		<SimpleData name="angle">285.195676795068</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.598246300062,1.37837646362011,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.35">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">3400</SimpleData>
+		<SimpleData name="angle">274.404398967673</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.597352582472,1.37844518596468,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.36">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">3500</SimpleData>
+		<SimpleData name="angle">308.514182303113</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.596539847204,1.37880412223813,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.37">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">3600</SimpleData>
+		<SimpleData name="angle">312.55983249102</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.595846917746,1.37937976824813,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.38">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">3700</SimpleData>
+		<SimpleData name="angle">312.187680097074</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.595182758292,1.37998904248375,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.39">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">3800</SimpleData>
+		<SimpleData name="angle">316.398263527219</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.594550171248,1.3806309304199,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.40">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">3900</SimpleData>
+		<SimpleData name="angle">331.383702557348</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.594040917932,1.38137094068141,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.41">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">4000</SimpleData>
+		<SimpleData name="angle">344.414671480873</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.593634753991,1.38217488564271,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.42">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">4100</SimpleData>
+		<SimpleData name="angle">346.040109482684</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.593445364265,1.38305872126551,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.43">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">4200</SimpleData>
+		<SimpleData name="angle">346.040109482684</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.593228051572,1.38393633037517,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.44">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">4300</SimpleData>
+		<SimpleData name="angle">348.465388534121</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.593031916356,1.38481891131898,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.45">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">4400</SimpleData>
+		<SimpleData name="angle">345.323056751085</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.592842321777,1.38570276653406,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.46">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">4500</SimpleData>
+		<SimpleData name="angle">347.255365082129</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.592651219242,1.38658646476433,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.47">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">4600</SimpleData>
+		<SimpleData name="angle">343.149487817176</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.592425032511,1.38746120810475,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.48">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">4700</SimpleData>
+		<SimpleData name="angle">335.029818049582</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.592100437138,1.38830326727224,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.49">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">4800</SimpleData>
+		<SimpleData name="angle">332.533907332056</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.591711253834,1.38911824259322,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.50">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">4900</SimpleData>
+		<SimpleData name="angle">323.56594047537</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.591240429614,1.38988750013831,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.51">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">5000</SimpleData>
+		<SimpleData name="angle">319.822774786757</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.590691089157,1.39060203683518,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.52">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">5100</SimpleData>
+		<SimpleData name="angle">319.822774786757</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.590110902319,1.39129273590321,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.53">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">5200</SimpleData>
+		<SimpleData name="angle">319.822774786757</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.589530715085,1.39198343447725,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.54">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">5300</SimpleData>
+		<SimpleData name="angle">328.90809114669</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.588999781756,1.39271036374093,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.55">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">5400</SimpleData>
+		<SimpleData name="angle">332.330455819288</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.588549757461,1.39349296487651,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.56">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">5500</SimpleData>
+		<SimpleData name="angle">336.037888185324</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.588113659912,1.39428259504496,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.57">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">5600</SimpleData>
+		<SimpleData name="angle">343.862736979066</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.587811212191,1.39513226366367,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.58">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">5700</SimpleData>
+		<SimpleData name="angle">347.757797074804</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.587580089198,1.39600583748112,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.59">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">5800</SimpleData>
+		<SimpleData name="angle">352.635265901315</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.587427548151,1.39689650187609,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.60">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">5900</SimpleData>
+		<SimpleData name="angle">1.68156800592775</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.587377934729,1.3977977153715,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.61">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">6000</SimpleData>
+		<SimpleData name="angle">6.41514773679893</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.587412258374,1.39870032517267,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.62">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">6100</SimpleData>
+		<SimpleData name="angle">9.25480255313828</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.587535160754,1.39959599660635,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.63">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">6200</SimpleData>
+		<SimpleData name="angle">18.5800072543278</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.587741871958,1.40047561587429,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.64">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">6300</SimpleData>
+		<SimpleData name="angle">23.3664754891436</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.588051795884,1.40132419039605,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.65">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">6400</SimpleData>
+		<SimpleData name="angle">26.7468655210117</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.58843965935,1.40213931869837,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.66">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">6500</SimpleData>
+		<SimpleData name="angle">34.3651750078197</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.588921030329,1.40290204469534,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.67">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">6600</SimpleData>
+		<SimpleData name="angle">34.2941809003285</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.589425528027,1.40364981008111,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.68">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">6700</SimpleData>
+		<SimpleData name="angle">34.2941809003285</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.589931427968,1.40439733386365,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.69">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">6800</SimpleData>
+		<SimpleData name="angle">34.6244390822098</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.590441528533,1.40514196058037,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.70">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">6900</SimpleData>
+		<SimpleData name="angle">34.4926445037436</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.590950794674,1.4058871655228,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.71">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">7000</SimpleData>
+		<SimpleData name="angle">34.7806151814788</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.591462769185,1.40663048866279,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.72">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">7100</SimpleData>
+		<SimpleData name="angle">34.7806151814788</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.591974957441,1.40737366374209,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.73">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">7200</SimpleData>
+		<SimpleData name="angle">34.7987478826775</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.592491617726,1.4081133457032,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.74">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">7300</SimpleData>
+		<SimpleData name="angle">35.5192412472726</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.592993669538,1.40886341581861,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.75">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">7400</SimpleData>
+		<SimpleData name="angle">33.8943940210183</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.593490969917,1.40961645487859,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.76">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">7500</SimpleData>
+		<SimpleData name="angle">30.8465996538384</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.593985895231,1.41037119820264,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.77">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">7600</SimpleData>
+		<SimpleData name="angle">32.9371149824939</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.594461207223,1.41113854456993,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.78">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">7700</SimpleData>
+		<SimpleData name="angle">31.1606362086857</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.594929798384,1.411909663973,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.79">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">7800</SimpleData>
+		<SimpleData name="angle">30.212317524896</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.595390485221,1.41268276288196,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.80">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">7900</SimpleData>
+		<SimpleData name="angle">29.9379511248096</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.59584333012,1.41346332771096,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.81">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">8000</SimpleData>
+		<SimpleData name="angle">29.5495530956234</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.59628873936,1.41424886997253,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.82">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">8100</SimpleData>
+		<SimpleData name="angle">29.0573081942045</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.596726885575,1.41503853662293,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.83">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">8200</SimpleData>
+		<SimpleData name="angle">28.0840221217256</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.597162075627,1.41582947618448,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.84">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">8300</SimpleData>
+		<SimpleData name="angle">29.4553519795742</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.597601383,1.4166184681245,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.85">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">8400</SimpleData>
+		<SimpleData name="angle">29.5879794085127</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.598040661159,1.41740742355724,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.86">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">8500</SimpleData>
+		<SimpleData name="angle">29.5991520896977</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.598487942261,1.41819183304317,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.87">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">8600</SimpleData>
+		<SimpleData name="angle">29.518877086612</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.598930978092,1.41897874100417,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.88">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">8700</SimpleData>
+		<SimpleData name="angle">29.245388789246</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.599370804545,1.4197674481802,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.89">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">8800</SimpleData>
+		<SimpleData name="angle">30.3357238338643</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.599813082594,1.42055475335826,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.90">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">8900</SimpleData>
+		<SimpleData name="angle">29.692994934691</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.600265994272,1.42133594336562,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.91">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">9000</SimpleData>
+		<SimpleData name="angle">29.8518976506474</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.600710882242,1.42212179320604,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.92">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">9100</SimpleData>
+		<SimpleData name="angle">26.7468529760096</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.601150275111,1.42291055022225,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.93">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">9200</SimpleData>
+		<SimpleData name="angle">27.0611352939569</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.601570707386,1.42370977402959,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.94">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">9300</SimpleData>
+		<SimpleData name="angle">26.7468552223316</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.601978001963,1.42451600392538,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.95">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">9400</SimpleData>
+		<SimpleData name="angle">24.2860737735056</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.602349426022,1.42533956874919,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.96">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">9500</SimpleData>
+		<SimpleData name="angle">25.0173266598835</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.602723029059,1.42616214276254,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.97">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">9600</SimpleData>
+		<SimpleData name="angle">21.7318195707824</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.603066111392,1.42699781114654,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.98">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">9700</SimpleData>
+		<SimpleData name="angle">19.8908877687731</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.603378173312,1.42784589269999,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.99">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">9800</SimpleData>
+		<SimpleData name="angle">19.8908877687731</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.603683418873,1.42869657712473,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.100">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">9900</SimpleData>
+		<SimpleData name="angle">22.9169081899881</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.604022318317,1.42953398980938,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.101">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">10000</SimpleData>
+		<SimpleData name="angle">25.7378484304001</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.604381087166,1.43036318225619,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.102">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">10100</SimpleData>
+		<SimpleData name="angle">26.104238787003</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.604774710571,1.43117626174278,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.103">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">10200</SimpleData>
+		<SimpleData name="angle">28.1299752255125</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.605193974236,1.43197618093262,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.104">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">10300</SimpleData>
+		<SimpleData name="angle">30.8144493194948</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.605632550057,1.4327653432015,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.105">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">10400</SimpleData>
+		<SimpleData name="angle">34.5711613942225</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.606100253587,1.43353736009716,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.106">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">10500</SimpleData>
+		<SimpleData name="angle">34.5711613942225</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.606609744285,1.43428242178738,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.107">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">10600</SimpleData>
+		<SimpleData name="angle">35.641574145646</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.607123162992,1.43502471556041,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.108">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">10700</SimpleData>
+		<SimpleData name="angle">37.3042547670658</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.607654670845,1.43575391950939,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.109">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">10800</SimpleData>
+		<SimpleData name="angle">41.2713452582557</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.608228265537,1.43644949006417,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.110">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">10900</SimpleData>
+		<SimpleData name="angle">41.2713452582557</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.608820652403,1.43712963805097,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.111">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">11000</SimpleData>
+		<SimpleData name="angle">41.2713452582557</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.609413039575,1.43780978622278,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.112">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">11100</SimpleData>
+		<SimpleData name="angle">39.6154576634797</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.610001536154,1.43849317444964,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.113">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">11200</SimpleData>
+		<SimpleData name="angle">42.1615882079795</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.610593204217,1.43917386639735,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.114">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">11300</SimpleData>
+		<SimpleData name="angle">42.1615882079795</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.611196020918,1.43984466999653,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.115">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">11400</SimpleData>
+		<SimpleData name="angle">41.1307566092606</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.611797658024,1.44051652849205,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.116">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">11500</SimpleData>
+		<SimpleData name="angle">41.3705419020339</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.612390246802,1.44119649866115,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.117">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">11600</SimpleData>
+		<SimpleData name="angle">41.3705419020339</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.612983804972,1.44187561472758,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.118">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">11700</SimpleData>
+		<SimpleData name="angle">38.0353081145457</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.613545660623,1.44258118997075,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.119">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">11800</SimpleData>
+		<SimpleData name="angle">31.4908321197721</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.61406477158,1.44331752744053,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.120">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">11900</SimpleData>
+		<SimpleData name="angle">28.684460416804</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.614520929997,1.44409644999543,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.121">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">12000</SimpleData>
+		<SimpleData name="angle">24.274033426359</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.61489788572,1.44491586219638,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.122">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">12100</SimpleData>
+		<SimpleData name="angle">16.2774028303181</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.615174038694,1.44577577002502,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.123">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">12200</SimpleData>
+		<SimpleData name="angle">10.5379032971998</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.615364805896,1.44665894626633,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.124">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">12300</SimpleData>
+		<SimpleData name="angle">2.77875427793887</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.615477875469,1.44755538468774,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.125">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">12400</SimpleData>
+		<SimpleData name="angle">358.694240508718</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.615492574161,1.44845931141895,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.126">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">12500</SimpleData>
+		<SimpleData name="angle">354.288052070963</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.615425939718,1.44936060287381,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.127">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">12600</SimpleData>
+		<SimpleData name="angle">349.665552069252</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.615259252388,1.45024911188084,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.128">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">12700</SimpleData>
+		<SimpleData name="angle">338.408465235676</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.615030271969,1.45112161733816,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.129">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">12800</SimpleData>
+		<SimpleData name="angle">338.433261858671</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.614691886799,1.45195937114992,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.130">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">12900</SimpleData>
+		<SimpleData name="angle">334.810647006857</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.614331250245,1.45278732902268,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.131">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">13000</SimpleData>
+		<SimpleData name="angle">333.323361559485</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.613908236179,1.45358352782086,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.132">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">13100</SimpleData>
+		<SimpleData name="angle">333.323414093227</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.613500335248,1.45438932966745,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.133">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">13200</SimpleData>
+		<SimpleData name="angle">333.594781737376</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.613101488799,1.45519913009165,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.134">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">13300</SimpleData>
+		<SimpleData name="angle">333.594781737376</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.612701327757,1.45600898026275,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.135">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">13400</SimpleData>
+		<SimpleData name="angle">333.323529490459</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.612300701866,1.45681859630143,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.136">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">13500</SimpleData>
+		<SimpleData name="angle">333.608310608165</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.611899140556,1.45762774094296,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.137">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">13600</SimpleData>
+		<SimpleData name="angle">333.608310608165</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.611499168052,1.45843768512525,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.138">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">13700</SimpleData>
+		<SimpleData name="angle">334.290271167313</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.611112781133,1.45925332656968,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.139">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">13800</SimpleData>
+		<SimpleData name="angle">335.59328236939</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.610728877757,1.46007105641732,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.140">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">13900</SimpleData>
+		<SimpleData name="angle">332.856140727977</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.610331076973,1.46088188919311,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.141">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">14000</SimpleData>
+		<SimpleData name="angle">339.691603806992</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.610001462866,1.46172174373998,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.142">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">14100</SimpleData>
+		<SimpleData name="angle">342.483363085565</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.609701731117,1.46257358284667,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.143">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">14200</SimpleData>
+		<SimpleData name="angle">343.546677692779</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.609426889878,1.46343457446052,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.144">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">14300</SimpleData>
+		<SimpleData name="angle">345.20169030995</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.609173595066,1.46430233877428,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.145">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">14400</SimpleData>
+		<SimpleData name="angle">347.257308884074</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.608972173086,1.46518348203663,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.146">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">14500</SimpleData>
+		<SimpleData name="angle">355.608832729877</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.60878862846,1.4660678300322,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.147">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">14600</SimpleData>
+		<SimpleData name="angle">350.731320761912</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.608639668165,1.4669591813371,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.148">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">14700</SimpleData>
+		<SimpleData name="angle">351.555491281914</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.608525408763,1.46785599088062,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.149">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">14800</SimpleData>
+		<SimpleData name="angle">355.241667169447</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.608438662179,1.46875605389369,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.150">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">14900</SimpleData>
+		<SimpleData name="angle">357.474624164313</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.608377867155,1.46965798910666,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.151">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">15000</SimpleData>
+		<SimpleData name="angle">358.782386210835</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.608345829689,1.47056183484717,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.152">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">15100</SimpleData>
+		<SimpleData name="angle">2.59682029004858</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.608360482906,1.47146586516283,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.153">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">15200</SimpleData>
+		<SimpleData name="angle">3.42372880442798</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.608409925227,1.47236872876688,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.154">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">15300</SimpleData>
+		<SimpleData name="angle">5.59848873296401</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.608479071528,1.47327040578527,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.155">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">15400</SimpleData>
+		<SimpleData name="angle">8.95993402386942</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.608599398764,1.47416660084561,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.156">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">15500</SimpleData>
+		<SimpleData name="angle">8.95993402386942</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.608738811379,1.47506010906946,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.157">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">15600</SimpleData>
+		<SimpleData name="angle">6.71042233736783</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.608851088155,1.47595735797412,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.158">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">15700</SimpleData>
+		<SimpleData name="angle">9.0649729954934</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.608981881516,1.47685191620089,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.159">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">15800</SimpleData>
+		<SimpleData name="angle">8.69148163793884</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.609126169459,1.47774356441993,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.160">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">15900</SimpleData>
+		<SimpleData name="angle">8.62044544082853</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.609261163953,1.47863775960694,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.161">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">16000</SimpleData>
+		<SimpleData name="angle">8.89817164695973</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.609391426659,1.47953193559421,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.162">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">16100</SimpleData>
+		<SimpleData name="angle">8.89819072219512</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.609528643148,1.48042578755676,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.163">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">16200</SimpleData>
+		<SimpleData name="angle">26.7474561249237</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.609664630346,1.48131926069236,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.164">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">16300</SimpleData>
+		<SimpleData name="angle">8.77106650491263</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.609801651304,1.48221231567605,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.165">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">16400</SimpleData>
+		<SimpleData name="angle">7.35702847269838</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.60993301156,1.48310692383001,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.166">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">16500</SimpleData>
+		<SimpleData name="angle">6.71056933570063</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.610055198483,1.4840027067186,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.167">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">16600</SimpleData>
+		<SimpleData name="angle">4.96629729808793</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.610149322073,1.48490209085207,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.168">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">16700</SimpleData>
+		<SimpleData name="angle">2.6552274215156</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.610238247121,1.48580143663215,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.169">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">16800</SimpleData>
+		<SimpleData name="angle">0.0360626958202004</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.61031,1.48670214288516,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.170">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">16900</SimpleData>
+		<SimpleData name="angle">2.91676375172739</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.61035726503,1.48760530026694,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.171">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">17000</SimpleData>
+		<SimpleData name="angle">1.59415172156036</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.610387545835,1.48850919545673,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.172">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">17100</SimpleData>
+		<SimpleData name="angle">0.784937013491691</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.610398228139,1.48941356530941,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.173">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">17200</SimpleData>
+		<SimpleData name="angle">359.083138698014</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.61038730743,1.49031790496417,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.174">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">17300</SimpleData>
+		<SimpleData name="angle">357.368563919792</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.610366944709,1.49122199541496,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.175">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">17400</SimpleData>
+		<SimpleData name="angle">356.836074935255</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.610324143192,1.49212542257268,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.176">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">17500</SimpleData>
+		<SimpleData name="angle">354.860758401553</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.610253286895,1.49302681286539,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.177">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">17600</SimpleData>
+		<SimpleData name="angle">355.433207083637</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.610174179865,1.49392775187238,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.178">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">17700</SimpleData>
+		<SimpleData name="angle">353.217701182099</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.61007907189,1.49482697881539,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.179">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">17800</SimpleData>
+		<SimpleData name="angle">353.655904742155</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.609976059071,1.49572546837638,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.180">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">17900</SimpleData>
+		<SimpleData name="angle">347.866550328284</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.609832561734,1.49661804524146,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.181">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">18000</SimpleData>
+		<SimpleData name="angle">348.964209863859</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.609682924519,1.49750924537855,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.182">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">18100</SimpleData>
+		<SimpleData name="angle">349.667089002228</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.609524634537,1.49839951006448,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.183">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">18200</SimpleData>
+		<SimpleData name="angle">347.116400288614</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.609327235893,1.49928180447155,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.184">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">18300</SimpleData>
+		<SimpleData name="angle">346.505026325131</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.609122867685,1.50016255358955,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.185">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">18400</SimpleData>
+		<SimpleData name="angle">347.695700603081</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.60891842321,1.50104325331012,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.186">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">18500</SimpleData>
+		<SimpleData name="angle">346.764560925048</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.608733112717,1.50192805255245,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.187">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">18600</SimpleData>
+		<SimpleData name="angle">342.062021836451</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.608508786026,1.50280376580243,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.188">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">18700</SimpleData>
+		<SimpleData name="angle">342.062021836451</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.608231448264,1.50366407953893,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.189">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">18800</SimpleData>
+		<SimpleData name="angle">343.678018966487</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.607959863657,1.50452618175453,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.190">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">18900</SimpleData>
+		<SimpleData name="angle">340.885769038893</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.607666660166,1.50538110784949,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.191">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">19000</SimpleData>
+		<SimpleData name="angle">343.928473640073</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.607385431654,1.50623985968321,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.192">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">19100</SimpleData>
+		<SimpleData name="angle">343.928473640073</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.607136081581,1.50710880664285,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.193">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">19200</SimpleData>
+		<SimpleData name="angle">342.831144747633</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.606876736516,1.50797310635648,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.194">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">19300</SimpleData>
+		<SimpleData name="angle">340.632637496114</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.606581450433,1.50882728468617,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.195">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">19400</SimpleData>
+		<SimpleData name="angle">342.613865991065</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.606304312359,1.50968755025478,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.196">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">19500</SimpleData>
+		<SimpleData name="angle">342.943747577643</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.606039187968,1.51055174850569,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.197">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">19600</SimpleData>
+		<SimpleData name="angle">341.925142614146</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.60576206357,1.51141211215092,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.198">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">19700</SimpleData>
+		<SimpleData name="angle">341.06138497372</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.605484354066,1.51227189096275,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.199">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">19800</SimpleData>
+		<SimpleData name="angle">344.179132183986</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.605201928884,1.51313030933309,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.200">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">19900</SimpleData>
+		<SimpleData name="angle">344.179132183986</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.604956354601,1.51400034396608,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.201">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">20000</SimpleData>
+		<SimpleData name="angle">343.6535749939</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.604704677695,1.51486860346349,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.202">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">20100</SimpleData>
+		<SimpleData name="angle">345.504577645961</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.604463190796,1.51573878871541,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.203">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">20200</SimpleData>
+		<SimpleData name="angle">347.16714991742</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.604261531723,1.51662015911983,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.204">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">20300</SimpleData>
+		<SimpleData name="angle">347.16714991742</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.604061354113,1.51750189293998,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.205">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">20400</SimpleData>
+		<SimpleData name="angle">348.885469933474</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.60387771155,1.51838642026472,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.206">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">20500</SimpleData>
+		<SimpleData name="angle">351.709064515543</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.603725259771,1.51927758922133,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.207">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">20600</SimpleData>
+		<SimpleData name="angle">351.950739265554</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.603597825396,1.52017290369914,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.208">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">20700</SimpleData>
+		<SimpleData name="angle">354.429558415745</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.603492583048,1.52107102416218,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.209">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">20800</SimpleData>
+		<SimpleData name="angle">356.100659660268</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.603415245814,1.52197203102103,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.210">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">20900</SimpleData>
+		<SimpleData name="angle">356.880806838891</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.603354825688,1.52287443146198,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.211">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">21000</SimpleData>
+		<SimpleData name="angle">359.059933935684</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.603315459656,1.5237778814323,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.212">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">21100</SimpleData>
+		<SimpleData name="angle">0.0371742875499603</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.603300000003,1.52468214019394,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.213">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">21200</SimpleData>
+		<SimpleData name="angle">0.972164819675172</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.603308700521,1.52558652326817,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.214">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">21300</SimpleData>
+		<SimpleData name="angle">0.972164819675172</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.603323365375,1.52649085736662,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.215">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">21400</SimpleData>
+		<SimpleData name="angle">0.8820468312309</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.603337255956,1.52739520356672,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.216">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">21500</SimpleData>
+		<SimpleData name="angle">0.8820468312309</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.603350506751,1.52829955976542,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.217">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">21600</SimpleData>
+		<SimpleData name="angle">0.8820468312309</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.603363757211,1.52920391596688,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.218">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">21700</SimpleData>
+		<SimpleData name="angle">0.538690810676879</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.603374159248,1.5301083058432,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.219">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">21800</SimpleData>
+		<SimpleData name="angle">0.0373235067070769</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.603380000016,1.53101273462738,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.220">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">21900</SimpleData>
+		<SimpleData name="angle">359.060126533128</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.60337004909,1.53191710372019,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.221">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">22000</SimpleData>
+		<SimpleData name="angle">0.0373681789940451</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.603350000001,1.53282129130237,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.222">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">22100</SimpleData>
+		<SimpleData name="angle">355.193315528513</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.60330464183,1.53372362844036,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.223">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">22200</SimpleData>
+		<SimpleData name="angle">354.290668449873</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.603228516936,1.53462483064747,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.224">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">22300</SimpleData>
+		<SimpleData name="angle">354.810084077217</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.603148575589,1.53552566878225,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.225">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">22400</SimpleData>
+		<SimpleData name="angle">353.794789877547</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.603040512135,1.5364232884451,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.226">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">22500</SimpleData>
+		<SimpleData name="angle">349.869413633579</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.602914200229,1.53731865440861,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.227">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">22600</SimpleData>
+		<SimpleData name="angle">349.869413633579</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.602755541984,1.53820890336152,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.228">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">22700</SimpleData>
+		<SimpleData name="angle">348.104348947581</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.602571618645,1.53909419721265,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.229">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">22800</SimpleData>
+		<SimpleData name="angle">346.671081912935</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.602369945015,1.53997552707237,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.230">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">22900</SimpleData>
+		<SimpleData name="angle">343.380865481352</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.602133588025,1.54084793119384,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.231">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">23000</SimpleData>
+		<SimpleData name="angle">344.623157359254</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.601897638373,1.54172062039941,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.232">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">23100</SimpleData>
+		<SimpleData name="angle">344.623157359254</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.601658756447,1.54259253941213,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.233">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">23200</SimpleData>
+		<SimpleData name="angle">345.388643741661</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.60141844942,1.54346396992605,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.234">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">23300</SimpleData>
+		<SimpleData name="angle">347.431663168837</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.601194611664,1.54433924761768,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.235">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">23400</SimpleData>
+		<SimpleData name="angle">347.431663168837</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.600998467131,1.54522189808965,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.236">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">23500</SimpleData>
+		<SimpleData name="angle">347.359935035004</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.60080138362,1.54610433654496,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.237">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">23600</SimpleData>
+		<SimpleData name="angle">349.631743908755</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.60062524661,1.54699084875103,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.238">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">23700</SimpleData>
+		<SimpleData name="angle">349.631743908755</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.600462915097,1.54788042591869,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.239">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">23800</SimpleData>
+		<SimpleData name="angle">350.890666257221</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.600316766517,1.54877270933319,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.240">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">23900</SimpleData>
+		<SimpleData name="angle">351.856702160336</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.600181873731,1.54966688442431,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.241">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">24000</SimpleData>
+		<SimpleData name="angle">354.291181135054</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.600067619069,1.55056380937312,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.242">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">24100</SimpleData>
+		<SimpleData name="angle">355.036699674572</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.599965894277,1.55146221595168,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.243">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">24200</SimpleData>
+		<SimpleData name="angle">354.730655833578</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.599884344472,1.5523629349643,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.244">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">24300</SimpleData>
+		<SimpleData name="angle">356.837943566295</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.599833560611,1.55326590939095,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.245">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">24400</SimpleData>
+		<SimpleData name="angle">357.250171335356</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.599784242104,1.55416899680707,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.246">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">24500</SimpleData>
+		<SimpleData name="angle">358.559865733929</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.599736613778,1.55507206294909,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.247">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">24600</SimpleData>
+		<SimpleData name="angle">358.596824059558</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.599713844443,1.55597622547935,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.248">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">24700</SimpleData>
+		<SimpleData name="angle">0.67870386044072</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.599701672176,1.55688049369735,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.249">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">24800</SimpleData>
+		<SimpleData name="angle">1.89743552349854</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.599714994148,1.5577848181428,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.250">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">24900</SimpleData>
+		<SimpleData name="angle">1.34832381226204</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.599739975254,1.55868891115984,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.251">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">25000</SimpleData>
+		<SimpleData name="angle">3.12407311714026</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.599783509089,1.55959216939542,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.252">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">25100</SimpleData>
+		<SimpleData name="angle">2.25473366805996</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.599833661284,1.56049519329778,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.253">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">25200</SimpleData>
+		<SimpleData name="angle">5.42784448408689</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.599909023771,1.56139625325705,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.254">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">25300</SimpleData>
+		<SimpleData name="angle">5.93117825431208</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.600002643025,1.56229576947907,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.255">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">25400</SimpleData>
+		<SimpleData name="angle">8.3659893490223</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.600103732729,1.56319441247013,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.256">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">25500</SimpleData>
+		<SimpleData name="angle">7.20806967101637</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.60022506732,1.56409053844924,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.257">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">25600</SimpleData>
+		<SimpleData name="angle">10.4071977737455</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.600358140784,1.56498477427697,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.258">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">25700</SimpleData>
+		<SimpleData name="angle">10.4071977737455</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.600519901266,1.56587445685014,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.259">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">25800</SimpleData>
+		<SimpleData name="angle">9.7874785825945</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.600684501108,1.56676350645772,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.260">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">25900</SimpleData>
+		<SimpleData name="angle">12.6442085359278</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.600870676175,1.5676480427413,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.261">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">26000</SimpleData>
+		<SimpleData name="angle">13.4688260072211</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.601065005477,1.56853109450305,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.262">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">26100</SimpleData>
+		<SimpleData name="angle">15.0877433615264</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.601282448322,1.56940859218191,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.263">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">26200</SimpleData>
+		<SimpleData name="angle">15.0877433615264</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.601515808181,1.57028202485095,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.264">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">26300</SimpleData>
+		<SimpleData name="angle">16.7252677722789</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.601763986296,1.5711512396927,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.265">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">26400</SimpleData>
+		<SimpleData name="angle">18.582482654043</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.602022394237,1.57201718271127,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.266">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">26500</SimpleData>
+		<SimpleData name="angle">18.3635284666769</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.602286653795,1.57288098651854,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.267">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">26600</SimpleData>
+		<SimpleData name="angle">19.8828826299607</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.602573150157,1.57373820713783,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.268">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">26700</SimpleData>
+		<SimpleData name="angle">19.8828826299607</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.60287824497,1.5745889522498,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.269">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">26800</SimpleData>
+		<SimpleData name="angle">20.9312885892881</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.60319717077,1.5754343592926,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.270">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">26900</SimpleData>
+		<SimpleData name="angle">24.5829233929754</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.603523893187,1.57627672757441,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.271">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">27000</SimpleData>
+		<SimpleData name="angle">24.5829233929754</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.603897231401,1.57709945437613,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.272">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">27100</SimpleData>
+		<SimpleData name="angle">25.0484858354445</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.604258381841,1.57792750939515,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.273">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">27200</SimpleData>
+		<SimpleData name="angle">25.0484858354445</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.604638350737,1.57874715657956,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.274">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">27300</SimpleData>
+		<SimpleData name="angle">26.8952409655606</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.605018599145,1.57956658311397,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.275">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">27400</SimpleData>
+		<SimpleData name="angle">26.8952409655606</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.605424618401,1.5803734821493,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.276">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">27500</SimpleData>
+		<SimpleData name="angle">28.801685887816</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.605835239345,1.58117793880108,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.277">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">27600</SimpleData>
+		<SimpleData name="angle">29.6214113641067</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.606272537163,1.58196586133693,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.278">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">27700</SimpleData>
+		<SimpleData name="angle">30.6971758837863</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.606719825968,1.58275016967833,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.279">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">27800</SimpleData>
+		<SimpleData name="angle">31.162493622129</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.607180035735,1.5835267262321,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.280">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">27900</SimpleData>
+		<SimpleData name="angle">33.3833289306258</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.607664084983,1.58428860056449,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.281">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">28000</SimpleData>
+		<SimpleData name="angle">33.3159835646746</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.608163131766,1.58504080204275,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.282">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">28100</SimpleData>
+		<SimpleData name="angle">34.8492260903793</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.608659774736,1.58579441081013,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.283">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">28200</SimpleData>
+		<SimpleData name="angle">33.5157642740277</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.609165778978,1.58654183757816,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.284">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">28300</SimpleData>
+		<SimpleData name="angle">33.3159669135531</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.609655781438,1.58729886487193,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.285">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">28400</SimpleData>
+		<SimpleData name="angle">32.2070747883406</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.610137522822,1.58806203651693,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.286">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">28500</SimpleData>
+		<SimpleData name="angle">29.360678680326</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.61059035277,1.58884313204929,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.287">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">28600</SimpleData>
+		<SimpleData name="angle">25.0820481098224</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.611012028597,1.58964129236199,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.288">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">28700</SimpleData>
+		<SimpleData name="angle">26.7488648685809</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.611406850719,1.59045370143818,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.289">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">28800</SimpleData>
+		<SimpleData name="angle">25.6936027251255</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.611791563366,1.59127089467139,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.290">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">28900</SimpleData>
+		<SimpleData name="angle">20.7140517866766</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.612141277384,1.59210340635576,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.291">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">29000</SimpleData>
+		<SimpleData name="angle">18.2180562796981</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.612447475224,1.59295355309682,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.292">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">29100</SimpleData>
+		<SimpleData name="angle">18.2180562796981</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.612727881821,1.59381286363962,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.293">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">29200</SimpleData>
+		<SimpleData name="angle">17.197447611013</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.612993693533,1.59467685298743,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.294">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">29300</SimpleData>
+		<SimpleData name="angle">15.0223369991036</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.613228078199,1.59554997399555,0</coordinates></Point>
+  </Placemark>
+  <Placemark id="interpolated_points.295">
+	<name>SECOND LINK HALA TUAS</name>
+	<ExtendedData><SchemaData schemaUrl="#interpolated_points">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="tessellate">1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+		<SimpleData name="distance">29400</SimpleData>
+		<SimpleData name="angle">11.5156318534401</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>103.613419796992,1.59643334142325,0</coordinates></Point>
+  </Placemark>
+</Folder>
+</Document></kml>

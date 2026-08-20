@@ -278,6 +278,21 @@
         color: #fff;
         border-color: #ffa500;
       }
+      .mode-btn.active-sde {
+        background: #9c27b0;
+        color: #fff;
+        border-color: #9c27b0;
+      }
+      .mode-btn.active-secondlink {
+        background: #009688;
+        color: #fff;
+        border-color: #009688;
+      }
+      .mode-btn.active-edl {
+        background: #3f51b5;
+        color: #fff;
+        border-color: #3f51b5;
+      }
 
       /* BUTANG ARAH (UTARA/SELATAN / PASIR GUDANG/PERLING) */
       .arah-btn {
@@ -670,6 +685,15 @@
           <button class="menu-item" onclick="toggleLebuhraya()">
             🛣️ Tunjuk/Sembunyi Lebuhraya Pasir Gudang
           </button>
+          <button class="menu-item" onclick="toggleLebuhrayaBaru('sde')">
+            🛣️ Tunjuk/Sembunyi Lebuhraya SDE
+          </button>
+          <button class="menu-item" onclick="toggleLebuhrayaBaru('secondlink')">
+            🛣️ Tunjuk/Sembunyi Lebuhraya Second Link
+          </button>
+          <button class="menu-item" onclick="toggleLebuhrayaBaru('edl')">
+            🛣️ Tunjuk/Sembunyi Lebuhraya EDL
+          </button>
           <button class="menu-item" onclick="senaraiBalai()">
             📋 Senarai Balai
           </button>
@@ -702,7 +726,7 @@
           id="arah-btn-1"
           class="arah-btn"
           style="display: none"
-          onclick="pilihArah(modeCarian === 'pg' ? 'pasirgudang' : 'utara')"
+          onclick="pilihArah(arah1UntukModeSemasa())"
         >
           ⬆ Utara
         </button>
@@ -710,7 +734,7 @@
           id="arah-btn-2"
           class="arah-btn"
           style="display: none"
-          onclick="pilihArah(modeCarian === 'pg' ? 'perling' : 'selatan')"
+          onclick="pilihArah(arah2UntukModeSemasa())"
         >
           ⬇ Selatan
         </button>

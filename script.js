@@ -627,12 +627,79 @@ let arahCarian = 'utara'; // 'utara', 'selatan', 'pasirgudang', 'perling'
 const arahBtn1 = document.getElementById('arah-btn-1');
 const arahBtn2 = document.getElementById('arah-btn-2');
 
+// ============================================
+// KONFIGURASI LEBUHRAYA BARU (SDE, SECOND LINK, EDL)
+// Sistem generik - tambah lebuhraya baru cukup tambah 1 entri di sini
+// ============================================
+const lebuhrayaBaruConfig = [
+  {
+    mode: 'sde',
+    labelBtn: '🛣️ KM SDE',
+    labelMenu: 'Lebuhraya SDE',
+    placeholder: '🛣️ Masukkan KM SDE (cth: 10.5)',
+    warnaGaris: ['#9C27B0', '#673AB7'],
+    arah: [
+      { key: 'penawar', label: 'Penawar', file: 'SDE HALA PENAWAR.kml' },
+      { key: 'senai', label: 'Senai', file: 'SDE HALA SENAI.kml' },
+    ],
+  },
+  {
+    mode: 'secondlink',
+    labelBtn: '🛣️ KM 2ND LINK',
+    labelMenu: 'Lebuhraya Second Link',
+    placeholder: '🛣️ Masukkan KM Second Link (cth: 10.5)',
+    warnaGaris: ['#009688', '#00BCD4'],
+    arah: [
+      { key: 'jpo', label: 'JPO', file: 'SECOND LINK HALA JPO.kml' },
+      { key: 'tuas', label: 'Tuas', file: 'SECOND LINK HALA TUAS.kml' },
+    ],
+  },
+  {
+    mode: 'edl',
+    labelBtn: '🛣️ KM EDL',
+    labelMenu: 'Lebuhraya EDL',
+    placeholder: '🛣️ Masukkan KM EDL (cth: 10.5)',
+    warnaGaris: ['#3F51B5', '#5C6BC0'],
+    arah: [
+      { key: 'pandan', label: 'Pandan', file: 'EDL HALA PANDAN.kml' },
+      { key: 'woodland', label: 'Woodland', file: 'EDL HALA WOODLAND.kml' },
+    ],
+  },
+];
+
+// Data & layer state untuk setiap lebuhraya baru
+const dataLebuhrayaBaru = {};
+const layerLebuhrayaBaru = {};
+lebuhrayaBaruConfig.forEach((cfg) => {
+  dataLebuhrayaBaru[cfg.mode] = { [cfg.arah[0].key]: [], [cfg.arah[1].key]: [] };
+  layerLebuhrayaBaru[cfg.mode] = { layer: null, visible: false };
+});
+
+function cariConfigLebuhraya(mode) {
+  return lebuhrayaBaruConfig.find((c) => c.mode === mode) || null;
+}
+
+// Arah pertama (butang atas ⬆) dan kedua (butang bawah ⬇) untuk mod semasa
+// Digunakan oleh butang arah-btn-1 / arah-btn-2 di index.html
+function arah1UntukModeSemasa() {
+  if (modeCarian === 'pg') return 'pasirgudang';
+  if (modeCarian === 'km') return 'utara';
+  const cfg = cariConfigLebuhraya(modeCarian);
+  return cfg ? cfg.arah[0].key : 'utara';
+}
+function arah2UntukModeSemasa() {
+  if (modeCarian === 'pg') return 'perling';
+  if (modeCarian === 'km') return 'selatan';
+  const cfg = cariConfigLebuhraya(modeCarian);
+  return cfg ? cfg.arah[1].key : 'selatan';
+}
+
 function pilihArah(arah) {
   arahCarian = arah;
   // Toggle class active
   arahBtn1.classList.remove('active-arah');
   arahBtn2.classList.remove('active-arah');
-  if (arah === 'utara' || arah === 'pasirgudang') {
+  if (arah === arah1UntukModeSemasa()) {
     arahBtn1.classList.add('active-arah');
   } else {
     arahBtn2.classList.add('active-arah');
@@ -645,43 +712,53 @@ function pilihArah(arah) {
   }
 }
 
+// Urutan penuh kitaran mod carian: alamat -> km -> pg -> (lebuhraya baru...) -> alamat
+const urutanModCarian = ['alamat', 'km', 'pg', ...lebuhrayaBaruConfig.map((c) => c.mode)];
+
 function tukarMode() {
   const modeBtn = document.getElementById('mode-toggle');
   const searchInput = document.getElementById('search-input');
   const resultsDiv = document.getElementById('search-results');
 
+  const indexSemasa = urutanModCarian.indexOf(modeCarian);
+  modeCarian = urutanModCarian[(indexSemasa + 1) % urutanModCarian.length];
+
   if (modeCarian === 'alamat') {
-    modeCarian = 'km';
-    modeBtn.textContent = '🔢 KM PLUS';
-    modeBtn.className = 'mode-btn active-km';
-    searchInput.placeholder = '🔢 Masukkan KM PLUS (cth: 23.5)';
-    // Tunjukkan butang arah, set default utara
-    arahBtn1.style.display = 'flex';
-    arahBtn2.style.display = 'flex';
-    arahBtn1.textContent = '⬆ Utara';
-    arahBtn2.textContent = '⬇ Selatan';
-    arahCarian = 'utara';
-    pilihArah('utara');
-  } else if (modeCarian === 'km') {
-    modeCarian = 'pg';
-    modeBtn.textContent = '🛣️ KM PG';
-    modeBtn.className = 'mode-btn active-pg';
-    searchInput.placeholder = '🛣️ Masukkan KM Pasir Gudang (cth: 10.5)';
-    // Tunjukkan butang arah, set default pasirgudang
-    arahBtn1.style.display = 'flex';
-    arahBtn2.style.display = 'flex';
-    arahBtn1.textContent = '⬆ Pasir Gudang';
-    arahBtn2.textContent = '⬇ Perling';
-    arahCarian = 'pasirgudang';
-    pilihArah('pasirgudang');
-  } else {
-    modeCarian = 'alamat';
     modeBtn.textContent = '📍 Alamat';
     modeBtn.className = 'mode-btn active-alamat';
     searchInput.placeholder = '🔍 Cari alamat atau tempat...';
     // Sembunyikan butang arah
     arahBtn1.style.display = 'none';
     arahBtn2.style.display = 'none';
+  } else if (modeCarian === 'km') {
+    modeBtn.textContent = '🔢 KM PLUS';
+    modeBtn.className = 'mode-btn active-km';
+    searchInput.placeholder = '🔢 Masukkan KM PLUS (cth: 23.5)';
+    arahBtn1.style.display = 'flex';
+    arahBtn2.style.display = 'flex';
+    arahBtn1.textContent = '⬆ Utara';
+    arahBtn2.textContent = '⬇ Selatan';
+    pilihArah('utara');
+  } else if (modeCarian === 'pg') {
+    modeBtn.textContent = '🛣️ KM PG';
+    modeBtn.className = 'mode-btn active-pg';
+    searchInput.placeholder = '🛣️ Masukkan KM Pasir Gudang (cth: 10.5)';
+    arahBtn1.style.display = 'flex';
+    arahBtn2.style.display = 'flex';
+    arahBtn1.textContent = '⬆ Pasir Gudang';
+    arahBtn2.textContent = '⬇ Perling';
+    pilihArah('pasirgudang');
+  } else {
+    // Mod lebuhraya baru (sde, secondlink, edl, ...)
+    const cfg = cariConfigLebuhraya(modeCarian);
+    modeBtn.textContent = cfg.labelBtn;
+    modeBtn.className = `mode-btn active-${cfg.mode}`;
+    searchInput.placeholder = cfg.placeholder;
+    arahBtn1.style.display = 'flex';
+    arahBtn2.style.display = 'flex';
+    arahBtn1.textContent = `⬆ ${cfg.arah[0].label}`;
+    arahBtn2.textContent = `⬇ ${cfg.arah[1].label}`;
+    pilihArah(cfg.arah[0].key);
   }
   resultsDiv.classList.remove('show');
   searchInput.focus();
@@ -748,6 +825,9 @@ function cari() {
     cariKMPlus(query);
   } else if (modeCarian === 'pg') {
     cariKMPGPlus(query);
+  } else {
+    // Mod lebuhraya baru (sde, secondlink, edl, ...)
+    cariKMLebuhrayaBaruJalankan(modeCarian, query);
   }
 }
 
@@ -1405,6 +1485,156 @@ function toggleLebuhraya() {
 }
 
 // ============================================
+// SISTEM GENERIK: MUAT KML, BINA LAYER, CARIAN KM & TOGGLE
+// UNTUK LEBUHRAYA BARU (SDE, SECOND LINK, EDL, ...)
+// ============================================
+async function loadKMLLebuhrayaBaru(mode) {
+  const cfg = cariConfigLebuhraya(mode);
+  if (!cfg) return;
+  try {
+    const [resp1, resp2] = await Promise.all([
+      fetch(cfg.arah[0].file),
+      fetch(cfg.arah[1].file),
+    ]);
+    if (!resp1.ok) throw new Error(`Fail ${cfg.arah[0].file} tidak dijumpai.`);
+    if (!resp2.ok) throw new Error(`Fail ${cfg.arah[1].file} tidak dijumpai.`);
+
+    const [text1, text2] = await Promise.all([resp1.text(), resp2.text()]);
+
+    dataLebuhrayaBaru[mode][cfg.arah[0].key] = parseKMLPointsPG(text1);
+    dataLebuhrayaBaru[mode][cfg.arah[1].key] = parseKMLPointsPG(text2);
+
+    console.log(
+      `✅ ${cfg.labelMenu}: ${cfg.arah[0].label} ${dataLebuhrayaBaru[mode][cfg.arah[0].key].length} titik, ` +
+      `${cfg.arah[1].label} ${dataLebuhrayaBaru[mode][cfg.arah[1].key].length} titik`
+    );
+
+    binaLayerLebuhrayaBaru(mode);
+  } catch (error) {
+    console.error(`❌ Gagal memuatkan fail KML ${cfg.labelMenu}:`, error);
+    alert(`Gagal memuatkan data KM ${cfg.labelMenu}. Pastikan fail "${cfg.arah[0].file}" dan "${cfg.arah[1].file}" wujud.`);
+  }
+}
+
+function binaLayerLebuhrayaBaru(mode) {
+  const cfg = cariConfigLebuhraya(mode);
+  if (!cfg) return;
+  const arr1 = dataLebuhrayaBaru[mode][cfg.arah[0].key];
+  const arr2 = dataLebuhrayaBaru[mode][cfg.arah[1].key];
+  if (arr1.length === 0 && arr2.length === 0) return;
+
+  const layer = L.layerGroup();
+
+  function tambahGarisan(arr, warna, label) {
+    if (arr.length === 0) return;
+    const latlngs = arr.map((p) => [p.lat, p.lng]);
+    const polyline = L.polyline(latlngs, {
+      color: warna,
+      weight: 6,
+      opacity: 0.9,
+      smoothFactor: 1,
+    });
+    polyline.bindPopup(`🛣️ ${cfg.labelMenu} - ${label}`);
+    layer.addLayer(polyline);
+  }
+
+  tambahGarisan(arr1, cfg.warnaGaris[0], cfg.arah[0].label);
+  tambahGarisan(arr2, cfg.warnaGaris[1], cfg.arah[1].label);
+
+  layerLebuhrayaBaru[mode].layer = layer;
+  console.log(`✅ Layer ${cfg.labelMenu} sedia (dua arah).`);
+}
+
+function toggleLebuhrayaBaru(mode) {
+  const cfg = cariConfigLebuhraya(mode);
+  if (!cfg) return;
+  const state = layerLebuhrayaBaru[mode];
+  if (!state.layer) {
+    alert(`Data ${cfg.labelMenu} masih dimuatkan. Sila tunggu sebentar.`);
+    loadKMLLebuhrayaBaru(mode);
+    return;
+  }
+  if (!state.visible) {
+    state.layer.addTo(map);
+    state.visible = true;
+  } else {
+    map.removeLayer(state.layer);
+    state.visible = false;
+  }
+}
+
+// Fungsi parse KM untuk lebuhraya baru (dengan arah)
+function cariKMLebuhrayaBaru(mode, query) {
+  const cfg = cariConfigLebuhraya(mode);
+  if (!cfg) return null;
+  const match = query.match(/^\s*(?:km\s*)?([\d.]+)\s*(?:km)?\s*$/i);
+  if (!match) return null;
+  const num = parseFloat(match[1]);
+  if (isNaN(num) || num < 0 || num > 300) return null;
+  const index = Math.round(num * 10);
+  if (index < 0) return null;
+
+  const arahInfo = cfg.arah.find((a) => a.key === arahCarian);
+  if (!arahInfo) return null;
+  const arr = dataLebuhrayaBaru[mode][arahInfo.key];
+  if (index >= arr.length) return null;
+  const coord = arr[index];
+  const kmValue = (index / 10).toFixed(1);
+  return { lat: coord.lat, lng: coord.lng, km: kmValue, arah: arahInfo.key, arahLabel: arahInfo.label };
+}
+
+// Carian KM untuk lebuhraya baru - dipanggil dari cari()
+function cariKMLebuhrayaBaruJalankan(mode, query) {
+  const cfg = cariConfigLebuhraya(mode);
+  if (!cfg) return;
+  if (query.length === 0) {
+    searchResults.classList.remove('show');
+    return;
+  }
+
+  const arahKeys = cfg.arah.map((a) => a.key);
+  if (!arahKeys.includes(arahCarian)) {
+    searchResults.innerHTML = `<div class="search-result-item" style="color:#cc0000;">Sila pilih arah (⬆ ${cfg.arah[0].label} / ⬇ ${cfg.arah[1].label}) terlebih dahulu.</div>`;
+    searchResults.classList.add('show');
+    return;
+  }
+
+  const kmResult = cariKMLebuhrayaBaru(mode, query);
+  if (kmResult) {
+    searchResults.classList.remove('show');
+    map.flyTo([kmResult.lat, kmResult.lng], 15);
+
+    if (searchMarker) {
+      map.removeLayer(searchMarker);
+    }
+    searchMarker = L.marker([kmResult.lat, kmResult.lng], {
+      icon: L.icon({
+        iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png',
+        shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-shadow.png',
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        shadowSize: [41, 41],
+      }),
+    })
+      .addTo(map)
+      .bindPopup(`<b>🛣️ KM ${kmResult.km} (${cfg.labelMenu} - ${kmResult.arahLabel})</b>`)
+      .openPopup();
+
+    searchInput.value = `${cfg.mode.toUpperCase()} KM ${kmResult.km} (${kmResult.arahLabel})`;
+    lokasiTerakhir = {
+      lat: kmResult.lat,
+      lng: kmResult.lng,
+      alamat: `${cfg.labelMenu} KM ${kmResult.km} (${kmResult.arahLabel})`,
+    };
+  } else {
+    searchResults.innerHTML =
+      '<div class="search-result-item" style="color:#999;">Format KM tidak sah atau arah ini tiada data. Contoh: 10.5, km 15, 20</div>';
+    searchResults.classList.add('show');
+  }
+}
+
+// ============================================
 // POLIGON ZON DAN BALAI (SAMA SEPERTI SEBELUM INI, TIDAK BERUBAH)
 // ============================================
 let layerPoligonZon = null;
@@ -1618,6 +1848,7 @@ function togglePoligonBalai() {
 loadKMLData();
 loadKMLPasirGudang();
 loadKMLPolygon();
+lebuhrayaBaruConfig.forEach((cfg) => loadKMLLebuhrayaBaru(cfg.mode));
 
 // ============================================
 // LOADING SIAP
