@@ -633,8 +633,7 @@ function pilihArah(arah) {
   } else {
     arahBtn2.classList.add('active-arah');
   }
-  // Jika ada query, boleh cari semula? Biar pengguna tekan Cari semula.
-  // Kita boleh trigger carian automatik? Untuk kemudahan, kita boleh panggil cari() jika input tidak kosong.
+  // Jika ada query, cari semula secara automatik
   const query = document.getElementById('search-input').value.trim();
   if (query.length > 0) {
     cari();
@@ -651,7 +650,6 @@ function tukarMode() {
     modeBtn.textContent = '🔢 KM PLUS';
     modeBtn.className = 'mode-btn active-km';
     searchInput.placeholder = '🔢 Masukkan KM PLUS (cth: 23.5)';
-    // Tunjukkan butang arah, set default utara
     arahBtn1.style.display = 'flex';
     arahBtn2.style.display = 'flex';
     arahBtn1.textContent = '⬆ Utara';
@@ -663,7 +661,6 @@ function tukarMode() {
     modeBtn.textContent = '🛣️ KM PG';
     modeBtn.className = 'mode-btn active-pg';
     searchInput.placeholder = '🛣️ Masukkan KM Pasir Gudang (cth: 10.5)';
-    // Tunjukkan butang arah, set default pasirgudang
     arahBtn1.style.display = 'flex';
     arahBtn2.style.display = 'flex';
     arahBtn1.textContent = '⬆ Pasir Gudang';
@@ -675,7 +672,6 @@ function tukarMode() {
     modeBtn.textContent = '📍 Alamat';
     modeBtn.className = 'mode-btn active-alamat';
     searchInput.placeholder = '🔍 Cari alamat atau tempat...';
-    // Sembunyikan butang arah
     arahBtn1.style.display = 'none';
     arahBtn2.style.display = 'none';
   }
@@ -713,7 +709,7 @@ function cariKM(query) {
   return { lat: coord[0], lng: coord[1], km: kmValue, arah: arah };
 }
 
-// Fungsi parse KM Pasir Gudang (dengan arah)
+// Fungsi parse KM Pasir Gudang (dengan arah) - DIPERBAIKI
 function cariKMPG(query) {
   const match = query.match(/^\s*(?:km\s*)?([\d.]+)\s*(?:km)?\s*$/i);
   if (!match) return null;
@@ -725,9 +721,13 @@ function cariKMPG(query) {
   let coord = null;
   let arah = arahCarian;
   if (arah === 'pasirgudang') {
-    if (index < dataKMPG_PasirGudang.length) coord = dataKMPG_PasirGudang[index];
+    if (dataKMPG_PasirGudang && index < dataKMPG_PasirGudang.length) {
+      coord = dataKMPG_PasirGudang[index];
+    }
   } else if (arah === 'perling') {
-    if (index < dataKMPG_Perling.length) coord = dataKMPG_Perling[index];
+    if (dataKMPG_Perling && index < dataKMPG_Perling.length) {
+      coord = dataKMPG_Perling[index];
+    }
   }
   if (!coord) return null;
   const kmValue = (index / 10).toFixed(1);
@@ -808,7 +808,6 @@ function cariKMPlus(query) {
     return;
   }
 
-  // Pastikan arah dipilih (jika tiada, mesej)
   if (arahCarian !== 'utara' && arahCarian !== 'selatan') {
     searchResults.innerHTML = '<div class="search-result-item" style="color:#cc0000;">Sila pilih arah (⬆ Utara / ⬇ Selatan) terlebih dahulu.</div>';
     searchResults.classList.add('show');
@@ -852,7 +851,7 @@ function cariKMPlus(query) {
   }
 }
 
-// Carian KM Pasir Gudang
+// Carian KM Pasir Gudang - DIPERBAIKI
 function cariKMPGPlus(query) {
   if (query.length === 0) {
     searchResults.classList.remove('show');
@@ -889,8 +888,7 @@ function cariKMPGPlus(query) {
       .openPopup();
 
     searchInput.value = `PG KM ${kmResult.km} (${arahLabel})`;
-    // Untuk panel PLUS tidak berkaitan dengan PG, jadi kita tak update panel PLUS.
-    // Tapi kita simpan lokasiTerakhir
+    // Untuk panel PLUS tidak berkaitan dengan PG
     lokasiTerakhir = {
       lat: kmResult.lat,
       lng: kmResult.lng,
@@ -1098,7 +1096,7 @@ function cariBalaiArah(km, arah) {
 }
 
 // ============================================
-// PANEL KAWASAN JAGAAN PLUS (DIUBAH UNTUK TUNJUK ARAH)
+// PANEL KAWASAN JAGAAN PLUS
 // ============================================
 function updateInfoPanel(km, jenis = 'PLUS', arahLabel = '') {
   const panel = document.getElementById('info-panel');
@@ -1152,7 +1150,6 @@ let kmMarkerVisible = false;
 
 async function loadKMLData() {
   try {
-    // Muat dua fail PLUS serentak
     const [respUtara, respSelatan] = await Promise.all([
       fetch('PLUS HALA UTARA.kml'),
       fetch('PLUS HALA SELATAN.kml')
@@ -1190,6 +1187,7 @@ async function loadKMLPasirGudang() {
       respPerling.text()
     ]);
 
+    // Parse dengan fungsi yang diperbaiki
     dataKMPG_PasirGudang = parseKMLPointsPG(textPG);
     dataKMPG_Perling = parseKMLPointsPG(textPerling);
     console.log(`✅ PG Pasir Gudang: ${dataKMPG_PasirGudang.length} titik, PG Perling: ${dataKMPG_Perling.length} titik`);
@@ -1218,7 +1216,7 @@ function parseKMLPoints(kmlText) {
   return coords;
 }
 
-// Fungsi parse KML untuk PG (struktur {lat, lng} dengan fid)
+// Fungsi parse KML untuk PG (struktur {lat, lng} dengan fid) - DIPERBAIKI
 function parseKMLPointsPG(kmlText) {
   const parser = new DOMParser();
   const kmlDoc = parser.parseFromString(kmlText, 'text/xml');
@@ -1261,8 +1259,21 @@ function parseKMLPointsPG(kmlText) {
       points.push({ fid, lat, lng });
     }
   }
+  // Susun mengikut fid
   points.sort((a, b) => a.fid - b.fid);
-  return points.map(p => ({ lat: p.lat, lng: p.lng }));
+  
+  // Jika fid tidak bermula dari 0, kita peta ke indeks yang betul
+  if (points.length === 0) return [];
+  
+  const minFid = points[0].fid;
+  const maxFid = points[points.length - 1].fid;
+  const result = new Array(maxFid - minFid + 1);
+  points.forEach(p => {
+    result[p.fid - minFid] = { lat: p.lat, lng: p.lng };
+  });
+  // Isi sebarang jurang dengan null? Lebih baik kita isi dengan interpolasi? Tapi kita hanya guna index yang ada.
+  // Untuk carian, kita akan semak sama ada elemen wujud.
+  return result;
 }
 
 // ============================================
@@ -1273,7 +1284,6 @@ function binaLayerKMMarker() {
 
   layerKMMarker = L.layerGroup();
 
-  // Fungsi tambah marker untuk satu array dengan warna
   function tambahMarkerArray(arr, warna, labelArah) {
     arr.forEach((coord, index) => {
       const kmValue = (index / 10).toFixed(1);
@@ -1317,13 +1327,19 @@ let layerLebuhraya = null;
 let lebuhrayaVisible = false;
 
 function binaLayerLebuhraya() {
-  if (dataKMPG_PasirGudang.length === 0 && dataKMPG_Perling.length === 0) return;
+  if (dataKMPG_PasirGudang.length === 0 && dataKMPG_Perling.length === 0) {
+    console.warn('⚠️ Tiada data PG untuk bina layer lebuhraya.');
+    return;
+  }
 
   layerLebuhraya = L.layerGroup();
 
   function tambahGarisan(arr, warna, labelArah) {
-    if (arr.length === 0) return;
-    const latlngs = arr.map(p => [p.lat, p.lng]);
+    if (!arr || arr.length === 0) return;
+    // Tapis null jika ada
+    const validPoints = arr.filter(p => p && p.lat !== undefined && p.lng !== undefined);
+    if (validPoints.length === 0) return;
+    const latlngs = validPoints.map(p => [p.lat, p.lng]);
     const polyline = L.polyline(latlngs, {
       color: warna,
       weight: 6,
@@ -1375,7 +1391,7 @@ function toggleLebuhraya() {
 }
 
 // ============================================
-// POLIGON ZON DAN BALAI (SAMA SEPERTI SEBELUM INI, TIDAK BERUBAH)
+// POLIGON ZON DAN BALAI (SAMA SEPERTI SEBELUM INI)
 // ============================================
 let layerPoligonZon = null;
 let layerPoligonBalai = null;
@@ -1549,36 +1565,6 @@ async function loadKMLPolygon() {
   } catch (error) {
     console.error('❌ Gagal memuatkan poligon KML:', error);
     alert('Gagal memuatkan poligon kawasan. Pastikan fail "PETA KAWASAN JAGAAN BOMBA NEGERI JOHOR 2025.kml" wujud.');
-  }
-}
-
-function togglePoligonZon() {
-  if (!layerPoligonZon) {
-    alert('Poligon Zon masih dimuatkan. Sila tunggu sebentar atau muat semula halaman.');
-    loadKMLPolygon();
-    return;
-  }
-  if (!poligonZonVisible) {
-    layerPoligonZon.addTo(map);
-    poligonZonVisible = true;
-  } else {
-    map.removeLayer(layerPoligonZon);
-    poligonZonVisible = false;
-  }
-}
-
-function togglePoligonBalai() {
-  if (!layerPoligonBalai) {
-    alert('Poligon Kawasan Balai masih dimuatkan. Sila tunggu sebentar atau muat semula halaman.');
-    loadKMLPolygon();
-    return;
-  }
-  if (!poligonBalaiVisible) {
-    layerPoligonBalai.addTo(map);
-    poligonBalaiVisible = true;
-  } else {
-    map.removeLayer(layerPoligonBalai);
-    poligonBalaiVisible = false;
   }
 }
 
