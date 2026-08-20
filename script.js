@@ -1193,7 +1193,17 @@ async function loadKMLPasirGudang() {
     dataKMPG_PasirGudang = parseKMLPointsPG(textPG);
     dataKMPG_Perling = parseKMLPointsPG(textPerling);
     console.log(`✅ PG Pasir Gudang: ${dataKMPG_PasirGudang.length} titik, PG Perling: ${dataKMPG_Perling.length} titik`);
-    
+    if (dataKMPG_PasirGudang.length <= 3 || dataKMPG_Perling.length <= 3) {
+      console.warn('⚠️ AMARAN: Bilangan titik PG sangat sedikit (garisan akan nampak lurus). ' +
+        'Jika awak menjangka ~267 titik tapi nombor di atas rendah, kemungkinan besar browser masih ' +
+        'guna versi script.js/KML LAMA dari cache - cuba hard refresh (Ctrl+Shift+R) atau semak tab ' +
+        'Network di DevTools untuk pastikan fail terkini yang dimuatkan.');
+    }
+    if (dataKMPG_PasirGudang.length > 0) {
+      console.log('Contoh titik pertama Pasir Gudang:', dataKMPG_PasirGudang[0]);
+      console.log('Contoh titik terakhir Pasir Gudang:', dataKMPG_PasirGudang[dataKMPG_PasirGudang.length - 1]);
+    }
+
     binaLayerLebuhraya();
   } catch (error) {
     console.error('❌ Gagal memuatkan fail KML PG:', error);
