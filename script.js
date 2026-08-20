@@ -366,6 +366,10 @@ L.control.topBar = L.Control.extend({
       return a;
     };
 
+    buatBtn('⟳', 'Muat Semula Halaman', function () {
+      location.reload();
+    }, false);
+
     buatBtn('⛶', 'Skrin Penuh', function () {
       const mapDiv = document.getElementById('map');
       if (!document.fullscreenElement) {
@@ -373,7 +377,7 @@ L.control.topBar = L.Control.extend({
       } else {
         document.exitFullscreen();
       }
-    }, false);
+    }, true);
 
     buatBtn('−', 'Zoom Out', function () {
       map.zoomOut();
