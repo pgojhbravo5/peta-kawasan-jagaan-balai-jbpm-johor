@@ -747,8 +747,17 @@ function cari() {
   }
 }
 
-// Carian Alamat (sama)
+// Carian Alamat (dengan pembatalan carian lama - elak race condition)
+let carianAlamatController = null;
+
 function cariAlamat(query) {
+  // Batalkan carian alamat sebelumnya (jika ada) supaya hasil lama tak
+  // sesekali timpa hasil carian baru bila carian lama lambat sampai balik.
+  if (carianAlamatController) {
+    carianAlamatController.abort();
+    carianAlamatController = null;
+  }
+
   if (query.length === 0) {
     searchResults.classList.remove('show');
     return;
@@ -764,14 +773,20 @@ function cariAlamat(query) {
     '<div class="search-result-item" style="color:#999;">Mencari...</div>';
   searchResults.classList.add('show');
 
+  const controller = new AbortController();
+  carianAlamatController = controller;
+
   const url = `api/geocode?q=${encodeURIComponent(query)}&countrycodes=my&limit=5&accept-language=ms`;
 
-  fetch(url)
+  fetch(url, { signal: controller.signal })
     .then((response) => {
       if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
       return response.json();
     })
     .then((data) => {
+      if (carianAlamatController !== controller) return; // carian ini dah dibatalkan/lapuk
+      carianAlamatController = null;
+
       if (data.length === 0) {
         searchResults.innerHTML =
           '<div class="search-result-item" style="color:#999;">Tiada hasil dijumpai</div>';
@@ -794,6 +809,9 @@ function cariAlamat(query) {
       searchResults.classList.add('show');
     })
     .catch((error) => {
+      if (error.name === 'AbortError') return; // carian dibatalkan sebab ada carian baru - bukan ralat sebenar
+      if (carianAlamatController !== controller) return;
+      carianAlamatController = null;
       console.error('Ralat carian alamat:', error);
       searchResults.innerHTML =
         '<div class="search-result-item" style="color:red;">Ralat carian. Sila semak sambungan internet atau cuba lagi.</div>';
@@ -967,14 +985,28 @@ document.addEventListener('click', function (e) {
 });
 
 function clearSearch() {
+  // Batalkan carian alamat yang mungkin masih berjalan
+  if (carianAlamatController) {
+    carianAlamatController.abort();
+    carianAlamatController = null;
+  }
+
   searchInput.value = '';
+  searchResults.innerHTML = '';
   searchResults.classList.remove('show');
   document.getElementById('search-clear').classList.remove('show');
   searchInput.focus();
+
   if (searchMarker) {
     map.removeLayer(searchMarker);
     searchMarker = null;
   }
+  if (routeLayer) {
+    map.removeLayer(routeLayer);
+    routeLayer = null;
+  }
+  tutupInfoPanel();
+  lokasiTerakhir = null;
 }
 
 searchInput.addEventListener('input', function () {
