@@ -116,6 +116,23 @@
       .menu-item-keluar:hover {
         background: #ffe5e5;
       }
+      #menu-info-text {
+        margin-top: 14px;
+        padding-top: 14px;
+        border-top: 1px solid #e0e0e0;
+        font-size: 12px;
+        line-height: 1.7;
+        color: #555;
+      }
+      #menu-info-text .info-judul {
+        font-weight: bold;
+        color: #cc0000;
+        font-size: 13px;
+        margin-bottom: 6px;
+      }
+      #menu-info-text .info-baris {
+        margin-bottom: 6px;
+      }
       .menu-item-checkbox {
         display: flex;
         align-items: center;
@@ -733,14 +750,23 @@
             Lebuhraya EDL
           </label>
 
-          <button class="menu-item" onclick="infoSistem()">ℹ️ Maklumat</button>
-
           <button
             class="menu-item menu-item-keluar"
             onclick="location.href='/'"
           >
             ⬅️ Kembali ke Dashboard Utama
           </button>
+
+          <div id="menu-info-text">
+            <div class="info-judul">🚒 Peta Kawasan Jagaan Balai Bomba Johor</div>
+            <div class="info-baris">🔥 34 Balai Bomba dan Penyelamat</div>
+            <div class="info-baris">🗺️ 4 Zon Operasi</div>
+            <div class="info-baris">📡 Dibangunkan untuk kegunaan JBPM Negeri Johor</div>
+            <div class="info-baris">🗺️ Poligon Kawasan Balai dibina oleh: PBT I Supian Bin Mohd Lis (Pegawai Pencen)</div>
+            <div class="info-baris">© 2026 PGO Johor</div>
+            <div class="info-baris">Dibangunkan oleh: PB Mohamad Aidil, PB Mohd Shafrie & PB Malik</div>
+            <div class="info-baris">Versi 1.0 - 21 Ogos 2026</div>
+          </div>
         </div>
       </div>
       <div id="overlay" onclick="toggleMenu()"></div>

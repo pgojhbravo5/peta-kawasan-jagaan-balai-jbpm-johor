@@ -1147,17 +1147,9 @@ function flyToBalai(lat, lng) {
 }
 
 function infoSistem() {
-  alert(
-    '🚒 Peta Kawasan Jagaan Balai Bomba Johor\n\n' +
-      '🔥 34 Balai Bomba dan Penyelamat\n' +
-      '🗺️ 4 Zon Operasi\n\n' +
-      '📡 Dibangunkan untuk kegunaan\n' +
-      'JBPM Negeri Johor\n\n' +
-      '© 2026 PGO Johor\n' +
-      'Dibangunkan oleh:\n' +
-      'PB Mohamad Aidil, PB Mohd Shafrie & PB Malik\n\n' +
-      'Versi 1.0 - Prototype'
-  );
+  // Fungsi ini tidak lagi digunakan. Maklumat sistem kini dipaparkan
+  // sebagai teks statik dalam side-menu (bawah butang "Kembali ke
+  // Dashboard Utama") - lihat #menu-info-text dalam index.html.
 }
 
 // ============================================
