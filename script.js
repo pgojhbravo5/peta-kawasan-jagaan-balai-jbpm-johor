@@ -1257,11 +1257,21 @@ function parseKMLPointsPG(kmlText) {
     if (parts.length < 2) continue;
     const lng = parts[0];
     const lat = parts[1];
-    if (fid !== null && !isNaN(lat) && !isNaN(lng)) {
-      points.push({ fid, lat, lng });
+    // NOTA PEMBAIKAN: sebelum ini titik yang gagal dapatkan 'fid' terus DIBUANG,
+    // jadi kalau kebanyakan Placemark tiada fid sah, hanya sikit titik (cth. awal & akhir)
+    // sahaja tersimpan -> lebuhraya nampak sebagai garis lurus A-B. Sekarang semua titik
+    // yang ada koordinat sah tetap disimpan, dengan urutan dokumen (i) sebagai fallback.
+    if (!isNaN(lat) && !isNaN(lng)) {
+      points.push({ fid: fid !== null && !isNaN(fid) ? fid : null, urutan: i, lat, lng });
     }
   }
-  points.sort((a, b) => a.fid - b.fid);
+  // Guna 'fid' untuk susun hanya jika SEMUA titik ada fid yang sah; jika tidak, guna urutan dokumen.
+  const semuaAdaFidSah = points.length > 0 && points.every((p) => p.fid !== null);
+  if (semuaAdaFidSah) {
+    points.sort((a, b) => a.fid - b.fid);
+  } else {
+    points.sort((a, b) => a.urutan - b.urutan);
+  }
   return points.map(p => ({ lat: p.lat, lng: p.lng }));
 }
 
