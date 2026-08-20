@@ -116,6 +116,29 @@
       .menu-item-keluar:hover {
         background: #ffe5e5;
       }
+      .menu-item-checkbox {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        width: 100%;
+        box-sizing: border-box;
+        padding: 12px;
+        margin: 4px 0;
+        background: #f5f5f5;
+        border-radius: 4px;
+        font-size: 14px;
+        cursor: pointer;
+      }
+      .menu-item-checkbox:hover {
+        background: #e0e0e0;
+      }
+      .menu-item-checkbox input[type='checkbox'] {
+        width: 16px;
+        height: 16px;
+        flex-shrink: 0;
+        cursor: pointer;
+        accent-color: #cc0000;
+      }
       #filter-zon {
         padding: 8px 12px;
         background: #f9f9f9;
@@ -636,8 +659,9 @@
         </div>
         <div id="menu-body">
           <button class="menu-item" onclick="resetPeta()">🏠 Home</button>
+
           <button class="menu-item" onclick="toggleFilter()">
-            🗺️ Filter Zon
+            🗺️ Zon
           </button>
           <div id="filter-zon" style="display: none">
             <label
@@ -673,32 +697,44 @@
               Zon 4 - Muar</label
             >
           </div>
-          <button class="menu-item" onclick="toggleKMMarker()">
-            🛣️ Tunjuk/Sembunyi Marker KM
-          </button>
-          <button class="menu-item" onclick="togglePoligonZon()">
-            🗺️ Tunjuk/Sembunyi Poligon Zon
-          </button>
-          <button class="menu-item" onclick="togglePoligonBalai()">
-            🗺️ Tunjuk/Sembunyi Poligon Kawasan Balai
-          </button>
-          <button class="menu-item" onclick="toggleLebuhraya()">
-            🛣️ Tunjuk/Sembunyi Lebuhraya Pasir Gudang
-          </button>
-          <button class="menu-item" onclick="toggleLebuhrayaBaru('sde')">
-            🛣️ Tunjuk/Sembunyi Lebuhraya SDE
-          </button>
-          <button class="menu-item" onclick="toggleLebuhrayaBaru('secondlink')">
-            🛣️ Tunjuk/Sembunyi Lebuhraya Second Link
-          </button>
-          <button class="menu-item" onclick="toggleLebuhrayaBaru('edl')">
-            🛣️ Tunjuk/Sembunyi Lebuhraya EDL
-          </button>
+
           <button class="menu-item" onclick="senaraiBalai()">
-            📋 Senarai Balai
+            🔥 Balai
           </button>
           <div id="list-balai" style="display: none"></div>
+
+          <label class="menu-item-checkbox">
+            <input type="checkbox" onchange="togglePoligonBalai(this)" />
+            Kawasan Jagaan Balai
+          </label>
+
+          <label class="menu-item-checkbox">
+            <input type="checkbox" onchange="toggleKMMarker(this)" />
+            Lebuhraya PLUS
+          </label>
+
+          <label class="menu-item-checkbox">
+            <input type="checkbox" onchange="toggleLebuhraya(this)" />
+            Lebuhraya Pasir Gudang
+          </label>
+
+          <label class="menu-item-checkbox">
+            <input type="checkbox" onchange="toggleLebuhrayaBaru('sde', this)" />
+            Lebuhraya SDE
+          </label>
+
+          <label class="menu-item-checkbox">
+            <input type="checkbox" onchange="toggleLebuhrayaBaru('secondlink', this)" />
+            Lebuhraya 2nd Link
+          </label>
+
+          <label class="menu-item-checkbox">
+            <input type="checkbox" onchange="toggleLebuhrayaBaru('edl', this)" />
+            Lebuhraya EDL
+          </label>
+
           <button class="menu-item" onclick="infoSistem()">ℹ️ Maklumat</button>
+
           <button
             class="menu-item menu-item-keluar"
             onclick="location.href='/'"

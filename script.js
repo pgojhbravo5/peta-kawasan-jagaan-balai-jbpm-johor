@@ -1453,8 +1453,9 @@ function binaLayerLebuhraya() {
 // ============================================
 // TOGGLE UNTUK MARKER KM DAN LEBUHRAYA (PAPAR DUA-DUA ARAH)
 // ============================================
-function toggleKMMarker() {
+function toggleKMMarker(checkbox) {
   if (!layerKMMarker) {
+    if (checkbox) checkbox.checked = false;
     alert('Data KM PLUS masih dimuatkan. Sila tunggu sebentar.');
     loadKMLData();
     return;
@@ -1467,10 +1468,12 @@ function toggleKMMarker() {
     map.removeLayer(layerKMMarker);
     kmMarkerVisible = false;
   }
+  if (checkbox) checkbox.checked = kmMarkerVisible;
 }
 
-function toggleLebuhraya() {
+function toggleLebuhraya(checkbox) {
   if (!layerLebuhraya) {
+    if (checkbox) checkbox.checked = false;
     alert('Data Lebuhraya Pasir Gudang masih dimuatkan. Sila tunggu sebentar.');
     loadKMLPasirGudang();
     return;
@@ -1482,6 +1485,7 @@ function toggleLebuhraya() {
     map.removeLayer(layerLebuhraya);
     lebuhrayaVisible = false;
   }
+  if (checkbox) checkbox.checked = lebuhrayaVisible;
 }
 
 // ============================================
@@ -1545,11 +1549,12 @@ function binaLayerLebuhrayaBaru(mode) {
   console.log(`✅ Layer ${cfg.labelMenu} sedia (dua arah).`);
 }
 
-function toggleLebuhrayaBaru(mode) {
+function toggleLebuhrayaBaru(mode, checkbox) {
   const cfg = cariConfigLebuhraya(mode);
   if (!cfg) return;
   const state = layerLebuhrayaBaru[mode];
   if (!state.layer) {
+    if (checkbox) checkbox.checked = false;
     alert(`Data ${cfg.labelMenu} masih dimuatkan. Sila tunggu sebentar.`);
     loadKMLLebuhrayaBaru(mode);
     return;
@@ -1561,6 +1566,7 @@ function toggleLebuhrayaBaru(mode) {
     map.removeLayer(state.layer);
     state.visible = false;
   }
+  if (checkbox) checkbox.checked = state.visible;
 }
 
 // Fungsi parse KM untuk lebuhraya baru (dengan arah)
@@ -1812,23 +1818,14 @@ async function loadKMLPolygon() {
   }
 }
 
-function togglePoligonZon() {
-  if (!layerPoligonZon) {
-    alert('Poligon Zon masih dimuatkan. Sila tunggu sebentar atau muat semula halaman.');
-    loadKMLPolygon();
-    return;
-  }
-  if (!poligonZonVisible) {
-    layerPoligonZon.addTo(map);
-    poligonZonVisible = true;
-  } else {
-    map.removeLayer(layerPoligonZon);
-    poligonZonVisible = false;
-  }
-}
+// NOTA: togglePoligonZon() dibuang daripada menu (ciri "Poligon Zon" tak lagi
+// digunakan). Fungsi loadKMLPolygon() di atas masih membina layerPoligonZon,
+// tapi ia tidak lagi dipaparkan di mana-mana - selamat untuk dibiarkan (dead code)
+// atau dibuang terus jika diperlukan kemudian.
 
-function togglePoligonBalai() {
+function togglePoligonBalai(checkbox) {
   if (!layerPoligonBalai) {
+    if (checkbox) checkbox.checked = false;
     alert('Poligon Kawasan Balai masih dimuatkan. Sila tunggu sebentar atau muat semula halaman.');
     loadKMLPolygon();
     return;
@@ -1840,6 +1837,7 @@ function togglePoligonBalai() {
     map.removeLayer(layerPoligonBalai);
     poligonBalaiVisible = false;
   }
+  if (checkbox) checkbox.checked = poligonBalaiVisible;
 }
 
 // ============================================
