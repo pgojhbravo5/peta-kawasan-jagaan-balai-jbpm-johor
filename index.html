@@ -833,50 +833,40 @@
           -webkit-overflow-scrolling: touch;
         }
 
-        /* 
-         * Mengubah kesemua saiz font komponen dalam bar carian
-         * kepada 10px di paparan telefon bimbit 
-         */
         .search-icon-prefix {
           padding-left: 10px;
-          font-size: 10px;
+          font-size: 12px;
         }
 
         #search-input {
           flex: 1 1 100px;
-          font-size: 10px;
+          font-size: 12.5px;
           padding: 0 8px;
           min-width: 80px;
         }
 
         #search-btn {
-          padding: 0 10px;
-          font-size: 10px;
+          padding: 0 12px;
+          font-size: 12px;
           margin: 0;
-          gap: 0; /* Rapatkan ruang memandangkan tiada teks di telefon bimbit */
-        }
-
-        /* Menyembunyikan text pada butang carian di paparan mudah alih */
-        #search-btn .btn-text {
-          display: none;
         }
 
         .mode-btn {
-          font-size: 10px;
+          font-size: 11px;
           padding: 0 10px;
           margin: 0;
           flex-shrink: 0;
         }
 
         .arah-btn {
-          font-size: 10px;
+          font-size: 10.5px;
           padding: 0 8px;
           margin: 0;
           flex-shrink: 0;
         }
 
         #search-clear {
-          font-size: 10px;
+          font-size: 13px;
           padding: 0 6px;
         }
 
@@ -1066,9 +1056,8 @@
         >
           <i class="fa-solid fa-location-dot"></i> Alamat
         </button>
-        <!-- Butang Cari - Teks 'Cari' dibalut dengan 'btn-text' untuk disorok bila dalam paparan bimbit -->
         <button id="search-btn" type="button">
-          <i class="fa-solid fa-magnifying-glass"></i> <span class="btn-text">Cari</span>
+          <i class="fa-solid fa-magnifying-glass"></i> Cari
         </button>
         <div id="search-results"></div>
       </div>
@@ -1125,112 +1114,6 @@
     </div>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <script>
-      let isMenuOpen = false;
-
-      function toggleMenu() {
-        isMenuOpen = !isMenuOpen;
-        document.getElementById('side-menu').classList.toggle('open', isMenuOpen);
-        document.getElementById('overlay').classList.toggle('show', isMenuOpen);
-      }
-
-      function toggleFilter() {
-        const el = document.getElementById('filter-zon');
-        el.style.display = el.style.display === 'none' ? 'block' : 'none';
-      }
-
-      function senaraiBalai() {
-        const el = document.getElementById('list-balai');
-        el.style.display = el.style.display === 'none' ? 'block' : 'none';
-      }
-
-      function resetPeta() { console.log('Reset Peta'); }
-      function toggleZon(zon, el) { console.log('Toggle Zon', zon, el.checked); }
-      function togglePoligonBalai(el) { console.log('Toggle Poligon Balai', el.checked); }
-      function toggleKMMarker(el) { console.log('Toggle KM Marker', el.checked); }
-      function toggleLebuhraya(el) { console.log('Toggle Lebuhraya', el.checked); }
-      function toggleLebuhrayaBaru(id, el) { console.log('Toggle Lebuhraya Baru', id, el.checked); }
-
-      function clearSearch() {
-        document.getElementById('search-input').value = '';
-        document.getElementById('search-clear').classList.remove('show');
-      }
-
-      const modes = [
-        { id: 'alamat', icon: 'fa-location-dot', text: 'Alamat', class: 'active-alamat' },
-        { id: 'km', icon: 'fa-road', text: 'KM', class: 'active-km' },
-        { id: 'pg', icon: 'fa-road', text: 'PG', class: 'active-pg' },
-        { id: 'sde', icon: 'fa-road', text: 'SDE', class: 'active-sde' },
-        { id: 'secondlink', icon: 'fa-road', text: '2nd Link', class: 'active-secondlink' },
-        { id: 'edl', icon: 'fa-road', text: 'EDL', class: 'active-edl' }
-      ];
-      let currentModeIndex = 0;
-
-      function tukarMode() {
-        const btn = document.getElementById('mode-toggle');
-        // Buang kelas lama
-        btn.classList.remove(modes[currentModeIndex].class);
-        
-        // Pilih mode seterusnya
-        currentModeIndex = (currentModeIndex + 1) % modes.length;
-        const mode = modes[currentModeIndex];
-        
-        // Tambah kelas dan ikon baharu
-        btn.classList.add(mode.class);
-        
-        // Logik khusus untuk menyembunyikan text pada mod mobile dikekalkan 
-        // dengan menetapkan saiz butang dan ikon, jika anda mahu text tersembunyi
-        btn.innerHTML = `<i class="fa-solid ${mode.icon}"></i> ${mode.text}`;
-        
-        // Papar/Sorok butang arah jika mode bukan 'alamat'
-        const showArah = mode.id !== 'alamat';
-        document.getElementById('arah-btn-1').style.display = showArah ? 'flex' : 'none';
-        document.getElementById('arah-btn-2').style.display = showArah ? 'flex' : 'none';
-      }
-
-      function arah1UntukModeSemasa() { return 'Utara'; }
-      function arah2UntukModeSemasa() { return 'Selatan'; }
-      function pilihArah(arah) { console.log('Arah dipilih:', arah); }
-
-      function bukaPopupBalai() {
-        document.getElementById('popup-modal').classList.add('open');
-        document.getElementById('popup-overlay').classList.add('show');
-      }
-
-      function tutupPopupBalai() {
-        document.getElementById('popup-modal').classList.remove('open');
-        document.getElementById('popup-overlay').classList.remove('show');
-      }
-
-      function tutupInfoPanel() {
-        document.getElementById('info-panel').style.display = 'none';
-      }
-
-      document.addEventListener('DOMContentLoaded', () => {
-        const searchInput = document.getElementById('search-input');
-        const searchClear = document.getElementById('search-clear');
-        
-        // Show clear button when typing
-        searchInput.addEventListener('input', () => {
-          if (searchInput.value.length > 0) {
-            searchClear.classList.add('show');
-          } else {
-            searchClear.classList.remove('show');
-          }
-        });
-        
-        // Inisialisasi Peta Asas Leaflet
-        if (typeof L !== 'undefined') {
-          // Tetapan peta asas berpusat di Johor
-          const map = L.map('map', { zoomControl: false }).setView([1.9333, 103.2833], 9);
-          L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-              attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-              subdomains: 'abcd',
-              maxZoom: 20
-          }).addTo(map);
-          L.control.zoom({ position: 'bottomleft' }).addTo(map);
-        }
-      });
-    </script>
+    <script src="script.js"></script>
   </body>
 </html>
