@@ -847,22 +847,26 @@
 
         #search-btn {
           padding: 0 12px;
-          font-size: 12px;
+          font-size: 10px;
           margin: 0;
         }
 
         .mode-btn {
-          font-size: 11px;
+          font-size: 10px;
           padding: 0 10px;
           margin: 0;
           flex-shrink: 0;
         }
 
         .arah-btn {
-          font-size: 10.5px;
+          font-size: 10px;
           padding: 0 8px;
           margin: 0;
           flex-shrink: 0;
+        }
+
+        .btn-label {
+          display: none;
         }
 
         #search-clear {
@@ -1038,7 +1042,7 @@
           style="display: none"
           onclick="pilihArah(arah1UntukModeSemasa())"
         >
-          <i class="fa-solid fa-arrow-up"></i> Utara
+          <i class="fa-solid fa-arrow-up"></i><span class="btn-label"> Utara</span>
         </button>
         <button
           id="arah-btn-2"
@@ -1046,7 +1050,7 @@
           style="display: none"
           onclick="pilihArah(arah2UntukModeSemasa())"
         >
-          <i class="fa-solid fa-arrow-down"></i> Selatan
+          <i class="fa-solid fa-arrow-down"></i><span class="btn-label"> Selatan</span>
         </button>
 
         <button
@@ -1054,10 +1058,10 @@
           onclick="tukarMode()"
           class="mode-btn active-alamat"
         >
-          <i class="fa-solid fa-location-dot"></i> Alamat
+          <i class="fa-solid fa-location-dot"></i><span class="btn-label"> Alamat</span>
         </button>
         <button id="search-btn" type="button">
-          <i class="fa-solid fa-magnifying-glass"></i> Cari
+          <i class="fa-solid fa-magnifying-glass"></i><span class="btn-label"> Cari</span>
         </button>
         <div id="search-results"></div>
       </div>
