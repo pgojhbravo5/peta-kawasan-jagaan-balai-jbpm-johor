@@ -835,44 +835,49 @@
 
         .search-icon-prefix {
           padding-left: 10px;
-          font-size: 12px;
+          font-size: 10px;
         }
 
         #search-input {
           flex: 1 1 100px;
-          font-size: 12.5px;
+          font-size: 10px;
           padding: 0 8px;
           min-width: 80px;
         }
 
         #search-btn {
           padding: 0 12px;
-          font-size: 12px;
+          font-size: 10px;
           margin: 0;
         }
 
+        #search-btn .search-btn-text {
+          display: none;
+        }
+
         .mode-btn {
-          font-size: 11px;
+          font-size: 10px;
           padding: 0 10px;
           margin: 0;
           flex-shrink: 0;
         }
 
         .arah-btn {
-          font-size: 10.5px;
+          font-size: 10px;
           padding: 0 8px;
           margin: 0;
           flex-shrink: 0;
         }
 
         #search-clear {
-          font-size: 13px;
+          font-size: 10px;
           padding: 0 6px;
         }
 
         #search-results {
           top: 44px;
           max-height: 180px;
+          font-size: 10px;
         }
 
         #menu-btn {
@@ -1056,8 +1061,8 @@
         >
           <i class="fa-solid fa-location-dot"></i> Alamat
         </button>
-        <button id="search-btn" type="button">
-          <i class="fa-solid fa-magnifying-glass"></i> Cari
+        <button id="search-btn" type="button" aria-label="Cari">
+          <i class="fa-solid fa-magnifying-glass"></i><span class="search-btn-text"> Cari</span>
         </button>
         <div id="search-results"></div>
       </div>
