@@ -1102,6 +1102,188 @@
 
     <!-- Leaflet JS & App Script -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <script src="script.js"></script>
+    <script>
+      // Define search modes configuration
+      const searchModes = [
+        { key: 'alamat', label: 'Alamat', icon: 'fa-location-dot', placeholder: 'Cari alamat atau tempat...', class: 'active-alamat', arah: false },
+        { key: 'km', label: 'PLUS KM', icon: 'fa-road', placeholder: 'Masukkan KM PLUS (cth: 25.5)...', class: 'active-km', arah: true, arah1: 'Utara', arah2: 'Selatan' },
+        { key: 'pg', label: 'Lebuhraya PG', icon: 'fa-road', placeholder: 'Masukkan KM Pasir Gudang...', class: 'active-pg', arah: true, arah1: 'Barat', arah2: 'Timur' },
+        { key: 'sde', label: 'Lebuhraya SDE', icon: 'fa-road', placeholder: 'Masukkan KM SDE...', class: 'active-sde', arah: true, arah1: 'Barat', arah2: 'Timur' },
+        { key: 'secondlink', label: '2nd Link', icon: 'fa-road', placeholder: 'Masukkan KM 2nd Link...', class: 'active-secondlink', arah: true, arah1: 'Utara', arah2: 'Selatan' },
+        { key: 'edl', label: 'EDL', icon: 'fa-road', placeholder: 'Masukkan KM EDL...', class: 'active-edl', arah: true, arah1: 'Utara', arah2: 'Selatan' }
+      ];
+
+      let currentModeIdx = 0;
+      let selectedArah = '';
+      let map = null;
+      let userMarker = null;
+
+      // Mode Switcher Function
+      window.tukarMode = function() {
+        currentModeIdx = (currentModeIdx + 1) % searchModes.length;
+        updateModeUI();
+      };
+
+      window.arah1UntukModeSemasa = function() {
+        return searchModes[currentModeIdx].arah1 || 'Utara';
+      };
+
+      window.arah2UntukModeSemasa = function() {
+        return searchModes[currentModeIdx].arah2 || 'Selatan';
+      };
+
+      window.pilihArah = function(arah) {
+        selectedArah = arah;
+        const btn1 = document.getElementById('arah-btn-1');
+        const btn2 = document.getElementById('arah-btn-2');
+        if (btn1) btn1.classList.toggle('active-arah', btn1.textContent.trim().includes(arah));
+        if (btn2) btn2.classList.toggle('active-arah', btn2.textContent.trim().includes(arah));
+      };
+
+      function updateModeUI() {
+        const mode = searchModes[currentModeIdx];
+        const modeBtn = document.getElementById('mode-toggle');
+        const searchInput = document.getElementById('search-input');
+        const btn1 = document.getElementById('arah-btn-1');
+        const btn2 = document.getElementById('arah-btn-2');
+
+        if (modeBtn) {
+          modeBtn.className = `mode-btn ${mode.class}`;
+          modeBtn.innerHTML = `<i class="fa-solid ${mode.icon}"></i> ${mode.label}`;
+        }
+
+        if (searchInput) {
+          searchInput.placeholder = mode.placeholder;
+        }
+
+        if (mode.arah) {
+          if (btn1) {
+            btn1.style.display = 'flex';
+            btn1.innerHTML = `<i class="fa-solid fa-arrow-up"></i> ${mode.arah1}`;
+          }
+          if (btn2) {
+            btn2.style.display = 'flex';
+            btn2.innerHTML = `<i class="fa-solid fa-arrow-down"></i> ${mode.arah2}`;
+          }
+          pilihArah(mode.arah1);
+        } else {
+          if (btn1) btn1.style.display = 'none';
+          if (btn2) btn2.style.display = 'none';
+          selectedArah = '';
+        }
+      }
+
+      window.toggleMenu = function() {
+        const sideMenu = document.getElementById('side-menu');
+        const overlay = document.getElementById('overlay');
+        if (sideMenu) sideMenu.classList.toggle('open');
+        if (overlay) overlay.classList.toggle('show');
+      };
+
+      window.toggleFilter = function() {
+        const filterZon = document.getElementById('filter-zon');
+        if (filterZon) {
+          filterZon.style.display = filterZon.style.display === 'none' ? 'block' : 'none';
+        }
+      };
+
+      window.senaraiBalai = function() {
+        const listBalai = document.getElementById('list-balai');
+        if (listBalai) {
+          listBalai.style.display = listBalai.style.display === 'none' ? 'block' : 'none';
+          if (listBalai.style.display === 'block' && listBalai.children.length === 0) {
+            listBalai.innerHTML = `
+              <div onclick="fokusBalai('Larkin')"><i class="fa-solid fa-building-shield"></i> BBP Larkin</div>
+              <div onclick="fokusBalai('Johor Bahru')"><i class="fa-solid fa-building-shield"></i> BBP Johor Bahru</div>
+              <div onclick="fokusBalai('Tebrau')"><i class="fa-solid fa-building-shield"></i> BBP Tebrau</div>
+              <div onclick="fokusBalai('Pasir Gudang')"><i class="fa-solid fa-building-shield"></i> BBP Pasir Gudang</div>
+              <div onclick="fokusBalai('Kulai')"><i class="fa-solid fa-building-shield"></i> BBP Kulai</div>
+            `;
+          }
+        }
+      };
+
+      window.fokusBalai = function(nama) {
+        if (map) map.setView([1.4927, 103.7414], 13);
+        toggleMenu();
+      };
+
+      window.resetPeta = function() {
+        if (map) map.setView([1.8, 103.5], 9);
+        toggleMenu();
+      };
+
+      window.toggleZon = function(zonId, el) {
+        console.log(`Zon ${zonId} toggled:`, el.checked);
+      };
+
+      window.togglePoligonBalai = function(el) {
+        console.log('Poligon Balai toggled:', el.checked);
+      };
+
+      window.toggleKMMarker = function(el) {
+        console.log('KM Marker PLUS toggled:', el.checked);
+      };
+
+      window.toggleLebuhraya = function(el) {
+        console.log('Lebuhraya Pasir Gudang toggled:', el.checked);
+      };
+
+      window.toggleLebuhrayaBaru = function(highway, el) {
+        console.log(`Highway ${highway} toggled:`, el.checked);
+      };
+
+      window.clearSearch = function() {
+        const input = document.getElementById('search-input');
+        const clearBtn = document.getElementById('search-clear');
+        const results = document.getElementById('search-results');
+        if (input) input.value = '';
+        if (clearBtn) clearBtn.classList.remove('show');
+        if (results) results.classList.remove('show');
+      };
+
+      window.bukaPopupBalai = function() {
+        const modal = document.getElementById('popup-modal');
+        const overlay = document.getElementById('popup-overlay');
+        if (modal) modal.classList.add('open');
+        if (overlay) overlay.classList.add('show');
+      };
+
+      window.tutupPopupBalai = function() {
+        const modal = document.getElementById('popup-modal');
+        const overlay = document.getElementById('popup-overlay');
+        if (modal) modal.classList.remove('open');
+        if (overlay) overlay.classList.remove('show');
+      };
+
+      window.tutupInfoPanel = function() {
+        const panel = document.getElementById('info-panel');
+        if (panel) panel.style.display = 'none';
+      };
+
+      window.onload = function() {
+        map = L.map('map').setView([1.8, 103.5], 9);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          maxZoom: 19,
+          attribution: '© OpenStreetMap contributors | PGO Johor'
+        }).addTo(map);
+
+        // Input listener for search clear button
+        const searchInput = document.getElementById('search-input');
+        if (searchInput) {
+          searchInput.addEventListener('input', function() {
+            const clearBtn = document.getElementById('search-clear');
+            if (clearBtn) {
+              if (this.value.length > 0) {
+                clearBtn.classList.add('show');
+              } else {
+                clearBtn.classList.remove('show');
+              }
+            }
+          });
+        }
+      };
+    </script>
   </body>
 </html>
