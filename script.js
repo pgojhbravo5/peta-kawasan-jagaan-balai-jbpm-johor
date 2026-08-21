@@ -591,17 +591,23 @@ function tutupPopupBalai() {
 }
 
 // ============================================
-// PLOT SEMUA BALAI (TITIK SAHAJA)
+// PLOT SEMUA BALAI (IKON BANGUNAN BALAI, WARNA IKUT ZON)
 // ============================================
+function buatIkonBalai(warna) {
+  return L.divIcon({
+    className: 'balai-marker-icon',
+    html: `<i class="fa-solid fa-building-shield" style="color:${warna};"></i>`,
+    iconSize: [26, 26],
+    iconAnchor: [13, 22],
+    popupAnchor: [0, -20],
+  });
+}
+
 dataBalai.forEach((balai) => {
   const warna = warnaZon[balai.zon];
 
-  const marker = L.circleMarker([balai.lat, balai.lng], {
-    radius: 8,
-    color: '#fff',
-    fillColor: warna,
-    fillOpacity: 1,
-    weight: 2.5,
+  const marker = L.marker([balai.lat, balai.lng], {
+    icon: buatIkonBalai(warna),
   }).addTo(map);
 
   layerZon[balai.zon].push(marker);
@@ -634,9 +640,10 @@ const arahBtn2 = document.getElementById('arah-btn-2');
 const lebuhrayaBaruConfig = [
   {
     mode: 'sde',
-    labelBtn: '🛣️ KM SDE',
+    labelBtn: 'KM SDE',
+    icon: 'fa-road',
     labelMenu: 'Lebuhraya SDE',
-    placeholder: '🛣️ Masukkan KM SDE (cth: 10.5)',
+    placeholder: 'Masukkan KM SDE (cth: 10.5)',
     warnaGaris: ['#9C27B0', '#673AB7'],
     arah: [
       { key: 'penawar', label: 'Penawar', file: 'SDE HALA PENAWAR.kml' },
@@ -645,9 +652,10 @@ const lebuhrayaBaruConfig = [
   },
   {
     mode: 'secondlink',
-    labelBtn: '🛣️ KM 2ND LINK',
+    labelBtn: 'KM 2ND LINK',
+    icon: 'fa-road',
     labelMenu: 'Lebuhraya Second Link',
-    placeholder: '🛣️ Masukkan KM Second Link (cth: 10.5)',
+    placeholder: 'Masukkan KM Second Link (cth: 10.5)',
     warnaGaris: ['#009688', '#00BCD4'],
     arah: [
       { key: 'jpo', label: 'JPO', file: 'SECOND LINK HALA JPO.kml' },
@@ -656,9 +664,10 @@ const lebuhrayaBaruConfig = [
   },
   {
     mode: 'edl',
-    labelBtn: '🛣️ KM EDL',
+    labelBtn: 'KM EDL',
+    icon: 'fa-road',
     labelMenu: 'Lebuhraya EDL',
-    placeholder: '🛣️ Masukkan KM EDL (cth: 10.5)',
+    placeholder: 'Masukkan KM EDL (cth: 10.5)',
     warnaGaris: ['#3F51B5', '#5C6BC0'],
     arah: [
       { key: 'pandan', label: 'Pandan', file: 'EDL HALA PANDAN.kml' },
@@ -677,6 +686,11 @@ lebuhrayaBaruConfig.forEach((cfg) => {
 
 function cariConfigLebuhraya(mode) {
   return lebuhrayaBaruConfig.find((c) => c.mode === mode) || null;
+}
+
+// Papar ikon FontAwesome + label teks (label disembunyi di mobile via .btn-label)
+function setBtnIcon(el, iconClass, label) {
+  el.innerHTML = `<i class="fa-solid ${iconClass}"></i><span class="btn-label"> ${label}</span>`;
 }
 
 // Arah pertama (butang atas ⬆) dan kedua (butang bawah ⬇) untuk mod semasa
@@ -724,40 +738,40 @@ function tukarMode() {
   modeCarian = urutanModCarian[(indexSemasa + 1) % urutanModCarian.length];
 
   if (modeCarian === 'alamat') {
-    modeBtn.textContent = '📍 Alamat';
+    setBtnIcon(modeBtn, 'fa-location-dot', 'Alamat');
     modeBtn.className = 'mode-btn active-alamat';
-    searchInput.placeholder = '🔍 Cari alamat atau tempat...';
+    searchInput.placeholder = 'Cari alamat atau tempat...';
     // Sembunyikan butang arah
     arahBtn1.style.display = 'none';
     arahBtn2.style.display = 'none';
   } else if (modeCarian === 'km') {
-    modeBtn.textContent = '🔢 KM PLUS';
+    setBtnIcon(modeBtn, 'fa-hashtag', 'KM PLUS');
     modeBtn.className = 'mode-btn active-km';
-    searchInput.placeholder = '🔢 Masukkan KM PLUS (cth: 23.5)';
+    searchInput.placeholder = 'Masukkan KM PLUS (cth: 23.5)';
     arahBtn1.style.display = 'flex';
     arahBtn2.style.display = 'flex';
-    arahBtn1.textContent = '⬆ Utara';
-    arahBtn2.textContent = '⬇ Selatan';
+    setBtnIcon(arahBtn1, 'fa-arrow-up', 'Utara');
+    setBtnIcon(arahBtn2, 'fa-arrow-down', 'Selatan');
     pilihArah('utara');
   } else if (modeCarian === 'pg') {
-    modeBtn.textContent = '🛣️ KM PG';
+    setBtnIcon(modeBtn, 'fa-road', 'KM PG');
     modeBtn.className = 'mode-btn active-pg';
-    searchInput.placeholder = '🛣️ Masukkan KM Pasir Gudang (cth: 10.5)';
+    searchInput.placeholder = 'Masukkan KM Pasir Gudang (cth: 10.5)';
     arahBtn1.style.display = 'flex';
     arahBtn2.style.display = 'flex';
-    arahBtn1.textContent = '⬆ Pasir Gudang';
-    arahBtn2.textContent = '⬇ Perling';
+    setBtnIcon(arahBtn1, 'fa-arrow-up', 'Pasir Gudang');
+    setBtnIcon(arahBtn2, 'fa-arrow-down', 'Perling');
     pilihArah('pasirgudang');
   } else {
     // Mod lebuhraya baru (sde, secondlink, edl, ...)
     const cfg = cariConfigLebuhraya(modeCarian);
-    modeBtn.textContent = cfg.labelBtn;
+    setBtnIcon(modeBtn, cfg.icon, cfg.labelBtn);
     modeBtn.className = `mode-btn active-${cfg.mode}`;
     searchInput.placeholder = cfg.placeholder;
     arahBtn1.style.display = 'flex';
     arahBtn2.style.display = 'flex';
-    arahBtn1.textContent = `⬆ ${cfg.arah[0].label}`;
-    arahBtn2.textContent = `⬇ ${cfg.arah[1].label}`;
+    setBtnIcon(arahBtn1, 'fa-arrow-up', cfg.arah[0].label);
+    setBtnIcon(arahBtn2, 'fa-arrow-down', cfg.arah[1].label);
     pilihArah(cfg.arah[0].key);
   }
   resultsDiv.classList.remove('show');
@@ -887,7 +901,7 @@ function cariAlamat(query) {
 
       let html = '';
       data.forEach((item) => {
-        html += `<div class="search-result-item" onclick="pilihLokasi(${item.lat}, ${item.lon}, '${escapeHtml(item.display_name)}')">📍 ${item.display_name}</div>`;
+        html += `<div class="search-result-item" onclick="pilihLokasi(${item.lat}, ${item.lon}, '${escapeHtml(item.display_name)}')"><i class="fa-solid fa-location-dot"></i> ${item.display_name}</div>`;
       });
       searchResults.innerHTML = html;
       searchResults.classList.add('show');
@@ -912,7 +926,7 @@ function cariKMPlus(query) {
 
   // Pastikan arah dipilih (jika tiada, mesej)
   if (arahCarian !== 'utara' && arahCarian !== 'selatan') {
-    searchResults.innerHTML = '<div class="search-result-item" style="color:#cc0000;">Sila pilih arah (⬆ Utara / ⬇ Selatan) terlebih dahulu.</div>';
+    searchResults.innerHTML = '<div class="search-result-item" style="color:#cc0000;">Sila pilih arah (<i class="fa-solid fa-arrow-up"></i> Utara / <i class="fa-solid fa-arrow-down"></i> Selatan) terlebih dahulu.</div>';
     searchResults.classList.add('show');
     return;
   }
@@ -962,7 +976,7 @@ function cariKMPGPlus(query) {
   }
 
   if (arahCarian !== 'pasirgudang' && arahCarian !== 'perling') {
-    searchResults.innerHTML = '<div class="search-result-item" style="color:#cc0000;">Sila pilih arah (⬆ Pasir Gudang / ⬇ Perling) terlebih dahulu.</div>';
+    searchResults.innerHTML = '<div class="search-result-item" style="color:#cc0000;">Sila pilih arah (<i class="fa-solid fa-arrow-up"></i> Pasir Gudang / <i class="fa-solid fa-arrow-down"></i> Perling) terlebih dahulu.</div>';
     searchResults.classList.add('show');
     return;
   }
