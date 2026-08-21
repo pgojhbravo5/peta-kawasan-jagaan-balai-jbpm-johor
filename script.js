@@ -299,7 +299,7 @@ const dataBalai = [
   },
   {
     nama: 'BBP Jasin Bestari',
-    zon: 4,
+    zon: 0,
     daerah: 'Jasin/Negeri Melaka',
     lat: 2.2987006825702365,
     lng: 102.41515029627601,
