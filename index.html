@@ -12,7 +12,7 @@
       href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
     />
     
-    <!-- FontAwesome 6 Pro/Free Icons CDN for professional icon replacement -->
+    <!-- FontAwesome 6 Icons CDN -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
@@ -323,37 +323,6 @@
         display: block;
       }
 
-      .leaflet-control-topbar {
-        display: flex;
-        flex-direction: row;
-        border-radius: 6px;
-        overflow: hidden;
-        box-shadow: var(--shadow-soft);
-      }
-
-      .leaflet-control-topbar .topbar-btn {
-        width: 34px;
-        height: 34px;
-        line-height: 34px;
-        text-align: center;
-        font-size: 15px;
-        font-weight: bold;
-        color: var(--text-primary);
-        background: #ffffff;
-        text-decoration: none;
-        user-select: none;
-        display: block;
-        transition: var(--transition-fast);
-      }
-
-      .leaflet-control-topbar .topbar-btn-border {
-        border-left: 1px solid var(--border-color);
-      }
-
-      .leaflet-control-topbar .topbar-btn:hover {
-        background: #f0f0f0;
-      }
-
       #search-container {
         position: absolute;
         top: 12px;
@@ -382,6 +351,8 @@
         padding-left: 14px;
         color: var(--text-secondary);
         font-size: 14px;
+        display: flex;
+        align-items: center;
       }
 
       #search-input {
@@ -483,7 +454,7 @@
         box-sizing: border-box;
         display: none;
         align-items: center;
-        gap: 5px;
+        gap: 6px;
         justify-content: center;
         padding: 0 12px;
         cursor: pointer;
@@ -835,19 +806,19 @@
 
         .search-icon-prefix {
           padding-left: 10px;
-          font-size: 10px;
+          font-size: 12px;
         }
 
         #search-input {
           flex: 1 1 100px;
-          font-size: 10px;
+          font-size: 11px;
           padding: 0 8px;
           min-width: 80px;
         }
 
         #search-btn {
           padding: 0 12px;
-          font-size: 10px;
+          font-size: 11px;
           margin: 0;
         }
 
@@ -856,28 +827,28 @@
         }
 
         .mode-btn {
-          font-size: 10px;
+          font-size: 11px;
           padding: 0 10px;
           margin: 0;
           flex-shrink: 0;
         }
 
         .arah-btn {
-          font-size: 10px;
+          font-size: 11px;
           padding: 0 8px;
           margin: 0;
           flex-shrink: 0;
         }
 
         #search-clear {
-          font-size: 10px;
+          font-size: 11px;
           padding: 0 6px;
         }
 
         #search-results {
           top: 44px;
           max-height: 180px;
-          font-size: 10px;
+          font-size: 11px;
         }
 
         #menu-btn {
@@ -912,7 +883,7 @@
   </head>
   <body>
     <div id="map">
-      <!-- MENU -->
+      <!-- MENU UTAMA -->
       <button id="menu-btn" onclick="toggleMenu()" aria-label="Buka Menu Utama">
         <i class="fa-solid fa-bars"></i>
       </button>
@@ -1023,20 +994,26 @@
       </div>
       <div id="overlay" onclick="toggleMenu()"></div>
 
-      <!-- SEARCH -->
       <div id="search-container">
-        <span class="search-icon-prefix"><i class="fa-solid fa-magnifying-glass"></i></span>
+        <!-- Prefix Icon Kanta Pembesar -->
+        <span class="search-icon-prefix">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </span>
+
+        <!-- Input Carian -->
         <input
           type="text"
           id="search-input"
           placeholder="Cari alamat atau tempat..."
           autocomplete="off"
         />
+
+        <!-- Butang Clear Text -->
         <button id="search-clear" onclick="clearSearch()" title="Kosongkan" aria-label="Kosongkan">
           <i class="fa-solid fa-xmark"></i>
         </button>
 
-        <!-- DUA BUTANG ARAH (disembunyi secara default) -->
+        <!-- DUA BUTANG ARAH (FontAwesome Icons) -->
         <button
           id="arah-btn-1"
           class="arah-btn"
@@ -1054,6 +1031,7 @@
           <i class="fa-solid fa-arrow-down"></i> Selatan
         </button>
 
+        <!-- BUTANG MOD CARIAN (FontAwesome Location Icon) -->
         <button
           id="mode-toggle"
           onclick="tukarMode()"
@@ -1061,13 +1039,17 @@
         >
           <i class="fa-solid fa-location-dot"></i> Alamat
         </button>
+
+        <!-- BUTANG CARI -->
         <button id="search-btn" type="button" aria-label="Cari">
           <i class="fa-solid fa-magnifying-glass"></i><span class="search-btn-text"> Cari</span>
         </button>
+
+        <!-- Keputusan Carian -->
         <div id="search-results"></div>
       </div>
 
-      <!-- BUTANG POPUP BALAI TERDEKAT (di tengah kanan) -->
+      <!-- BUTANG POPUP BALAI TERDEKAT -->
       <button id="popup-btn" onclick="bukaPopupBalai()" title="Balai Terdekat" aria-label="Balai Terdekat">
         <i class="fa-solid fa-fire-flame-curved"></i>
       </button>
@@ -1118,6 +1100,7 @@
       </div>
     </div>
 
+    <!-- Leaflet JS & App Script -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="script.js"></script>
   </body>
