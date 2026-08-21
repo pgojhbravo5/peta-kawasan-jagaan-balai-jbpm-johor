@@ -1049,6 +1049,8 @@ searchInput.addEventListener('keydown', function (e) {
   }
 });
 
+let searchBtnTouchHandled = false;
+
 searchBtn.addEventListener('mousedown', function (e) {
   e.preventDefault();
 });
@@ -1056,8 +1058,21 @@ searchBtn.addEventListener('touchstart', function (e) {
   e.preventDefault();
 }, { passive: false });
 
+// Panggil terus di 'touchend' kerana preventDefault() pada touchstart
+// menyekat event 'click' emulated daripada fire di kebanyakan mobile browser.
+searchBtn.addEventListener('touchend', function (e) {
+  e.preventDefault();
+  searchBtnTouchHandled = true;
+  searchInput.focus();
+  cari();
+  setTimeout(function () {
+    searchBtnTouchHandled = false;
+  }, 400);
+});
+
 searchBtn.addEventListener('click', function (e) {
   e.preventDefault();
+  if (searchBtnTouchHandled) return;
   searchInput.focus();
   cari();
 });
