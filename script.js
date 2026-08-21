@@ -745,7 +745,7 @@ function tukarMode() {
     arahBtn1.style.display = 'none';
     arahBtn2.style.display = 'none';
   } else if (modeCarian === 'km') {
-    setBtnIcon(modeBtn, 'fa-hashtag', 'KM PLUS');
+    setBtnIcon(modeBtn, 'fa-road', 'KM PLUS');
     modeBtn.className = 'mode-btn active-km';
     searchInput.placeholder = 'Masukkan KM PLUS (cth: 23.5)';
     arahBtn1.style.display = 'flex';
