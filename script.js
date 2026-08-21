@@ -342,10 +342,73 @@ const map = L.map('map', {
   maxZoom: 18,
 }).setView([1.85, 103.3], 9);
 
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  attribution: '© OpenStreetMap | JBPM Johor',
-  maxZoom: 19,
-}).addTo(map);
+// ============================================
+// LAYER PETA DASAR (BASEMAP) - BOLEH DITUKAR
+// ============================================
+const basemapLayers = {
+  jalan: L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© OpenStreetMap | JBPM Johor',
+    maxZoom: 19,
+  }),
+  terang: L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+    attribution: '© OpenStreetMap © CARTO | JBPM Johor',
+    subdomains: 'abcd',
+    maxZoom: 19,
+  }),
+  gelap: L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+    attribution: '© OpenStreetMap © CARTO | JBPM Johor',
+    subdomains: 'abcd',
+    maxZoom: 19,
+  }),
+  satelit: L.tileLayer(
+    'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+    {
+      attribution: 'Sumber: Esri, Maxar, Earthstar Geographics | JBPM Johor',
+      maxZoom: 19,
+    }
+  ),
+};
+
+let basemapSemasa = 'jalan';
+basemapLayers[basemapSemasa].addTo(map);
+
+function pilihBasemap(kunci) {
+  if (!basemapLayers[kunci] || kunci === basemapSemasa) {
+    tutupBasemapPanel();
+    return;
+  }
+  map.removeLayer(basemapLayers[basemapSemasa]);
+  basemapLayers[kunci].addTo(map);
+  basemapSemasa = kunci;
+
+  document.querySelectorAll('.basemap-option').forEach((el) => {
+    el.classList.toggle('active', el.dataset.basemap === kunci);
+  });
+
+  tutupBasemapPanel();
+}
+
+function toggleBasemapPanel() {
+  const panel = document.getElementById('basemap-panel');
+  const btn = document.getElementById('basemap-btn');
+  const buka = !panel.classList.contains('show');
+  panel.classList.toggle('show', buka);
+  btn.classList.toggle('active', buka);
+}
+
+function tutupBasemapPanel() {
+  document.getElementById('basemap-panel').classList.remove('show');
+  document.getElementById('basemap-btn').classList.remove('active');
+}
+
+document.addEventListener('click', function (e) {
+  const panel = document.getElementById('basemap-panel');
+  const btn = document.getElementById('basemap-btn');
+  if (!panel || !btn) return;
+  if (panel.classList.contains('show') && !panel.contains(e.target) && !btn.contains(e.target)) {
+    tutupBasemapPanel();
+  }
+});
 
 // ============================================
 // SUSUNAN BUTANG ZOOM & FULLSCREEN (MENDATAR - SATU BARIS)

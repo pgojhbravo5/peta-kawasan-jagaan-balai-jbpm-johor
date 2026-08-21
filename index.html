@@ -11,11 +11,19 @@
       rel="stylesheet"
       href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
     />
-    
+
     <!-- FontAwesome 6 Pro/Free Icons CDN for professional icon replacement -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+
+    <!-- Inter - typeface for a cleaner, more professional operations-console look -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
     />
 
     <style>
@@ -24,13 +32,20 @@
         --bomba-red: #b71c1c;
         --bomba-red-dark: #8e0000;
         --bomba-red-light: #ffebee;
-        --text-primary: #212529;
-        --text-secondary: #5f6368;
-        --bg-light: #f8f9fa;
-        --border-color: #e0e0e0;
-        --shadow-soft: 0 4px 16px rgba(0, 0, 0, 0.12);
-        --shadow-medium: 0 6px 24px rgba(0, 0, 0, 0.18);
-        --transition-fast: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        --bomba-red-rgb: 183, 28, 28;
+        --ink: #0f1720;
+        --text-primary: #1a2028;
+        --text-secondary: #64748b;
+        --bg-light: #f6f7f9;
+        --border-color: #e6e8ec;
+        --surface: rgba(255, 255, 255, 0.92);
+        --surface-solid: #ffffff;
+        --radius-sm: 8px;
+        --radius-md: 12px;
+        --radius-lg: 16px;
+        --shadow-soft: 0 2px 10px rgba(15, 23, 32, 0.08), 0 8px 24px rgba(15, 23, 32, 0.08);
+        --shadow-medium: 0 8px 28px rgba(15, 23, 32, 0.16), 0 2px 8px rgba(15, 23, 32, 0.08);
+        --transition-fast: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
       }
 
       * {
@@ -40,10 +55,12 @@
       body {
         margin: 0;
         padding: 0;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
         color: var(--text-primary);
         background-color: #121212;
         -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        font-feature-settings: "cv11", "ss01";
       }
 
       #map {
@@ -92,20 +109,24 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        background: var(--bomba-red);
+        background: linear-gradient(155deg, var(--bomba-red) 0%, var(--bomba-red-dark) 100%);
         color: #ffffff;
         border: none;
-        font-size: 18px;
+        font-size: 17px;
         padding: 0;
-        border-radius: 8px;
+        border-radius: var(--radius-sm);
         cursor: pointer;
         box-shadow: var(--shadow-soft);
         transition: var(--transition-fast);
       }
 
       #menu-btn:hover {
-        background: var(--bomba-red-dark);
+        box-shadow: var(--shadow-medium);
         transform: translateY(-1px);
+      }
+
+      #menu-btn:active {
+        transform: translateY(0);
       }
 
       #side-menu {
@@ -131,13 +152,14 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 16px 20px;
-        background: var(--bomba-red);
+        padding: 18px 20px;
+        background: linear-gradient(135deg, var(--bomba-red) 0%, var(--bomba-red-dark) 100%);
         color: #ffffff;
         font-weight: 700;
-        font-size: 15px;
-        letter-spacing: 0.3px;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+        font-size: 14.5px;
+        letter-spacing: 0.6px;
+        text-transform: uppercase;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.18);
       }
 
       #menu-header span {
@@ -176,7 +198,7 @@
         margin: 4px 0;
         background: var(--bg-light);
         border: 1px solid transparent;
-        border-radius: 6px;
+        border-radius: var(--radius-sm);
         text-align: left;
         font-size: 13.5px;
         font-weight: 500;
@@ -188,6 +210,7 @@
       .menu-item:hover {
         background: #eef2f5;
         border-color: var(--border-color);
+        transform: translateX(2px);
       }
 
       .menu-item i {
@@ -344,9 +367,10 @@
       .leaflet-control-topbar {
         display: flex;
         flex-direction: row;
-        border-radius: 6px;
+        border-radius: var(--radius-sm);
         overflow: hidden;
         box-shadow: var(--shadow-soft);
+        border: 1px solid var(--border-color);
       }
 
       .leaflet-control-topbar .topbar-btn {
@@ -355,7 +379,7 @@
         line-height: 34px;
         text-align: center;
         font-size: 15px;
-        font-weight: bold;
+        font-weight: 600;
         color: var(--text-primary);
         background: #ffffff;
         text-decoration: none;
@@ -369,7 +393,8 @@
       }
 
       .leaflet-control-topbar .topbar-btn:hover {
-        background: #f0f0f0;
+        background: var(--bomba-red-light);
+        color: var(--bomba-red);
       }
 
       #search-container {
@@ -381,9 +406,11 @@
         width: auto;
         display: flex;
         align-items: center;
-        background: #ffffff;
+        background: var(--surface);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
         border-radius: 24px;
-        border: 1px solid #d1d5db;
+        border: 1px solid var(--border-color);
         box-shadow: var(--shadow-soft);
         overflow: hidden;
         transition: var(--transition-fast);
@@ -393,7 +420,7 @@
 
       #search-container:focus-within {
         border-color: var(--bomba-red);
-        box-shadow: 0 0 0 3px rgba(183, 28, 28, 0.15);
+        box-shadow: 0 0 0 3px rgba(var(--bomba-red-rgb), 0.15), var(--shadow-medium);
       }
 
       .search-icon-prefix {
@@ -585,7 +612,7 @@
         top: 50%;
         transform: translateY(-50%);
         z-index: 1000;
-        background: var(--bomba-red);
+        background: linear-gradient(155deg, var(--bomba-red) 0%, var(--bomba-red-dark) 100%);
         color: #ffffff;
         border: none;
         border-radius: 50%;
@@ -603,7 +630,7 @@
 
       #popup-btn:hover {
         transform: translateY(-50%) scale(1.08);
-        background: var(--bomba-red-dark);
+        box-shadow: 0 10px 30px rgba(var(--bomba-red-rgb), 0.4);
       }
 
       #popup-overlay {
@@ -646,13 +673,14 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 16px 20px;
-        background: var(--bomba-red);
+        padding: 18px 20px;
+        background: linear-gradient(135deg, var(--bomba-red) 0%, var(--bomba-red-dark) 100%);
         color: #ffffff;
         font-weight: 700;
-        font-size: 15px;
+        font-size: 14.5px;
         flex-shrink: 0;
-        letter-spacing: 0.3px;
+        letter-spacing: 0.6px;
+        text-transform: uppercase;
       }
 
       #popup-header span {
@@ -750,15 +778,16 @@
         position: absolute;
         bottom: 90px;
         right: 70px;
-        background: rgba(255, 255, 255, 0.96);
-        backdrop-filter: blur(8px);
+        background: var(--surface);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
         padding: 14px 18px;
-        border-radius: 10px;
+        border-radius: var(--radius-md);
         box-shadow: var(--shadow-medium);
         font-size: 13px;
         z-index: 1200;
         min-width: 230px;
-        border-left: 5px solid var(--bomba-red);
+        border-left: 4px solid var(--bomba-red);
         display: none;
         pointer-events: none;
       }
@@ -832,6 +861,137 @@
       #info-panel .info-julat {
         font-size: 11px;
         color: #757575;
+      }
+
+      /* ============================================
+         PENUKAR LAYER PETA DASAR (BASEMAP SWITCHER)
+         ============================================ */
+      #basemap-btn {
+        position: absolute;
+        bottom: 24px;
+        left: 12px;
+        z-index: 1000;
+        width: 46px;
+        height: 46px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--surface-solid);
+        color: var(--text-primary);
+        border: 1px solid var(--border-color);
+        border-radius: var(--radius-md);
+        font-size: 18px;
+        cursor: pointer;
+        box-shadow: var(--shadow-soft);
+        transition: var(--transition-fast);
+      }
+
+      #basemap-btn:hover {
+        color: var(--bomba-red);
+        box-shadow: var(--shadow-medium);
+        transform: translateY(-1px);
+      }
+
+      #basemap-btn.active {
+        background: var(--bomba-red);
+        color: #ffffff;
+        border-color: var(--bomba-red);
+      }
+
+      #basemap-panel {
+        position: absolute;
+        bottom: 24px;
+        left: 68px;
+        z-index: 1000;
+        background: var(--surface);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid var(--border-color);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-medium);
+        padding: 12px;
+        display: none;
+        gap: 10px;
+        opacity: 0;
+        transform: translateY(6px);
+        transition: var(--transition-fast);
+      }
+
+      #basemap-panel.show {
+        display: flex;
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      #basemap-panel-title {
+        display: none;
+      }
+
+      .basemap-option {
+        width: 78px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+        cursor: pointer;
+        border: none;
+        background: transparent;
+        padding: 0;
+        font-family: inherit;
+      }
+
+      .basemap-swatch {
+        width: 68px;
+        height: 52px;
+        border-radius: var(--radius-sm);
+        border: 2px solid transparent;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #ffffff;
+        font-size: 17px;
+        box-shadow: 0 2px 6px rgba(15, 23, 32, 0.15);
+        transition: var(--transition-fast);
+      }
+
+      .basemap-option:hover .basemap-swatch {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 14px rgba(15, 23, 32, 0.22);
+      }
+
+      .basemap-option.active .basemap-swatch {
+        border-color: var(--bomba-red);
+        box-shadow: 0 0 0 3px rgba(var(--bomba-red-rgb), 0.18);
+      }
+
+      .basemap-option span {
+        font-size: 11px;
+        font-weight: 600;
+        color: var(--text-secondary);
+      }
+
+      .basemap-option.active span {
+        color: var(--bomba-red);
+      }
+
+      .basemap-swatch.swatch-jalan {
+        background: linear-gradient(135deg, #f1f4f6 0%, #c9d6df 100%);
+        color: #5f6b73;
+      }
+
+      .basemap-swatch.swatch-terang {
+        background: linear-gradient(135deg, #fbfbf9 0%, #e4e4df 100%);
+        color: #9a9a92;
+      }
+
+      .basemap-swatch.swatch-gelap {
+        background: linear-gradient(135deg, #2b2f36 0%, #10131a 100%);
+        color: #8a93a3;
+      }
+
+      .basemap-swatch.swatch-satelit {
+        background: linear-gradient(135deg, #2f5233 0%, #16321f 60%, #0c1f13 100%);
+        color: #d9e6c8;
       }
 
       @media (max-width: 600px) {
@@ -925,6 +1085,30 @@
           min-width: unset;
           padding: 10px 14px;
           font-size: 11.5px;
+        }
+
+        #basemap-btn {
+          bottom: 16px;
+          left: 10px;
+          width: 42px;
+          height: 42px;
+          font-size: 16px;
+        }
+
+        #basemap-panel {
+          bottom: 16px;
+          left: 58px;
+          max-width: calc(100vw - 74px);
+          overflow-x: auto;
+        }
+
+        .basemap-option {
+          width: 64px;
+        }
+
+        .basemap-swatch {
+          width: 56px;
+          height: 44px;
         }
       }
     </style>
@@ -1106,6 +1290,29 @@
             Sila cari lokasi terlebih dahulu,<br />kemudian tekan butang untuk lihat 4 balai terdekat.
           </div>
         </div>
+      </div>
+
+      <!-- PENUKAR LAYER PETA DASAR -->
+      <button id="basemap-btn" onclick="toggleBasemapPanel()" title="Peta Dasar" aria-label="Tukar Peta Dasar">
+        <i class="fa-solid fa-layer-group"></i>
+      </button>
+      <div id="basemap-panel">
+        <button class="basemap-option active" data-basemap="jalan" onclick="pilihBasemap('jalan')">
+          <div class="basemap-swatch swatch-jalan"><i class="fa-solid fa-road"></i></div>
+          <span>Jalan</span>
+        </button>
+        <button class="basemap-option" data-basemap="terang" onclick="pilihBasemap('terang')">
+          <div class="basemap-swatch swatch-terang"><i class="fa-solid fa-sun"></i></div>
+          <span>Terang</span>
+        </button>
+        <button class="basemap-option" data-basemap="gelap" onclick="pilihBasemap('gelap')">
+          <div class="basemap-swatch swatch-gelap"><i class="fa-solid fa-moon"></i></div>
+          <span>Gelap</span>
+        </button>
+        <button class="basemap-option" data-basemap="satelit" onclick="pilihBasemap('satelit')">
+          <div class="basemap-swatch swatch-satelit"><i class="fa-solid fa-satellite"></i></div>
+          <span>Satelit</span>
+        </button>
       </div>
 
       <!-- PANEL KAWASAN JAGAAN PLUS -->
