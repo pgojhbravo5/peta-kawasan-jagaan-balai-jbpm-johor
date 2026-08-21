@@ -474,6 +474,34 @@ function kiraJarak(lat1, lon1, lat2, lon2) {
 }
 
 // ============================================
+// FUNGSI TITIK-DALAM-POLIGON (RAY CASTING) & KAWASAN JAGAAN
+// ============================================
+function titikDalamPoligon(lat, lng, poligon) {
+  let dalam = false;
+  for (let i = 0, j = poligon.length - 1; i < poligon.length; j = i++) {
+    const yi = poligon[i][0], xi = poligon[i][1];
+    const yj = poligon[j][0], xj = poligon[j][1];
+    const bersilang =
+      yi > lat !== yj > lat &&
+      lng < ((xj - xi) * (lat - yi)) / (yj - yi) + xi;
+    if (bersilang) dalam = !dalam;
+  }
+  return dalam;
+}
+
+// Kembalikan nama balai yang kawasan jagaannya merangkumi titik (lat, lng),
+// berdasarkan poligon KML "Kawasan Jagaan Balai". Kembalikan null jika tiada
+// dijumpai (cth. poligon belum siap dimuatkan, atau lokasi luar semua poligon).
+function cariBalaiJagaan(lat, lng) {
+  for (const poly of kawasanJagaanPolygons) {
+    if (titikDalamPoligon(lat, lng, poly.coordinates)) {
+      return poly.namaBalai;
+    }
+  }
+  return null;
+}
+
+// ============================================
 // FUNGSI CARI 4 BALAI TERDEKAT (JARAK JALAN SEBENAR - OSRM)
 // ============================================
 const OSRM_TABLE_URL = 'https://router.project-osrm.org/table/v1/driving';
@@ -627,13 +655,38 @@ async function bukaPopupBalai(lat, lng, alamat) {
       ? `<div style="font-size:11px;color:#c2703d;margin-bottom:10px;">⚠️ Jarak jalan tidak dapat dikira buat masa ini — dipaparkan jarak garis lurus (anggaran).</div>`
       : '';
 
+  // Kenal pasti balai yang kawasan jagaannya merangkumi lokasi ini (berdasarkan poligon KML)
+  const namaJagaan = cariBalaiJagaan(lat, lng);
+  let balaiSG = null;
+  let senaraiTOA = terdekat;
+
+  if (namaJagaan) {
+    const idxDalamTerdekat = terdekat.findIndex((b) => b.nama === namaJagaan);
+    if (idxDalamTerdekat !== -1) {
+      // Balai jagaan sudah pun dalam senarai 4 terdekat - keluarkan dari situ, jadikan SG
+      balaiSG = terdekat[idxDalamTerdekat];
+      senaraiTOA = terdekat.filter((_, i) => i !== idxDalamTerdekat);
+    } else {
+      // Balai jagaan bukan antara 4 terdekat mengikut jarak jalan - masukkan secara manual
+      // supaya panel sentiasa tunjuk maklumat kawasan jagaan yang betul dari segi operasi.
+      const dataJagaan = dataBalai.find((b) => b.nama === namaJagaan);
+      if (dataJagaan) {
+        balaiSG = { ...dataJagaan, jarak: kiraJarak(lat, lng, dataJagaan.lat, dataJagaan.lng) };
+        senaraiTOA = terdekat.slice(0, 3);
+      }
+    }
+  }
+
+  const senaraiAkhir = balaiSG ? [balaiSG, ...senaraiTOA] : senaraiTOA;
+
   let html = `<div class="popup-location">📍 ${alamat || 'Lokasi'}</div>${notaJenis}`;
 
-  terdekat.forEach((b, i) => {
+  senaraiAkhir.forEach((b, i) => {
+    const label = !balaiSG ? '' : b.nama === balaiSG.nama ? ' (SG)' : ' (TOA)';
     html += `
       <div class="popup-balai-item" onclick="tunjukRoute(${b.lat}, ${b.lng}, ${lat}, ${lng}, '${b.nama}'); map.flyTo([${b.lat}, ${b.lng}], 15); tutupPopupBalai();">
         <div>
-          <div class="popup-balai-nama">${i + 1}. ${b.nama}</div>
+          <div class="popup-balai-nama">${i + 1}. ${b.nama}${label}</div>
           <div class="popup-balai-info">🏢 ${namaZon[b.zon]} | 📞 <a class="popup-balai-call" href="tel:${b.tel}" onclick="event.stopPropagation();">${b.tel}</a></div>
         </div>
         <div class="popup-balai-jarak">${b.jarak.toFixed(1)} km</div>
@@ -1732,6 +1785,10 @@ let layerPoligonBalai = null;
 let poligonZonVisible = false;
 let poligonBalaiVisible = false;
 
+// Senarai poligon kawasan jagaan setiap balai (nama balai + koordinat poligon),
+// digunakan untuk mengesan lokasi jatuh dalam kawasan jagaan balai mana (SG/TOA).
+let kawasanJagaanPolygons = [];
+
 async function loadKMLPolygon() {
   try {
     const response = await fetch('PETA KAWASAN JAGAAN BOMBA NEGERI JOHOR 2025.kml');
@@ -1844,16 +1901,27 @@ async function loadKMLPolygon() {
         let fillColor = '#1E90FF';
         let fillOpacity = 0.2;
 
+        let balaiDipadan = null;
         const balaiMatch = poly.name.match(/BBP\s+([A-Z\s]+)/i);
         if (balaiMatch) {
           const cari = balaiMatch[1].trim();
           const found = dataBalai.find((b) => b.nama.toUpperCase().includes(cari.toUpperCase()));
-          if (found && warnaZon[found.zon]) {
-            color = warnaZon[found.zon];
-            fillColor = warnaZon[found.zon];
-            fillOpacity = 0.2;
+          if (found) {
+            balaiDipadan = found;
+            if (warnaZon[found.zon]) {
+              color = warnaZon[found.zon];
+              fillColor = warnaZon[found.zon];
+              fillOpacity = 0.2;
+            }
           }
         }
+
+        // Simpan poligon ini sebagai kawasan jagaan balai (guna nama sebenar dataBalai
+        // jika berjaya dipadan, jika tidak guna nama asal dari KML sebagai fallback).
+        kawasanJagaanPolygons.push({
+          namaBalai: balaiDipadan ? balaiDipadan.nama : poly.name,
+          coordinates: poly.coordinates,
+        });
 
         if (color === '#1E90FF') {
           const zonMatch = poly.name.match(/ZON\s*(\d)/i);
