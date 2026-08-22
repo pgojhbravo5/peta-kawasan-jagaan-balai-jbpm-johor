@@ -658,24 +658,26 @@ async function bukaPopupBalai(lat, lng, alamat) {
   // Kenal pasti balai yang kawasan jagaannya merangkumi lokasi ini (berdasarkan poligon KML)
   const namaJagaan = cariBalaiJagaan(lat, lng);
   let balaiSG = null;
-  let senaraiAkhir = [...terdekat];
+  let senaraiTOA = terdekat;
 
   if (namaJagaan) {
-    const idxDalamTerdekat = senaraiAkhir.findIndex((b) => b.nama === namaJagaan);
+    const idxDalamTerdekat = terdekat.findIndex((b) => b.nama === namaJagaan);
     if (idxDalamTerdekat !== -1) {
-      // Balai jagaan sudah pun dalam senarai 4 terdekat - kekalkan susunan ikut jarak, label sahaja
-      balaiSG = senaraiAkhir[idxDalamTerdekat];
+      // Balai jagaan sudah pun dalam senarai 4 terdekat - keluarkan dari situ, jadikan SG
+      balaiSG = terdekat[idxDalamTerdekat];
+      senaraiTOA = terdekat.filter((_, i) => i !== idxDalamTerdekat);
     } else {
-      // Balai jagaan bukan antara 4 terdekat mengikut jarak jalan - tambah sebagai balai ke-5
-      // (bukan gantikan mana-mana balai) supaya panel tetap tunjuk 4 balai terdekat asal
-      // + 1 maklumat kawasan jagaan yang betul dari segi operasi.
+      // Balai jagaan bukan antara 4 terdekat mengikut jarak jalan - masukkan secara manual
+      // supaya panel sentiasa tunjuk maklumat kawasan jagaan yang betul dari segi operasi.
       const dataJagaan = dataBalai.find((b) => b.nama === namaJagaan);
       if (dataJagaan) {
         balaiSG = { ...dataJagaan, jarak: kiraJarak(lat, lng, dataJagaan.lat, dataJagaan.lng) };
-        senaraiAkhir.push(balaiSG);
+        senaraiTOA = terdekat.slice(0, 3);
       }
     }
   }
+
+  const senaraiAkhir = balaiSG ? [balaiSG, ...senaraiTOA] : senaraiTOA;
 
   let html = `<div class="popup-location">📍 ${alamat || 'Lokasi'}</div>${notaJenis}`;
 
@@ -959,11 +961,22 @@ function cari() {
   }
 }
 
-// Carian Alamat (dengan pembatalan carian lama - elak race condition)
+// Carian Alamat - GAYA GOOGLE MAPS:
+// Tiada carian dijalankan semasa menaip. Carian HANYA dijalankan bila
+// pengguna tekan ENTER atau klik butang Cari (lihat cari() & event listener
+// 'keydown' di bawah). Hasilnya SENTIASA dipaparkan sebagai senarai
+// suggestion (walaupun cuma 1 hasil) - pengguna kena klik salah satu
+// suggestion tu untuk peta bergerak ke lokasi tersebut.
 let carianAlamatController = null;
-let carianAlamatTimer = null; // debounce untuk cadangan alamat semasa menaip
 
-function cariAlamat(query, autoSelect = true) {
+// Escape untuk teks yang dipaparkan (bukan untuk letak dalam atribut onclick)
+function escapeHtmlPaparan(text) {
+  const div = document.createElement('div');
+  div.textContent = text;
+  return div.innerHTML;
+}
+
+function cariAlamat(query) {
   // Batalkan carian alamat sebelumnya (jika ada) supaya hasil lama tak
   // sesekali timpa hasil carian baru bila carian lama lambat sampai balik.
   if (carianAlamatController) {
@@ -977,13 +990,13 @@ function cariAlamat(query, autoSelect = true) {
   }
   if (query.length < 3) {
     searchResults.innerHTML =
-      '<div class="search-result-item" style="color:#999;">Minimum 3 aksara untuk alamat.</div>';
+      '<div class="search-result-item search-result-empty">Minimum 3 aksara untuk alamat.</div>';
     searchResults.classList.add('show');
     return;
   }
 
   searchResults.innerHTML =
-    '<div class="search-result-item" style="color:#999;">Mencari...</div>';
+    '<div class="search-result-item search-result-empty"><i class="fa-solid fa-spinner fa-spin"></i> Mencari...</div>';
   searchResults.classList.add('show');
 
   const controller = new AbortController();
@@ -1002,21 +1015,25 @@ function cariAlamat(query, autoSelect = true) {
 
       if (data.length === 0) {
         searchResults.innerHTML =
-          '<div class="search-result-item" style="color:#999;">Tiada hasil dijumpai</div>';
+          '<div class="search-result-item search-result-empty">Tiada hasil dijumpai</div>';
         searchResults.classList.add('show');
         return;
       }
 
-      if (data.length === 1 && autoSelect) {
-        const item = data[0];
-        pilihLokasi(item.lat, item.lon, item.display_name);
-        searchResults.classList.remove('show');
-        return;
-      }
-
+      // Sentiasa papar sebagai senarai suggestion (gaya Google Maps) -
+      // baris pertama = nama tempat (bold), baris kedua = alamat penuh (kelabu).
       let html = '';
       data.forEach((item) => {
-        html += `<div class="search-result-item" onclick="pilihLokasi(${item.lat}, ${item.lon}, '${escapeHtml(item.display_name)}')"><i class="fa-solid fa-location-dot"></i> ${item.display_name}</div>`;
+        const bahagian = item.display_name.split(',');
+        const utama = escapeHtmlPaparan(bahagian[0].trim());
+        const sampingan = escapeHtmlPaparan(bahagian.slice(1).join(',').trim());
+        html += `<div class="search-result-item" onclick="pilihLokasi(${item.lat}, ${item.lon}, '${escapeHtml(item.display_name)}')">
+          <span class="search-result-icon"><i class="fa-solid fa-location-dot"></i></span>
+          <span class="search-result-text">
+            <span class="search-result-utama">${utama}</span>
+            ${sampingan ? `<span class="search-result-sampingan">${sampingan}</span>` : ''}
+          </span>
+        </div>`;
       });
       searchResults.innerHTML = html;
       searchResults.classList.add('show');
@@ -1027,7 +1044,7 @@ function cariAlamat(query, autoSelect = true) {
       carianAlamatController = null;
       console.error('Ralat carian alamat:', error);
       searchResults.innerHTML =
-        '<div class="search-result-item" style="color:red;">Ralat carian. Sila semak sambungan internet atau cuba lagi.</div>';
+        '<div class="search-result-item search-result-empty" style="color:red;">Ralat carian. Sila semak sambungan internet atau cuba lagi.</div>';
       searchResults.classList.add('show');
     });
 }
@@ -1218,10 +1235,6 @@ function clearSearch() {
     carianAlamatController.abort();
     carianAlamatController = null;
   }
-  if (carianAlamatTimer) {
-    clearTimeout(carianAlamatTimer);
-    carianAlamatTimer = null;
-  }
 
   searchInput.value = '';
   searchResults.innerHTML = '';
@@ -1247,27 +1260,6 @@ searchInput.addEventListener('input', function () {
     clearBtn.classList.add('show');
   } else {
     clearBtn.classList.remove('show');
-  }
-
-  // Papar cadangan alamat secara automatik semasa menaip (debounced),
-  // sebelum pengguna tekan Enter/butang cari.
-  if (modeCarian === 'alamat') {
-    const query = this.value.trim();
-    if (carianAlamatTimer) {
-      clearTimeout(carianAlamatTimer);
-      carianAlamatTimer = null;
-    }
-    if (query.length === 0) {
-      if (carianAlamatController) {
-        carianAlamatController.abort();
-        carianAlamatController = null;
-      }
-      searchResults.classList.remove('show');
-      return;
-    }
-    carianAlamatTimer = setTimeout(function () {
-      cariAlamat(query, false);
-    }, 350);
   }
 });
 
