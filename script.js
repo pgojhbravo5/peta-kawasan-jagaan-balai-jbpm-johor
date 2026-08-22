@@ -1047,7 +1047,7 @@ function cariAlamat(query, autoSelect = true) {
   // jika tiada hasil" di sisi server.
   const viewboxJohor = '102.4,2.75,104.35,1.2'; // left,top,right,bottom (Johor)
   const url =
-    `/api/geocode?q=${encodeURIComponent(query)}` +
+    `api/geocode?q=${encodeURIComponent(query)}` +
     `&countrycodes=my&limit=8&accept-language=ms&addressdetails=1` +
     `&viewbox=${viewboxJohor}&bounded=0`;
 
@@ -1104,7 +1104,7 @@ function cariAlamatQueryRingkas(queryRingkas, queryAsal, controllerLama) {
 
   const viewboxJohor = '102.4,2.75,104.35,1.2';
   const url =
-    `/api/geocode?q=${encodeURIComponent(queryRingkas)}` +
+    `api/geocode?q=${encodeURIComponent(queryRingkas)}` +
     `&countrycodes=my&limit=8&accept-language=ms&addressdetails=1` +
     `&viewbox=${viewboxJohor}&bounded=0`;
 
