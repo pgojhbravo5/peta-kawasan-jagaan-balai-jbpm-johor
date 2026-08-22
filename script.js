@@ -360,6 +360,81 @@ function normalisasiNamaBalai(nama) {
   return n;
 }
 
+// ============================================
+// KETUA BALAI & NO TELEFON BALAI
+// (No. telefon ketua balai SENGAJA tidak dimasukkan)
+// ============================================
+const dataKetuaBalaiTel = {
+  'LARKIN': { ketua: 'TPgB I Suhaimi bin Jamal', telBalai: ['07-2243444', '7444'], telBimbit: '019-6887965' },
+  'PASIR GUDANG': { ketua: 'TPgB II Firdaus bin Ahmad', telBalai: ['07-2513444', '07-2542544'], telBimbit: '019-7357842' },
+  'JOHOR JAYA': { ketua: 'PKPgB Tc. Mohd Faiz bin Ramli', telBalai: ['07-3511444'], telBimbit: '019-7367842' },
+  'SKUDAI': { ketua: 'PKPgB Tc. Saifulbahari bin Safar', telBalai: ['07-5205144', '4144'], telBimbit: '019-2277965' },
+  'ISKANDAR PUTERI': { ketua: 'TPgB II Wan Fareezudin bin Wan Husain', telBalai: ['07-5099550'], telBimbit: '019-2487865' },
+  'TEBRAU': { ketua: 'PPgB Muhamad Syahhir Ikhwan bin Mohamad', telBalai: ['07-3317523', '24', '25'], telBimbit: '019-6157865' },
+  'PEKAN NENAS': { ketua: 'PPgB Iqbal bin Raduan', telBalai: ['07-6994444'], telBimbit: '019-6097865' },
+  'PONTIAN': { ketua: 'PPgB Mohamad Aznil Ikhwan bin Ibrahim', telBalai: ['07-6864444', '6874444'], telBimbit: '019-2307865' },
+  'PONTIAN BARU': { ketua: 'PPgB Mahadir bin Mamat', telBalai: ['07-6864044', '6044', '8044'], telBimbit: '019-6917865' },
+  'KULAI': { ketua: 'PPgB Muhammad Fauzi bin Awang', telBalai: ['07-6634444'], telBimbit: '019-2037865' },
+  'BANDAR BARU KULAI': { ketua: 'PPgB Sarhan Akmal bin Mohamad', telBalai: ['07-5908711'], telBimbit: '019-3397865' },
+  'KEMPAS': { ketua: 'PPgB Taufiq bin Atan', telBalai: ['07-2325474', '2327619'], telBimbit: '019-7237845' },
+  'BENUT': { ketua: 'PPgB Mohamad Aznil Ikhwan bin Ibrahim', telBalai: ['07-6905839', '40'], telBimbit: null },
+  'KOTA TINGGI': { ketua: 'PKPgB Mohd Khairul Sufian bin Dahari', telBalai: ['07-8831444'], telBimbit: '019-2317865' },
+  'SUNGAI RENGIT': { ketua: 'PKPgB Baharuddin bin Idris', telBalai: ['07-8246770'], telBimbit: '019-6517865' },
+  'PENAWAR': { ketua: 'PKPgB Soleh bin Nasir', telBalai: ['07-8223692'], telBimbit: '019-7177842' },
+  'MERSING': { ketua: 'PKPgB Mohd Alias bin Hussin', telBalai: ['07-7994444'], telBimbit: '019-7277842' },
+  'ENDAU': { ketua: 'PBK I Asrul bin Ahmad (Pemangku K.B.)', telBalai: ['07-7945444'], telBimbit: '019-3197865' },
+  'SEBANA COVE': { ketua: 'PPgB Umar Hafiz bin Roslee Amir', telBalai: ['07-8861641'], telBimbit: '019-3547865' },
+  'PUNGGAI': { ketua: 'PBT II Ezam bin Mistorerrudin', telBalai: ['07-8861952'], telBimbit: '019-6807865' },
+  'BANDAR TENGGARA': { ketua: 'PBT II Bahtiar bin Selamat', telBalai: ['07-8964498'], telBimbit: '019-6357865' },
+  'PENGGARAM': { ketua: 'TPgB II Norazizan bin Hj. Awang', telBalai: ['07-4345757'], telBimbit: '019-2587863' },
+  'KLUANG': { ketua: 'PKPgB Mohd Fauzi bin Md Nor', telBalai: ['07-7724444'], telBimbit: '019-3917865' },
+  'BATU PAHAT': { ketua: 'PPgB Ayub bin Majid', telBalai: ['07-4338444'], telBimbit: '019-3037863' },
+  'RENGIT': { ketua: 'PPgB Norhisam bin Abdul Talib', telBalai: ['07-4243444'], telBimbit: '019-6857865' },
+  'RENGGAM': { ketua: 'PPgB Nizar bin Mamun', telBalai: ['07-7535444'], telBimbit: '019-3437865' },
+  'YONG PENG': { ketua: 'PPgB Asyraf Nur bin Mohd Yusoff', telBalai: ['07-4674444'], telBimbit: '019-6207965' },
+  'AYER HITAM': { ketua: 'PPgB Mohd Shamin bin Mohamed Salikin', telBalai: ['07-7582206'], telBimbit: '019-3067862' },
+  'PARIT SULONG': { ketua: 'PPgB Asyraf Nur bin Mohd Yusoff', telBalai: [], telBimbit: null },
+  'MUAR': { ketua: 'TPgB II Shahrizal bin Moktar', telBalai: ['06-9555994', '992'], telBimbit: '019-6757965' },
+  'BANDAR BARU SEGAMAT': { ketua: 'TPgB II Kup Mohd Aizad bin Hj Mamat', telBalai: ['07-9435844'], telBimbit: '019-2179879' },
+  'SEGAMAT': { ketua: 'PPgB Muhd Hazim bin Abd Razak', telBalai: ['07-9314444'], telBimbit: '019-2197965' },
+  'LABIS': { ketua: 'PPgB Mohd Hafifie bin Md. Sarif', telBalai: ['07-9254444'], telBimbit: '019-6747965' },
+  'BUKIT GAMBIR': { ketua: 'PPgB Mohd Farizan bin Mokhtar', telBalai: ['06-9765144'], telBimbit: '019-6837965' },
+  'TANGKAK': { ketua: 'PPgB Mohd Hairul Anuar bin Ali', telBalai: ['06-9783444'], telBimbit: '019-6367965' },
+  'PAGOH': { ketua: 'PKPgB Mohd Fadli bin Ismail', telBalai: ['06-9741955', '957'], telBimbit: '019-3687965' },
+};
+
+// Buang aksara bukan nombor (untuk href="tel:") tapi kekalkan teks asal untuk paparan
+function bersihkanNomborTel(no) {
+  return no.replace(/[^0-9+]/g, '');
+}
+
+function binaPautanTel(no) {
+  const bersih = bersihkanNomborTel(no);
+  if (!bersih) return no;
+  return `<a href="tel:${bersih}">${no}</a>`;
+}
+
+// Bina baris "Ketua Balai / No. Telefon Balai / No. Telefon Bimbit" untuk popup
+// (No. telefon peribadi ketua balai sengaja TIDAK dipaparkan)
+function binaMaklumatKetuaBalai(balai) {
+  const kunci = normalisasiNamaBalai(balai.nama);
+  const info = dataKetuaBalaiTel[kunci];
+  if (!info) return '';
+
+  const telBalaiHtml =
+    info.telBalai && info.telBalai.length > 0
+      ? info.telBalai.map((no) => binaPautanTel(no)).join(', ')
+      : '-';
+
+  const telBimbitHtml = info.telBimbit ? binaPautanTel(info.telBimbit) : '-';
+
+  return `
+      <b>👤 Ketua Balai:</b> ${info.ketua}<br>
+      <b>📞 No. Telefon Balai:</b> ${telBalaiHtml}<br>
+      <b>📱 No. Telefon Bimbit:</b> ${telBimbitHtml}<br>
+  `;
+}
+
 // Parser CSV ringkas - sokong medan dipetik ("...") yang mengandungi koma
 // dan baris baru (format standard Google Sheets CSV export).
 function paraCSV(teks) {
@@ -987,16 +1062,24 @@ dataBalai.forEach((balai) => {
   // Fungsi pembina kandungan popup - dipanggil semula oleh Leaflet setiap
   // kali popup dibuka, supaya status jentera terkini (setelah CSV siap
   // dimuatkan) sentiasa dipaparkan tanpa perlu bina semula marker.
-  const binaPopupBalai = () => `
+  const binaPopupBalai = () => {
+    const infoKetua = binaMaklumatKetuaBalai(balai);
+    // Papar no. telefon am (dataBalai.tel) sebagai fallback sahaja jika
+    // tiada data Ketua Balai/No. Telefon Balai untuk balai ini.
+    const telefonFallback =
+      infoKetua === '' ? `      <b>📞 Telefon:</b> <a href="tel:${balai.tel}">${balai.tel}</a><br>\n` : '';
+
+    return `
     <div class="balai-popup-info">
       <strong class="balai-popup-nama">🔥 ${balai.nama}</strong><br>
       <b>Zon:</b> ${namaZon[balai.zon]}<br>
       <b>Daerah:</b> ${balai.daerah}<br>
-      <b>📞 Telefon:</b> <a href="tel:${balai.tel}">${balai.tel}</a><br>
+${telefonFallback}${infoKetua}
       <b>📍 Lat,Lng:</b> ${balai.lat}, ${balai.lng}
       ${binaSeksyenJentera(balai)}
     </div>
   `;
+  };
 
   marker.bindPopup(binaPopupBalai, { maxWidth: 300, minWidth: 260 });
   markerBalaiRujukan.push({ marker, bina: binaPopupBalai });
