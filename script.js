@@ -308,6 +308,221 @@ const dataBalai = [
 ];
 
 // ============================================
+// STATUS JENTERA (CFRT / EMRS / WATER TANKER)
+// Data diambil dari Google Sheets (CSV) dan dipadankan dengan
+// balai berdasarkan lajur "LOKASI SEMASA" dalam setiap sheet.
+// ============================================
+
+// Pautan CSV (Google Sheets - Publish to Web)
+const csvJenteraUrl = {
+  cfrt: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQt0JkN2yWW_0FeY5GKpmIvs1uI6si89JcqNmSTO3f--rM8FhQZe1Q97YQd8tiAsmaMQdTXO5TQWedy/pub?gid=0&single=true&output=csv',
+  emrs: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQt0JkN2yWW_0FeY5GKpmIvs1uI6si89JcqNmSTO3f--rM8FhQZe1Q97YQd8tiAsmaMQdTXO5TQWedy/pub?gid=795399708&single=true&output=csv',
+  water: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQt0JkN2yWW_0FeY5GKpmIvs1uI6si89JcqNmSTO3f--rM8FhQZe1Q97YQd8tiAsmaMQdTXO5TQWedy/pub?gid=290336578&single=true&output=csv',
+};
+
+// Ikon FontAwesome ikut jenis jentera (icon sahaja dipaparkan dalam popup)
+const ikonJentera = {
+  cfrt: 'fa-truck',
+  emrs: 'fa-truck-medical',
+  water: 'fa-truck-droplet',
+};
+
+// Label penuh untuk aria/title icon (aksesibiliti sahaja, tidak dipaparkan sebagai teks)
+const labelJenisJentera = {
+  cfrt: 'CFRT / FRT',
+  emrs: 'EMRS',
+  water: 'Water Tanker',
+};
+
+// Data jentera tersusun ikut nama balai (key dinormalisasikan), contoh:
+// { LARKIN: [ {jenis:'cfrt', status:{...}, callsign:'CFRT 1', plat:'VLN 5716'}, ... ] }
+let dataJenteraByBalai = {};
+let statusMuatJentera = 'belum'; // 'belum' | 'sedang' | 'siap' | 'ralat'
+
+// Rujukan setiap marker balai + fungsi pembina popup, supaya popup yang
+// sedang terbuka boleh disegarkan sebaik sahaja data jentera siap dimuatkan.
+const markerBalaiRujukan = [];
+
+// Alias untuk nama balai yang tidak sepadan terus dengan lajur LOKASI SEMASA
+const aliasNamaBalai = {
+  'FIRE POST BENUT': 'BENUT',
+  'FIRE POST PARIT SULONG': 'PARIT SULONG',
+  'LARKIN (JB)': 'LARKIN',
+};
+
+// Tukar nama balai (dataBalai) kepada kunci padanan yang sama format dengan
+// lajur LOKASI SEMASA dalam CSV jentera.
+function normalisasiNamaBalai(nama) {
+  let n = nama.toUpperCase().replace(/^BBP\s+/, '').trim();
+  if (aliasNamaBalai[n]) return aliasNamaBalai[n];
+  n = n.replace(/^FIRE POST\s+/, '').trim();
+  return n;
+}
+
+// Parser CSV ringkas - sokong medan dipetik ("...") yang mengandungi koma
+// dan baris baru (format standard Google Sheets CSV export).
+function paraCSV(teks) {
+  const baris = [];
+  let sel = '';
+  let row = [];
+  let dalamPetikan = false;
+
+  for (let i = 0; i < teks.length; i++) {
+    const c = teks[i];
+    if (dalamPetikan) {
+      if (c === '"') {
+        if (teks[i + 1] === '"') {
+          sel += '"';
+          i++;
+        } else {
+          dalamPetikan = false;
+        }
+      } else {
+        sel += c;
+      }
+    } else {
+      if (c === '"') {
+        dalamPetikan = true;
+      } else if (c === ',') {
+        row.push(sel);
+        sel = '';
+      } else if (c === '\r') {
+        // abaikan
+      } else if (c === '\n') {
+        row.push(sel);
+        baris.push(row);
+        row = [];
+        sel = '';
+      } else {
+        sel += c;
+      }
+    }
+  }
+  if (sel.length > 0 || row.length > 0) {
+    row.push(sel);
+    baris.push(row);
+  }
+  return baris.filter((r) => r.some((v) => v && v.trim().length > 0));
+}
+
+// Petakan status mentah dari lajur "STATUS JENTERA" kepada 3 status yang
+// dibenarkan sahaja: Baik (hijau), Rosak Minor (jingga), Rosak (merah).
+function petakanStatusJentera(mentah) {
+  const s = (mentah || '').toUpperCase();
+  if (s.includes('1. STATUS BAIK')) {
+    return { label: 'Baik', warna: '#2e7d32', latar: '#e8f5e9' };
+  }
+  if (s.includes('2. STATUS ROSAK MINOR')) {
+    return { label: 'Rosak Minor', warna: '#e65100', latar: '#fff3e0' };
+  }
+  if (s.includes('3. STATUS ROSAK')) {
+    return { label: 'Rosak', warna: '#c62828', latar: '#ffebee' };
+  }
+  return null; // status lain (cth: dalam proses lupus) - tidak dipaparkan
+}
+
+// Muat & susun satu sheet CSV jentera (cfrt/emrs/water) ke dalam dataJenteraByBalai
+async function muatSheetJentera(jenis, url) {
+  try {
+    const response = await fetch(url);
+    if (!response.ok) throw new Error(`Gagal fetch sheet ${jenis}: ${response.status}`);
+    const teks = await response.text();
+    const baris = paraCSV(teks);
+    if (baris.length < 2) return;
+
+    const header = baris[0].map((h) => h.trim().toUpperCase());
+    const idxCallsign = header.indexOf('CALLSIGN');
+    const idxPlate = header.indexOf('PLATE');
+    const idxPenempatan = header.indexOf('LOKASI SEMASA');
+    const idxStatus = header.indexOf('STATUS JENTERA');
+
+    if (idxPenempatan === -1 || idxStatus === -1) return;
+
+    for (let i = 1; i < baris.length; i++) {
+      const r = baris[i];
+      const penempatan = (r[idxPenempatan] || '').trim().toUpperCase();
+      if (!penempatan) continue;
+
+      const status = petakanStatusJentera(r[idxStatus]);
+      if (!status) continue; // hanya 3 status dibenarkan
+
+      const rekod = {
+        jenis,
+        callsign: (r[idxCallsign] || '-').trim() || '-',
+        plat: (r[idxPlate] || '-').trim() || '-',
+        status,
+      };
+
+      if (!dataJenteraByBalai[penempatan]) dataJenteraByBalai[penempatan] = [];
+      dataJenteraByBalai[penempatan].push(rekod);
+    }
+  } catch (error) {
+    console.error(`❌ Gagal muatkan data jentera (${jenis}):`, error);
+  }
+}
+
+// Muat ketiga-tiga sheet (CFRT, EMRS, Water Tanker) secara selari
+async function muatSemuaDataJentera() {
+  statusMuatJentera = 'sedang';
+  dataJenteraByBalai = {};
+  try {
+    await Promise.all([
+      muatSheetJentera('cfrt', csvJenteraUrl.cfrt),
+      muatSheetJentera('emrs', csvJenteraUrl.emrs),
+      muatSheetJentera('water', csvJenteraUrl.water),
+    ]);
+    statusMuatJentera = 'siap';
+    console.log('✅ Data status jentera (CFRT/EMRS/Water Tanker) berjaya dimuatkan.');
+  } catch (error) {
+    statusMuatJentera = 'ralat';
+    console.error('❌ Gagal muatkan data jentera:', error);
+  }
+
+  // Segarkan mana-mana popup balai yang sedang terbuka supaya terus
+  // memaparkan status jentera sebaik sahaja data siap dimuatkan.
+  markerBalaiRujukan.forEach(({ marker, bina }) => {
+    if (marker.isPopupOpen()) {
+      marker.setPopupContent(bina());
+    }
+  });
+}
+
+// Bina seksyen HTML "Status Jentera" untuk popup satu balai
+function binaSeksyenJentera(balai) {
+  const kunci = normalisasiNamaBalai(balai.nama);
+
+  let dalaman = '';
+
+  if (statusMuatJentera === 'belum' || statusMuatJentera === 'sedang') {
+    dalaman = `<div class="jentera-loading"><i class="fa-solid fa-spinner"></i> Memuatkan status jentera...</div>`;
+  } else {
+    const senarai = dataJenteraByBalai[kunci] || [];
+    if (senarai.length === 0) {
+      dalaman = `<div class="jentera-kosong">Tiada maklumat jentera direkodkan.</div>`;
+    } else {
+      dalaman = senarai
+        .map(
+          (j) => `
+        <div class="jentera-item">
+          <span class="jentera-item-icon" title="${labelJenisJentera[j.jenis]}"><i class="fa-solid ${ikonJentera[j.jenis]}"></i></span>
+          <span class="jentera-item-status" style="color:${j.status.warna};background:${j.status.latar};">${j.status.label}</span>
+          <span class="jentera-item-callsign">${j.callsign}</span>
+          <span class="jentera-item-plate">${j.plat}</span>
+        </div>`
+        )
+        .join('');
+    }
+  }
+
+  return `
+    <div class="jentera-section">
+      <div class="jentera-section-title"><i class="fa-solid fa-truck-fast"></i> Status Jentera</div>
+      ${dalaman}
+    </div>
+  `;
+}
+
+// ============================================
 // WARNA ZON
 // ============================================
 const warnaZon = {
@@ -768,15 +983,22 @@ dataBalai.forEach((balai) => {
 
   layerZon[balai.zon].push(marker);
 
-  marker.bindPopup(`
-    <div style="font-family:Arial;font-size:13px;">
-      <strong style="color:${warna};">🔥 ${balai.nama}</strong><br>
+  // Fungsi pembina kandungan popup - dipanggil semula oleh Leaflet setiap
+  // kali popup dibuka, supaya status jentera terkini (setelah CSV siap
+  // dimuatkan) sentiasa dipaparkan tanpa perlu bina semula marker.
+  const binaPopupBalai = () => `
+    <div class="balai-popup-info">
+      <strong class="balai-popup-nama">🔥 ${balai.nama}</strong><br>
       <b>Zon:</b> ${namaZon[balai.zon]}<br>
       <b>Daerah:</b> ${balai.daerah}<br>
       <b>📞 Telefon:</b> <a href="tel:${balai.tel}">${balai.tel}</a><br>
       <b>📍 Lat,Lng:</b> ${balai.lat}, ${balai.lng}
+      ${binaSeksyenJentera(balai)}
     </div>
-  `);
+  `;
+
+  marker.bindPopup(binaPopupBalai, { maxWidth: 300, minWidth: 260 });
+  markerBalaiRujukan.push({ marker, bina: binaPopupBalai });
 });
 
 // ============================================
@@ -2196,6 +2418,7 @@ loadKMLData();
 loadKMLPasirGudang();
 loadKMLPolygon();
 lebuhrayaBaruConfig.forEach((cfg) => loadKMLLebuhrayaBaru(cfg.mode));
+muatSemuaDataJentera();
 
 // ============================================
 // LOADING SIAP
