@@ -569,6 +569,35 @@ async function panggilOSRMTable(lat, lng, calon) {
 }
 
 // ============================================
+// FUNGSI DAPATKAN JARAK JALAN SEBENAR (OSRM ROUTE) - SATU BALAI
+// Digunakan khas untuk balai SG (kawasan jagaan) yang jatuh di luar
+// senarai 4 terdekat, supaya jaraknya juga ikut jalan raya sebenar
+// dan bukan garis lurus.
+// ============================================
+async function dapatkanJarakRouteSebenar(lat1, lng1, lat2, lng2) {
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), OSRM_TIMEOUT_MS);
+
+  try {
+    const url = `https://router.project-osrm.org/route/v1/driving/${lng1},${lat1};${lng2},${lat2}?overview=false`;
+    const resp = await fetch(url, { signal: controller.signal });
+    if (!resp.ok) throw new Error(`OSRM route ralat: ${resp.status}`);
+
+    const data = await resp.json();
+    if (data.code !== 'Ok' || !data.routes || data.routes.length === 0) {
+      throw new Error('Tiada route ditemui untuk balai SG.');
+    }
+
+    return data.routes[0].distance / 1000; // meter -> km
+  } catch (err) {
+    console.warn('⚠️ Gagal dapatkan jarak jalan (OSRM) untuk balai SG, guna jarak garis lurus sebagai fallback:', err);
+    return null;
+  } finally {
+    clearTimeout(timeoutId);
+  }
+}
+
+// ============================================
 // FUNGSI ROUTE / LALUAN DARI BALAI KE LOKASI
 // ============================================
 let routeLayer = null;
@@ -659,6 +688,7 @@ async function bukaPopupBalai(lat, lng, alamat) {
   const namaJagaan = cariBalaiJagaan(lat, lng);
   let balaiSG = null;
   let senaraiAkhir = [...terdekat];
+  let notaJarakSGLurus = false;
 
   if (namaJagaan) {
     const idxDalamTerdekat = senaraiAkhir.findIndex((b) => b.nama === namaJagaan);
@@ -669,15 +699,27 @@ async function bukaPopupBalai(lat, lng, alamat) {
       // Balai jagaan bukan antara 4 terdekat mengikut jarak jalan - tambah sebagai balai ke-5
       // (bukan gantikan mana-mana balai) supaya panel tetap tunjuk 4 balai terdekat asal
       // + 1 maklumat kawasan jagaan yang betul dari segi operasi.
+      // Jaraknya turut dikira ikut jalan raya sebenar (OSRM), bukan garis lurus.
       const dataJagaan = dataBalai.find((b) => b.nama === namaJagaan);
       if (dataJagaan) {
-        balaiSG = { ...dataJagaan, jarak: kiraJarak(lat, lng, dataJagaan.lat, dataJagaan.lng) };
+        let jarakSG = await dapatkanJarakRouteSebenar(lat, lng, dataJagaan.lat, dataJagaan.lng);
+        if (jarakSG === null) {
+          jarakSG = kiraJarak(lat, lng, dataJagaan.lat, dataJagaan.lng);
+          notaJarakSGLurus = true;
+        }
+        balaiSG = { ...dataJagaan, jarak: jarakSG };
         senaraiAkhir.push(balaiSG);
       }
     }
   }
 
-  let html = `<div class="popup-location">📍 ${alamat || 'Lokasi'}</div>${notaJenis}`;
+  if (!lokasiTerakhir || lokasiTerakhir.lat !== lat || lokasiTerakhir.lng !== lng) return;
+
+  const notaJagaanLurus = notaJarakSGLurus
+    ? `<div style="font-size:11px;color:#c2703d;margin-bottom:10px;">⚠️ Jarak jalan balai SG tidak dapat dikira buat masa ini — dipaparkan jarak garis lurus (anggaran).</div>`
+    : '';
+
+  let html = `<div class="popup-location">📍 ${alamat || 'Lokasi'}</div>${notaJenis}${notaJagaanLurus}`;
 
   senaraiAkhir.forEach((b, i) => {
     const label = !balaiSG ? '' : b.nama === balaiSG.nama ? ' (SG)' : ' (TOA)';
