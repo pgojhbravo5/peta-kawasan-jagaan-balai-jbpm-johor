@@ -348,6 +348,7 @@ const aliasNamaBalai = {
   'FIRE POST BENUT': 'BENUT',
   'FIRE POST PARIT SULONG': 'PARIT SULONG',
   'LARKIN (JB)': 'LARKIN',
+  'BANDAR PENAWAR': 'PENAWAR',
 };
 
 // Tukar nama balai (dataBalai) kepada kunci padanan yang sama format dengan
