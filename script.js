@@ -961,9 +961,8 @@ function cari() {
 
 // Carian Alamat (dengan pembatalan carian lama - elak race condition)
 let carianAlamatController = null;
-let carianAlamatTimer = null; // debounce untuk cadangan alamat semasa menaip
 
-function cariAlamat(query, autoSelect = true) {
+function cariAlamat(query) {
   // Batalkan carian alamat sebelumnya (jika ada) supaya hasil lama tak
   // sesekali timpa hasil carian baru bila carian lama lambat sampai balik.
   if (carianAlamatController) {
@@ -1004,13 +1003,6 @@ function cariAlamat(query, autoSelect = true) {
         searchResults.innerHTML =
           '<div class="search-result-item" style="color:#999;">Tiada hasil dijumpai</div>';
         searchResults.classList.add('show');
-        return;
-      }
-
-      if (data.length === 1 && autoSelect) {
-        const item = data[0];
-        pilihLokasi(item.lat, item.lon, item.display_name);
-        searchResults.classList.remove('show');
         return;
       }
 
@@ -1218,10 +1210,6 @@ function clearSearch() {
     carianAlamatController.abort();
     carianAlamatController = null;
   }
-  if (carianAlamatTimer) {
-    clearTimeout(carianAlamatTimer);
-    carianAlamatTimer = null;
-  }
 
   searchInput.value = '';
   searchResults.innerHTML = '';
@@ -1247,27 +1235,6 @@ searchInput.addEventListener('input', function () {
     clearBtn.classList.add('show');
   } else {
     clearBtn.classList.remove('show');
-  }
-
-  // Papar cadangan alamat secara automatik semasa menaip (debounced),
-  // sebelum pengguna tekan Enter/butang cari.
-  if (modeCarian === 'alamat') {
-    const query = this.value.trim();
-    if (carianAlamatTimer) {
-      clearTimeout(carianAlamatTimer);
-      carianAlamatTimer = null;
-    }
-    if (query.length === 0) {
-      if (carianAlamatController) {
-        carianAlamatController.abort();
-        carianAlamatController = null;
-      }
-      searchResults.classList.remove('show');
-      return;
-    }
-    carianAlamatTimer = setTimeout(function () {
-      cariAlamat(query, false);
-    }, 350);
   }
 });
 
