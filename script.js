@@ -1011,6 +1011,47 @@ function cari() {
 let carianAlamatController = null;
 let carianAlamatTimer = null; // debounce untuk cadangan alamat semasa menaip
 
+// Cache + throttle untuk elak dua request (auto-suggest + explicit search)
+// tertembak rapat & langgar had 1 request/saat Nominatim - punca hasil
+// "kosong"/tiada respons pada carian yang sepatutnya wujud (cth: Mersing).
+const geocodeCache = new Map(); // url -> { data, ts }
+const GEOCODE_CACHE_TTL_MS = 30000; // guna semula hasil sama dalam 30 saat
+const GEOCODE_MIN_INTERVAL_MS = 1100; // jarak minimum antara request sebenar
+let geocodeLastFetchTime = 0;
+
+function delay(ms, signal) {
+  return new Promise((resolve, reject) => {
+    const id = setTimeout(resolve, ms);
+    if (signal) {
+      signal.addEventListener('abort', () => {
+        clearTimeout(id);
+        reject(new DOMException('Aborted', 'AbortError'));
+      });
+    }
+  });
+}
+
+// Wrapper fetch geocode: guna cache jika ada, hormati jarak minimum
+// antara request sebenar ke Nominatim, dan sokong AbortController.
+async function geocodeFetch(url, signal) {
+  const cached = geocodeCache.get(url);
+  if (cached && Date.now() - cached.ts < GEOCODE_CACHE_TTL_MS) {
+    return cached.data;
+  }
+
+  const tungguLagi = GEOCODE_MIN_INTERVAL_MS - (Date.now() - geocodeLastFetchTime);
+  if (tungguLagi > 0) {
+    await delay(tungguLagi, signal);
+  }
+
+  geocodeLastFetchTime = Date.now();
+  const response = await fetch(url, { signal });
+  if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+  const data = await response.json();
+  geocodeCache.set(url, { data, ts: Date.now() });
+  return data;
+}
+
 function cariAlamat(query, autoSelect = true) {
   // Batalkan carian alamat sebelumnya (jika ada) supaya hasil lama tak
   // sesekali timpa hasil carian baru bila carian lama lambat sampai balik.
@@ -1051,11 +1092,7 @@ function cariAlamat(query, autoSelect = true) {
     `&countrycodes=my&limit=8&accept-language=ms&addressdetails=1` +
     `&viewbox=${viewboxJohor}&bounded=0`;
 
-  fetch(url, { signal: controller.signal })
-    .then((response) => {
-      if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-      return response.json();
-    })
+  geocodeFetch(url, controller.signal)
     .then((data) => {
       if (carianAlamatController !== controller) return; // carian ini dah dibatalkan/lapuk
       carianAlamatController = null;
@@ -1108,11 +1145,7 @@ function cariAlamatQueryRingkas(queryRingkas, queryAsal, controllerLama) {
     `&countrycodes=my&limit=8&accept-language=ms&addressdetails=1` +
     `&viewbox=${viewboxJohor}&bounded=0`;
 
-  fetch(url, { signal: controller.signal })
-    .then((response) => {
-      if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-      return response.json();
-    })
+  geocodeFetch(url, controller.signal)
     .then((data) => {
       if (carianAlamatController !== controller) return;
       carianAlamatController = null;
