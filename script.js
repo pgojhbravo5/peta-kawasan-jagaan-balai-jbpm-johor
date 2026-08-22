@@ -429,9 +429,9 @@ function binaMaklumatKetuaBalai(balai) {
   const telBimbitHtml = info.telBimbit ? binaPautanTel(info.telBimbit) : '-';
 
   return `
-      <b>👤 Ketua Balai:</b> ${info.ketua}<br>
-      <b>📞 No. Telefon Balai:</b> ${telBalaiHtml}<br>
-      <b>📱 No. Telefon Bimbit:</b> ${telBimbitHtml}<br>
+      <b><i class="fa-solid fa-user-tie"></i> Ketua Balai:</b> ${info.ketua}<br>
+      <b><i class="fa-solid fa-phone"></i> No. Telefon Balai:</b> ${telBalaiHtml}<br>
+      <b><i class="fa-solid fa-mobile-screen-button"></i> No. Telefon Bimbit:</b> ${telBimbitHtml}<br>
   `;
 }
 
@@ -1067,15 +1067,15 @@ dataBalai.forEach((balai) => {
     // Papar no. telefon am (dataBalai.tel) sebagai fallback sahaja jika
     // tiada data Ketua Balai/No. Telefon Balai untuk balai ini.
     const telefonFallback =
-      infoKetua === '' ? `      <b>📞 Telefon:</b> <a href="tel:${balai.tel}">${balai.tel}</a><br>\n` : '';
+      infoKetua === '' ? `      <b><i class="fa-solid fa-phone"></i> Telefon:</b> <a href="tel:${balai.tel}">${balai.tel}</a><br>\n` : '';
 
     return `
     <div class="balai-popup-info">
-      <strong class="balai-popup-nama">🔥 ${balai.nama}</strong><br>
+      <strong class="balai-popup-nama"><i class="fa-solid fa-building-shield"></i> ${balai.nama}</strong><br>
       <b>Zon:</b> ${namaZon[balai.zon]}<br>
       <b>Daerah:</b> ${balai.daerah}<br>
 ${telefonFallback}${infoKetua}
-      <b>📍 Lat,Lng:</b> ${balai.lat}, ${balai.lng}
+      <b><i class="fa-solid fa-location-dot"></i> Lat,Lng:</b> ${balai.lat}, ${balai.lng}
       ${binaSeksyenJentera(balai)}
     </div>
   `;
