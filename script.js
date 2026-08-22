@@ -1020,8 +1020,20 @@ function cariAlamat(query) {
         return;
       }
 
-      // Sentiasa papar sebagai senarai suggestion (gaya Google Maps) -
-      // baris pertama = nama tempat (bold), baris kedua = alamat penuh (kelabu).
+      // Kalau cuma 1 padanan yang jelas, terus lompat ke situ (carian
+      // langsung) - macam Google Maps bila query anda padan tepat dengan
+      // satu tempat sahaja. Kalau ada beberapa kemungkinan, baru papar
+      // senarai suggestion untuk pengguna pilih sendiri.
+      if (data.length === 1) {
+        const item = data[0];
+        pilihLokasi(item.lat, item.lon, item.display_name);
+        searchResults.classList.remove('show');
+        return;
+      }
+
+      // Beberapa kemungkinan hasil - papar sebagai senarai suggestion
+      // (gaya Google Maps): baris pertama = nama tempat (bold),
+      // baris kedua = alamat penuh (kelabu).
       let html = '';
       data.forEach((item) => {
         const bahagian = item.display_name.split(',');
