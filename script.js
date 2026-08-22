@@ -943,6 +943,12 @@ const searchResults = document.getElementById('search-results');
 const searchBtn = document.getElementById('search-btn');
 let searchMarker = null;
 
+// Simpan hasil carian alamat terkini supaya item senarai cadangan boleh
+// dirujuk melalui data-index (event delegation) dan bukan onclick string
+// interpolation - elak alamat dengan aksara istimewa (', ", &, kurungan,
+// dsb) rosakkan HTML/JS dan menyebabkan senarai cadangan gagal dipaparkan.
+let hasilCarianAlamatTerkini = [];
+
 // Fungsi parse KM PLUS (dengan arah)
 function cariKM(query) {
   const match = query.match(/^\s*(?:km\s*)?([\d.]+)\s*(?:km)?\s*$/i);
@@ -1031,7 +1037,19 @@ function cariAlamat(query, autoSelect = true) {
   const controller = new AbortController();
   carianAlamatController = controller;
 
-  const url = `api/geocode?q=${encodeURIComponent(query)}&countrycodes=my&limit=5&accept-language=ms`;
+  // Nota: limit dinaikkan (5 -> 8) dan addressdetails=1 diminta supaya lebih
+  // banyak calon (termasuk yang serupa/ambiguous) dikembalikan oleh proxy
+  // api/geocode. viewbox membiaskan (BUKAN mengehadkan - tiada bounded=1)
+  // hasil ke sekitar Johor supaya alamat tempatan diutamakan tanpa menolak
+  // hasil sah dari negeri lain. Proxy api/geocode perlu diperiksa/dikemaskini
+  // secara berasingan untuk pastikan parameter ini benar-benar diteruskan ke
+  // Nominatim, dan untuk tambah logik "cuba semula dengan query lebih ringkas
+  // jika tiada hasil" di sisi server.
+  const viewboxJohor = '102.4,2.75,104.35,1.2'; // left,top,right,bottom (Johor)
+  const url =
+    `api/geocode?q=${encodeURIComponent(query)}` +
+    `&countrycodes=my&limit=8&accept-language=ms&addressdetails=1` +
+    `&viewbox=${viewboxJohor}&bounded=0`;
 
   fetch(url, { signal: controller.signal })
     .then((response) => {
@@ -1042,26 +1060,29 @@ function cariAlamat(query, autoSelect = true) {
       if (carianAlamatController !== controller) return; // carian ini dah dibatalkan/lapuk
       carianAlamatController = null;
 
-      if (data.length === 0) {
+      if (!data || data.length === 0) {
+        // Tiada hasil pada carian penuh - cuba semula dengan query yang
+        // diringkaskan (buang nombor unit/lot/bangunan di hujung) supaya
+        // alamat separa/berbutir yang tak wujud tepat dalam OSM masih ada
+        // peluang jumpa kawasan/jalan yang berkaitan.
+        const queryRingkas = query
+          .replace(/,?\s*(no\.?|lot|unit|tingkat|blok|blok no\.?)\s*[\w-]+\s*,?/gi, ' ')
+          .replace(/\s+/g, ' ')
+          .trim();
+
+        if (queryRingkas.length >= 3 && queryRingkas.toLowerCase() !== query.toLowerCase()) {
+          carianAlamatController = null;
+          cariAlamatQueryRingkas(queryRingkas, query, controller);
+          return;
+        }
+
         searchResults.innerHTML =
-          '<div class="search-result-item" style="color:#999;">Tiada hasil dijumpai</div>';
+          '<div class="search-result-item" style="color:#999;">Tiada hasil dijumpai. Cuba ringkaskan carian (cth: nama jalan/kawasan sahaja).</div>';
         searchResults.classList.add('show');
         return;
       }
 
-      if (data.length === 1 && autoSelect) {
-        const item = data[0];
-        pilihLokasi(item.lat, item.lon, item.display_name);
-        searchResults.classList.remove('show');
-        return;
-      }
-
-      let html = '';
-      data.forEach((item) => {
-        html += `<div class="search-result-item" onclick="pilihLokasi(${item.lat}, ${item.lon}, '${escapeHtml(item.display_name)}')"><i class="fa-solid fa-location-dot"></i> ${item.display_name}</div>`;
-      });
-      searchResults.innerHTML = html;
-      searchResults.classList.add('show');
+      paparkanHasilCarianAlamat(data, autoSelect);
     })
     .catch((error) => {
       if (error.name === 'AbortError') return; // carian dibatalkan sebab ada carian baru - bukan ralat sebenar
@@ -1073,6 +1094,83 @@ function cariAlamat(query, autoSelect = true) {
       searchResults.classList.add('show');
     });
 }
+
+// Cuba semula carian dengan query yang lebih ringkas (fallback) apabila
+// carian penuh tiada hasil - membantu kes alamat berbutir (No./Lot/Unit)
+// yang tak wujud tepat dalam data OSM tapi jalan/kawasannya ada.
+function cariAlamatQueryRingkas(queryRingkas, queryAsal, controllerLama) {
+  const controller = new AbortController();
+  carianAlamatController = controller;
+
+  const viewboxJohor = '102.4,2.75,104.35,1.2';
+  const url =
+    `api/geocode?q=${encodeURIComponent(queryRingkas)}` +
+    `&countrycodes=my&limit=8&accept-language=ms&addressdetails=1` +
+    `&viewbox=${viewboxJohor}&bounded=0`;
+
+  fetch(url, { signal: controller.signal })
+    .then((response) => {
+      if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+      return response.json();
+    })
+    .then((data) => {
+      if (carianAlamatController !== controller) return;
+      carianAlamatController = null;
+
+      if (!data || data.length === 0) {
+        searchResults.innerHTML =
+          '<div class="search-result-item" style="color:#999;">Tiada hasil dijumpai untuk alamat ini.</div>';
+        searchResults.classList.add('show');
+        return;
+      }
+
+      searchResults.innerHTML =
+        `<div style="font-size:11px;color:#999;padding:4px 10px;">Tiada padanan tepat untuk "${escapeHtml(queryAsal)}" - menunjukkan hasil untuk "${escapeHtml(queryRingkas)}":</div>`;
+      paparkanHasilCarianAlamat(data, false, true);
+    })
+    .catch((error) => {
+      if (error.name === 'AbortError') return;
+      if (carianAlamatController !== controller) return;
+      carianAlamatController = null;
+      console.error('Ralat carian alamat (ringkas):', error);
+      searchResults.innerHTML =
+        '<div class="search-result-item" style="color:red;">Ralat carian. Sila semak sambungan internet atau cuba lagi.</div>';
+      searchResults.classList.add('show');
+    });
+}
+
+// Papar senarai cadangan alamat. Guna data-index (bukan onclick string
+// interpolation terus daripada display_name) supaya alamat dengan aksara
+// istimewa (', ", &, kurungan, dsb - biasa dalam alamat Malaysia) tidak
+// merosakkan HTML dan menyebabkan seluruh senarai cadangan gagal dipaparkan.
+function paparkanHasilCarianAlamat(data, autoSelect, tambahKandungan = false) {
+  hasilCarianAlamatTerkini = data;
+
+  if (data.length === 1 && autoSelect) {
+    const item = data[0];
+    pilihLokasi(item.lat, item.lon, item.display_name);
+    searchResults.classList.remove('show');
+    return;
+  }
+
+  let html = tambahKandungan ? searchResults.innerHTML : '';
+  data.forEach((item, i) => {
+    html += `<div class="search-result-item" data-index="${i}"><i class="fa-solid fa-location-dot"></i> ${escapeHtml(item.display_name)}</div>`;
+  });
+  searchResults.innerHTML = html;
+  searchResults.classList.add('show');
+}
+
+// Event delegation untuk klik item cadangan alamat - guna data-index untuk
+// rujuk semula ke hasilCarianAlamatTerkini (elak isu escaping onclick).
+searchResults.addEventListener('click', function (e) {
+  const item = e.target.closest('.search-result-item[data-index]');
+  if (!item) return;
+  const idx = parseInt(item.getAttribute('data-index'), 10);
+  const hasil = hasilCarianAlamatTerkini[idx];
+  if (!hasil) return;
+  pilihLokasi(hasil.lat, hasil.lon, hasil.display_name);
+});
 
 // Carian KM PLUS
 function cariKMPlus(query) {
@@ -1179,7 +1277,7 @@ function cariKMPGPlus(query) {
 function escapeHtml(text) {
   const div = document.createElement('div');
   div.textContent = text;
-  return div.innerHTML.replace(/'/g, "\\'");
+  return div.innerHTML;
 }
 
 function pilihLokasi(lat, lng, alamat) {
