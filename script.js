@@ -964,9 +964,16 @@ function cari() {
 // Carian Alamat - GAYA GOOGLE MAPS:
 // Tiada carian dijalankan semasa menaip. Carian HANYA dijalankan bila
 // pengguna tekan ENTER atau klik butang Cari (lihat cari() & event listener
-// 'keydown' di bawah). Hasilnya SENTIASA dipaparkan sebagai senarai
-// suggestion (walaupun cuma 1 hasil) - pengguna kena klik salah satu
-// suggestion tu untuk peta bergerak ke lokasi tersebut.
+// 'keydown' di bawah). Kalau padanan cuma 1, terus lompat ke situ. Kalau
+// ada beberapa kemungkinan, papar sebagai senarai suggestion.
+//
+// PENTING: fungsi ni panggil endpoint backend `api/geocode` (bukan
+// Nominatim terus). Kalau backend tu sendiri hadkan hasil kepada 1 rekod
+// sahaja atau tak "pass through" parameter macam limit/viewbox, carian
+// ambiguous/umum akan tetap terhad walaupun frontend dah cuba luaskan
+// query di sini. Kalau lepas fix ni carian masih terhad/gagal untuk
+// alamat umum, punca sebenar mungkin di kod backend api/geocode tu -
+// sila kongsi kod tu untuk saya tengok.
 let carianAlamatController = null;
 
 // Escape untuk teks yang dipaparkan (bukan untuk letak dalam atribut onclick)
@@ -976,7 +983,36 @@ function escapeHtmlPaparan(text) {
   return div.innerHTML;
 }
 
-function cariAlamat(query) {
+// Viewbox longgar merangkumi negeri Johor - guna sebagai BIAS (bounded=0)
+// supaya hasil berkaitan Johor diutamakan tanpa menyekat hasil di luar Johor.
+const JOHOR_VIEWBOX = '102.4,2.8,104.6,1.1';
+
+function bangunUrlGeocode(q, limit) {
+  return `api/geocode?q=${encodeURIComponent(q)}&countrycodes=my&limit=${limit}&accept-language=ms&viewbox=${JOHOR_VIEWBOX}&bounded=0`;
+}
+
+async function mintaGeocode(q, limit, signal) {
+  const response = await fetch(bangunUrlGeocode(q, limit), { signal });
+  if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+  const data = await response.json();
+  return Array.isArray(data) ? data : [];
+}
+
+// Gabung & buang hasil bertindih (lat/lon yang hampir sama)
+function gabungHasilUnik(...senarai) {
+  const gabungan = [];
+  const dilihat = new Set();
+  senarai.flat().forEach((item) => {
+    const kunci = `${parseFloat(item.lat).toFixed(4)},${parseFloat(item.lon).toFixed(4)}`;
+    if (!dilihat.has(kunci)) {
+      dilihat.add(kunci);
+      gabungan.push(item);
+    }
+  });
+  return gabungan.slice(0, 8);
+}
+
+async function cariAlamat(query) {
   // Batalkan carian alamat sebelumnya (jika ada) supaya hasil lama tak
   // sesekali timpa hasil carian baru bila carian lama lambat sampai balik.
   if (carianAlamatController) {
@@ -1002,63 +1038,81 @@ function cariAlamat(query) {
   const controller = new AbortController();
   carianAlamatController = controller;
 
-  const url = `api/geocode?q=${encodeURIComponent(query)}&countrycodes=my&limit=5&accept-language=ms`;
+  try {
+    // Cubaan 1: query asal, hasil lebih banyak (limit 8 bukan 5) supaya
+    // senarai suggestion untuk carian ambiguous lebih kerap muncul.
+    let hasil = await mintaGeocode(query, 8, controller.signal);
 
-  fetch(url, { signal: controller.signal })
-    .then((response) => {
-      if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-      return response.json();
-    })
-    .then((data) => {
-      if (carianAlamatController !== controller) return; // carian ini dah dibatalkan/lapuk
-      carianAlamatController = null;
+    // Cubaan 2 (fallback): kalau tiada/sikit hasil & query tak sebut
+    // "johor" secara eksplisit, cuba tambah konteks negeri - banyak
+    // alamat umum (cth. nama taman/kampung tanpa negeri) gagal dipadan
+    // oleh geocoder tanpa konteks ni.
+    const qLower = query.toLowerCase();
+    if (hasil.length < 2 && !qLower.includes('johor')) {
+      const hasilTambahan = await mintaGeocode(`${query}, Johor, Malaysia`, 8, controller.signal);
+      hasil = gabungHasilUnik(hasil, hasilTambahan);
+    }
 
-      if (data.length === 0) {
-        searchResults.innerHTML =
-          '<div class="search-result-item search-result-empty">Tiada hasil dijumpai</div>';
-        searchResults.classList.add('show');
-        return;
+    // Cubaan 3 (fallback): kalau masih tiada hasil & query ada koma
+    // (cth. "No 12, Jalan Sri Molek 2, Taman Sri Molek") - banyak
+    // geocoder gagal bila ada nombor rumah di depan. Cuba buang
+    // bahagian pertama (nombor rumah) dan cari semula.
+    if (hasil.length === 0 && query.includes(',')) {
+      const queryRingkas = query.split(',').slice(1).join(',').trim();
+      if (queryRingkas.length >= 3) {
+        const hasilRingkas = await mintaGeocode(`${queryRingkas}, Johor, Malaysia`, 8, controller.signal);
+        hasil = gabungHasilUnik(hasil, hasilRingkas);
       }
+    }
 
-      // Kalau cuma 1 padanan yang jelas, terus lompat ke situ (carian
-      // langsung) - macam Google Maps bila query anda padan tepat dengan
-      // satu tempat sahaja. Kalau ada beberapa kemungkinan, baru papar
-      // senarai suggestion untuk pengguna pilih sendiri.
-      if (data.length === 1) {
-        const item = data[0];
-        pilihLokasi(item.lat, item.lon, item.display_name);
-        searchResults.classList.remove('show');
-        return;
-      }
+    if (carianAlamatController !== controller) return; // carian ini dah dibatalkan/lapuk
+    carianAlamatController = null;
 
-      // Beberapa kemungkinan hasil - papar sebagai senarai suggestion
-      // (gaya Google Maps): baris pertama = nama tempat (bold),
-      // baris kedua = alamat penuh (kelabu).
-      let html = '';
-      data.forEach((item) => {
-        const bahagian = item.display_name.split(',');
-        const utama = escapeHtmlPaparan(bahagian[0].trim());
-        const sampingan = escapeHtmlPaparan(bahagian.slice(1).join(',').trim());
-        html += `<div class="search-result-item" onclick="pilihLokasi(${item.lat}, ${item.lon}, '${escapeHtml(item.display_name)}')">
-          <span class="search-result-icon"><i class="fa-solid fa-location-dot"></i></span>
-          <span class="search-result-text">
-            <span class="search-result-utama">${utama}</span>
-            ${sampingan ? `<span class="search-result-sampingan">${sampingan}</span>` : ''}
-          </span>
-        </div>`;
-      });
-      searchResults.innerHTML = html;
-      searchResults.classList.add('show');
-    })
-    .catch((error) => {
-      if (error.name === 'AbortError') return; // carian dibatalkan sebab ada carian baru - bukan ralat sebenar
-      if (carianAlamatController !== controller) return;
-      carianAlamatController = null;
-      console.error('Ralat carian alamat:', error);
+    if (hasil.length === 0) {
       searchResults.innerHTML =
-        '<div class="search-result-item search-result-empty" style="color:red;">Ralat carian. Sila semak sambungan internet atau cuba lagi.</div>';
+        '<div class="search-result-item search-result-empty">Tiada hasil dijumpai. Cuba ringkaskan carian (cth. buang nombor rumah / unit).</div>';
       searchResults.classList.add('show');
+      return;
+    }
+
+    // Kalau cuma 1 padanan yang jelas, terus lompat ke situ (carian
+    // langsung) - macam Google Maps bila query anda padan tepat dengan
+    // satu tempat sahaja. Kalau ada beberapa kemungkinan, baru papar
+    // senarai suggestion untuk pengguna pilih sendiri.
+    if (hasil.length === 1) {
+      const item = hasil[0];
+      pilihLokasi(item.lat, item.lon, item.display_name);
+      searchResults.classList.remove('show');
+      return;
+    }
+
+    // Beberapa kemungkinan hasil - papar sebagai senarai suggestion
+    // (gaya Google Maps): baris pertama = nama tempat (bold),
+    // baris kedua = alamat penuh (kelabu).
+    let html = '';
+    hasil.forEach((item) => {
+      const bahagian = item.display_name.split(',');
+      const utama = escapeHtmlPaparan(bahagian[0].trim());
+      const sampingan = escapeHtmlPaparan(bahagian.slice(1).join(',').trim());
+      html += `<div class="search-result-item" onclick="pilihLokasi(${item.lat}, ${item.lon}, '${escapeHtml(item.display_name)}')">
+        <span class="search-result-icon"><i class="fa-solid fa-location-dot"></i></span>
+        <span class="search-result-text">
+          <span class="search-result-utama">${utama}</span>
+          ${sampingan ? `<span class="search-result-sampingan">${sampingan}</span>` : ''}
+        </span>
+      </div>`;
     });
+    searchResults.innerHTML = html;
+    searchResults.classList.add('show');
+  } catch (error) {
+    if (error.name === 'AbortError') return; // carian dibatalkan sebab ada carian baru - bukan ralat sebenar
+    if (carianAlamatController !== controller) return;
+    carianAlamatController = null;
+    console.error('Ralat carian alamat:', error);
+    searchResults.innerHTML =
+      '<div class="search-result-item search-result-empty" style="color:red;">Ralat carian. Sila semak sambungan internet atau cuba lagi.</div>';
+    searchResults.classList.add('show');
+  }
 }
 
 // Carian KM PLUS
