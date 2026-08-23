@@ -365,19 +365,19 @@ function normalisasiNamaBalai(nama) {
 // (No. telefon ketua balai SENGAJA tidak dimasukkan)
 // ============================================
 const dataKetuaBalaiTel = {
-  'LARKIN': { ketua: 'TPgB I Suhaimi bin Jamal', telBalai: ['07-2243444', '7444'], telBimbit: '019-6887965' },
+  'LARKIN': { ketua: 'TPgB I Suhaimi bin Jamal', telBalai: ['07-2243444', '07-2247444'], telBimbit: '019-6887965' },
   'PASIR GUDANG': { ketua: 'TPgB II Firdaus bin Ahmad', telBalai: ['07-2513444', '07-2542544'], telBimbit: '019-7357842' },
   'JOHOR JAYA': { ketua: 'PKPgB Tc. Mohd Faiz bin Ramli', telBalai: ['07-3511444'], telBimbit: '019-7367842' },
   'SKUDAI': { ketua: 'PKPgB Tc. Saifulbahari bin Safar', telBalai: ['07-5205144', '4144'], telBimbit: '019-2277965' },
   'ISKANDAR PUTERI': { ketua: 'TPgB II Wan Fareezudin bin Wan Husain', telBalai: ['07-5099550'], telBimbit: '019-2487865' },
-  'TEBRAU': { ketua: 'PPgB Muhamad Syahhir Ikhwan bin Mohamad', telBalai: ['07-3317523', '24', '25'], telBimbit: '019-6157865' },
+  'TEBRAU': { ketua: 'PPgB Muhamad Syahhir Ikhwan bin Mohd Shoib', telBalai: ['07-3317523', '07-3317524', '07-3317525'], telBimbit: '019-6157865' },
   'PEKAN NENAS': { ketua: 'PPgB Iqbal bin Raduan', telBalai: ['07-6994444'], telBimbit: '019-6097865' },
-  'PONTIAN': { ketua: 'PPgB Mohamad Aznil Ikhwan bin Ibrahim', telBalai: ['07-6864444', '6874444'], telBimbit: '019-2307865' },
-  'PONTIAN BARU': { ketua: 'PPgB Mahadir bin Mamat', telBalai: ['07-6864044', '6044', '8044'], telBimbit: '019-6917865' },
+  'PONTIAN': { ketua: 'PPgB Mohamad Aznil Ikhwan bin Ibrahim', telBalai: ['07-6864444', '07-6874444'], telBimbit: '019-2307865' },
+  'PONTIAN BARU': { ketua: 'PPgB Mahadir bin Mamat', telBalai: ['07-6864044', '07-6866044', '07-6868044'], telBimbit: '019-6917865' },
   'KULAI': { ketua: 'PPgB Muhammad Fauzi bin Awang', telBalai: ['07-6634444'], telBimbit: '019-2037865' },
   'BANDAR BARU KULAI': { ketua: 'PPgB Sarhan Akmal bin Mohamad', telBalai: ['07-5908711'], telBimbit: '019-3397865' },
-  'KEMPAS': { ketua: 'PPgB Taufiq bin Atan', telBalai: ['07-2325474', '2327619'], telBimbit: '019-7237845' },
-  'BENUT': { ketua: 'PPgB Mohamad Aznil Ikhwan bin Ibrahim', telBalai: ['07-6905839', '40'], telBimbit: null },
+  'KEMPAS': { ketua: 'PPgB Taufiq bin Atan', telBalai: ['07-2325474', '07-2327619'], telBimbit: '019-7237845' },
+  'BENUT': { ketua: 'PPgB Mohamad Aznil Ikhwan bin Ibrahim', telBalai: ['07-6905839', '07-6905840'], telBimbit: null },
   'KOTA TINGGI': { ketua: 'PKPgB Mohd Khairul Sufian bin Dahari', telBalai: ['07-8831444'], telBimbit: '019-2317865' },
   'SUNGAI RENGIT': { ketua: 'PKPgB Baharuddin bin Idris', telBalai: ['07-8246770'], telBimbit: '019-6517865' },
   'PENAWAR': { ketua: 'PKPgB Soleh bin Nasir', telBalai: ['07-8223692'], telBimbit: '019-7177842' },
@@ -394,13 +394,13 @@ const dataKetuaBalaiTel = {
   'YONG PENG': { ketua: 'PPgB Asyraf Nur bin Mohd Yusoff', telBalai: ['07-4674444'], telBimbit: '019-6207965' },
   'AYER HITAM': { ketua: 'PPgB Mohd Shamin bin Mohamed Salikin', telBalai: ['07-7582206'], telBimbit: '019-3067862' },
   'PARIT SULONG': { ketua: 'PPgB Asyraf Nur bin Mohd Yusoff', telBalai: [], telBimbit: null },
-  'MUAR': { ketua: 'TPgB II Shahrizal bin Moktar', telBalai: ['06-9555994', '992'], telBimbit: '019-6757965' },
+  'MUAR': { ketua: 'TPgB II Shahrizal bin Moktar', telBalai: ['06-9555994', '06-9555992'], telBimbit: '019-6757965' },
   'BANDAR BARU SEGAMAT': { ketua: 'TPgB II Kup Mohd Aizad bin Hj Mamat', telBalai: ['07-9435844'], telBimbit: '019-2179879' },
   'SEGAMAT': { ketua: 'PPgB Muhd Hazim bin Abd Razak', telBalai: ['07-9314444'], telBimbit: '019-2197965' },
   'LABIS': { ketua: 'PPgB Mohd Hafifie bin Md. Sarif', telBalai: ['07-9254444'], telBimbit: '019-6747965' },
   'BUKIT GAMBIR': { ketua: 'PPgB Mohd Farizan bin Mokhtar', telBalai: ['06-9765144'], telBimbit: '019-6837965' },
   'TANGKAK': { ketua: 'PPgB Mohd Hairul Anuar bin Ali', telBalai: ['06-9783444'], telBimbit: '019-6367965' },
-  'PAGOH': { ketua: 'PKPgB Mohd Fadli bin Ismail', telBalai: ['06-9741955', '957'], telBimbit: '019-3687965' },
+  'PAGOH': { ketua: 'PKPgB Mohd Fadli bin Ismail', telBalai: ['06-9741955', '06-9741957'], telBimbit: '019-3687965' },
 };
 
 // Buang aksara bukan nombor (untuk href="tel:") tapi kekalkan teks asal untuk paparan
