@@ -1261,45 +1261,44 @@ let searchMarker = null;
 let hasilCarianAlamatTerkini = [];
 
 // Fungsi parse KM PLUS (dengan arah)
+// PEMBETULAN: padankan terus dengan KM sebenar (kmMapPlus) - bukan lagi
+// anggapan index/10 = KM (yang tersasar jika fail tak bermula KM 0.0).
+// NOTA: had atas dilonggarkan ke 300 (semak generik sahaja) - had lama 174.1
+// tak sesuai lagi sebab data PLUS Utara sebenar pergi sampai KM 180.2;
+// Map.get() di bawah tetap jadi penentu sebenar sama ada KM tu wujud.
 function cariKM(query) {
   const match = query.match(/^\s*(?:km\s*)?([\d.]+)\s*(?:km)?\s*$/i);
   if (!match) return null;
   const num = parseFloat(match[1]);
-  if (isNaN(num) || num < 0 || num > 174.1) return null;
-  const index = Math.round(num * 10);
-  if (index < 0) return null;
-  
-  let coord = null;
-  let arah = arahCarian;
-  if (arah === 'utara') {
-    if (index < dataKM_Utara.length) coord = dataKM_Utara[index];
-  } else if (arah === 'selatan') {
-    if (index < dataKM_Selatan.length) coord = dataKM_Selatan[index];
-  }
-  if (!coord) return null;
-  const kmValue = (index / 10).toFixed(1);
-  return { lat: coord[0], lng: coord[1], km: kmValue, arah: arah };
+  if (isNaN(num) || num < 0 || num > 300) return null;
+
+  const arah = arahCarian;
+  if (arah !== 'utara' && arah !== 'selatan') return null;
+
+  const kmKey = num.toFixed(1);
+  const titik = kmMapPlus[arah].get(kmKey);
+  if (!titik) return null;
+
+  return { lat: titik.lat, lng: titik.lng, km: kmKey, arah: arah };
 }
 
 // Fungsi parse KM Pasir Gudang (dengan arah)
+// PEMBETULAN: padankan terus dengan KM sebenar (kmMapPG) - bukan lagi
+// anggapan index/10 = KM.
 function cariKMPG(query) {
   const match = query.match(/^\s*(?:km\s*)?([\d.]+)\s*(?:km)?\s*$/i);
   if (!match) return null;
   const num = parseFloat(match[1]);
-  if (isNaN(num) || num < 0 || num > 28.5) return null;
-  const index = Math.round(num * 10);
-  if (index < 0) return null;
-  
-  let coord = null;
-  let arah = arahCarian;
-  if (arah === 'pasirgudang') {
-    if (index < dataKMPG_PasirGudang.length) coord = dataKMPG_PasirGudang[index];
-  } else if (arah === 'perling') {
-    if (index < dataKMPG_Perling.length) coord = dataKMPG_Perling[index];
-  }
-  if (!coord) return null;
-  const kmValue = (index / 10).toFixed(1);
-  return { lat: coord.lat, lng: coord.lng, km: kmValue, arah: arah };
+  if (isNaN(num) || num < 0 || num > 300) return null;
+
+  const arah = arahCarian;
+  if (arah !== 'pasirgudang' && arah !== 'perling') return null;
+
+  const kmKey = num.toFixed(1);
+  const titik = kmMapPG[arah].get(kmKey);
+  if (!titik) return null;
+
+  return { lat: titik.lat, lng: titik.lng, km: kmKey, arah: arah };
 }
 
 // Fungsi utama cari()
@@ -1908,6 +1907,11 @@ let dataKM_Selatan = [];
 let dataKMPG_PasirGudang = [];
 let dataKMPG_Perling = [];
 
+// PEMBETULAN (Ogos 2026): sama teknik seperti sistem SDE/EDL/Second Link -
+// peta carian pantas KM sebenar (bukan lagi anggapan index/10).
+const kmMapPlus = { utara: new Map(), selatan: new Map() };
+const kmMapPG = { pasirgudang: new Map(), perling: new Map() };
+
 let layerKMMarker = null;
 let kmMarkerVisible = false;
 
@@ -1926,8 +1930,10 @@ async function loadKMLData() {
       respSelatan.text()
     ]);
 
-    dataKM_Utara = parseKMLPoints(textUtara);
-    dataKM_Selatan = parseKMLPoints(textSelatan);
+    dataKM_Utara = parseKMLPointsDenganKM(textUtara);
+    dataKM_Selatan = parseKMLPointsDenganKM(textSelatan);
+    kmMapPlus.utara = binaKMMapLebuhrayaBaru(dataKM_Utara);
+    kmMapPlus.selatan = binaKMMapLebuhrayaBaru(dataKM_Selatan);
     console.log(`[OK] PLUS Utara: ${dataKM_Utara.length} titik, PLUS Selatan: ${dataKM_Selatan.length} titik`);
     
     binaLayerKMMarker();
@@ -1951,8 +1957,10 @@ async function loadKMLPasirGudang() {
       respPerling.text()
     ]);
 
-    dataKMPG_PasirGudang = parseKMLPointsPG(textPG);
-    dataKMPG_Perling = parseKMLPointsPG(textPerling);
+    dataKMPG_PasirGudang = parseKMLPointsDenganKM(textPG);
+    dataKMPG_Perling = parseKMLPointsDenganKM(textPerling);
+    kmMapPG.pasirgudang = binaKMMapLebuhrayaBaru(dataKMPG_PasirGudang);
+    kmMapPG.perling = binaKMMapLebuhrayaBaru(dataKMPG_Perling);
     console.log(`[OK] PG Pasir Gudang: ${dataKMPG_PasirGudang.length} titik, PG Perling: ${dataKMPG_Perling.length} titik`);
     if (dataKMPG_PasirGudang.length <= 3 || dataKMPG_Perling.length <= 3) {
       console.warn('[AMARAN] Bilangan titik PG sangat sedikit (garisan akan nampak lurus). ' +
@@ -1972,7 +1980,10 @@ async function loadKMLPasirGudang() {
   }
 }
 
-// Fungsi parse KML untuk PLUS (koordinat [lat, lng])
+// [TIDAK DIGUNAKAN LAGI - kekal untuk rujukan sahaja]
+// Fungsi parse KML lama untuk PLUS (koordinat [lat, lng]) - digantikan oleh
+// parseKMLPointsDenganKM() pada Ogos 2026 supaya PLUS turut guna KM sebenar/
+// field "distance" dan bukan lagi anggapan index/10 = KM.
 function parseKMLPoints(kmlText) {
   const parser = new DOMParser();
   const kmlDoc = parser.parseFromString(kmlText, 'text/xml');
@@ -1989,8 +2000,10 @@ function parseKMLPoints(kmlText) {
   return coords;
 }
 
-// Fungsi parse KML untuk PG (struktur {lat, lng})
-// NOTA PEMBAIKAN: fail KML PG sebenar (disahkan oleh pengguna) mempunyai
+// [TIDAK DIGUNAKAN LAGI - kekal untuk rujukan sahaja]
+// Fungsi parse KML untuk PG (struktur {lat, lng}) - digantikan oleh
+// parseKMLPointsDenganKM() pada Ogos 2026.
+// NOTA PEMBAIKAN LAMA: fail KML PG sebenar (disahkan oleh pengguna) mempunyai
 // 'fid' yang SAMA (cth. selalu "1") untuk SEMUA Placemark - bukan bernombor
 // urutan seperti yang dijangka asalnya. Menyusun ikut 'fid' dalam keadaan ini
 // tidak boleh dipercayai. Fail PG sentiasa menyenaraikan titik-titik dalam
@@ -2029,10 +2042,12 @@ function binaLayerKMMarker() {
   layerKMMarker = L.layerGroup();
 
   // Fungsi tambah marker untuk satu array dengan warna
+  // PEMBETULAN: guna nilai KM sebenar dari titik (p.km) - bukan lagi
+  // anggapan index/10 (yang hanya betul jika fail sentiasa bermula KM 0.0).
   function tambahMarkerArray(arr, warna, labelArah) {
-    arr.forEach((coord, index) => {
-      const kmValue = (index / 10).toFixed(1);
-      const marker = L.circleMarker(coord, {
+    arr.forEach((p) => {
+      const kmValue = p.km.toFixed(1);
+      const marker = L.circleMarker([p.lat, p.lng], {
         radius: 4,
         fillColor: warna,
         color: warna,
@@ -2050,8 +2065,8 @@ function binaLayerKMMarker() {
         const kmNum = parseFloat(kmValue);
         updateInfoPanel(kmNum, 'PLUS', labelArah);
         lokasiTerakhir = {
-          lat: coord[0],
-          lng: coord[1],
+          lat: p.lat,
+          lng: p.lng,
           alamat: `KM ${kmValue} (PLUS - ${labelArah})`,
         };
       });
@@ -2148,11 +2163,22 @@ function toggleLebuhraya(checkbox) {
 // Fungsi baru ini terus membaca nilai KM SEBENAR yang tertanam dalam setiap
 // Placemark (<SimpleData name="KM">KM 1.0</SimpleData>), jadi tidak lagi
 // bergantung kepada index dokumen untuk anggar KM.
+//
+// NOTA PENTING: tidak semua fail lebuhraya baru ada field "KM" ini - cth.
+// SECOND LINK HALA TUAS.kml langsung tiada field KM (berbeza dengan
+// SECOND LINK HALA JPO.kml yang ada). Jadi fungsi ini guna turutan keutamaan:
+//   1) Field "KM" sebenar (paling tepat, cth. SDE, EDL, Second Link JPO)
+//   2) Field "distance" (meter dari titik mula fail ini) / 1000 - anggapan
+//      fail ini bermula pada KM 0.0 (cth. Second Link Tuas)
+//   3) Kalau kedua-dua tiada, index * 0.1 sebagai anggaran terakhir
+// supaya lebuhraya yang fail KML dia tiada field KM tetap berfungsi
+// (macam sebelum ini), bukan hilang terus.
 function parseKMLPointsDenganKM(kmlText) {
   const parser = new DOMParser();
   const kmlDoc = parser.parseFromString(kmlText, 'text/xml');
   const placemarks = kmlDoc.getElementsByTagName('Placemark');
   const points = [];
+  let guna_anggaran_fallback = false;
 
   for (let i = 0; i < placemarks.length; i++) {
     const pm = placemarks[i];
@@ -2168,23 +2194,43 @@ function parseKMLPointsDenganKM(kmlText) {
     const lat = parts[1];
     if (isNaN(lat) || isNaN(lng)) continue;
 
-    // Cari SimpleData name="KM" dalam ExtendedData Placemark ini
-    // (cth. teks "KM 1.0" -> ambil nombor 1.0 sahaja)
+    // Cari SimpleData name="KM" (utama) dan name="distance" (fallback)
+    // dalam ExtendedData Placemark ini.
     let kmValue = null;
+    let jarakMeter = null;
     const simpleDataNodes = pm.getElementsByTagName('SimpleData');
     for (let j = 0; j < simpleDataNodes.length; j++) {
-      if (simpleDataNodes[j].getAttribute('name') === 'KM') {
+      const namaField = simpleDataNodes[j].getAttribute('name');
+      if (namaField === 'KM') {
         const rawKM = simpleDataNodes[j].textContent.trim();
         const match = rawKM.match(/([\d.]+)/);
         if (match) kmValue = parseFloat(match[1]);
-        break;
+      } else if (namaField === 'distance') {
+        const rawJarak = parseFloat(simpleDataNodes[j].textContent.trim());
+        if (!isNaN(rawJarak)) jarakMeter = rawJarak;
       }
     }
 
-    // Titik tanpa label KM yang sah dilangkau - tidak boleh dipercayai untuk carian
-    if (kmValue === null || isNaN(kmValue)) continue;
+    if (kmValue === null || isNaN(kmValue)) {
+      // Field KM sebenar tiada - guna fallback supaya titik ini tidak hilang.
+      if (jarakMeter !== null) {
+        kmValue = jarakMeter / 1000; // anggap fail ini bermula pada KM 0.0
+      } else {
+        kmValue = i * 0.1; // anggaran terakhir, ikut turutan dokumen
+      }
+      guna_anggaran_fallback = true;
+    }
 
     points.push({ lat, lng, km: kmValue });
+  }
+
+  if (guna_anggaran_fallback) {
+    console.warn(
+      '[AMARAN] Sebahagian/semua titik dalam fail KML ini tiada label "KM" sebenar - ' +
+      'nilai KM dianggarkan drpd field "distance" atau kedudukan titik dalam dokumen ' +
+      '(anggapan fail bermula pada KM 0.0). Sila sahkan dengan sumber rasmi jika ' +
+      'lebuhraya/arah ini sepatutnya TIDAK bermula pada KM 0.0, macam kes SDE dahulu.'
+    );
   }
 
   // Susun ikut nilai KM menaik supaya carian & lukisan garis konsisten
