@@ -309,41 +309,29 @@ const dataBalai = [
 
 // ============================================
 // STATUS JENTERA (CFRT / EMRS / WATER TANKER)
-// Data diambil dari Google Sheets (CSV) dan dipadankan dengan
-// balai berdasarkan lajur "LOKASI SEMASA" dalam setiap sheet.
 // ============================================
-
-// Pautan CSV (Google Sheets - Publish to Web)
 const csvJenteraUrl = {
   cfrt: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQt0JkN2yWW_0FeY5GKpmIvs1uI6si89JcqNmSTO3f--rM8FhQZe1Q97YQd8tiAsmaMQdTXO5TQWedy/pub?gid=0&single=true&output=csv',
   emrs: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQt0JkN2yWW_0FeY5GKpmIvs1uI6si89JcqNmSTO3f--rM8FhQZe1Q97YQd8tiAsmaMQdTXO5TQWedy/pub?gid=795399708&single=true&output=csv',
   water: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQt0JkN2yWW_0FeY5GKpmIvs1uI6si89JcqNmSTO3f--rM8FhQZe1Q97YQd8tiAsmaMQdTXO5TQWedy/pub?gid=290336578&single=true&output=csv',
 };
 
-// Ikon FontAwesome ikut jenis jentera (icon sahaja dipaparkan dalam popup)
 const ikonJentera = {
   cfrt: 'fa-truck',
   emrs: 'fa-truck-medical',
   water: 'fa-truck-droplet',
 };
 
-// Label penuh untuk aria/title icon (aksesibiliti sahaja, tidak dipaparkan sebagai teks)
 const labelJenisJentera = {
   cfrt: 'CFRT / FRT',
   emrs: 'EMRS',
   water: 'Water Tanker',
 };
 
-// Data jentera tersusun ikut nama balai (key dinormalisasikan), contoh:
-// { LARKIN: [ {jenis:'cfrt', status:{...}, callsign:'CFRT 1', plat:'VLN 5716'}, ... ] }
 let dataJenteraByBalai = {};
-let statusMuatJentera = 'belum'; // 'belum' | 'sedang' | 'siap' | 'ralat'
-
-// Rujukan setiap marker balai + fungsi pembina popup, supaya popup yang
-// sedang terbuka boleh disegarkan sebaik sahaja data jentera siap dimuatkan.
+let statusMuatJentera = 'belum';
 const markerBalaiRujukan = [];
 
-// Alias untuk nama balai yang tidak sepadan terus dengan lajur LOKASI SEMASA
 const aliasNamaBalai = {
   'FIRE POST BENUT': 'BENUT',
   'FIRE POST PARIT SULONG': 'PARIT SULONG',
@@ -351,8 +339,6 @@ const aliasNamaBalai = {
   'BANDAR PENAWAR': 'PENAWAR',
 };
 
-// Tukar nama balai (dataBalai) kepada kunci padanan yang sama format dengan
-// lajur LOKASI SEMASA dalam CSV jentera.
 function normalisasiNamaBalai(nama) {
   let n = nama.toUpperCase().replace(/^BBP\s+/, '').trim();
   if (aliasNamaBalai[n]) return aliasNamaBalai[n];
@@ -360,10 +346,6 @@ function normalisasiNamaBalai(nama) {
   return n;
 }
 
-// ============================================
-// KETUA BALAI & NO TELEFON BALAI
-// (No. telefon ketua balai SENGAJA tidak dimasukkan)
-// ============================================
 const dataKetuaBalaiTel = {
   'LARKIN': { ketua: 'TPgB I Suhaimi bin Jamal', telBalai: ['07-2243444', '07-2247444'], telBimbit: '019-6887965' },
   'PASIR GUDANG': { ketua: 'TPgB II Firdaus bin Ahmad', telBalai: ['07-2513444', '07-2542544'], telBimbit: '019-7357842' },
@@ -403,7 +385,6 @@ const dataKetuaBalaiTel = {
   'PAGOH': { ketua: 'PKPgB Mohd Fadli bin Ismail', telBalai: ['06-9741955', '06-9741957'], telBimbit: '019-3687965' },
 };
 
-// Buang aksara bukan nombor (untuk href="tel:") tapi kekalkan teks asal untuk paparan
 function bersihkanNomborTel(no) {
   return no.replace(/[^0-9+]/g, '');
 }
@@ -414,8 +395,6 @@ function binaPautanTel(no) {
   return `<a href="tel:${bersih}">${no}</a>`;
 }
 
-// Bina baris "Ketua Balai / No. Telefon Balai / No. Telefon Bimbit" untuk popup
-// (No. telefon peribadi ketua balai sengaja TIDAK dipaparkan)
 function binaMaklumatKetuaBalai(balai) {
   const kunci = normalisasiNamaBalai(balai.nama);
   const info = dataKetuaBalaiTel[kunci];
@@ -435,8 +414,6 @@ function binaMaklumatKetuaBalai(balai) {
   `;
 }
 
-// Parser CSV ringkas - sokong medan dipetik ("...") yang mengandungi koma
-// dan baris baru (format standard Google Sheets CSV export).
 function paraCSV(teks) {
   const baris = [];
   let sel = '';
@@ -481,8 +458,6 @@ function paraCSV(teks) {
   return baris.filter((r) => r.some((v) => v && v.trim().length > 0));
 }
 
-// Petakan status mentah dari lajur "STATUS JENTERA" kepada 3 status yang
-// dibenarkan sahaja: Baik (hijau), Rosak Minor (jingga), Rosak (merah).
 function petakanStatusJentera(mentah) {
   const s = (mentah || '').toUpperCase();
   if (s.includes('1. STATUS BAIK')) {
@@ -494,10 +469,9 @@ function petakanStatusJentera(mentah) {
   if (s.includes('3. STATUS ROSAK')) {
     return { label: 'Rosak', warna: '#c62828', latar: '#ffebee' };
   }
-  return null; // status lain (cth: dalam proses lupus) - tidak dipaparkan
+  return null;
 }
 
-// Muat & susun satu sheet CSV jentera (cfrt/emrs/water) ke dalam dataJenteraByBalai
 async function muatSheetJentera(jenis, url) {
   try {
     const response = await fetch(url);
@@ -520,7 +494,7 @@ async function muatSheetJentera(jenis, url) {
       if (!penempatan) continue;
 
       const status = petakanStatusJentera(r[idxStatus]);
-      if (!status) continue; // hanya 3 status dibenarkan
+      if (!status) continue;
 
       const rekod = {
         jenis,
@@ -537,7 +511,6 @@ async function muatSheetJentera(jenis, url) {
   }
 }
 
-// Muat ketiga-tiga sheet (CFRT, EMRS, Water Tanker) secara selari
 async function muatSemuaDataJentera() {
   statusMuatJentera = 'sedang';
   dataJenteraByBalai = {};
@@ -554,8 +527,6 @@ async function muatSemuaDataJentera() {
     console.error('[RALAT] Gagal muatkan data jentera:', error);
   }
 
-  // Segarkan mana-mana popup balai yang sedang terbuka supaya terus
-  // memaparkan status jentera sebaik sahaja data siap dimuatkan.
   markerBalaiRujukan.forEach(({ marker, bina }) => {
     if (marker.isPopupOpen()) {
       marker.setPopupContent(bina());
@@ -563,7 +534,6 @@ async function muatSemuaDataJentera() {
   });
 }
 
-// Bina seksyen HTML "Status Jentera" untuk popup satu balai
 function binaSeksyenJentera(balai) {
   const kunci = normalisasiNamaBalai(balai.nama);
 
@@ -634,7 +604,7 @@ const map = L.map('map', {
 }).setView([1.85, 103.3], 9);
 
 // ============================================
-// LAYER PETA DASAR (BASEMAP) - BOLEH DITUKAR
+// LAYER PETA DASAR (BASEMAP)
 // ============================================
 const basemapLayers = {
   jalan: L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -702,7 +672,7 @@ document.addEventListener('click', function (e) {
 });
 
 // ============================================
-// SUSUNAN BUTANG ZOOM & FULLSCREEN (MENDATAR - SATU BARIS)
+// SUSUNAN BUTANG ZOOM & FULLSCREEN
 // ============================================
 map.removeControl(map.zoomControl);
 
@@ -749,7 +719,7 @@ L.control.topBar = L.Control.extend({
 new L.control.topBar({ position: 'topright' }).addTo(map);
 
 // ============================================
-// FUNGSI KIRA JARAK (HAVERSINE - GARIS LURUS)
+// FUNGSI KIRA JARAK (HAVERSINE)
 // ============================================
 function kiraJarak(lat1, lon1, lat2, lon2) {
   const R = 6371;
@@ -765,13 +735,15 @@ function kiraJarak(lat1, lon1, lat2, lon2) {
 }
 
 // ============================================
-// FUNGSI TITIK-DALAM-POLIGON (RAY CASTING) & KAWASAN JAGAAN
+// FUNGSI TITIK-DALAM-POLIGON
 // ============================================
 function titikDalamPoligon(lat, lng, poligon) {
   let dalam = false;
   for (let i = 0, j = poligon.length - 1; i < poligon.length; j = i++) {
-    const yi = poligon[i][0], xi = poligon[i][1];
-    const yj = poligon[j][0], xj = poligon[j][1];
+    const yi = poligon[i][0],
+      xi = poligon[i][1];
+    const yj = poligon[j][0],
+      xj = poligon[j][1];
     const bersilang =
       yi > lat !== yj > lat &&
       lng < ((xj - xi) * (lat - yi)) / (yj - yi) + xi;
@@ -780,9 +752,6 @@ function titikDalamPoligon(lat, lng, poligon) {
   return dalam;
 }
 
-// Kembalikan nama balai yang kawasan jagaannya merangkumi titik (lat, lng),
-// berdasarkan poligon KML "Kawasan Jagaan Balai". Kembalikan null jika tiada
-// dijumpai (cth. poligon belum siap dimuatkan, atau lokasi luar semua poligon).
 function cariBalaiJagaan(lat, lng) {
   for (const poly of kawasanJagaanPolygons) {
     if (titikDalamPoligon(lat, lng, poly.coordinates)) {
@@ -793,7 +762,7 @@ function cariBalaiJagaan(lat, lng) {
 }
 
 // ============================================
-// FUNGSI CARI 4 BALAI TERDEKAT (JARAK JALAN SEBENAR - OSRM)
+// FUNGSI CARI 4 BALAI TERDEKAT (OSRM)
 // ============================================
 const OSRM_TABLE_URL = 'https://router.project-osrm.org/table/v1/driving';
 const OSRM_TIMEOUT_MS = 5000;
@@ -827,7 +796,7 @@ async function panggilOSRMTable(lat, lng, calon) {
   const koordinatBalai = calon.map((b) => `${b.lng},${b.lat}`).join(';');
   const koordinatLokasi = `${lng},${lat}`;
   const koordinat = `${koordinatBalai};${koordinatLokasi}`;
-  
+
   const N = calon.length;
   const sources = Array.from({ length: N }, (_, i) => i).join(';');
   const destinations = `${N}`;
@@ -859,12 +828,6 @@ async function panggilOSRMTable(lat, lng, calon) {
   }
 }
 
-// ============================================
-// FUNGSI DAPATKAN JARAK JALAN SEBENAR (OSRM ROUTE) - SATU BALAI
-// Digunakan khas untuk balai SG (kawasan jagaan) yang jatuh di luar
-// senarai 4 terdekat, supaya jaraknya juga ikut jalan raya sebenar
-// dan bukan garis lurus.
-// ============================================
 async function dapatkanJarakRouteSebenar(lat1, lng1, lat2, lng2) {
   const controller = new AbortController();
   const timeoutId = setTimeout(() => controller.abort(), OSRM_TIMEOUT_MS);
@@ -879,7 +842,7 @@ async function dapatkanJarakRouteSebenar(lat1, lng1, lat2, lng2) {
       throw new Error('Tiada route ditemui untuk balai SG.');
     }
 
-    return data.routes[0].distance / 1000; // meter -> km
+    return data.routes[0].distance / 1000;
   } catch (err) {
     console.warn('[AMARAN] Gagal dapatkan jarak jalan (OSRM) untuk balai SG, guna jarak garis lurus sebagai fallback:', err);
     return null;
@@ -889,7 +852,7 @@ async function dapatkanJarakRouteSebenar(lat1, lng1, lat2, lng2) {
 }
 
 // ============================================
-// FUNGSI ROUTE / LALUAN DARI BALAI KE LOKASI
+// FUNGSI ROUTE
 // ============================================
 let routeLayer = null;
 
@@ -975,7 +938,6 @@ async function bukaPopupBalai(lat, lng, alamat) {
       ? `<div style="font-size:11px;color:#c2703d;margin-bottom:10px;"><i class="fa-solid fa-triangle-exclamation"></i> Jarak jalan tidak dapat dikira buat masa ini — dipaparkan jarak garis lurus (anggaran).</div>`
       : '';
 
-  // Kenal pasti balai yang kawasan jagaannya merangkumi lokasi ini (berdasarkan poligon KML)
   const namaJagaan = cariBalaiJagaan(lat, lng);
   let balaiSG = null;
   let senaraiAkhir = [...terdekat];
@@ -984,13 +946,8 @@ async function bukaPopupBalai(lat, lng, alamat) {
   if (namaJagaan) {
     const idxDalamTerdekat = senaraiAkhir.findIndex((b) => b.nama === namaJagaan);
     if (idxDalamTerdekat !== -1) {
-      // Balai jagaan sudah pun dalam senarai 4 terdekat - kekalkan susunan ikut jarak, label sahaja
       balaiSG = senaraiAkhir[idxDalamTerdekat];
     } else {
-      // Balai jagaan bukan antara 4 terdekat mengikut jarak jalan - tambah sebagai balai ke-5
-      // (bukan gantikan mana-mana balai) supaya panel tetap tunjuk 4 balai terdekat asal
-      // + 1 maklumat kawasan jagaan yang betul dari segi operasi.
-      // Jaraknya turut dikira ikut jalan raya sebenar (OSRM), bukan garis lurus.
       const dataJagaan = dataBalai.find((b) => b.nama === namaJagaan);
       if (dataJagaan) {
         let jarakSG = await dapatkanJarakRouteSebenar(lat, lng, dataJagaan.lat, dataJagaan.lng);
@@ -1038,7 +995,7 @@ function tutupPopupBalai() {
 }
 
 // ============================================
-// PLOT SEMUA BALAI (IKON BANGUNAN BALAI, WARNA IKUT ZON)
+// PLOT SEMUA BALAI
 // ============================================
 function buatIkonBalai(warna) {
   return L.divIcon({
@@ -1059,13 +1016,8 @@ dataBalai.forEach((balai) => {
 
   layerZon[balai.zon].push(marker);
 
-  // Fungsi pembina kandungan popup - dipanggil semula oleh Leaflet setiap
-  // kali popup dibuka, supaya status jentera terkini (setelah CSV siap
-  // dimuatkan) sentiasa dipaparkan tanpa perlu bina semula marker.
   const binaPopupBalai = () => {
     const infoKetua = binaMaklumatKetuaBalai(balai);
-    // Papar no. telefon am (dataBalai.tel) sebagai fallback sahaja jika
-    // tiada data Ketua Balai/No. Telefon Balai untuk balai ini.
     const telefonFallback =
       infoKetua === '' ? `      <b><i class="fa-solid fa-phone"></i> Telefon:</b> <a href="tel:${balai.tel}">${balai.tel}</a><br>\n` : '';
 
@@ -1086,18 +1038,16 @@ ${telefonFallback}${infoKetua}
 });
 
 // ============================================
-// MODE CARIAN – ALAMAT, KM PLUS, KM PG (DENGAN TOGGLE ARAH)
+// MODE CARIAN
 // ============================================
 let modeCarian = 'alamat';
-let arahCarian = 'utara'; // 'utara', 'selatan', 'pasirgudang', 'perling'
+let arahCarian = 'utara';
 
-// Dapatkan rujukan ke butang arah
 const arahBtn1 = document.getElementById('arah-btn-1');
 const arahBtn2 = document.getElementById('arah-btn-2');
 
 // ============================================
-// KONFIGURASI LEBUHRAYA BARU (SDE, SECOND LINK, EDL)
-// Sistem generik - tambah lebuhraya baru cukup tambah 1 entri di sini
+// KONFIGURASI LEBUHRAYA BARU
 // ============================================
 const lebuhrayaBaruConfig = [
   {
@@ -1138,12 +1088,8 @@ const lebuhrayaBaruConfig = [
   },
 ];
 
-// Data & layer state untuk setiap lebuhraya baru
 const dataLebuhrayaBaru = {};
 const layerLebuhrayaBaru = {};
-// PEMBETULAN: peta carian pantas KM sebenar -> {lat, lng} untuk setiap mod/arah.
-// Ini elak anggaran "index 0 = KM 0.0" yang tidak tepat - kita guna nilai KM
-// SEBENAR yang tertanam dalam setiap fail KML (SimpleData name="KM").
 const kmMapLebuhrayaBaru = {};
 lebuhrayaBaruConfig.forEach((cfg) => {
   dataLebuhrayaBaru[cfg.mode] = { [cfg.arah[0].key]: [], [cfg.arah[1].key]: [] };
@@ -1155,13 +1101,10 @@ function cariConfigLebuhraya(mode) {
   return lebuhrayaBaruConfig.find((c) => c.mode === mode) || null;
 }
 
-// Papar ikon FontAwesome + label teks (label disembunyi di mobile via .btn-label)
 function setBtnIcon(el, iconClass, label) {
   el.innerHTML = `<i class="fa-solid ${iconClass}"></i><span class="btn-label"> ${label}</span>`;
 }
 
-// Arah pertama (butang atas) dan kedua (butang bawah) untuk mod semasa
-// Digunakan oleh butang arah-btn-1 / arah-btn-2 di index.html
 function arah1UntukModeSemasa() {
   if (modeCarian === 'pg') return 'pasirgudang';
   if (modeCarian === 'km') return 'utara';
@@ -1177,7 +1120,6 @@ function arah2UntukModeSemasa() {
 
 function pilihArah(arah) {
   arahCarian = arah;
-  // Toggle class active
   arahBtn1.classList.remove('active-arah');
   arahBtn2.classList.remove('active-arah');
   if (arah === arah1UntukModeSemasa()) {
@@ -1185,15 +1127,12 @@ function pilihArah(arah) {
   } else {
     arahBtn2.classList.add('active-arah');
   }
-  // Jika ada query, boleh cari semula? Biar pengguna tekan Cari semula.
-  // Kita boleh trigger carian automatik? Untuk kemudahan, kita boleh panggil cari() jika input tidak kosong.
   const query = document.getElementById('search-input').value.trim();
   if (query.length > 0) {
     cari();
   }
 }
 
-// Urutan penuh kitaran mod carian: alamat -> km -> pg -> (lebuhraya baru...) -> alamat
 const urutanModCarian = ['alamat', 'km', 'pg', ...lebuhrayaBaruConfig.map((c) => c.mode)];
 
 function tukarMode() {
@@ -1208,7 +1147,6 @@ function tukarMode() {
     setBtnIcon(modeBtn, 'fa-location-dot', 'Alamat');
     modeBtn.className = 'mode-btn active-alamat';
     searchInput.placeholder = 'Cari alamat atau tempat...';
-    // Sembunyikan butang arah
     arahBtn1.style.display = 'none';
     arahBtn2.style.display = 'none';
   } else if (modeCarian === 'km') {
@@ -1230,7 +1168,6 @@ function tukarMode() {
     setBtnIcon(arahBtn2, 'fa-arrow-down', 'Perling');
     pilihArah('pasirgudang');
   } else {
-    // Mod lebuhraya baru (sde, secondlink, edl, ...)
     const cfg = cariConfigLebuhraya(modeCarian);
     setBtnIcon(modeBtn, cfg.icon, cfg.labelBtn);
     modeBtn.className = `mode-btn active-${cfg.mode}`;
@@ -1247,25 +1184,15 @@ function tukarMode() {
 }
 
 // ============================================
-// SEARCH (SATU BUTANG + TOGGLE MODE) – DIPERBAIKI DENGAN ARAH
+// SEARCH
 // ============================================
 const searchInput = document.getElementById('search-input');
 const searchResults = document.getElementById('search-results');
 const searchBtn = document.getElementById('search-btn');
 let searchMarker = null;
 
-// Simpan hasil carian alamat terkini supaya item senarai cadangan boleh
-// dirujuk melalui data-index (event delegation) dan bukan onclick string
-// interpolation - elak alamat dengan aksara istimewa (', ", &, kurungan,
-// dsb) rosakkan HTML/JS dan menyebabkan senarai cadangan gagal dipaparkan.
 let hasilCarianAlamatTerkini = [];
 
-// Fungsi parse KM PLUS (dengan arah)
-// PEMBETULAN: padankan terus dengan KM sebenar (kmMapPlus) - bukan lagi
-// anggapan index/10 = KM (yang tersasar jika fail tak bermula KM 0.0).
-// NOTA: had atas dilonggarkan ke 300 (semak generik sahaja) - had lama 174.1
-// tak sesuai lagi sebab data PLUS Utara sebenar pergi sampai KM 180.2;
-// Map.get() di bawah tetap jadi penentu sebenar sama ada KM tu wujud.
 function cariKM(query) {
   const match = query.match(/^\s*(?:km\s*)?([\d.]+)\s*(?:km)?\s*$/i);
   if (!match) return null;
@@ -1282,9 +1209,6 @@ function cariKM(query) {
   return { lat: titik.lat, lng: titik.lng, km: kmKey, arah: arah };
 }
 
-// Fungsi parse KM Pasir Gudang (dengan arah)
-// PEMBETULAN: padankan terus dengan KM sebenar (kmMapPG) - bukan lagi
-// anggapan index/10 = KM.
 function cariKMPG(query) {
   const match = query.match(/^\s*(?:km\s*)?([\d.]+)\s*(?:km)?\s*$/i);
   if (!match) return null;
@@ -1301,7 +1225,6 @@ function cariKMPG(query) {
   return { lat: titik.lat, lng: titik.lng, km: kmKey, arah: arah };
 }
 
-// Fungsi utama cari()
 function cari() {
   console.log('Fungsi cari() dipanggil, mode:', modeCarian, 'arah:', arahCarian);
   const query = searchInput.value.trim();
@@ -1312,21 +1235,15 @@ function cari() {
   } else if (modeCarian === 'pg') {
     cariKMPGPlus(query);
   } else {
-    // Mod lebuhraya baru (sde, secondlink, edl, ...)
     cariKMLebuhrayaBaruJalankan(modeCarian, query);
   }
 }
 
-// Carian Alamat (dengan pembatalan carian lama - elak race condition)
 let carianAlamatController = null;
-let carianAlamatTimer = null; // debounce untuk cadangan alamat semasa menaip
-
-// Cache + throttle untuk elak dua request (auto-suggest + explicit search)
-// tertembak rapat & langgar had 1 request/saat Nominatim - punca hasil
-// "kosong"/tiada respons pada carian yang sepatutnya wujud (cth: Mersing).
-const geocodeCache = new Map(); // url -> { data, ts }
-const GEOCODE_CACHE_TTL_MS = 30000; // guna semula hasil sama dalam 30 saat
-const GEOCODE_MIN_INTERVAL_MS = 1100; // jarak minimum antara request sebenar
+let carianAlamatTimer = null;
+const geocodeCache = new Map();
+const GEOCODE_CACHE_TTL_MS = 30000;
+const GEOCODE_MIN_INTERVAL_MS = 1100;
 let geocodeLastFetchTime = 0;
 
 function delay(ms, signal) {
@@ -1341,8 +1258,6 @@ function delay(ms, signal) {
   });
 }
 
-// Wrapper fetch geocode: guna cache jika ada, hormati jarak minimum
-// antara request sebenar ke Nominatim, dan sokong AbortController.
 async function geocodeFetch(url, signal) {
   const cached = geocodeCache.get(url);
   if (cached && Date.now() - cached.ts < GEOCODE_CACHE_TTL_MS) {
@@ -1363,8 +1278,6 @@ async function geocodeFetch(url, signal) {
 }
 
 function cariAlamat(query, autoSelect = true) {
-  // Batalkan carian alamat sebelumnya (jika ada) supaya hasil lama tak
-  // sesekali timpa hasil carian baru bila carian lama lambat sampai balik.
   if (carianAlamatController) {
     carianAlamatController.abort();
     carianAlamatController = null;
@@ -1388,15 +1301,7 @@ function cariAlamat(query, autoSelect = true) {
   const controller = new AbortController();
   carianAlamatController = controller;
 
-  // Nota: limit dinaikkan (5 -> 8) dan addressdetails=1 diminta supaya lebih
-  // banyak calon (termasuk yang serupa/ambiguous) dikembalikan oleh proxy
-  // api/geocode. viewbox membiaskan (BUKAN mengehadkan - tiada bounded=1)
-  // hasil ke sekitar Johor supaya alamat tempatan diutamakan tanpa menolak
-  // hasil sah dari negeri lain. Proxy api/geocode perlu diperiksa/dikemaskini
-  // secara berasingan untuk pastikan parameter ini benar-benar diteruskan ke
-  // Nominatim, dan untuk tambah logik "cuba semula dengan query lebih ringkas
-  // jika tiada hasil" di sisi server.
-  const viewboxJohor = '102.4,2.75,104.35,1.2'; // left,top,right,bottom (Johor)
+  const viewboxJohor = '102.4,2.75,104.35,1.2';
   const url =
     `api/geocode?q=${encodeURIComponent(query)}` +
     `&countrycodes=my&limit=8&accept-language=ms&addressdetails=1` +
@@ -1404,14 +1309,10 @@ function cariAlamat(query, autoSelect = true) {
 
   geocodeFetch(url, controller.signal)
     .then((data) => {
-      if (carianAlamatController !== controller) return; // carian ini dah dibatalkan/lapuk
+      if (carianAlamatController !== controller) return;
       carianAlamatController = null;
 
       if (!data || data.length === 0) {
-        // Tiada hasil pada carian penuh - cuba semula dengan query yang
-        // diringkaskan (buang nombor unit/lot/bangunan di hujung) supaya
-        // alamat separa/berbutir yang tak wujud tepat dalam OSM masih ada
-        // peluang jumpa kawasan/jalan yang berkaitan.
         const queryRingkas = query
           .replace(/,?\s*(no\.?|lot|unit|tingkat|blok|blok no\.?)\s*[\w-]+\s*,?/gi, ' ')
           .replace(/\s+/g, ' ')
@@ -1432,7 +1333,7 @@ function cariAlamat(query, autoSelect = true) {
       paparkanHasilCarianAlamat(data, autoSelect);
     })
     .catch((error) => {
-      if (error.name === 'AbortError') return; // carian dibatalkan sebab ada carian baru - bukan ralat sebenar
+      if (error.name === 'AbortError') return;
       if (carianAlamatController !== controller) return;
       carianAlamatController = null;
       console.error('Ralat carian alamat:', error);
@@ -1442,9 +1343,6 @@ function cariAlamat(query, autoSelect = true) {
     });
 }
 
-// Cuba semula carian dengan query yang lebih ringkas (fallback) apabila
-// carian penuh tiada hasil - membantu kes alamat berbutir (No./Lot/Unit)
-// yang tak wujud tepat dalam data OSM tapi jalan/kawasannya ada.
 function cariAlamatQueryRingkas(queryRingkas, queryAsal, controllerLama) {
   const controller = new AbortController();
   carianAlamatController = controller;
@@ -1482,10 +1380,6 @@ function cariAlamatQueryRingkas(queryRingkas, queryAsal, controllerLama) {
     });
 }
 
-// Papar senarai cadangan alamat. Guna data-index (bukan onclick string
-// interpolation terus daripada display_name) supaya alamat dengan aksara
-// istimewa (', ", &, kurungan, dsb - biasa dalam alamat Malaysia) tidak
-// merosakkan HTML dan menyebabkan seluruh senarai cadangan gagal dipaparkan.
 function paparkanHasilCarianAlamat(data, autoSelect, tambahKandungan = false) {
   hasilCarianAlamatTerkini = data;
 
@@ -1504,8 +1398,6 @@ function paparkanHasilCarianAlamat(data, autoSelect, tambahKandungan = false) {
   searchResults.classList.add('show');
 }
 
-// Event delegation untuk klik item cadangan alamat - guna data-index untuk
-// rujuk semula ke hasilCarianAlamatTerkini (elak isu escaping onclick).
 searchResults.addEventListener('click', function (e) {
   const item = e.target.closest('.search-result-item[data-index]');
   if (!item) return;
@@ -1515,14 +1407,12 @@ searchResults.addEventListener('click', function (e) {
   pilihLokasi(hasil.lat, hasil.lon, hasil.display_name);
 });
 
-// Carian KM PLUS
 function cariKMPlus(query) {
   if (query.length === 0) {
     searchResults.classList.remove('show');
     return;
   }
 
-  // Pastikan arah dipilih (jika tiada, mesej)
   if (arahCarian !== 'utara' && arahCarian !== 'selatan') {
     searchResults.innerHTML = '<div class="search-result-item" style="color:#cc0000;">Sila pilih arah (<i class="fa-solid fa-arrow-up"></i> Utara / <i class="fa-solid fa-arrow-down"></i> Selatan) terlebih dahulu.</div>';
     searchResults.classList.add('show');
@@ -1566,7 +1456,6 @@ function cariKMPlus(query) {
   }
 }
 
-// Carian KM Pasir Gudang
 function cariKMPGPlus(query) {
   if (query.length === 0) {
     searchResults.classList.remove('show');
@@ -1603,8 +1492,6 @@ function cariKMPGPlus(query) {
       .openPopup();
 
     searchInput.value = `PG KM ${kmResult.km} (${arahLabel})`;
-    // Untuk panel PLUS tidak berkaitan dengan PG, jadi kita tak update panel PLUS.
-    // Tapi kita simpan lokasiTerakhir
     lokasiTerakhir = {
       lat: kmResult.lat,
       lng: kmResult.lng,
@@ -1651,7 +1538,7 @@ function pilihLokasi(lat, lng, alamat) {
 }
 
 // ============================================
-// EVENT LISTENERS UNTUK CARIAN
+// EVENT LISTENERS
 // ============================================
 searchInput.addEventListener('keydown', function (e) {
   if (e.key === 'Enter') {
@@ -1670,8 +1557,6 @@ searchBtn.addEventListener('touchstart', function (e) {
   e.preventDefault();
 }, { passive: false });
 
-// Panggil terus di 'touchend' kerana preventDefault() pada touchstart
-// menyekat event 'click' emulated daripada fire di kebanyakan mobile browser.
 searchBtn.addEventListener('touchend', function (e) {
   e.preventDefault();
   searchBtnTouchHandled = true;
@@ -1696,7 +1581,6 @@ document.addEventListener('click', function (e) {
 });
 
 function clearSearch() {
-  // Batalkan carian alamat yang mungkin masih berjalan
   if (carianAlamatController) {
     carianAlamatController.abort();
     carianAlamatController = null;
@@ -1732,8 +1616,6 @@ searchInput.addEventListener('input', function () {
     clearBtn.classList.remove('show');
   }
 
-  // Papar cadangan alamat secara automatik semasa menaip (debounced),
-  // sebelum pengguna tekan Enter/butang cari.
   if (modeCarian === 'alamat') {
     const query = this.value.trim();
     if (carianAlamatTimer) {
@@ -1755,7 +1637,7 @@ searchInput.addEventListener('input', function () {
 });
 
 // ============================================
-// SIDE MENU FUNCTIONS (SAMA)
+// SIDE MENU FUNCTIONS
 // ============================================
 function toggleMenu() {
   document.getElementById('side-menu').classList.toggle('open');
@@ -1798,14 +1680,8 @@ function flyToBalai(lat, lng) {
   toggleMenu();
 }
 
-function infoSistem() {
-  // Fungsi ini tidak lagi digunakan. Maklumat sistem kini dipaparkan
-  // sebagai teks statik dalam side-menu (bawah butang "Kembali ke
-  // Dashboard Utama") - lihat #menu-info-text dalam index.html.
-}
-
 // ============================================
-// STOP TOUCH/MOUSE EVENT PADA POPUP, SIDE MENU & SEARCH RESULTS
+// STOP TOUCH/MOUSE EVENT
 // ============================================
 const popupModal = document.getElementById('popup-modal');
 const popupContent = document.getElementById('popup-content');
@@ -1824,7 +1700,7 @@ const searchResultsEl = document.getElementById('search-results');
 });
 
 // ============================================
-// DATA KAWASAN JAGAAN PLUS (SAMA)
+// DATA KAWASAN JAGAAN PLUS
 // ============================================
 const dataKawasanBalai = [
   { balai: 'BBP TEBRAU', kmDari: 0, kmHingga: 8, arah: 'UTARA' },
@@ -1857,9 +1733,6 @@ function cariBalaiArah(km, arah) {
   return dataKawasanBalai.find(item => item.arah === arah && km >= item.kmDari && km <= item.kmHingga) || null;
 }
 
-// ============================================
-// PANEL KAWASAN JAGAAN PLUS (DIUBAH UNTUK TUNJUK ARAH)
-// ============================================
 function updateInfoPanel(km, jenis = 'PLUS', arahLabel = '') {
   const panel = document.getElementById('info-panel');
   if (!panel) return;
@@ -1901,16 +1774,11 @@ function tutupInfoPanel() {
 
 // ============================================
 // DATA KAWASAN JAGAAN EDL
-// Sumber: jadual balai jagaan EDL yang diberikan (Ogos 2026).
-// NOTA: baris asal untuk BBP TEBRAU arah WOODLAND diberikan sebagai
-// "KM DARI 8.1, KM HINGGA 5.5" (terbalik). Ini kekal terbalik secara logik
-// (kmDari mesti < kmHingga untuk carian julat berfungsi), jadi ia dibetulkan
-// di sini kepada 5.5 - 8.1, sepadan dengan julat arah PANDAN bagi balai yang
-// sama. Sila sahkan dengan sumber rasmi jika julat sebenar berbeza.
+// ============================================
 const dataKawasanBalaiEDL = [
   { balai: 'BBP LARKIN', kmDari: 0, kmHingga: 5.5, arah: 'WOODLAND' },
   { balai: 'BBP LARKIN', kmDari: 0, kmHingga: 5.5, arah: 'PANDAN' },
-  { balai: 'BBP TEBRAU', kmDari: 5.5, kmHingga: 8.1, arah: 'WOODLAND' }, // dibetulkan drpd "8.1 - 5.5"
+  { balai: 'BBP TEBRAU', kmDari: 5.5, kmHingga: 8.1, arah: 'WOODLAND' },
   { balai: 'BBP TEBRAU', kmDari: 5.5, kmHingga: 8.1, arah: 'PANDAN' },
 ];
 
@@ -1918,9 +1786,6 @@ function cariBalaiArahEDL(km, arah) {
   return dataKawasanBalaiEDL.find(item => item.arah === arah && km >= item.kmDari && km <= item.kmHingga) || null;
 }
 
-// ============================================
-// PANEL KAWASAN JAGAAN EDL
-// ============================================
 function updateInfoPanelEDL(km, arahLabel = '') {
   const panel = document.getElementById('info-panel-edl');
   if (!panel) return;
@@ -1961,15 +1826,72 @@ function tutupInfoPanelEDL() {
 }
 
 // ============================================
-// DATA KM – MUAT TURUN 4 FAIL KML (2 PLUS + 2 PG)
+// DATA KAWASAN JAGAAN SDE (LEBUHRAYA SENAI - DESARU)
+// ============================================
+const dataKawasanBalaiSDE = [
+  { balai: 'BBP BANDAR BARU KULAI', kmDari: 0, kmHingga: 21.8, arah: 'PENAWAR' },
+  { balai: 'BBP JOHOR JAYA', kmDari: 21.8, kmHingga: 42.1, arah: 'PENAWAR' },
+  { balai: 'BBP PASIR GUDANG', kmDari: 42.1, kmHingga: 47.7, arah: 'PENAWAR' },
+  { balai: 'BBP PENAWAR', kmDari: 47.7, kmHingga: 69.3, arah: 'PENAWAR' },
+  { balai: 'BBP PENAWAR', kmDari: 69.3, kmHingga: 41.8, arah: 'SENAI' },
+  { balai: 'BBP PASIR GUDANG', kmDari: 41.8, kmHingga: 21.3, arah: 'SENAI' },
+  { balai: 'BBP JOHOR JAYA', kmDari: 21.3, kmHingga: 0, arah: 'SENAI' },
+];
+
+function cariBalaiArahSDE(km, arah) {
+  return dataKawasanBalaiSDE.find(item => item.arah === arah && km >= item.kmDari && km <= item.kmHingga) || null;
+}
+
+// ============================================
+// PANEL KAWASAN JAGAAN SDE
+// ============================================
+function updateInfoPanelSDE(km, arahLabel = '') {
+  const panel = document.getElementById('info-panel-sde');
+  if (!panel) return;
+
+  const kmDisplay = document.getElementById('info-km-sde');
+  const utaraDiv = document.getElementById('info-utara-sde');
+  const utaraJulat = document.getElementById('info-utara-sde-julat');
+  const selatanDiv = document.getElementById('info-selatan-sde');
+  const selatanJulat = document.getElementById('info-selatan-sde-julat');
+
+  const utara = cariBalaiArahSDE(km, 'SENAI');   // arah SENAI = UTARA
+  const selatan = cariBalaiArahSDE(km, 'PENAWAR'); // arah PENAWAR = SELATAN
+
+  kmDisplay.innerHTML = `<i class="fa-solid fa-location-dot"></i> KM ${km.toFixed(1)} (SDE${arahLabel ? ' - ' + arahLabel : ''})`;
+
+  if (utara) {
+    utaraDiv.textContent = utara.balai;
+    utaraJulat.textContent = `KM ${utara.kmDari} - ${utara.kmHingga}`;
+  } else {
+    utaraDiv.textContent = '-';
+    utaraJulat.textContent = '-';
+  }
+
+  if (selatan) {
+    selatanDiv.textContent = selatan.balai;
+    selatanJulat.textContent = `KM ${selatan.kmDari} - ${selatan.kmHingga}`;
+  } else {
+    selatanDiv.textContent = '-';
+    selatanJulat.textContent = '-';
+  }
+
+  panel.style.display = 'block';
+}
+
+function tutupInfoPanelSDE() {
+  const panel = document.getElementById('info-panel-sde');
+  if (panel) panel.style.display = 'none';
+}
+
+// ============================================
+// DATA KM – MUAT KML PLUS & PG
 // ============================================
 let dataKM_Utara = [];
 let dataKM_Selatan = [];
 let dataKMPG_PasirGudang = [];
 let dataKMPG_Perling = [];
 
-// PEMBETULAN (Ogos 2026): sama teknik seperti sistem SDE/EDL/Second Link -
-// peta carian pantas KM sebenar (bukan lagi anggapan index/10).
 const kmMapPlus = { utara: new Map(), selatan: new Map() };
 const kmMapPG = { pasirgudang: new Map(), perling: new Map() };
 
@@ -1978,14 +1900,13 @@ let kmMarkerVisible = false;
 
 async function loadKMLData() {
   try {
-    // Muat dua fail PLUS serentak
     const [respUtara, respSelatan] = await Promise.all([
       fetch('PLUS HALA UTARA.kml'),
       fetch('PLUS HALA SELATAN.kml')
     ]);
     if (!respUtara.ok) throw new Error('Fail PLUS HALA UTARA tidak dijumpai.');
     if (!respSelatan.ok) throw new Error('Fail PLUS HALA SELATAN tidak dijumpai.');
-    
+
     const [textUtara, textSelatan] = await Promise.all([
       respUtara.text(),
       respSelatan.text()
@@ -1996,7 +1917,7 @@ async function loadKMLData() {
     kmMapPlus.utara = binaKMMapLebuhrayaBaru(dataKM_Utara);
     kmMapPlus.selatan = binaKMMapLebuhrayaBaru(dataKM_Selatan);
     console.log(`[OK] PLUS Utara: ${dataKM_Utara.length} titik, PLUS Selatan: ${dataKM_Selatan.length} titik`);
-    
+
     binaLayerKMMarker();
   } catch (error) {
     console.error('[RALAT] Gagal memuatkan fail KML PLUS:', error);
@@ -2012,7 +1933,7 @@ async function loadKMLPasirGudang() {
     ]);
     if (!respPG.ok) throw new Error('Fail PG HALA PASIR GUDANG tidak dijumpai.');
     if (!respPerling.ok) throw new Error('Fail PG HALA PERLING tidak dijumpai.');
-    
+
     const [textPG, textPerling] = await Promise.all([
       respPG.text(),
       respPerling.text()
@@ -2023,16 +1944,6 @@ async function loadKMLPasirGudang() {
     kmMapPG.pasirgudang = binaKMMapLebuhrayaBaru(dataKMPG_PasirGudang);
     kmMapPG.perling = binaKMMapLebuhrayaBaru(dataKMPG_Perling);
     console.log(`[OK] PG Pasir Gudang: ${dataKMPG_PasirGudang.length} titik, PG Perling: ${dataKMPG_Perling.length} titik`);
-    if (dataKMPG_PasirGudang.length <= 3 || dataKMPG_Perling.length <= 3) {
-      console.warn('[AMARAN] Bilangan titik PG sangat sedikit (garisan akan nampak lurus). ' +
-        'Jika awak menjangka ~267 titik tapi nombor di atas rendah, kemungkinan besar browser masih ' +
-        'guna versi script.js/KML LAMA dari cache - cuba hard refresh (Ctrl+Shift+R) atau semak tab ' +
-        'Network di DevTools untuk pastikan fail terkini yang dimuatkan.');
-    }
-    if (dataKMPG_PasirGudang.length > 0) {
-      console.log('Contoh titik pertama Pasir Gudang:', dataKMPG_PasirGudang[0]);
-      console.log('Contoh titik terakhir Pasir Gudang:', dataKMPG_PasirGudang[dataKMPG_PasirGudang.length - 1]);
-    }
 
     binaLayerLebuhraya();
   } catch (error) {
@@ -2041,10 +1952,6 @@ async function loadKMLPasirGudang() {
   }
 }
 
-// [TIDAK DIGUNAKAN LAGI - kekal untuk rujukan sahaja]
-// Fungsi parse KML lama untuk PLUS (koordinat [lat, lng]) - digantikan oleh
-// parseKMLPointsDenganKM() pada Ogos 2026 supaya PLUS turut guna KM sebenar/
-// field "distance" dan bukan lagi anggapan index/10 = KM.
 function parseKMLPoints(kmlText) {
   const parser = new DOMParser();
   const kmlDoc = parser.parseFromString(kmlText, 'text/xml');
@@ -2061,16 +1968,6 @@ function parseKMLPoints(kmlText) {
   return coords;
 }
 
-// [TIDAK DIGUNAKAN LAGI - kekal untuk rujukan sahaja]
-// Fungsi parse KML untuk PG (struktur {lat, lng}) - digantikan oleh
-// parseKMLPointsDenganKM() pada Ogos 2026.
-// NOTA PEMBAIKAN LAMA: fail KML PG sebenar (disahkan oleh pengguna) mempunyai
-// 'fid' yang SAMA (cth. selalu "1") untuk SEMUA Placemark - bukan bernombor
-// urutan seperti yang dijangka asalnya. Menyusun ikut 'fid' dalam keadaan ini
-// tidak boleh dipercayai. Fail PG sentiasa menyenaraikan titik-titik dalam
-// urutan laluan sebenar (Placemark demi Placemark), sama seperti fail PLUS -
-// jadi kita terus guna urutan dokumen (macam parseKMLPoints untuk PLUS),
-// tanpa cuba tafsir 'fid' langsung.
 function parseKMLPointsPG(kmlText) {
   const parser = new DOMParser();
   const kmlDoc = parser.parseFromString(kmlText, 'text/xml');
@@ -2095,16 +1992,13 @@ function parseKMLPointsPG(kmlText) {
 }
 
 // ============================================
-// BINA LAYER MARKER KM PLUS (DUA ARAH DENGAN WARNA BERBEZA)
+// BINA LAYER MARKER KM PLUS
 // ============================================
 function binaLayerKMMarker() {
   if (dataKM_Utara.length === 0 && dataKM_Selatan.length === 0) return;
 
   layerKMMarker = L.layerGroup();
 
-  // Fungsi tambah marker untuk satu array dengan warna
-  // PEMBETULAN: guna nilai KM sebenar dari titik (p.km) - bukan lagi
-  // anggapan index/10 (yang hanya betul jika fail sentiasa bermula KM 0.0).
   function tambahMarkerArray(arr, warna, labelArah) {
     arr.forEach((p) => {
       const kmValue = p.km.toFixed(1);
@@ -2142,7 +2036,7 @@ function binaLayerKMMarker() {
 }
 
 // ============================================
-// BINA LAYER LEBUHRAYA PG (DUA ARAH DENGAN WARNA BERBEZA)
+// BINA LAYER LEBUHRAYA PG
 // ============================================
 let layerLebuhraya = null;
 let lebuhrayaVisible = false;
@@ -2165,8 +2059,6 @@ function binaLayerLebuhraya() {
     layerLebuhraya.addLayer(polyline);
   }
 
-  // PEMBETULAN: tambah titik KM (setiap 100m) sama macam Lebuhraya PLUS,
-  // supaya semua lebuhraya konsisten - bukan sekadar garis polyline kosong.
   function tambahMarkerKM(arr, warna, labelArah) {
     arr.forEach((p) => {
       const kmValue = p.km.toFixed(1);
@@ -2204,7 +2096,7 @@ function binaLayerLebuhraya() {
 }
 
 // ============================================
-// TOGGLE UNTUK MARKER KM DAN LEBUHRAYA (PAPAR DUA-DUA ARAH)
+// TOGGLE UNTUK MARKER KM DAN LEBUHRAYA
 // ============================================
 function toggleKMMarker(checkbox) {
   if (!layerKMMarker) {
@@ -2242,30 +2134,8 @@ function toggleLebuhraya(checkbox) {
 }
 
 // ============================================
-// SISTEM GENERIK: MUAT KML, BINA LAYER, CARIAN KM & TOGGLE
-// UNTUK LEBUHRAYA BARU (SDE, SECOND LINK, EDL, ...)
+// SISTEM GENERIK UNTUK LEBUHRAYA BARU (SDE, SECOND LINK, EDL)
 // ============================================
-
-// PEMBETULAN (Ogos 2026): fail KML untuk lebuhraya baru (SDE, dll.) TIDAK
-// semestinya bermula pada KM 0.0 - contohnya fail SDE HALA SENAI/PENAWAR
-// sebenarnya bermula pada KM 1.0 (titik pertama dalam dokumen). Fungsi lama
-// (parseKMLPointsPG) mengabaikan ini dan mengandaikan titik pertama = KM 0.0,
-// menyebabkan carian KM tersasar (offset tetap, cth. taip "KM 5.0" tapi keluar
-// lokasi sebenar KM 6.0).
-//
-// Fungsi baru ini terus membaca nilai KM SEBENAR yang tertanam dalam setiap
-// Placemark (<SimpleData name="KM">KM 1.0</SimpleData>), jadi tidak lagi
-// bergantung kepada index dokumen untuk anggar KM.
-//
-// NOTA PENTING: tidak semua fail lebuhraya baru ada field "KM" ini - cth.
-// SECOND LINK HALA TUAS.kml langsung tiada field KM (berbeza dengan
-// SECOND LINK HALA JPO.kml yang ada). Jadi fungsi ini guna turutan keutamaan:
-//   1) Field "KM" sebenar (paling tepat, cth. SDE, EDL, Second Link JPO)
-//   2) Field "distance" (meter dari titik mula fail ini) / 1000 - anggapan
-//      fail ini bermula pada KM 0.0 (cth. Second Link Tuas)
-//   3) Kalau kedua-dua tiada, index * 0.1 sebagai anggaran terakhir
-// supaya lebuhraya yang fail KML dia tiada field KM tetap berfungsi
-// (macam sebelum ini), bukan hilang terus.
 function parseKMLPointsDenganKM(kmlText) {
   const parser = new DOMParser();
   const kmlDoc = parser.parseFromString(kmlText, 'text/xml');
@@ -2287,8 +2157,6 @@ function parseKMLPointsDenganKM(kmlText) {
     const lat = parts[1];
     if (isNaN(lat) || isNaN(lng)) continue;
 
-    // Cari SimpleData name="KM" (utama) dan name="distance" (fallback)
-    // dalam ExtendedData Placemark ini.
     let kmValue = null;
     let jarakMeter = null;
     const simpleDataNodes = pm.getElementsByTagName('SimpleData');
@@ -2305,11 +2173,10 @@ function parseKMLPointsDenganKM(kmlText) {
     }
 
     if (kmValue === null || isNaN(kmValue)) {
-      // Field KM sebenar tiada - guna fallback supaya titik ini tidak hilang.
       if (jarakMeter !== null) {
-        kmValue = jarakMeter / 1000; // anggap fail ini bermula pada KM 0.0
+        kmValue = jarakMeter / 1000;
       } else {
-        kmValue = i * 0.1; // anggaran terakhir, ikut turutan dokumen
+        kmValue = i * 0.1;
       }
       guna_anggaran_fallback = true;
     }
@@ -2320,20 +2187,14 @@ function parseKMLPointsDenganKM(kmlText) {
   if (guna_anggaran_fallback) {
     console.warn(
       '[AMARAN] Sebahagian/semua titik dalam fail KML ini tiada label "KM" sebenar - ' +
-      'nilai KM dianggarkan drpd field "distance" atau kedudukan titik dalam dokumen ' +
-      '(anggapan fail bermula pada KM 0.0). Sila sahkan dengan sumber rasmi jika ' +
-      'lebuhraya/arah ini sepatutnya TIDAK bermula pada KM 0.0, macam kes SDE dahulu.'
+      'nilai KM dianggarkan drpd field "distance" atau kedudukan titik dalam dokumen.'
     );
   }
 
-  // Susun ikut nilai KM menaik supaya carian & lukisan garis konsisten
-  // walaupun susunan Placemark dalam dokumen berubah pada masa depan.
   points.sort((a, b) => a.km - b.km);
-
   return points;
 }
 
-// Bina peta carian pantas: "KM (1 titik perpuluhan)" -> {lat, lng}
 function binaKMMapLebuhrayaBaru(arr) {
   const map = new Map();
   arr.forEach((p) => {
@@ -2355,8 +2216,6 @@ async function loadKMLLebuhrayaBaru(mode) {
 
     const [text1, text2] = await Promise.all([resp1.text(), resp2.text()]);
 
-    // PEMBETULAN: guna parseKMLPointsDenganKM (baca nilai KM sebenar dari KML)
-    // dan bukan lagi parseKMLPointsPG (yang anggar KM daripada index dokumen).
     dataLebuhrayaBaru[mode][cfg.arah[0].key] = parseKMLPointsDenganKM(text1);
     dataLebuhrayaBaru[mode][cfg.arah[1].key] = parseKMLPointsDenganKM(text2);
 
@@ -2401,9 +2260,6 @@ function binaLayerLebuhrayaBaru(mode) {
     layer.addLayer(polyline);
   }
 
-  // PEMBETULAN: tambah titik KM (setiap 100m) sama macam Lebuhraya PLUS,
-  // supaya SDE/Second Link/EDL konsisten dengan PLUS - bukan sekadar garis
-  // polyline kosong tanpa penanda KM.
   function tambahMarkerKM(arr, warna, label) {
     arr.forEach((p) => {
       const kmValue = p.km.toFixed(1);
@@ -2422,10 +2278,11 @@ function binaLayerLebuhrayaBaru(mode) {
         className: 'km-tooltip',
       });
       marker.on('click', function () {
-        // Lebuhraya EDL ada panel kawasan jagaan sendiri (BBP LARKIN / BBP
-        // TEBRAU), sama macam panel PLUS - buka panel tu bila marker EDL diklik.
+        // Buka panel kawasan jagaan untuk EDL atau SDE
         if (cfg.mode === 'edl') {
           updateInfoPanelEDL(parseFloat(kmValue), label);
+        } else if (cfg.mode === 'sde') {
+          updateInfoPanelSDE(parseFloat(kmValue), label);
         }
         lokasiTerakhir = {
           lat: p.lat,
@@ -2466,10 +2323,6 @@ function toggleLebuhrayaBaru(mode, checkbox) {
   if (checkbox) checkbox.checked = state.visible;
 }
 
-// Fungsi parse KM untuk lebuhraya baru (dengan arah)
-// PEMBETULAN: padankan terus dengan nilai KM sebenar (dari kmMapLebuhrayaBaru)
-// dan bukan lagi anggap index 0 = KM 0.0. Ini elak offset tersasar apabila
-// fail KML tidak bermula pada KM 0.0 (cth. fail SDE bermula pada KM 1.0).
 function cariKMLebuhrayaBaru(mode, query) {
   const cfg = cariConfigLebuhraya(mode);
   if (!cfg) return null;
@@ -2481,19 +2334,18 @@ function cariKMLebuhrayaBaru(mode, query) {
   const arahInfo = cfg.arah.find((a) => a.key === arahCarian);
   if (!arahInfo) return null;
 
-  // Data disimpan pada resolusi 0.1 KM - padankan input ke 1 titik perpuluhan
   const kmKey = num.toFixed(1);
   const map = kmMapLebuhrayaBaru[mode][arahInfo.key];
   if (!map) return null;
 
   const titik = map.get(kmKey);
-  if (!titik) return null; // KM yang ditaip di luar julat data yang tersedia
+  if (!titik) return null;
 
   return { lat: titik.lat, lng: titik.lng, km: kmKey, arah: arahInfo.key, arahLabel: arahInfo.label };
 }
 
 // ============================================
-// Carian KM untuk lebuhraya baru - dipanggil dari cari()
+// CARIAN KM UNTUK LEBUHRAYA BARU
 // ============================================
 function cariKMLebuhrayaBaruJalankan(mode, query) {
   const cfg = cariConfigLebuhraya(mode);
@@ -2539,14 +2391,12 @@ function cariKMLebuhrayaBaruJalankan(mode, query) {
       alamat: `${cfg.labelMenu} KM ${kmResult.km} (${kmResult.arahLabel})`,
     };
 
-    // 🔥 TAMBAHAN: Papar kad kawasan jagaan EDL secara automatik
+    // Papar kad kawasan jagaan EDL atau SDE secara automatik
     if (mode === 'edl') {
       updateInfoPanelEDL(parseFloat(kmResult.km), kmResult.arahLabel);
+    } else if (mode === 'sde') {
+      updateInfoPanelSDE(parseFloat(kmResult.km), kmResult.arahLabel);
     }
-    // Jika pada masa hadapan ada panel untuk SDE atau Second Link,
-    // tambah syarat di sini, contoh:
-    // else if (mode === 'sde') { updateInfoPanelSDE(...); }
-
   } else {
     searchResults.innerHTML =
       '<div class="search-result-item" style="color:#999;">Format KM tidak sah atau arah ini tiada data. Contoh: 10.5, km 15, 20</div>';
@@ -2555,15 +2405,13 @@ function cariKMLebuhrayaBaruJalankan(mode, query) {
 }
 
 // ============================================
-// POLIGON ZON DAN BALAI (SAMA SEPERTI SEBELUM INI, TIDAK BERUBAH)
+// POLIGON ZON DAN BALAI
 // ============================================
 let layerPoligonZon = null;
 let layerPoligonBalai = null;
 let poligonZonVisible = false;
 let poligonBalaiVisible = false;
 
-// Senarai poligon kawasan jagaan setiap balai (nama balai + koordinat poligon),
-// digunakan untuk mengesan lokasi jatuh dalam kawasan jagaan balai mana (SG/TOA).
 let kawasanJagaanPolygons = [];
 
 async function loadKMLPolygon() {
@@ -2625,7 +2473,6 @@ async function loadKMLPolygon() {
       }
     }
 
-    // Bina layer Zon
     if (polygonsZon.length > 0) {
       layerPoligonZon = L.layerGroup();
       polygonsZon.forEach((poly) => {
@@ -2670,7 +2517,6 @@ async function loadKMLPolygon() {
       console.log(`[OK] ${polygonsZon.length} poligon ZON berjaya dimuatkan.`);
     }
 
-    // Bina layer Kawasan Balai
     if (polygonsBalai.length > 0) {
       layerPoligonBalai = L.layerGroup();
       polygonsBalai.forEach((poly) => {
@@ -2693,8 +2539,6 @@ async function loadKMLPolygon() {
           }
         }
 
-        // Simpan poligon ini sebagai kawasan jagaan balai (guna nama sebenar dataBalai
-        // jika berjaya dipadan, jika tidak guna nama asal dari KML sebagai fallback).
         kawasanJagaanPolygons.push({
           namaBalai: balaiDipadan ? balaiDipadan.nama : poly.name,
           coordinates: poly.coordinates,
@@ -2747,11 +2591,6 @@ async function loadKMLPolygon() {
   }
 }
 
-// NOTA: togglePoligonZon() dibuang daripada menu (ciri "Poligon Zon" tak lagi
-// digunakan). Fungsi loadKMLPolygon() di atas masih membina layerPoligonZon,
-// tapi ia tidak lagi dipaparkan di mana-mana - selamat untuk dibiarkan (dead code)
-// atau dibuang terus jika diperlukan kemudian.
-
 function togglePoligonBalai(checkbox) {
   if (!layerPoligonBalai) {
     if (checkbox) checkbox.checked = false;
@@ -2778,8 +2617,5 @@ loadKMLPolygon();
 lebuhrayaBaruConfig.forEach((cfg) => loadKMLLebuhrayaBaru(cfg.mode));
 muatSemuaDataJentera();
 
-// ============================================
-// LOADING SIAP
-// ============================================
 console.log('[OK] Peta Kawasan Jagaan JBPM Johor siap!');
 console.log('[INFO] 34 Balai | 4 Zon | Search dengan toggle arah untuk KM PLUS dan KM PG');

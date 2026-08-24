@@ -780,11 +780,11 @@
       /* ============================================
          TIMBUNAN KAD KAWASAN JAGAAN (SEMUA LEBUHRAYA)
          Satu container ni uruskan posisi SEMUA kad kawasan jagaan (PLUS,
-         EDL, dan lebuhraya akan datang - PG/SDE/2ND LINK dll). Setiap kad
-         cuma perlu letak dalam container ni + kelas .info-panel-card;
-         flexbox automatik susun/tindih ikut kad mana yang visible je
-         (display:none tak ambil ruang), jadi TAK PERLU kira bottom/left/
-         right manual setiap kali tambah kad lebuhraya baru.
+         EDL, SDE, dan lebuhraya akan datang). Setiap kad cuma perlu letak
+         dalam container ni + kelas .info-panel-card; flexbox automatik susun/
+         tindih ikut kad mana yang visible je (display:none tak ambil ruang),
+         jadi TAK PERLU kira bottom/left/right manual setiap kali tambah kad
+         lebuhraya baru.
       ============================================ */
       #info-panel-stack {
         position: absolute;
@@ -818,10 +818,12 @@
         border-left: 4px solid var(--bomba-red);
       }
 
-      /* PANEL KAWASAN JAGAAN EDL - posisi diuruskan oleh #info-panel-stack,
-         di sini cuma perlu tetapkan warna aksen sahaja. */
       #info-panel-edl {
         border-left: 4px solid #3f51b5;
+      }
+
+      #info-panel-sde {
+        border-left: 4px solid #7B1FA2;
       }
 
       #info-panel-close {
@@ -866,6 +868,29 @@
       }
 
       #info-panel-edl-close:hover {
+        background: #f0f0f0;
+        color: var(--text-primary);
+      }
+
+      #info-panel-sde-close {
+        position: absolute;
+        top: 6px;
+        right: 8px;
+        width: 22px;
+        height: 22px;
+        border: none;
+        background: transparent;
+        color: #9e9e9e;
+        font-size: 14px;
+        line-height: 22px;
+        text-align: center;
+        cursor: pointer;
+        border-radius: 50%;
+        pointer-events: auto;
+        transition: var(--transition-fast);
+      }
+
+      #info-panel-sde-close:hover {
         background: #f0f0f0;
         color: var(--text-primary);
       }
@@ -937,6 +962,22 @@
 
       #info-panel-edl .info-arah-pandan {
         color: #3f51b5;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+
+      #info-panel-sde .info-arah-utara-sde {
+        color: #7B1FA2;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+
+      #info-panel-sde .info-arah-selatan-sde {
+        color: #9C27B0;
         font-weight: 700;
         display: flex;
         align-items: center;
@@ -1254,7 +1295,7 @@
         }
 
         /* #info-panel-stack uruskan semua kad kawasan jagaan (PLUS, EDL,
-           dan lebuhraya akan datang) - kad jadi lebar penuh dan bertindan
+           SDE, dan lebuhraya akan datang) - kad jadi lebar penuh dan bertindan
            menegak automatik ikut kad mana yang visible. */
         #info-panel-stack {
           bottom: 75px;
@@ -1562,7 +1603,35 @@
             </div>
           </div>
         </div>
-        <!-- KAD LEBUHRAYA BARU (PG/SDE/2ND LINK dll) DITAMBAH DI SINI -->
+
+        <!-- PANEL KAWASAN JAGAAN SDE -->
+        <div id="info-panel-sde" class="info-panel-card">
+          <button
+            id="info-panel-sde-close"
+            onclick="tutupInfoPanelSDE()"
+            title="Tutup"
+            aria-label="Tutup"
+          >
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+          <div class="info-title">
+            <i class="fa-solid fa-truck-medical"></i> Kawasan Jagaan SDE
+          </div>
+          <div class="info-km" id="info-km-sde">KM 0.0</div>
+          <div class="info-row">
+            <div>
+              <div class="info-arah-utara-sde"><i class="fa-solid fa-arrow-up"></i> UTARA (SENAI)</div>
+              <div class="info-balai" id="info-utara-sde">-</div>
+              <div class="info-julat" id="info-utara-sde-julat">-</div>
+            </div>
+            <div>
+              <div class="info-arah-selatan-sde"><i class="fa-solid fa-arrow-down"></i> SELATAN (PENAWAR)</div>
+              <div class="info-balai" id="info-selatan-sde">-</div>
+              <div class="info-julat" id="info-selatan-sde-julat">-</div>
+            </div>
+          </div>
+        </div>
+        <!-- KAD LEBUHRAYA BARU LAIN DITAMBAH DI SINI -->
       </div>
     </div>
 
