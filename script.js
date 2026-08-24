@@ -2104,10 +2104,42 @@ function binaLayerLebuhraya() {
     layerLebuhraya.addLayer(polyline);
   }
 
+  // PEMBETULAN: tambah titik KM (setiap 100m) sama macam Lebuhraya PLUS,
+  // supaya semua lebuhraya konsisten - bukan sekadar garis polyline kosong.
+  function tambahMarkerKM(arr, warna, labelArah) {
+    arr.forEach((p) => {
+      const kmValue = p.km.toFixed(1);
+      const marker = L.circleMarker([p.lat, p.lng], {
+        radius: 4,
+        fillColor: warna,
+        color: warna,
+        weight: 1,
+        opacity: 0.8,
+        fillOpacity: 0.9,
+      });
+      marker.bindTooltip(`<b><i class="fa-solid fa-location-dot"></i> ${kmValue} KM (${labelArah})</b>`, {
+        permanent: false,
+        direction: 'top',
+        offset: [0, -8],
+        className: 'km-tooltip',
+      });
+      marker.on('click', function () {
+        lokasiTerakhir = {
+          lat: p.lat,
+          lng: p.lng,
+          alamat: `KM ${kmValue} (PG - ${labelArah})`,
+        };
+      });
+      layerLebuhraya.addLayer(marker);
+    });
+  }
+
   tambahGarisan(dataKMPG_PasirGudang, '#FF9800', 'Pasir Gudang');
   tambahGarisan(dataKMPG_Perling, '#4CAF50', 'Perling');
+  tambahMarkerKM(dataKMPG_PasirGudang, '#FF9800', 'Pasir Gudang');
+  tambahMarkerKM(dataKMPG_Perling, '#4CAF50', 'Perling');
 
-  console.log('[OK] Layer Lebuhraya PG sedia (dua arah).');
+  console.log('[OK] Layer Lebuhraya PG sedia (dua arah, dengan titik KM setiap 100m).');
 }
 
 // ============================================
@@ -2308,11 +2340,44 @@ function binaLayerLebuhrayaBaru(mode) {
     layer.addLayer(polyline);
   }
 
+  // PEMBETULAN: tambah titik KM (setiap 100m) sama macam Lebuhraya PLUS,
+  // supaya SDE/Second Link/EDL konsisten dengan PLUS - bukan sekadar garis
+  // polyline kosong tanpa penanda KM.
+  function tambahMarkerKM(arr, warna, label) {
+    arr.forEach((p) => {
+      const kmValue = p.km.toFixed(1);
+      const marker = L.circleMarker([p.lat, p.lng], {
+        radius: 4,
+        fillColor: warna,
+        color: warna,
+        weight: 1,
+        opacity: 0.8,
+        fillOpacity: 0.9,
+      });
+      marker.bindTooltip(`<b><i class="fa-solid fa-location-dot"></i> ${kmValue} KM (${cfg.labelMenu} - ${label})</b>`, {
+        permanent: false,
+        direction: 'top',
+        offset: [0, -8],
+        className: 'km-tooltip',
+      });
+      marker.on('click', function () {
+        lokasiTerakhir = {
+          lat: p.lat,
+          lng: p.lng,
+          alamat: `${cfg.labelMenu} KM ${kmValue} (${label})`,
+        };
+      });
+      layer.addLayer(marker);
+    });
+  }
+
   tambahGarisan(arr1, cfg.warnaGaris[0], cfg.arah[0].label);
   tambahGarisan(arr2, cfg.warnaGaris[1], cfg.arah[1].label);
+  tambahMarkerKM(arr1, cfg.warnaGaris[0], cfg.arah[0].label);
+  tambahMarkerKM(arr2, cfg.warnaGaris[1], cfg.arah[1].label);
 
   layerLebuhrayaBaru[mode].layer = layer;
-  console.log(`[OK] Layer ${cfg.labelMenu} sedia (dua arah).`);
+  console.log(`[OK] Layer ${cfg.labelMenu} sedia (dua arah, dengan titik KM setiap 100m).`);
 }
 
 function toggleLebuhrayaBaru(mode, checkbox) {
