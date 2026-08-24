@@ -550,35 +550,60 @@ ${telefonFallback}${infoKetua}
 });
 
 // ============================================
-// KLIK PETA UNTUK DAPATKAN KOORDINAT (DENGAN PENAPISAN UI)
+// KLIK PETA UNTUK DAPATKAN KOORDINAT (PENAPISAN UI YANG SANGAT KETAT)
 // ============================================
 let coordPopup = null;
 
 map.on('click', function (e) {
-  // Abaikan jika klik berasal dari mana-mana elemen UI
+  // Abaikan jika klik berasal dari mana-mana elemen interaktif
   const target = e.originalEvent.target;
-  if (
-    target.closest('#menu-btn') ||
-    target.closest('#side-menu') ||
-    target.closest('#search-container') ||
-    target.closest('#search-results') ||
-    target.closest('#search-btn') ||
-    target.closest('.mode-btn') ||
-    target.closest('.arah-btn') ||
-    target.closest('#popup-btn') ||
-    target.closest('#popup-modal') ||
-    target.closest('#basemap-btn') ||
-    target.closest('#basemap-panel') ||
-    target.closest('.leaflet-control') ||
-    target.closest('.leaflet-popup') ||
-    target.closest('.leaflet-top') ||
-    target.closest('.leaflet-bottom') ||
-    target.closest('#info-panel-stack') ||
-    target.closest('.info-panel-card')
-  ) {
-    return;
+  
+  // Senarai lengkap elemen UI yang perlu diabaikan – termasuk semua butang, input, label, pautan, dan elemen Leaflet
+  const uiSelectors = [
+    'button',          // semua butang (termasuk mode switch, arah, cari, tutup, dll.)
+    'input',           // semua input
+    'label',           // semua label
+    'a',               // semua pautan
+    '#menu-btn',
+    '#side-menu',
+    '#search-container',
+    '#search-results',
+    '#search-btn',
+    '.mode-btn',
+    '.arah-btn',
+    '#mode-toggle',
+    '#arah-btn-1',
+    '#arah-btn-2',
+    '#popup-btn',
+    '#popup-modal',
+    '#basemap-btn',
+    '#basemap-panel',
+    '.leaflet-control',
+    '.leaflet-control-zoom',
+    '.leaflet-top',
+    '.leaflet-bottom',
+    '.leaflet-popup',
+    '.leaflet-popup-content',
+    '#info-panel-stack',
+    '.info-panel-card',
+    '#info-panel',
+    '#info-panel-edl',
+    '#info-panel-sde',
+    '.leaflet-pane',
+    '.leaflet-overlay-pane',
+    '.leaflet-marker-pane',
+    '.leaflet-tile-pane',
+    '.leaflet-shadow-pane'
+  ];
+
+  // Semak jika target atau parent-nya sepadan dengan mana-mana selector
+  for (const selector of uiSelectors) {
+    if (target.closest(selector)) {
+      return; // abaikan klik ini
+    }
   }
 
+  // Jika klik pada peta (bukan UI), teruskan
   const lat = e.latlng.lat;
   const lng = e.latlng.lng;
   const latFixed = lat.toFixed(6);
@@ -611,7 +636,7 @@ map.on('click', function (e) {
     .openOn(map);
 });
 
-// Event delegation untuk butang salin koordinat (kekal sama)
+// Event delegation untuk butang salin koordinat
 document.addEventListener('click', function (event) {
   const btn = event.target.closest('#copy-coord-btn');
   if (!btn) return;
@@ -650,6 +675,25 @@ function fallbackSalin(coordText, msg) {
   }
   document.body.removeChild(textArea);
 }
+
+// ============================================
+// HALANG KLIK PADA SEMUA ELEMEN CARIAN DARIPADA MENCETUSKAN POPUP KOORDINAT
+// ============================================
+document.querySelectorAll('#search-container button, #search-container .mode-btn, #search-container .arah-btn, #mode-toggle, #arah-btn-1, #arah-btn-2, #search-btn, #search-container input, #search-container label').forEach(function(el) {
+  el.addEventListener('click', function(e) {
+    e.stopPropagation();
+  });
+  el.addEventListener('touchstart', function(e) {
+    e.stopPropagation();
+  }, { passive: false });
+});
+
+document.getElementById('search-container').addEventListener('click', function(e) {
+  e.stopPropagation();
+});
+document.getElementById('search-container').addEventListener('touchstart', function(e) {
+  e.stopPropagation();
+}, { passive: false });
 
 // ============================================
 // MODE CARIAN
