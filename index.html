@@ -847,7 +847,39 @@
         color: var(--text-primary);
       }
 
-      #info-panel .info-title {
+      #info-panel-edl-close {
+        position: absolute;
+        top: 6px;
+        right: 8px;
+        width: 22px;
+        height: 22px;
+        border: none;
+        background: transparent;
+        color: #9e9e9e;
+        font-size: 14px;
+        line-height: 22px;
+        text-align: center;
+        cursor: pointer;
+        border-radius: 50%;
+        pointer-events: auto;
+        transition: var(--transition-fast);
+      }
+
+      #info-panel-edl-close:hover {
+        background: #f0f0f0;
+        color: var(--text-primary);
+      }
+
+      /* PEMBETULAN: gaya asas kad (tajuk, KM, susunan dua lajur) kini
+         dikongsi oleh SEMUA kad kawasan jagaan (.info-panel-card) - bukan
+         lagi khusus #info-panel (PLUS) sahaja. Ini punca kad EDL sebelum
+         ni "tak keluar" (sebenarnya keluar tapi tanpa flex-layout/style
+         langsung sebab selector lama cuma #info-panel .info-title/.info-km/
+         .info-row). Guna cara ni juga supaya kad PG/SDE/2ND LINK akan
+         datang automatik dapat styling yang sama, tanpa perlu ulang tiap
+         selector untuk setiap lebuhraya baru.
+      ============================================ */
+      .info-panel-card .info-title {
         font-weight: 700;
         color: var(--bomba-red);
         margin-bottom: 6px;
@@ -857,16 +889,26 @@
         gap: 8px;
       }
 
-      #info-panel .info-km {
+      .info-panel-card .info-km {
         font-weight: 700;
         margin-bottom: 8px;
         font-size: 14px;
       }
 
-      #info-panel .info-row {
+      .info-panel-card .info-row {
         display: flex;
         justify-content: space-between;
         gap: 20px;
+      }
+
+      .info-panel-card .info-balai {
+        color: var(--text-primary);
+        font-weight: 500;
+      }
+
+      .info-panel-card .info-julat {
+        font-size: 11px;
+        color: #757575;
       }
 
       #info-panel .info-arah-utara {
@@ -885,16 +927,6 @@
         gap: 4px;
       }
 
-      #info-panel .info-balai {
-        color: var(--text-primary);
-        font-weight: 500;
-      }
-
-      #info-panel .info-julat {
-        font-size: 11px;
-        color: #757575;
-      }
-
       #info-panel-edl .info-arah-woodland {
         color: #5c6bc0;
         font-weight: 700;
@@ -909,16 +941,6 @@
         display: flex;
         align-items: center;
         gap: 4px;
-      }
-
-      #info-panel-edl .info-balai {
-        color: var(--text-primary);
-        font-weight: 500;
-      }
-
-      #info-panel-edl .info-julat {
-        font-size: 11px;
-        color: #757575;
       }
 
       /* ============================================
