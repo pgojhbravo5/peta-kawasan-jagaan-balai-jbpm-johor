@@ -12,13 +12,13 @@
       href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
     />
 
-    <!-- FontAwesome 6 Pro/Free Icons CDN for professional icon replacement -->
+    <!-- FontAwesome 6 Pro/Free Icons CDN -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     />
 
-    <!-- Inter - typeface for a cleaner, more professional operations-console look -->
+    <!-- Inter - typeface -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -48,9 +48,7 @@
         --transition-fast: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
       }
 
-      * {
-        box-sizing: border-box;
-      }
+      * { box-sizing: border-box; }
 
       body {
         margin: 0;
@@ -779,12 +777,6 @@
 
       /* ============================================
          TIMBUNAN KAD KAWASAN JAGAAN (SEMUA LEBUHRAYA)
-         Satu container ni uruskan posisi SEMUA kad kawasan jagaan (PLUS,
-         EDL, SDE, dan lebuhraya akan datang). Setiap kad cuma perlu letak
-         dalam container ni + kelas .info-panel-card; flexbox automatik susun/
-         tindih ikut kad mana yang visible je (display:none tak ambil ruang),
-         jadi TAK PERLU kira bottom/left/right manual setiap kali tambah kad
-         lebuhraya baru.
       ============================================ */
       #info-panel-stack {
         position: absolute;
@@ -826,52 +818,8 @@
         border-left: 4px solid #7B1FA2;
       }
 
-      #info-panel-close {
-        position: absolute;
-        top: 6px;
-        right: 8px;
-        width: 22px;
-        height: 22px;
-        border: none;
-        background: transparent;
-        color: #9e9e9e;
-        font-size: 14px;
-        line-height: 22px;
-        text-align: center;
-        cursor: pointer;
-        border-radius: 50%;
-        pointer-events: auto;
-        transition: var(--transition-fast);
-      }
-
-      #info-panel-close:hover {
-        background: #f0f0f0;
-        color: var(--text-primary);
-      }
-
-      #info-panel-edl-close {
-        position: absolute;
-        top: 6px;
-        right: 8px;
-        width: 22px;
-        height: 22px;
-        border: none;
-        background: transparent;
-        color: #9e9e9e;
-        font-size: 14px;
-        line-height: 22px;
-        text-align: center;
-        cursor: pointer;
-        border-radius: 50%;
-        pointer-events: auto;
-        transition: var(--transition-fast);
-      }
-
-      #info-panel-edl-close:hover {
-        background: #f0f0f0;
-        color: var(--text-primary);
-      }
-
+      #info-panel-close,
+      #info-panel-edl-close,
       #info-panel-sde-close {
         position: absolute;
         top: 6px;
@@ -890,20 +838,14 @@
         transition: var(--transition-fast);
       }
 
+      #info-panel-close:hover,
+      #info-panel-edl-close:hover,
       #info-panel-sde-close:hover {
         background: #f0f0f0;
         color: var(--text-primary);
       }
 
-      /* PEMBETULAN: gaya asas kad (tajuk, KM, susunan dua lajur) kini
-         dikongsi oleh SEMUA kad kawasan jagaan (.info-panel-card) - bukan
-         lagi khusus #info-panel (PLUS) sahaja. Ini punca kad EDL sebelum
-         ni "tak keluar" (sebenarnya keluar tapi tanpa flex-layout/style
-         langsung sebab selector lama cuma #info-panel .info-title/.info-km/
-         .info-row). Guna cara ni juga supaya kad PG/SDE/2ND LINK akan
-         datang automatik dapat styling yang sama, tanpa perlu ulang tiap
-         selector untuk setiap lebuhraya baru.
-      ============================================ */
+      /* Gaya asas kad - dikongsi oleh SEMUA kad */
       .info-panel-card .info-title {
         font-weight: 700;
         color: var(--bomba-red);
@@ -936,6 +878,7 @@
         color: #757575;
       }
 
+      /* ARAH PLUS */
       #info-panel .info-arah-utara {
         color: #1565c0;
         font-weight: 700;
@@ -952,15 +895,8 @@
         gap: 4px;
       }
 
-      #info-panel-edl .info-arah-woodland {
-        color: #5c6bc0;
-        font-weight: 700;
-        display: flex;
-        align-items: center;
-        gap: 4px;
-      }
-
-      #info-panel-edl .info-arah-pandan {
+      /* ARAH EDL - UTARA=PANDAN, SELATAN=WOODLAND */
+      #info-panel-edl .info-arah-utara-edl {
         color: #3f51b5;
         font-weight: 700;
         display: flex;
@@ -968,6 +904,15 @@
         gap: 4px;
       }
 
+      #info-panel-edl .info-arah-selatan-edl {
+        color: #5c6bc0;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+
+      /* ARAH SDE - UTARA=SENAI, SELATAN=PENAWAR */
       #info-panel-sde .info-arah-utara-sde {
         color: #7B1FA2;
         font-weight: 700;
@@ -985,7 +930,7 @@
       }
 
       /* ============================================
-         PENUKAR LAYER PETA DASAR (BASEMAP SWITCHER)
+         PENUKAR LAYER PETA DASAR
          ============================================ */
       #basemap-btn {
         position: absolute;
@@ -1042,10 +987,6 @@
         display: flex;
         opacity: 1;
         transform: translateY(0);
-      }
-
-      #basemap-panel-title {
-        display: none;
       }
 
       .basemap-option {
@@ -1116,7 +1057,7 @@
       }
 
       /* ============================================
-         POPUP BALAI - SENARAI STATUS JENTERA (CFRT/EMRS/WATER TANKER)
+         POPUP BALAI - STATUS JENTERA
          ============================================ */
       .leaflet-popup-content {
         margin: 12px 14px;
@@ -1208,9 +1149,7 @@
       }
 
       @media (max-width: 600px) {
-        :root {
-          --toolbar-h: 40px;
-        }
+        :root { --toolbar-h: 40px; }
 
         #search-wrapper {
           left: 10px !important;
@@ -1260,43 +1199,13 @@
           flex-shrink: 0;
         }
 
-        #search-btn .btn-label {
-          display: none;
-        }
+        #search-btn .btn-label { display: none; }
+        #search-clear { font-size: 13px; padding: 0 6px; flex-shrink: 0; }
+        #search-results { top: 44px; max-height: 180px; }
+        #menu-btn { top: 10px; left: 10px; font-size: 16px; border-radius: 6px; }
+        #popup-modal { width: 88vw; right: -100vw; }
+        #popup-btn { font-size: 18px; right: 10px; width: 42px; height: 42px; }
 
-        #search-clear {
-          font-size: 13px;
-          padding: 0 6px;
-          flex-shrink: 0;
-        }
-
-        #search-results {
-          top: 44px;
-          max-height: 180px;
-        }
-
-        #menu-btn {
-          top: 10px;
-          left: 10px;
-          font-size: 16px;
-          border-radius: 6px;
-        }
-
-        #popup-modal {
-          width: 88vw;
-          right: -100vw;
-        }
-
-        #popup-btn {
-          font-size: 18px;
-          right: 10px;
-          width: 42px;
-          height: 42px;
-        }
-
-        /* #info-panel-stack uruskan semua kad kawasan jagaan (PLUS, EDL,
-           SDE, dan lebuhraya akan datang) - kad jadi lebar penuh dan bertindan
-           menegak automatik ikut kad mana yang visible. */
         #info-panel-stack {
           bottom: 75px;
           right: 10px;
@@ -1310,29 +1219,10 @@
           font-size: 11.5px;
         }
 
-        #basemap-btn {
-          bottom: 16px;
-          left: 10px;
-          width: 42px;
-          height: 42px;
-          font-size: 16px;
-        }
-
-        #basemap-panel {
-          bottom: 16px;
-          left: 58px;
-          max-width: calc(100vw - 74px);
-          overflow-x: auto;
-        }
-
-        .basemap-option {
-          width: 64px;
-        }
-
-        .basemap-swatch {
-          width: 56px;
-          height: 44px;
-        }
+        #basemap-btn { bottom: 16px; left: 10px; width: 42px; height: 42px; font-size: 16px; }
+        #basemap-panel { bottom: 16px; left: 58px; max-width: calc(100vw - 74px); overflow-x: auto; }
+        .basemap-option { width: 64px; }
+        .basemap-swatch { width: 56px; height: 44px; }
       }
     </style>
   </head>
@@ -1359,22 +1249,10 @@
             <i class="fa-solid fa-layer-group"></i> Zon
           </button>
           <div id="filter-zon" style="display: none">
-            <label>
-              <input type="checkbox" checked onchange="toggleZon(1, this)" />
-              Zon 1 - Johor Bahru
-            </label>
-            <label>
-              <input type="checkbox" checked onchange="toggleZon(2, this)" />
-              Zon 2 - Kota Tinggi
-            </label>
-            <label>
-              <input type="checkbox" checked onchange="toggleZon(3, this)" />
-              Zon 3 - Kluang
-            </label>
-            <label>
-              <input type="checkbox" checked onchange="toggleZon(4, this)" />
-              Zon 4 - Muar
-            </label>
+            <label><input type="checkbox" checked onchange="toggleZon(1, this)" /> Zon 1 - Johor Bahru</label>
+            <label><input type="checkbox" checked onchange="toggleZon(2, this)" /> Zon 2 - Kota Tinggi</label>
+            <label><input type="checkbox" checked onchange="toggleZon(3, this)" /> Zon 3 - Kluang</label>
+            <label><input type="checkbox" checked onchange="toggleZon(4, this)" /> Zon 4 - Muar</label>
           </div>
 
           <button class="menu-item" onclick="senaraiBalai()">
@@ -1412,38 +1290,19 @@
             Lebuhraya EDL
           </label>
 
-          <button
-            class="menu-item menu-item-keluar"
-            onclick="location.href='/'"
-          >
+          <button class="menu-item menu-item-keluar" onclick="location.href='/'">
             <i class="fa-solid fa-arrow-left-long"></i> Kembali ke Dashboard Utama
           </button>
 
           <div id="menu-info-text">
-            <div class="info-judul">
-              <i class="fa-solid fa-truck-droplet"></i> Peta Kawasan Jagaan Balai Bomba Johor
-            </div>
-            <div class="info-baris">
-              <i class="fa-solid fa-fire"></i> 34 Balai Bomba dan Penyelamat
-            </div>
-            <div class="info-baris">
-              <i class="fa-solid fa-map-location-dot"></i> 4 Zon Operasi
-            </div>
-            <div class="info-baris">
-              <i class="fa-solid fa-satellite-dish"></i> Dibangunkan untuk kegunaan JBPM Negeri Johor
-            </div>
-            <div class="info-baris">
-              <i class="fa-solid fa-pen-ruler"></i> Poligon Kawasan Balai(Asal) dibina oleh: Pesara Bomba En Sufian Bin Mohamed Lis
-            </div>
-            <div class="info-baris">
-              <i class="fa-solid fa-code"></i> Dibangunkan dan dikemaskini semula oleh: PB Mohamad Aidil, PB Mohd Shafrie & PB Malik
-            </div>
-            <div class="info-baris">
-              <i class="fa-solid fa-copyright"></i> 2026 PGO Johor
-            </div>
-            <div class="info-baris">
-              <i class="fa-solid fa-code-branch"></i> Versi 1.1 - 22 Ogos 2026
-            </div>
+            <div class="info-judul"><i class="fa-solid fa-truck-droplet"></i> Peta Kawasan Jagaan Balai Bomba Johor</div>
+            <div class="info-baris"><i class="fa-solid fa-fire"></i> 34 Balai Bomba dan Penyelamat</div>
+            <div class="info-baris"><i class="fa-solid fa-map-location-dot"></i> 4 Zon Operasi</div>
+            <div class="info-baris"><i class="fa-solid fa-satellite-dish"></i> Dibangunkan untuk kegunaan JBPM Negeri Johor</div>
+            <div class="info-baris"><i class="fa-solid fa-pen-ruler"></i> Poligon Kawasan Balai(Asal) dibina oleh: Pesara Bomba En Sufian Bin Mohamed Lis</div>
+            <div class="info-baris"><i class="fa-solid fa-code"></i> Dibangunkan dan dikemaskini semula oleh: PB Mohamad Aidil, PB Mohd Shafrie & PB Malik</div>
+            <div class="info-baris"><i class="fa-solid fa-copyright"></i> 2026 PGO Johor</div>
+            <div class="info-baris"><i class="fa-solid fa-code-branch"></i> Versi 1.2 - 24 Ogos 2026</div>
           </div>
         </div>
       </div>
@@ -1453,39 +1312,19 @@
       <div id="search-wrapper">
       <div id="search-container">
         <span class="search-icon-prefix"><i class="fa-solid fa-magnifying-glass"></i></span>
-        <input
-          type="text"
-          id="search-input"
-          placeholder="Cari alamat atau tempat..."
-          autocomplete="off"
-        />
+        <input type="text" id="search-input" placeholder="Cari alamat atau tempat..." autocomplete="off" />
         <button id="search-clear" onclick="clearSearch()" title="Kosongkan" aria-label="Kosongkan">
           <i class="fa-solid fa-xmark"></i>
         </button>
 
-        <!-- DUA BUTANG ARAH (disembunyi secara default) -->
-        <button
-          id="arah-btn-1"
-          class="arah-btn"
-          style="display: none"
-          onclick="pilihArah(arah1UntukModeSemasa())"
-        >
+        <button id="arah-btn-1" class="arah-btn" style="display: none" onclick="pilihArah(arah1UntukModeSemasa())">
           <i class="fa-solid fa-arrow-up"></i><span class="btn-label"> Utara</span>
         </button>
-        <button
-          id="arah-btn-2"
-          class="arah-btn"
-          style="display: none"
-          onclick="pilihArah(arah2UntukModeSemasa())"
-        >
+        <button id="arah-btn-2" class="arah-btn" style="display: none" onclick="pilihArah(arah2UntukModeSemasa())">
           <i class="fa-solid fa-arrow-down"></i><span class="btn-label"> Selatan</span>
         </button>
 
-        <button
-          id="mode-toggle"
-          onclick="tukarMode()"
-          class="mode-btn active-alamat"
-        >
+        <button id="mode-toggle" onclick="tukarMode()" class="mode-btn active-alamat">
           <i class="fa-solid fa-location-dot"></i><span class="btn-label"> Alamat</span>
         </button>
         <button id="search-btn" type="button">
@@ -1495,7 +1334,7 @@
       <div id="search-results"></div>
       </div>
 
-      <!-- BUTANG POPUP BALAI TERDEKAT (di tengah kanan) -->
+      <!-- BUTANG POPUP BALAI TERDEKAT -->
       <button id="popup-btn" onclick="bukaPopupBalai()" title="Balai Terdekat" aria-label="Balai Terdekat">
         <i class="fa-solid fa-fire-flame-curved"></i>
       </button>
@@ -1541,26 +1380,15 @@
       </div>
 
       <!-- ============================================
-           TIMBUNAN KAD KAWASAN JAGAAN (SEMUA LEBUHRAYA)
-           Letak kad kawasan jagaan lebuhraya baru (PG/SDE/2ND LINK dll)
-           terus dalam container ni + class="info-panel-card" - posisi
-           auto-uruskan oleh CSS #info-panel-stack, TAK PERLU tambah
-           bottom/left/right manual untuk setiap kad baru.
+           TIMBUNAN KAD KAWASAN JAGAAN
       ============================================ -->
       <div id="info-panel-stack">
         <!-- PANEL KAWASAN JAGAAN PLUS -->
         <div id="info-panel" class="info-panel-card">
-          <button
-            id="info-panel-close"
-            onclick="tutupInfoPanel()"
-            title="Tutup"
-            aria-label="Tutup"
-          >
+          <button id="info-panel-close" onclick="tutupInfoPanel()" title="Tutup" aria-label="Tutup">
             <i class="fa-solid fa-xmark"></i>
           </button>
-          <div class="info-title">
-            <i class="fa-solid fa-truck-medical"></i> Kawasan Jagaan PLUS
-          </div>
+          <div class="info-title"><i class="fa-solid fa-truck-medical"></i> Kawasan Jagaan PLUS</div>
           <div class="info-km" id="info-km">KM 0.0</div>
           <div class="info-row">
             <div>
@@ -1576,47 +1404,33 @@
           </div>
         </div>
 
-        <!-- PANEL KAWASAN JAGAAN EDL -->
+        <!-- PANEL KAWASAN JAGAAN EDL - UTARA=PANDAN, SELATAN=WOODLAND -->
         <div id="info-panel-edl" class="info-panel-card">
-          <button
-            id="info-panel-edl-close"
-            onclick="tutupInfoPanelEDL()"
-            title="Tutup"
-            aria-label="Tutup"
-          >
+          <button id="info-panel-edl-close" onclick="tutupInfoPanelEDL()" title="Tutup" aria-label="Tutup">
             <i class="fa-solid fa-xmark"></i>
           </button>
-          <div class="info-title">
-            <i class="fa-solid fa-truck-medical"></i> Kawasan Jagaan EDL
-          </div>
+          <div class="info-title"><i class="fa-solid fa-truck-medical"></i> Kawasan Jagaan EDL</div>
           <div class="info-km" id="info-km-edl">KM 0.0</div>
           <div class="info-row">
             <div>
-              <div class="info-arah-woodland"><i class="fa-solid fa-arrow-up"></i> WOODLAND</div>
-              <div class="info-balai" id="info-woodland">-</div>
-              <div class="info-julat" id="info-woodland-julat">-</div>
+              <div class="info-arah-utara-edl"><i class="fa-solid fa-arrow-up"></i> UTARA (PANDAN)</div>
+              <div class="info-balai" id="info-utara-edl">-</div>
+              <div class="info-julat" id="info-utara-edl-julat">-</div>
             </div>
             <div>
-              <div class="info-arah-pandan"><i class="fa-solid fa-arrow-down"></i> PANDAN</div>
-              <div class="info-balai" id="info-pandan">-</div>
-              <div class="info-julat" id="info-pandan-julat">-</div>
+              <div class="info-arah-selatan-edl"><i class="fa-solid fa-arrow-down"></i> SELATAN (WOODLAND)</div>
+              <div class="info-balai" id="info-selatan-edl">-</div>
+              <div class="info-julat" id="info-selatan-edl-julat">-</div>
             </div>
           </div>
         </div>
 
-        <!-- PANEL KAWASAN JAGAAN SDE -->
+        <!-- PANEL KAWASAN JAGAAN SDE - UTARA=SENAI, SELATAN=PENAWAR -->
         <div id="info-panel-sde" class="info-panel-card">
-          <button
-            id="info-panel-sde-close"
-            onclick="tutupInfoPanelSDE()"
-            title="Tutup"
-            aria-label="Tutup"
-          >
+          <button id="info-panel-sde-close" onclick="tutupInfoPanelSDE()" title="Tutup" aria-label="Tutup">
             <i class="fa-solid fa-xmark"></i>
           </button>
-          <div class="info-title">
-            <i class="fa-solid fa-truck-medical"></i> Kawasan Jagaan SDE
-          </div>
+          <div class="info-title"><i class="fa-solid fa-truck-medical"></i> Kawasan Jagaan SDE</div>
           <div class="info-km" id="info-km-sde">KM 0.0</div>
           <div class="info-row">
             <div>
@@ -1631,7 +1445,6 @@
             </div>
           </div>
         </div>
-        <!-- KAD LEBUHRAYA BARU LAIN DITAMBAH DI SINI -->
       </div>
     </div>
 
