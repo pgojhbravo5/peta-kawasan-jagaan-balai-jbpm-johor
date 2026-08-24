@@ -550,11 +550,32 @@ ${telefonFallback}${infoKetua}
 });
 
 // ============================================
-// KLIK PETA UNTUK DAPATKAN KOORDINAT (DENGAN BUTANG IKON SALIN)
+// KLIK PETA UNTUK DAPATKAN KOORDINAT (DENGAN PENAPISAN UI)
 // ============================================
 let coordPopup = null;
 
 map.on('click', function (e) {
+  // Abaikan jika klik berasal dari elemen UI (butang, menu, search, popup, dll)
+  const target = e.originalEvent.target;
+  if (
+    target.closest('#menu-btn') ||
+    target.closest('#side-menu') ||
+    target.closest('#search-container') ||
+    target.closest('#search-results') ||
+    target.closest('#popup-btn') ||
+    target.closest('#popup-modal') ||
+    target.closest('#basemap-btn') ||
+    target.closest('#basemap-panel') ||
+    target.closest('.leaflet-control') ||
+    target.closest('.leaflet-popup') ||
+    target.closest('.leaflet-top') ||
+    target.closest('.leaflet-bottom') ||
+    target.closest('#info-panel-stack') ||
+    target.closest('.info-panel-card')
+  ) {
+    return;
+  }
+
   const lat = e.latlng.lat;
   const lng = e.latlng.lng;
   const latFixed = lat.toFixed(6);
@@ -587,37 +608,28 @@ map.on('click', function (e) {
     .openOn(map);
 });
 
-// Event delegation untuk butang salin koordinat (guna document supaya berfungsi walaupun popup baru dibuka)
+// Event delegation untuk butang salin koordinat
 document.addEventListener('click', function (event) {
   const btn = event.target.closest('#copy-coord-btn');
   if (!btn) return;
 
-  // Cari elemen popup yang mengandungi butang ini
   const popupContainer = btn.closest('.leaflet-popup-content');
   if (!popupContainer) return;
 
-  // Cari elemen koordinat (div dengan font-family:monospace)
   const coordDiv = popupContainer.querySelector('div[style*="font-family:monospace"]');
   if (!coordDiv) return;
 
   const coordText = coordDiv.textContent.trim();
   const msg = popupContainer.querySelector('#copy-msg');
 
-  // Salin ke clipboard
   if (navigator.clipboard && navigator.clipboard.writeText) {
     navigator.clipboard.writeText(coordText).then(() => {
-      if (msg) {
-        msg.style.display = 'block';
-        setTimeout(() => { msg.style.display = 'none'; }, 2000);
-      }
-    }).catch(() => {
-      fallbackSalin(coordText, msg);
-    });
+      if (msg) { msg.style.display = 'block'; setTimeout(() => { msg.style.display = 'none'; }, 2000); }
+    }).catch(() => { fallbackSalin(coordText, msg); });
   } else {
     fallbackSalin(coordText, msg);
   }
-
-  event.stopPropagation(); // Elak popup tertutup
+  event.stopPropagation();
 });
 
 function fallbackSalin(coordText, msg) {
@@ -629,10 +641,7 @@ function fallbackSalin(coordText, msg) {
   textArea.select();
   try {
     document.execCommand('copy');
-    if (msg) {
-      msg.style.display = 'block';
-      setTimeout(() => { msg.style.display = 'none'; }, 2000);
-    }
+    if (msg) { msg.style.display = 'block'; setTimeout(() => { msg.style.display = 'none'; }, 2000); }
   } catch (e) {
     alert('Gagal menyalin. Sila salin secara manual: ' + coordText);
   }
@@ -1600,7 +1609,6 @@ function cariKMLebuhrayaBaruJalankan(mode, query) {
     searchInput.value = `${cfg.mode.toUpperCase()} KM ${kmResult.km} (${kmResult.arahLabel})`;
     lokasiTerakhir = { lat: kmResult.lat, lng: kmResult.lng, alamat: `${cfg.labelMenu} KM ${kmResult.km} (${kmResult.arahLabel})` };
 
-    // Papar kad kawasan jagaan EDL atau SDE secara automatik
     if (mode === 'edl') updateInfoPanelEDL(parseFloat(kmResult.km), kmResult.arahLabel);
     else if (mode === 'sde') updateInfoPanelSDE(parseFloat(kmResult.km), kmResult.arahLabel);
   } else {
