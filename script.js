@@ -1829,13 +1829,15 @@ function tutupInfoPanelEDL() {
 // DATA KAWASAN JAGAAN SDE (LEBUHRAYA SENAI - DESARU)
 // ============================================
 const dataKawasanBalaiSDE = [
+  // Arah PENAWAR (menaik dari 0 ke 69.3)
   { balai: 'BBP BANDAR BARU KULAI', kmDari: 0, kmHingga: 21.8, arah: 'PENAWAR' },
   { balai: 'BBP JOHOR JAYA', kmDari: 21.8, kmHingga: 42.1, arah: 'PENAWAR' },
   { balai: 'BBP PASIR GUDANG', kmDari: 42.1, kmHingga: 47.7, arah: 'PENAWAR' },
   { balai: 'BBP PENAWAR', kmDari: 47.7, kmHingga: 69.3, arah: 'PENAWAR' },
-  { balai: 'BBP PENAWAR', kmDari: 69.3, kmHingga: 41.8, arah: 'SENAI' },
-  { balai: 'BBP PASIR GUDANG', kmDari: 41.8, kmHingga: 21.3, arah: 'SENAI' },
-  { balai: 'BBP JOHOR JAYA', kmDari: 21.3, kmHingga: 0, arah: 'SENAI' },
+  // Arah SENAI (menaik dari 0 ke 69.3, dengan balai yang sepadan)
+  { balai: 'BBP JOHOR JAYA', kmDari: 0, kmHingga: 21.3, arah: 'SENAI' },
+  { balai: 'BBP PASIR GUDANG', kmDari: 21.3, kmHingga: 41.8, arah: 'SENAI' },
+  { balai: 'BBP PENAWAR', kmDari: 41.8, kmHingga: 69.3, arah: 'SENAI' },
 ];
 
 function cariBalaiArahSDE(km, arah) {
