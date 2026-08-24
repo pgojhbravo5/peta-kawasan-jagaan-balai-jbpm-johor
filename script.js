@@ -555,13 +555,16 @@ ${telefonFallback}${infoKetua}
 let coordPopup = null;
 
 map.on('click', function (e) {
-  // Abaikan jika klik berasal dari elemen UI (butang, menu, search, popup, dll)
+  // Abaikan jika klik berasal dari mana-mana elemen UI
   const target = e.originalEvent.target;
   if (
     target.closest('#menu-btn') ||
     target.closest('#side-menu') ||
     target.closest('#search-container') ||
     target.closest('#search-results') ||
+    target.closest('#search-btn') ||
+    target.closest('.mode-btn') ||
+    target.closest('.arah-btn') ||
     target.closest('#popup-btn') ||
     target.closest('#popup-modal') ||
     target.closest('#basemap-btn') ||
@@ -608,7 +611,7 @@ map.on('click', function (e) {
     .openOn(map);
 });
 
-// Event delegation untuk butang salin koordinat
+// Event delegation untuk butang salin koordinat (kekal sama)
 document.addEventListener('click', function (event) {
   const btn = event.target.closest('#copy-coord-btn');
   if (!btn) return;
