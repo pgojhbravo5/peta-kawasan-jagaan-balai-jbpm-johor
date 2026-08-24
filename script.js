@@ -1141,8 +1141,13 @@ const lebuhrayaBaruConfig = [
 // Data & layer state untuk setiap lebuhraya baru
 const dataLebuhrayaBaru = {};
 const layerLebuhrayaBaru = {};
+// PEMBETULAN: peta carian pantas KM sebenar -> {lat, lng} untuk setiap mod/arah.
+// Ini elak anggaran "index 0 = KM 0.0" yang tidak tepat - kita guna nilai KM
+// SEBENAR yang tertanam dalam setiap fail KML (SimpleData name="KM").
+const kmMapLebuhrayaBaru = {};
 lebuhrayaBaruConfig.forEach((cfg) => {
   dataLebuhrayaBaru[cfg.mode] = { [cfg.arah[0].key]: [], [cfg.arah[1].key]: [] };
+  kmMapLebuhrayaBaru[cfg.mode] = { [cfg.arah[0].key]: new Map(), [cfg.arah[1].key]: new Map() };
   layerLebuhrayaBaru[cfg.mode] = { layer: null, visible: false };
 });
 
@@ -2132,6 +2137,72 @@ function toggleLebuhraya(checkbox) {
 // SISTEM GENERIK: MUAT KML, BINA LAYER, CARIAN KM & TOGGLE
 // UNTUK LEBUHRAYA BARU (SDE, SECOND LINK, EDL, ...)
 // ============================================
+
+// PEMBETULAN (Ogos 2026): fail KML untuk lebuhraya baru (SDE, dll.) TIDAK
+// semestinya bermula pada KM 0.0 - contohnya fail SDE HALA SENAI/PENAWAR
+// sebenarnya bermula pada KM 1.0 (titik pertama dalam dokumen). Fungsi lama
+// (parseKMLPointsPG) mengabaikan ini dan mengandaikan titik pertama = KM 0.0,
+// menyebabkan carian KM tersasar (offset tetap, cth. taip "KM 5.0" tapi keluar
+// lokasi sebenar KM 6.0).
+//
+// Fungsi baru ini terus membaca nilai KM SEBENAR yang tertanam dalam setiap
+// Placemark (<SimpleData name="KM">KM 1.0</SimpleData>), jadi tidak lagi
+// bergantung kepada index dokumen untuk anggar KM.
+function parseKMLPointsDenganKM(kmlText) {
+  const parser = new DOMParser();
+  const kmlDoc = parser.parseFromString(kmlText, 'text/xml');
+  const placemarks = kmlDoc.getElementsByTagName('Placemark');
+  const points = [];
+
+  for (let i = 0; i < placemarks.length; i++) {
+    const pm = placemarks[i];
+    const pointNode = pm.getElementsByTagName('Point')[0];
+    if (!pointNode) continue;
+    const coordNode = pointNode.getElementsByTagName('coordinates')[0];
+    if (!coordNode) continue;
+
+    const coordText = coordNode.textContent.trim();
+    const parts = coordText.split(',').map(Number);
+    if (parts.length < 2) continue;
+    const lng = parts[0];
+    const lat = parts[1];
+    if (isNaN(lat) || isNaN(lng)) continue;
+
+    // Cari SimpleData name="KM" dalam ExtendedData Placemark ini
+    // (cth. teks "KM 1.0" -> ambil nombor 1.0 sahaja)
+    let kmValue = null;
+    const simpleDataNodes = pm.getElementsByTagName('SimpleData');
+    for (let j = 0; j < simpleDataNodes.length; j++) {
+      if (simpleDataNodes[j].getAttribute('name') === 'KM') {
+        const rawKM = simpleDataNodes[j].textContent.trim();
+        const match = rawKM.match(/([\d.]+)/);
+        if (match) kmValue = parseFloat(match[1]);
+        break;
+      }
+    }
+
+    // Titik tanpa label KM yang sah dilangkau - tidak boleh dipercayai untuk carian
+    if (kmValue === null || isNaN(kmValue)) continue;
+
+    points.push({ lat, lng, km: kmValue });
+  }
+
+  // Susun ikut nilai KM menaik supaya carian & lukisan garis konsisten
+  // walaupun susunan Placemark dalam dokumen berubah pada masa depan.
+  points.sort((a, b) => a.km - b.km);
+
+  return points;
+}
+
+// Bina peta carian pantas: "KM (1 titik perpuluhan)" -> {lat, lng}
+function binaKMMapLebuhrayaBaru(arr) {
+  const map = new Map();
+  arr.forEach((p) => {
+    map.set(p.km.toFixed(1), p);
+  });
+  return map;
+}
+
 async function loadKMLLebuhrayaBaru(mode) {
   const cfg = cariConfigLebuhraya(mode);
   if (!cfg) return;
@@ -2145,8 +2216,17 @@ async function loadKMLLebuhrayaBaru(mode) {
 
     const [text1, text2] = await Promise.all([resp1.text(), resp2.text()]);
 
-    dataLebuhrayaBaru[mode][cfg.arah[0].key] = parseKMLPointsPG(text1);
-    dataLebuhrayaBaru[mode][cfg.arah[1].key] = parseKMLPointsPG(text2);
+    // PEMBETULAN: guna parseKMLPointsDenganKM (baca nilai KM sebenar dari KML)
+    // dan bukan lagi parseKMLPointsPG (yang anggar KM daripada index dokumen).
+    dataLebuhrayaBaru[mode][cfg.arah[0].key] = parseKMLPointsDenganKM(text1);
+    dataLebuhrayaBaru[mode][cfg.arah[1].key] = parseKMLPointsDenganKM(text2);
+
+    kmMapLebuhrayaBaru[mode][cfg.arah[0].key] = binaKMMapLebuhrayaBaru(
+      dataLebuhrayaBaru[mode][cfg.arah[0].key]
+    );
+    kmMapLebuhrayaBaru[mode][cfg.arah[1].key] = binaKMMapLebuhrayaBaru(
+      dataLebuhrayaBaru[mode][cfg.arah[1].key]
+    );
 
     console.log(
       `[OK] ${cfg.labelMenu}: ${cfg.arah[0].label} ${dataLebuhrayaBaru[mode][cfg.arah[0].key].length} titik, ` +
@@ -2210,6 +2290,9 @@ function toggleLebuhrayaBaru(mode, checkbox) {
 }
 
 // Fungsi parse KM untuk lebuhraya baru (dengan arah)
+// PEMBETULAN: padankan terus dengan nilai KM sebenar (dari kmMapLebuhrayaBaru)
+// dan bukan lagi anggap index 0 = KM 0.0. Ini elak offset tersasar apabila
+// fail KML tidak bermula pada KM 0.0 (cth. fail SDE bermula pada KM 1.0).
 function cariKMLebuhrayaBaru(mode, query) {
   const cfg = cariConfigLebuhraya(mode);
   if (!cfg) return null;
@@ -2217,16 +2300,19 @@ function cariKMLebuhrayaBaru(mode, query) {
   if (!match) return null;
   const num = parseFloat(match[1]);
   if (isNaN(num) || num < 0 || num > 300) return null;
-  const index = Math.round(num * 10);
-  if (index < 0) return null;
 
   const arahInfo = cfg.arah.find((a) => a.key === arahCarian);
   if (!arahInfo) return null;
-  const arr = dataLebuhrayaBaru[mode][arahInfo.key];
-  if (index >= arr.length) return null;
-  const coord = arr[index];
-  const kmValue = (index / 10).toFixed(1);
-  return { lat: coord.lat, lng: coord.lng, km: kmValue, arah: arahInfo.key, arahLabel: arahInfo.label };
+
+  // Data disimpan pada resolusi 0.1 KM - padankan input ke 1 titik perpuluhan
+  const kmKey = num.toFixed(1);
+  const map = kmMapLebuhrayaBaru[mode][arahInfo.key];
+  if (!map) return null;
+
+  const titik = map.get(kmKey);
+  if (!titik) return null; // KM yang ditaip di luar julat data yang tersedia
+
+  return { lat: titik.lat, lng: titik.lng, km: kmKey, arah: arahInfo.key, arahLabel: arahInfo.label };
 }
 
 // Carian KM untuk lebuhraya baru - dipanggil dari cari()
