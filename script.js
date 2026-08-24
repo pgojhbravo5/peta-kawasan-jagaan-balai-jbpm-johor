@@ -1900,6 +1900,67 @@ function tutupInfoPanel() {
 }
 
 // ============================================
+// DATA KAWASAN JAGAAN EDL
+// Sumber: jadual balai jagaan EDL yang diberikan (Ogos 2026).
+// NOTA: baris asal untuk BBP TEBRAU arah WOODLAND diberikan sebagai
+// "KM DARI 8.1, KM HINGGA 5.5" (terbalik). Ini kekal terbalik secara logik
+// (kmDari mesti < kmHingga untuk carian julat berfungsi), jadi ia dibetulkan
+// di sini kepada 5.5 - 8.1, sepadan dengan julat arah PANDAN bagi balai yang
+// sama. Sila sahkan dengan sumber rasmi jika julat sebenar berbeza.
+const dataKawasanBalaiEDL = [
+  { balai: 'BBP LARKIN', kmDari: 0, kmHingga: 5.5, arah: 'WOODLAND' },
+  { balai: 'BBP LARKIN', kmDari: 0, kmHingga: 5.5, arah: 'PANDAN' },
+  { balai: 'BBP TEBRAU', kmDari: 5.5, kmHingga: 8.1, arah: 'WOODLAND' }, // dibetulkan drpd "8.1 - 5.5"
+  { balai: 'BBP TEBRAU', kmDari: 5.5, kmHingga: 8.1, arah: 'PANDAN' },
+];
+
+function cariBalaiArahEDL(km, arah) {
+  return dataKawasanBalaiEDL.find(item => item.arah === arah && km >= item.kmDari && km <= item.kmHingga) || null;
+}
+
+// ============================================
+// PANEL KAWASAN JAGAAN EDL
+// ============================================
+function updateInfoPanelEDL(km, arahLabel = '') {
+  const panel = document.getElementById('info-panel-edl');
+  if (!panel) return;
+
+  const kmDisplay = document.getElementById('info-km-edl');
+  const woodlandDiv = document.getElementById('info-woodland');
+  const woodlandJulat = document.getElementById('info-woodland-julat');
+  const pandanDiv = document.getElementById('info-pandan');
+  const pandanJulat = document.getElementById('info-pandan-julat');
+
+  const woodland = cariBalaiArahEDL(km, 'WOODLAND');
+  const pandan = cariBalaiArahEDL(km, 'PANDAN');
+
+  kmDisplay.innerHTML = `<i class="fa-solid fa-location-dot"></i> KM ${km.toFixed(1)} (EDL${arahLabel ? ' - ' + arahLabel : ''})`;
+
+  if (woodland) {
+    woodlandDiv.textContent = woodland.balai;
+    woodlandJulat.textContent = `KM ${woodland.kmDari} - ${woodland.kmHingga}`;
+  } else {
+    woodlandDiv.textContent = '-';
+    woodlandJulat.textContent = '-';
+  }
+
+  if (pandan) {
+    pandanDiv.textContent = pandan.balai;
+    pandanJulat.textContent = `KM ${pandan.kmDari} - ${pandan.kmHingga}`;
+  } else {
+    pandanDiv.textContent = '-';
+    pandanJulat.textContent = '-';
+  }
+
+  panel.style.display = 'block';
+}
+
+function tutupInfoPanelEDL() {
+  const panel = document.getElementById('info-panel-edl');
+  if (panel) panel.style.display = 'none';
+}
+
+// ============================================
 // DATA KM – MUAT TURUN 4 FAIL KML (2 PLUS + 2 PG)
 // ============================================
 let dataKM_Utara = [];
@@ -2361,6 +2422,11 @@ function binaLayerLebuhrayaBaru(mode) {
         className: 'km-tooltip',
       });
       marker.on('click', function () {
+        // Lebuhraya EDL ada panel kawasan jagaan sendiri (BBP LARKIN / BBP
+        // TEBRAU), sama macam panel PLUS - buka panel tu bila marker EDL diklik.
+        if (cfg.mode === 'edl') {
+          updateInfoPanelEDL(parseFloat(kmValue), label);
+        }
         lokasiTerakhir = {
           lat: p.lat,
           lng: p.lng,

@@ -777,10 +777,30 @@
         color: var(--text-primary);
       }
 
-      #info-panel {
+      /* ============================================
+         TIMBUNAN KAD KAWASAN JAGAAN (SEMUA LEBUHRAYA)
+         Satu container ni uruskan posisi SEMUA kad kawasan jagaan (PLUS,
+         EDL, dan lebuhraya akan datang - PG/SDE/2ND LINK dll). Setiap kad
+         cuma perlu letak dalam container ni + kelas .info-panel-card;
+         flexbox automatik susun/tindih ikut kad mana yang visible je
+         (display:none tak ambil ruang), jadi TAK PERLU kira bottom/left/
+         right manual setiap kali tambah kad lebuhraya baru.
+      ============================================ */
+      #info-panel-stack {
         position: absolute;
         bottom: 90px;
         right: 70px;
+        z-index: 1200;
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: flex-end;
+        gap: 10px;
+        pointer-events: none;
+        max-height: calc(100vh - 160px);
+      }
+
+      .info-panel-card {
+        position: relative;
         background: var(--surface);
         backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);
@@ -788,11 +808,20 @@
         border-radius: var(--radius-md);
         box-shadow: var(--shadow-medium);
         font-size: 13px;
-        z-index: 1200;
-        min-width: 230px;
-        border-left: 4px solid var(--bomba-red);
+        width: 230px;
+        flex-shrink: 0;
         display: none;
-        pointer-events: none;
+        pointer-events: auto;
+      }
+
+      #info-panel {
+        border-left: 4px solid var(--bomba-red);
+      }
+
+      /* PANEL KAWASAN JAGAAN EDL - posisi diuruskan oleh #info-panel-stack,
+         di sini cuma perlu tetapkan warna aksen sahaja. */
+      #info-panel-edl {
+        border-left: 4px solid #3f51b5;
       }
 
       #info-panel-close {
@@ -862,6 +891,32 @@
       }
 
       #info-panel .info-julat {
+        font-size: 11px;
+        color: #757575;
+      }
+
+      #info-panel-edl .info-arah-woodland {
+        color: #5c6bc0;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+
+      #info-panel-edl .info-arah-pandan {
+        color: #3f51b5;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+
+      #info-panel-edl .info-balai {
+        color: var(--text-primary);
+        font-weight: 500;
+      }
+
+      #info-panel-edl .info-julat {
         font-size: 11px;
         color: #757575;
       }
@@ -1176,11 +1231,18 @@
           height: 42px;
         }
 
-        #info-panel {
+        /* #info-panel-stack uruskan semua kad kawasan jagaan (PLUS, EDL,
+           dan lebuhraya akan datang) - kad jadi lebar penuh dan bertindan
+           menegak automatik ikut kad mana yang visible. */
+        #info-panel-stack {
           bottom: 75px;
           right: 10px;
           left: 10px;
-          min-width: unset;
+          max-height: calc(100vh - 130px);
+        }
+
+        .info-panel-card {
+          width: 100%;
           padding: 10px 14px;
           font-size: 11.5px;
         }
@@ -1415,32 +1477,70 @@
         </button>
       </div>
 
-      <!-- PANEL KAWASAN JAGAAN PLUS -->
-      <div id="info-panel">
-        <button
-          id="info-panel-close"
-          onclick="tutupInfoPanel()"
-          title="Tutup"
-          aria-label="Tutup"
-        >
-          <i class="fa-solid fa-xmark"></i>
-        </button>
-        <div class="info-title">
-          <i class="fa-solid fa-truck-medical"></i> Kawasan Jagaan PLUS
-        </div>
-        <div class="info-km" id="info-km">KM 0.0</div>
-        <div class="info-row">
-          <div>
-            <div class="info-arah-utara"><i class="fa-solid fa-arrow-up"></i> UTARA</div>
-            <div class="info-balai" id="info-utara">-</div>
-            <div class="info-julat" id="info-utara-julat">-</div>
+      <!-- ============================================
+           TIMBUNAN KAD KAWASAN JAGAAN (SEMUA LEBUHRAYA)
+           Letak kad kawasan jagaan lebuhraya baru (PG/SDE/2ND LINK dll)
+           terus dalam container ni + class="info-panel-card" - posisi
+           auto-uruskan oleh CSS #info-panel-stack, TAK PERLU tambah
+           bottom/left/right manual untuk setiap kad baru.
+      ============================================ -->
+      <div id="info-panel-stack">
+        <!-- PANEL KAWASAN JAGAAN PLUS -->
+        <div id="info-panel" class="info-panel-card">
+          <button
+            id="info-panel-close"
+            onclick="tutupInfoPanel()"
+            title="Tutup"
+            aria-label="Tutup"
+          >
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+          <div class="info-title">
+            <i class="fa-solid fa-truck-medical"></i> Kawasan Jagaan PLUS
           </div>
-          <div>
-            <div class="info-arah-selatan"><i class="fa-solid fa-arrow-down"></i> SELATAN</div>
-            <div class="info-balai" id="info-selatan">-</div>
-            <div class="info-julat" id="info-selatan-julat">-</div>
+          <div class="info-km" id="info-km">KM 0.0</div>
+          <div class="info-row">
+            <div>
+              <div class="info-arah-utara"><i class="fa-solid fa-arrow-up"></i> UTARA</div>
+              <div class="info-balai" id="info-utara">-</div>
+              <div class="info-julat" id="info-utara-julat">-</div>
+            </div>
+            <div>
+              <div class="info-arah-selatan"><i class="fa-solid fa-arrow-down"></i> SELATAN</div>
+              <div class="info-balai" id="info-selatan">-</div>
+              <div class="info-julat" id="info-selatan-julat">-</div>
+            </div>
           </div>
         </div>
+
+        <!-- PANEL KAWASAN JAGAAN EDL -->
+        <div id="info-panel-edl" class="info-panel-card">
+          <button
+            id="info-panel-edl-close"
+            onclick="tutupInfoPanelEDL()"
+            title="Tutup"
+            aria-label="Tutup"
+          >
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+          <div class="info-title">
+            <i class="fa-solid fa-truck-medical"></i> Kawasan Jagaan EDL
+          </div>
+          <div class="info-km" id="info-km-edl">KM 0.0</div>
+          <div class="info-row">
+            <div>
+              <div class="info-arah-woodland"><i class="fa-solid fa-arrow-up"></i> WOODLAND</div>
+              <div class="info-balai" id="info-woodland">-</div>
+              <div class="info-julat" id="info-woodland-julat">-</div>
+            </div>
+            <div>
+              <div class="info-arah-pandan"><i class="fa-solid fa-arrow-down"></i> PANDAN</div>
+              <div class="info-balai" id="info-pandan">-</div>
+              <div class="info-julat" id="info-pandan-julat">-</div>
+            </div>
+          </div>
+        </div>
+        <!-- KAD LEBUHRAYA BARU (PG/SDE/2ND LINK dll) DITAMBAH DI SINI -->
       </div>
     </div>
 
