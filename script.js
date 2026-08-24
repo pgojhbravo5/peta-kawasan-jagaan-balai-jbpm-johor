@@ -2492,7 +2492,9 @@ function cariKMLebuhrayaBaru(mode, query) {
   return { lat: titik.lat, lng: titik.lng, km: kmKey, arah: arahInfo.key, arahLabel: arahInfo.label };
 }
 
+// ============================================
 // Carian KM untuk lebuhraya baru - dipanggil dari cari()
+// ============================================
 function cariKMLebuhrayaBaruJalankan(mode, query) {
   const cfg = cariConfigLebuhraya(mode);
   if (!cfg) return;
@@ -2536,6 +2538,15 @@ function cariKMLebuhrayaBaruJalankan(mode, query) {
       lng: kmResult.lng,
       alamat: `${cfg.labelMenu} KM ${kmResult.km} (${kmResult.arahLabel})`,
     };
+
+    // 🔥 TAMBAHAN: Papar kad kawasan jagaan EDL secara automatik
+    if (mode === 'edl') {
+      updateInfoPanelEDL(parseFloat(kmResult.km), kmResult.arahLabel);
+    }
+    // Jika pada masa hadapan ada panel untuk SDE atau Second Link,
+    // tambah syarat di sini, contoh:
+    // else if (mode === 'sde') { updateInfoPanelSDE(...); }
+
   } else {
     searchResults.innerHTML =
       '<div class="search-result-item" style="color:#999;">Format KM tidak sah atau arah ini tiada data. Contoh: 10.5, km 15, 20</div>';
