@@ -48,6 +48,13 @@ const dataBalai = [
   { nama: 'BBP Gemas', zon: 4, daerah: 'Bahau/Negeri Sembilan', lat: 2.578793081119071, lng: 102.6005081067373, tel: '07-9481333' },
 ];
 
+// Senarai balai yang berada di luar negeri Johor
+const balaiLuarNegeri = [
+  'BBP Kuala Rompin',
+  'BBP Gemas',
+  'BBP Jasin Bestari'
+];
+
 // ============================================
 // STATUS JENTERA (CFRT / EMRS / WATER TANKER)
 // ============================================
@@ -531,7 +538,11 @@ function buatIkonBalai(warna) {
 }
 
 dataBalai.forEach((balai) => {
-  const warna = warnaZon[balai.zon];
+  // Tentukan warna: jika balai dalam senarai luar negeri, gunakan kelabu gelap, selain itu ikut zon
+  let warna = warnaZon[balai.zon];
+  if (balaiLuarNegeri.includes(balai.nama)) {
+    warna = '#4a4a4a'; // kelabu gelap
+  }
   const marker = L.marker([balai.lat, balai.lng], { icon: buatIkonBalai(warna) }).addTo(map);
   layerZon[balai.zon].push(marker);
 
