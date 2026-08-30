@@ -252,9 +252,11 @@ const layerZon = { 1: [], 2: [], 3: [], 4: [] };
 // INISIALISASI PETA
 // ============================================
 const map = L.map('map', {
-  maxBounds: [[1.2, 102.3], [3.0, 104.6]],
-  maxBoundsViscosity: 0.8,
-  minZoom: 8,
+  // Sempadan longgar meliputi seluruh Malaysia (Semenanjung + Sabah/Sarawak)
+  // supaya peta boleh di-drag/pan ke mana-mana negeri, bukan dikunci Johor sahaja.
+  maxBounds: [[-1.0, 97.5], [8.0, 121.5]],
+  maxBoundsViscosity: 0.6,
+  minZoom: 6,
   maxZoom: 18,
 }).setView([1.85, 103.3], 9);
 
@@ -270,6 +272,18 @@ const basemapLayers = {
 
 let basemapSemasa = 'jalan';
 basemapLayers[basemapSemasa].addTo(map);
+
+// ============================================
+// RUJUKAN JARAK (SCALE BAR) - UNIT METER/KM
+// ============================================
+// Bar rujukan jarak di sudut kiri bawah peta, akan bertukar automatik
+// (meter apabila zoom masuk, kilometer apabila zoom keluar).
+L.control.scale({
+  position: 'bottomright',
+  metric: true,
+  imperial: false,
+  maxWidth: 140,
+}).addTo(map);
 
 function pilihBasemap(kunci) {
   if (!basemapLayers[kunci] || kunci === basemapSemasa) { tutupBasemapPanel(); return; }
@@ -788,21 +802,43 @@ function pilihArah(arah) {
   if (query.length > 0) cari();
 }
 
-const urutanModCarian = ['alamat', 'km', 'pg', ...lebuhrayaBaruConfig.map((c) => c.mode)];
+const urutanModCarian = ['alamat', 'laluan', 'km', 'pg', ...lebuhrayaBaruConfig.map((c) => c.mode)];
 
 function tukarMode() {
   const modeBtn = document.getElementById('mode-toggle');
   const searchInput = document.getElementById('search-input');
   const resultsDiv = document.getElementById('search-results');
+  const searchClearBtn = document.getElementById('search-clear');
+  const searchBtnEl = document.getElementById('search-btn');
+  const searchIconPrefix = document.querySelector('.search-icon-prefix');
+  const laluanPanel = document.getElementById('laluan-panel');
 
   const indexSemasa = urutanModCarian.indexOf(modeCarian);
   modeCarian = urutanModCarian[(indexSemasa + 1) % urutanModCarian.length];
+
+  // Reset paparan lalai setiap kali tukar mod - elemen carian tunggal ditunjuk,
+  // panel laluan (dari-ke) disembunyikan, kemudian ubah suai ikut mod yang dipilih.
+  searchInput.style.display = '';
+  searchClearBtn.style.display = '';
+  searchBtnEl.style.display = '';
+  if (searchIconPrefix) searchIconPrefix.style.display = '';
+  if (laluanPanel) laluanPanel.style.display = 'none';
+  arahBtn1.style.display = 'none'; arahBtn2.style.display = 'none';
 
   if (modeCarian === 'alamat') {
     setBtnIcon(modeBtn, 'fa-location-dot', 'Alamat');
     modeBtn.className = 'mode-btn active-alamat';
     searchInput.placeholder = 'Cari alamat atau tempat...';
-    arahBtn1.style.display = 'none'; arahBtn2.style.display = 'none';
+  } else if (modeCarian === 'laluan') {
+    setBtnIcon(modeBtn, 'fa-route', 'Arah');
+    modeBtn.className = 'mode-btn active-laluan';
+    // Dalam mod ini, carian tunggal digantikan sepenuhnya oleh panel Dari/Ke.
+    searchInput.style.display = 'none';
+    searchClearBtn.style.display = 'none';
+    searchBtnEl.style.display = 'none';
+    if (searchIconPrefix) searchIconPrefix.style.display = 'none';
+    if (laluanPanel) laluanPanel.style.display = 'flex';
+    setTimeout(() => document.getElementById('laluan-dari-input')?.focus(), 0);
   } else if (modeCarian === 'km') {
     setBtnIcon(modeBtn, 'fa-road', 'KM PLUS');
     modeBtn.className = 'mode-btn active-km';
@@ -830,7 +866,7 @@ function tukarMode() {
     pilihArah(cfg.arah[0].key);
   }
   resultsDiv.classList.remove('show');
-  searchInput.focus();
+  if (modeCarian !== 'laluan') searchInput.focus();
   console.log('Mod carian sekarang:', modeCarian, 'Arah:', arahCarian);
 }
 
@@ -907,6 +943,11 @@ async function geocodeFetch(url, signal) {
   return data;
 }
 
+// Kawasan bias carian alamat - kini meliputi seluruh Malaysia (bukan Johor sahaja),
+// selaras dengan peta yang boleh di-drag ke mana-mana negeri. bounded=0 bermaksud
+// ini cuma keutamaan/bias, bukan sekatan keras - hasil di luar kawasan ini masih boleh muncul.
+const VIEWBOX_MALAYSIA = '97.5,8.0,121.5,-1.0';
+
 function cariAlamat(query, autoSelect = true) {
   if (carianAlamatController) { carianAlamatController.abort(); carianAlamatController = null; }
   if (query.length === 0) { searchResults.classList.remove('show'); return; }
@@ -920,8 +961,7 @@ function cariAlamat(query, autoSelect = true) {
 
   const controller = new AbortController();
   carianAlamatController = controller;
-  const viewboxJohor = '102.4,2.75,104.35,1.2';
-  const url = `api/geocode?q=${encodeURIComponent(query)}&countrycodes=my&limit=8&accept-language=ms&addressdetails=1&viewbox=${viewboxJohor}&bounded=0`;
+  const url = `api/geocode?q=${encodeURIComponent(query)}&countrycodes=my&limit=8&accept-language=ms&addressdetails=1&viewbox=${VIEWBOX_MALAYSIA}&bounded=0`;
 
   geocodeFetch(url, controller.signal)
     .then((data) => {
@@ -953,8 +993,7 @@ function cariAlamat(query, autoSelect = true) {
 function cariAlamatQueryRingkas(queryRingkas, queryAsal, controllerLama) {
   const controller = new AbortController();
   carianAlamatController = controller;
-  const viewboxJohor = '102.4,2.75,104.35,1.2';
-  const url = `api/geocode?q=${encodeURIComponent(queryRingkas)}&countrycodes=my&limit=8&accept-language=ms&addressdetails=1&viewbox=${viewboxJohor}&bounded=0`;
+  const url = `api/geocode?q=${encodeURIComponent(queryRingkas)}&countrycodes=my&limit=8&accept-language=ms&addressdetails=1&viewbox=${VIEWBOX_MALAYSIA}&bounded=0`;
 
   geocodeFetch(url, controller.signal)
     .then((data) => {
@@ -1140,6 +1179,204 @@ searchInput.addEventListener('input', function () {
     carianAlamatTimer = setTimeout(function () { cariAlamat(query, false); }, 350);
   }
 });
+
+// ============================================
+// MOD ARAH / LALUAN (DARI -> KE, 2 LOKASI)
+// ============================================
+const laluanState = {
+  dari: { coord: null, controller: null, timer: null, inputEl: null, resultsEl: null, marker: null },
+  ke: { coord: null, controller: null, timer: null, inputEl: null, resultsEl: null, marker: null },
+};
+let laluanRouteLayer = null;
+
+function laluanCariAlamat(side, query) {
+  const state = laluanState[side];
+  if (state.controller) { state.controller.abort(); state.controller = null; }
+  if (query.length < 3) {
+    state.resultsEl.innerHTML = '<div class="search-result-item" style="color:#999;">Minimum 3 aksara.</div>';
+    state.resultsEl.classList.add('show');
+    return;
+  }
+  state.resultsEl.innerHTML = '<div class="search-result-item" style="color:#999;">Mencari...</div>';
+  state.resultsEl.classList.add('show');
+
+  const controller = new AbortController();
+  state.controller = controller;
+  const url = `api/geocode?q=${encodeURIComponent(query)}&countrycodes=my&limit=6&accept-language=ms&addressdetails=1&viewbox=${VIEWBOX_MALAYSIA}&bounded=0`;
+
+  geocodeFetch(url, controller.signal)
+    .then((data) => {
+      if (state.controller !== controller) return;
+      state.controller = null;
+      if (!data || data.length === 0) {
+        state.resultsEl.innerHTML = '<div class="search-result-item" style="color:#999;">Tiada hasil dijumpai.</div>';
+        state.resultsEl.classList.add('show');
+        return;
+      }
+      let html = '';
+      data.forEach((item) => {
+        html += `<div class="search-result-item" data-side="${side}" data-lat="${item.lat}" data-lng="${item.lon}" data-nama="${escapeHtml(item.display_name)}"><i class="fa-solid fa-location-dot"></i> ${escapeHtml(item.display_name)}</div>`;
+      });
+      state.resultsEl.innerHTML = html;
+      state.resultsEl.classList.add('show');
+    })
+    .catch((error) => {
+      if (error.name === 'AbortError') return;
+      if (state.controller !== controller) return;
+      state.controller = null;
+      console.error('Ralat carian laluan (' + side + '):', error);
+      state.resultsEl.innerHTML = '<div class="search-result-item" style="color:red;">Ralat carian. Sila cuba lagi.</div>';
+      state.resultsEl.classList.add('show');
+    });
+}
+
+function laluanKemaskiniMarker(side) {
+  const state = laluanState[side];
+  if (state.marker) { map.removeLayer(state.marker); state.marker = null; }
+  if (!state.coord) return;
+  const isDari = side === 'dari';
+  state.marker = L.marker([state.coord.lat, state.coord.lng], {
+    icon: L.divIcon({
+      className: 'laluan-point-icon',
+      html: `<div class="laluan-point ${isDari ? 'laluan-point-a' : 'laluan-point-b'}"><span>${isDari ? 'A' : 'B'}</span></div>`,
+      iconSize: [26, 26],
+      iconAnchor: [13, 13],
+    }),
+  }).addTo(map).bindPopup(`<b>${isDari ? 'Dari' : 'Ke'}:</b><br>${state.coord.label}`);
+}
+
+function laluanPilihLokasi(side, lat, lng, nama) {
+  const state = laluanState[side];
+  state.coord = { lat: parseFloat(lat), lng: parseFloat(lng), label: nama };
+  state.inputEl.value = nama.length > 45 ? nama.substring(0, 45) + '...' : nama;
+  state.resultsEl.classList.remove('show');
+  laluanKemaskiniMarker(side);
+  if (laluanState.dari.coord && laluanState.ke.coord) laluanCariLaluan();
+}
+
+async function laluanCariLaluan() {
+  const dari = laluanState.dari.coord;
+  const ke = laluanState.ke.coord;
+  const infoEl = document.getElementById('laluan-info');
+  if (!dari || !ke) {
+    infoEl.innerHTML = '<div class="laluan-info-msg">Sila pilih lokasi "Dari" dan "Ke" daripada senarai cadangan.</div>';
+    return;
+  }
+  if (laluanRouteLayer) { map.removeLayer(laluanRouteLayer); laluanRouteLayer = null; }
+  infoEl.innerHTML = '<div class="laluan-info-msg"><i class="fa-solid fa-spinner fa-spin"></i> Mengira laluan...</div>';
+  try {
+    const url = `https://router.project-osrm.org/route/v1/driving/${dari.lng},${dari.lat};${ke.lng},${ke.lat}?geometries=geojson&overview=full&steps=false`;
+    const response = await fetch(url);
+    if (!response.ok) throw new Error('Gagal dapatkan laluan');
+    const data = await response.json();
+    if (data.code !== 'Ok' || !data.routes || data.routes.length === 0) throw new Error('Tiada laluan ditemui');
+    const route = data.routes[0];
+    const coords = route.geometry.coordinates.map((c) => [c[1], c[0]]);
+    laluanRouteLayer = L.polyline(coords, { color: '#00897b', weight: 5, opacity: 0.85 }).addTo(map);
+    map.fitBounds(laluanRouteLayer.getBounds(), { padding: [60, 60] });
+    const jarakKm = (route.distance / 1000).toFixed(1);
+    const masaMinit = Math.round(route.duration / 60);
+    const masaTeks = masaMinit >= 60 ? `${Math.floor(masaMinit / 60)} jam ${masaMinit % 60} minit` : `${masaMinit} minit`;
+    infoEl.innerHTML = `<div class="laluan-info-hasil"><i class="fa-solid fa-road"></i> Jarak: <b>${jarakKm} km</b>&nbsp;&nbsp;|&nbsp;&nbsp;<i class="fa-solid fa-clock"></i> Anggaran: <b>${masaTeks}</b></div>`;
+  } catch (error) {
+    console.error('Ralat laluan arah:', error);
+    infoEl.innerHTML = '<div class="laluan-info-msg" style="color:#cc0000;">Gagal dapatkan laluan. Sila cuba lagi.</div>';
+  }
+}
+
+function laluanInitInput(side, inputEl, resultsEl) {
+  laluanState[side].inputEl = inputEl;
+  laluanState[side].resultsEl = resultsEl;
+
+  inputEl.addEventListener('input', function () {
+    const query = this.value.trim();
+    const state = laluanState[side];
+    state.coord = null;
+    if (state.timer) { clearTimeout(state.timer); state.timer = null; }
+    if (query.length === 0) {
+      if (state.controller) { state.controller.abort(); state.controller = null; }
+      resultsEl.classList.remove('show');
+      return;
+    }
+    state.timer = setTimeout(function () { laluanCariAlamat(side, query); }, 350);
+  });
+
+  inputEl.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      const state = laluanState[side];
+      if (state.timer) { clearTimeout(state.timer); state.timer = null; }
+      laluanCariAlamat(side, this.value.trim());
+    }
+  });
+
+  resultsEl.addEventListener('click', function (e) {
+    const item = e.target.closest('.search-result-item[data-lat]');
+    if (!item) return;
+    laluanPilihLokasi(item.dataset.side, item.dataset.lat, item.dataset.lng, item.dataset.nama);
+  });
+}
+
+const laluanDariInputEl = document.getElementById('laluan-dari-input');
+const laluanKeInputEl = document.getElementById('laluan-ke-input');
+if (laluanDariInputEl && laluanKeInputEl) {
+  laluanInitInput('dari', laluanDariInputEl, document.getElementById('laluan-dari-results'));
+  laluanInitInput('ke', laluanKeInputEl, document.getElementById('laluan-ke-results'));
+
+  document.getElementById('laluan-cari-btn').addEventListener('click', function (e) {
+    e.preventDefault();
+    laluanCariLaluan();
+  });
+
+  document.getElementById('laluan-swap-btn').addEventListener('click', function () {
+    const dariCoord = laluanState.dari.coord;
+    const keCoord = laluanState.ke.coord;
+    const dariVal = laluanDariInputEl.value;
+    const keVal = laluanKeInputEl.value;
+    laluanState.dari.coord = keCoord;
+    laluanState.ke.coord = dariCoord;
+    laluanDariInputEl.value = keVal;
+    laluanKeInputEl.value = dariVal;
+    laluanKemaskiniMarker('dari');
+    laluanKemaskiniMarker('ke');
+    if (laluanState.dari.coord && laluanState.ke.coord) laluanCariLaluan();
+  });
+
+  document.querySelectorAll('.laluan-clear-btn').forEach((btn) => {
+    btn.addEventListener('click', function () {
+      const side = this.dataset.target;
+      const state = laluanState[side];
+      state.coord = null;
+      state.inputEl.value = '';
+      state.resultsEl.classList.remove('show');
+      state.resultsEl.innerHTML = '';
+      laluanKemaskiniMarker(side);
+      if (laluanRouteLayer) { map.removeLayer(laluanRouteLayer); laluanRouteLayer = null; }
+      document.getElementById('laluan-info').innerHTML = '';
+      state.inputEl.focus();
+    });
+  });
+
+  // Tutup dropdown cadangan bila klik di luar panel laluan
+  document.addEventListener('click', function (e) {
+    const panel = document.getElementById('laluan-panel');
+    if (panel && !panel.contains(e.target)) {
+      document.getElementById('laluan-dari-results').classList.remove('show');
+      document.getElementById('laluan-ke-results').classList.remove('show');
+    }
+  });
+
+  // Elak touch/scroll di panel laluan menyebabkan gangguan pada peta di belakang
+  ['laluan-panel', 'laluan-dari-results', 'laluan-ke-results'].forEach((id) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.addEventListener('click', function (e) { e.stopPropagation(); });
+    el.addEventListener('mousedown', function (e) { e.stopPropagation(); });
+    el.addEventListener('touchstart', function (e) { e.stopPropagation(); }, { passive: false });
+    el.addEventListener('touchmove', function (e) { e.stopPropagation(); }, { passive: false });
+    el.addEventListener('wheel', function (e) { e.stopPropagation(); });
+  });
+}
 
 // ============================================
 // SIDE MENU FUNCTIONS

@@ -501,6 +501,11 @@
         color: #ffffff;
       }
 
+      .mode-btn.active-laluan {
+        background: #00897b;
+        color: #ffffff;
+      }
+
       .mode-btn.active-pg {
         background: #e65100;
         color: #ffffff;
@@ -606,6 +611,198 @@
         background: var(--bomba-red-light);
         color: var(--bomba-red);
       }
+
+      /* ============================================
+         PANEL MOD ARAH/LALUAN (DARI -> KE)
+      ============================================ */
+      #laluan-panel {
+        display: none;
+        flex-direction: column;
+        gap: 6px;
+        margin-top: 8px;
+        padding: 12px;
+        background: var(--surface-solid);
+        border: 1px solid var(--border-color);
+        border-radius: var(--radius-md);
+        box-shadow: var(--shadow-medium);
+        position: relative;
+      }
+
+      .laluan-field-wrap {
+        position: relative;
+        width: 100%;
+      }
+
+      .laluan-row {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        background: var(--bg-light);
+        border: 1px solid var(--border-color);
+        border-radius: var(--radius-sm);
+        padding: 0 8px;
+        transition: var(--transition-fast);
+      }
+
+      .laluan-row:focus-within {
+        border-color: #00897b;
+        box-shadow: 0 0 0 3px rgba(0, 137, 123, 0.15);
+      }
+
+      .laluan-dot {
+        flex-shrink: 0;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 10.5px;
+        font-weight: 800;
+        color: #ffffff;
+      }
+
+      .laluan-dot-a { background: #2e7d32; }
+      .laluan-dot-b { background: var(--bomba-red); }
+
+      .laluan-row input {
+        flex: 1;
+        height: 38px;
+        border: none;
+        background: transparent;
+        outline: none;
+        font-size: 13.5px;
+        color: var(--text-primary);
+        min-width: 0;
+      }
+
+      .laluan-clear-btn {
+        background: none;
+        border: none;
+        color: #9e9e9e;
+        font-size: 13px;
+        cursor: pointer;
+        padding: 6px;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: var(--transition-fast);
+      }
+
+      .laluan-clear-btn:hover {
+        color: var(--bomba-red);
+      }
+
+      #laluan-swap-btn {
+        align-self: center;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        border: 1px solid var(--border-color);
+        background: #ffffff;
+        color: #00897b;
+        font-size: 13px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: var(--shadow-soft);
+        transition: var(--transition-fast);
+        margin: -3px auto;
+        z-index: 1;
+      }
+
+      #laluan-swap-btn:hover {
+        background: #e0f2f1;
+        transform: rotate(180deg);
+      }
+
+      .laluan-suggest {
+        display: none;
+        position: absolute;
+        top: calc(100% + 4px);
+        left: 0;
+        width: 100%;
+        background: #ffffff;
+        border: 1px solid var(--border-color);
+        border-radius: 10px;
+        max-height: 200px;
+        overflow-y: auto;
+        z-index: 2100;
+        box-shadow: var(--shadow-medium);
+      }
+
+      .laluan-suggest.show {
+        display: block;
+      }
+
+      #laluan-cari-btn {
+        margin-top: 4px;
+        height: 38px;
+        border: none;
+        border-radius: var(--radius-sm);
+        background: #00897b;
+        color: #ffffff;
+        font-weight: 600;
+        font-size: 13px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        transition: var(--transition-fast);
+      }
+
+      #laluan-cari-btn:hover {
+        background: #00695c;
+      }
+
+      #laluan-info {
+        min-height: 0;
+      }
+
+      .laluan-info-msg {
+        font-size: 12px;
+        color: var(--text-secondary);
+        padding: 4px 2px;
+      }
+
+      .laluan-info-hasil {
+        font-size: 12.5px;
+        font-weight: 600;
+        color: var(--text-primary);
+        padding: 6px 8px;
+        background: #e0f2f1;
+        border-radius: 8px;
+        border: 1px solid #b2dfdb;
+      }
+
+      .laluan-point-icon { background: transparent; border: none; }
+
+      .laluan-point {
+        width: 24px;
+        height: 24px;
+        border-radius: 50% 50% 50% 0;
+        transform: rotate(-45deg);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+        border: 2px solid #ffffff;
+      }
+
+      .laluan-point span {
+        display: block;
+        transform: rotate(45deg);
+        color: #ffffff;
+        font-weight: 800;
+        font-size: 11px;
+      }
+
+      .laluan-point-a { background: #2e7d32; }
+      .laluan-point-b { background: var(--bomba-red); }
+
 
       #popup-btn {
         position: fixed;
@@ -1223,6 +1420,10 @@
         #basemap-panel { bottom: 16px; left: 58px; max-width: calc(100vw - 74px); overflow-x: auto; }
         .basemap-option { width: 64px; }
         .basemap-swatch { width: 56px; height: 44px; }
+
+        #laluan-panel { padding: 10px; gap: 5px; }
+        .laluan-row input { font-size: 12.5px; height: 36px; }
+        #laluan-cari-btn { height: 36px; font-size: 12px; }
       }
     </style>
   </head>
@@ -1332,6 +1533,41 @@
         </button>
       </div>
       <div id="search-results"></div>
+
+      <!-- PANEL MOD ARAH/LALUAN: DARI -> KE -->
+      <div id="laluan-panel">
+        <div class="laluan-field-wrap">
+          <div class="laluan-row">
+            <span class="laluan-dot laluan-dot-a">A</span>
+            <input type="text" id="laluan-dari-input" placeholder="Dari (lokasi asal)..." autocomplete="off" />
+            <button class="laluan-clear-btn" data-target="dari" title="Kosongkan" aria-label="Kosongkan Dari">
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+          </div>
+          <div id="laluan-dari-results" class="laluan-suggest"></div>
+        </div>
+
+        <button id="laluan-swap-btn" type="button" title="Tukar Dari/Ke" aria-label="Tukar Dari dan Ke">
+          <i class="fa-solid fa-arrows-up-down"></i>
+        </button>
+
+        <div class="laluan-field-wrap">
+          <div class="laluan-row">
+            <span class="laluan-dot laluan-dot-b">B</span>
+            <input type="text" id="laluan-ke-input" placeholder="Ke (destinasi)..." autocomplete="off" />
+            <button class="laluan-clear-btn" data-target="ke" title="Kosongkan" aria-label="Kosongkan Ke">
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+          </div>
+          <div id="laluan-ke-results" class="laluan-suggest"></div>
+        </div>
+
+        <button id="laluan-cari-btn" type="button">
+          <i class="fa-solid fa-route"></i> Cari Laluan
+        </button>
+
+        <div id="laluan-info"></div>
+      </div>
       </div>
 
       <!-- BUTANG POPUP BALAI TERDEKAT -->
