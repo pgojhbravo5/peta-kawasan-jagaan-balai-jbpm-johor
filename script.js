@@ -498,17 +498,19 @@ async function bukaPopupBalai(lat, lng, alamat) {
   let notaJarakSGLurus = false;
 
   if (namaJagaan) {
-    const idxDalamTerdekat = senaraiAkhir.findIndex((b) => b.nama === namaJagaan);
-    if (idxDalamTerdekat !== -1) {
-      balaiSG = senaraiAkhir[idxDalamTerdekat];
-    } else {
-      const dataJagaan = dataBalai.find((b) => b.nama === namaJagaan);
-      if (dataJagaan) {
-        let jarakSG = await dapatkanJarakRouteSebenar(lat, lng, dataJagaan.lat, dataJagaan.lng);
-        if (jarakSG === null) { jarakSG = kiraJarak(lat, lng, dataJagaan.lat, dataJagaan.lng); notaJarakSGLurus = true; }
-        balaiSG = { ...dataJagaan, jarak: jarakSG };
-        senaraiAkhir.push(balaiSG);
-      }
+    const dataJagaan = dataBalai.find((b) => b.nama === namaJagaan);
+    if (dataJagaan) {
+      // Balai SG (kawasan jagaan) SENTIASA guna jarak route sebenar melalui panggilan
+      // OSRM route tunggal (dapatkanJarakRouteSebenar) - tidak bergantung pada hasil
+      // OSRM Table (cariBalaiTerdekat), kerana Table boleh gagal/fallback ke garis lurus
+      // untuk keseluruhan senarai walaupun route tunggal untuk SG masih boleh berjaya.
+      let jarakSG = await dapatkanJarakRouteSebenar(lat, lng, dataJagaan.lat, dataJagaan.lng);
+      if (jarakSG === null) { jarakSG = kiraJarak(lat, lng, dataJagaan.lat, dataJagaan.lng); notaJarakSGLurus = true; }
+      balaiSG = { ...dataJagaan, jarak: jarakSG };
+
+      const idxDalamTerdekat = senaraiAkhir.findIndex((b) => b.nama === namaJagaan);
+      if (idxDalamTerdekat !== -1) senaraiAkhir[idxDalamTerdekat] = balaiSG;
+      else senaraiAkhir.push(balaiSG);
     }
   }
 
@@ -802,7 +804,7 @@ function pilihArah(arah) {
   if (query.length > 0) cari();
 }
 
-const urutanModCarian = ['alamat', 'laluan', 'km', 'pg', ...lebuhrayaBaruConfig.map((c) => c.mode)];
+const urutanModCarian = ['alamat', 'km', 'pg', ...lebuhrayaBaruConfig.map((c) => c.mode), 'laluan'];
 
 function tukarMode() {
   const modeBtn = document.getElementById('mode-toggle');
