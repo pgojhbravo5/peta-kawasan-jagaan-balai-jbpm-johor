@@ -3794,10 +3794,10 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">26900</SimpleData>
 		<SimpleData name="angle">316.430421800126</SimpleData>
-		<SimpleData name="LAT">1.64314460725337</SimpleData>
-		<SimpleData name="LONG">103.558373905439</SimpleData>
+		<SimpleData name="LAT">1.643153</SimpleData>
+		<SimpleData name="LONG">103.558438</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>103.558373905439,1.64314460725337,0</coordinates></Point>
+      <Point><coordinates>103.558438,1.643153,0</coordinates></Point>
   </Placemark>
   <Placemark id="plus_hala_selatan_done.271">
 	<name>SELATAN PLUS</name>
@@ -3808,10 +3808,10 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">27000</SimpleData>
 		<SimpleData name="angle">315.439645328787</SimpleData>
-		<SimpleData name="LAT">1.64379215029816</SimpleData>
-		<SimpleData name="LONG">103.557746492742</SimpleData>
+		<SimpleData name="LAT">1.64384</SimpleData>
+		<SimpleData name="LONG">103.557832</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>103.557746492742,1.64379215029816,0</coordinates></Point>
+      <Point><coordinates>103.557832,1.64384,0</coordinates></Point>
   </Placemark>
   <Placemark id="plus_hala_selatan_done.272">
 	<name>SELATAN PLUS</name>
@@ -3822,10 +3822,10 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">27100</SimpleData>
 		<SimpleData name="angle">317.614210666029</SimpleData>
-		<SimpleData name="LAT">1.64445725593502</SimpleData>
-		<SimpleData name="LONG">103.557137538495</SimpleData>
+		<SimpleData name="LAT">1.64451</SimpleData>
+		<SimpleData name="LONG">103.557225</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>103.557137538495,1.64445725593502,0</coordinates></Point>
+      <Point><coordinates>103.557225,1.64451,0</coordinates></Point>
   </Placemark>
   <Placemark id="plus_hala_selatan_done.273">
 	<name>SELATAN PLUS</name>
@@ -3836,10 +3836,10 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">27200</SimpleData>
 		<SimpleData name="angle">314.860990636888</SimpleData>
-		<SimpleData name="LAT">1.64511697276572</SimpleData>
-		<SimpleData name="LONG">103.556523027245</SimpleData>
+		<SimpleData name="LAT">1.645143</SimpleData>
+		<SimpleData name="LONG">103.556598</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>103.556523027245,1.64511697276572,0</coordinates></Point>
+      <Point><coordinates>103.556598,1.645143,0</coordinates></Point>
   </Placemark>
   <Placemark id="plus_hala_selatan_done.274">
 	<name>SELATAN PLUS</name>
@@ -3850,10 +3850,10 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">27300</SimpleData>
 		<SimpleData name="angle">318.963791169003</SimpleData>
-		<SimpleData name="LAT">1.64579507147501</SimpleData>
-		<SimpleData name="LONG">103.555928565338</SimpleData>
+		<SimpleData name="LAT">1.645835</SimpleData>
+		<SimpleData name="LONG">103.556002</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>103.555928565338,1.64579507147501,0</coordinates></Point>
+      <Point><coordinates>103.556002,1.645835,0</coordinates></Point>
   </Placemark>
   <Placemark id="plus_hala_selatan_done.275">
 	<name>SELATAN PLUS</name>
@@ -3864,10 +3864,10 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">27400</SimpleData>
 		<SimpleData name="angle">318.963791169003</SimpleData>
-		<SimpleData name="LAT">1.64647685162498</SimpleData>
-		<SimpleData name="LONG">103.555338008949</SimpleData>
+		<SimpleData name="LAT">1.646483</SimpleData>
+		<SimpleData name="LONG">103.555396</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>103.555338008949,1.64647685162498,0</coordinates></Point>
+      <Point><coordinates>103.555396,1.646483,0</coordinates></Point>
   </Placemark>
   <Placemark id="plus_hala_selatan_done.276">
 	<name>SELATAN PLUS</name>
@@ -3878,10 +3878,10 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">27500</SimpleData>
 		<SimpleData name="angle">316.47490751943</SimpleData>
-		<SimpleData name="LAT">1.64713657052121</SimpleData>
-		<SimpleData name="LONG">103.554723378659</SimpleData>
+		<SimpleData name="LAT">1.647159</SimpleData>
+		<SimpleData name="LONG">103.554774</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>103.554723378659,1.64713657052121,0</coordinates></Point>
+      <Point><coordinates>103.554774,1.647159,0</coordinates></Point>
   </Placemark>
   <Placemark id="plus_hala_selatan_done.277">
 	<name>SELATAN PLUS</name>
@@ -3906,10 +3906,10 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">27700</SimpleData>
 		<SimpleData name="angle">307.234405688251</SimpleData>
-		<SimpleData name="LAT">1.6483076011627</SimpleData>
-		<SimpleData name="LONG">103.553360760408</SimpleData>
+		<SimpleData name="LAT">1.648344</SimpleData>
+		<SimpleData name="LONG">103.553444</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>103.553360760408,1.6483076011627,0</coordinates></Point>
+      <Point><coordinates>103.553444,1.648344,0</coordinates></Point>
   </Placemark>
   <Placemark id="plus_hala_selatan_done.279">
 	<name>SELATAN PLUS</name>
@@ -3920,10 +3920,10 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">27800</SimpleData>
 		<SimpleData name="angle">306.028130920349</SimpleData>
-		<SimpleData name="LAT">1.64884973471705</SimpleData>
-		<SimpleData name="LONG">103.55264141572</SimpleData>
+		<SimpleData name="LAT">1.648902</SimpleData>
+		<SimpleData name="LONG">103.552725</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>103.55264141572,1.64884973471705,0</coordinates></Point>
+      <Point><coordinates>103.552725,1.648902,0</coordinates></Point>
   </Placemark>
   <Placemark id="plus_hala_selatan_done.280">
 	<name>SELATAN PLUS</name>
@@ -3934,10 +3934,10 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">27900</SimpleData>
 		<SimpleData name="angle">303.2302272966</SimpleData>
-		<SimpleData name="LAT">1.64935988656159</SimpleData>
-		<SimpleData name="LONG">103.551899595575</SimpleData>
+		<SimpleData name="LAT">1.649417</SimpleData>
+		<SimpleData name="LONG">103.551963</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>103.551899595575,1.64935988656159,0</coordinates></Point>
+      <Point><coordinates>103.551963,1.649417,0</coordinates></Point>
   </Placemark>
   <Placemark id="plus_hala_selatan_done.281">
 	<name>SELATAN PLUS</name>
@@ -3948,10 +3948,10 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">28000</SimpleData>
 		<SimpleData name="angle">301.210405626139</SimpleData>
-		<SimpleData name="LAT">1.64984052698587</SimpleData>
-		<SimpleData name="LONG">103.551138419972</SimpleData>
+		<SimpleData name="LAT">1.649888</SimpleData>
+		<SimpleData name="LONG">103.551185</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>103.551138419972,1.64984052698587,0</coordinates></Point>
+      <Point><coordinates>103.551185,1.649888,0</coordinates></Point>
   </Placemark>
   <Placemark id="plus_hala_selatan_done.282">
 	<name>SELATAN PLUS</name>
@@ -3962,10 +3962,10 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">28100</SimpleData>
 		<SimpleData name="angle">297.302182431331</SimpleData>
-		<SimpleData name="LAT">1.65027676479443</SimpleData>
-		<SimpleData name="LONG">103.55035123938</SimpleData>
+		<SimpleData name="LAT">1.650317</SimpleData>
+		<SimpleData name="LONG">103.550386</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>103.55035123938,1.65027676479443,0</coordinates></Point>
+      <Point><coordinates>103.550386,1.650317,0</coordinates></Point>
   </Placemark>
   <Placemark id="plus_hala_selatan_done.283">
 	<name>SELATAN PLUS</name>
@@ -3976,10 +3976,10 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">28200</SimpleData>
 		<SimpleData name="angle">294.08638702295</SimpleData>
-		<SimpleData name="LAT">1.6506688245096</SimpleData>
-		<SimpleData name="LONG">103.549541709292</SimpleData>
+		<SimpleData name="LAT">1.650687</SimpleData>
+		<SimpleData name="LONG">103.54957</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>103.549541709292,1.6506688245096,0</coordinates></Point>
+      <Point><coordinates>103.54957,1.650687,0</coordinates></Point>
   </Placemark>
   <Placemark id="plus_hala_selatan_done.284">
 	<name>SELATAN PLUS</name>
@@ -4760,10 +4760,10 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">33800</SimpleData>
 		<SimpleData name="angle">301.812577637993</SimpleData>
-		<SimpleData name="LAT">1.66094234050867</SimpleData>
-		<SimpleData name="LONG">103.501233918788</SimpleData>
+		<SimpleData name="LAT">1.660956</SimpleData>
+		<SimpleData name="LONG">103.501258</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>103.501233918788,1.66094234050867,0</coordinates></Point>
+      <Point><coordinates>103.501258,1.660956,0</coordinates></Point>
   </Placemark>
   <Placemark id="plus_hala_selatan_done.340">
 	<name>SELATAN PLUS</name>
@@ -4774,10 +4774,10 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">33900</SimpleData>
 		<SimpleData name="angle">302.856866861874</SimpleData>
-		<SimpleData name="LAT">1.66142197936491</SimpleData>
-		<SimpleData name="LONG">103.500472008494</SimpleData>
+		<SimpleData name="LAT">1.661433</SimpleData>
+		<SimpleData name="LONG">103.500507</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>103.500472008494,1.66142197936491,0</coordinates></Point>
+      <Point><coordinates>103.500507,1.661433,0</coordinates></Point>
   </Placemark>
   <Placemark id="plus_hala_selatan_done.341">
 	<name>SELATAN PLUS</name>
@@ -4788,10 +4788,10 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">34000</SimpleData>
 		<SimpleData name="angle">302.856866861874</SimpleData>
-		<SimpleData name="LAT">1.66191208402047</SimpleData>
-		<SimpleData name="LONG">103.499716670872</SimpleData>
+		<SimpleData name="LAT">1.661932</SimpleData>
+		<SimpleData name="LONG">103.499773</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>103.499716670872,1.66191208402047,0</coordinates></Point>
+      <Point><coordinates>103.499773,1.661932,0</coordinates></Point>
   </Placemark>
   <Placemark id="plus_hala_selatan_done.342">
 	<name>SELATAN PLUS</name>
@@ -4802,10 +4802,10 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">34100</SimpleData>
 		<SimpleData name="angle">304.957699560847</SimpleData>
-		<SimpleData name="LAT">1.66241635628758</SimpleData>
-		<SimpleData name="LONG">103.498970781064</SimpleData>
+		<SimpleData name="LAT">1.662457</SimpleData>
+		<SimpleData name="LONG">103.499032</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>103.498970781064,1.66241635628758,0</coordinates></Point>
+      <Point><coordinates>103.499032,1.662457,0</coordinates></Point>
   </Placemark>
   <Placemark id="plus_hala_selatan_done.343">
 	<name>SELATAN PLUS</name>
@@ -4816,10 +4816,10 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">34200</SimpleData>
 		<SimpleData name="angle">304.866485492734</SimpleData>
-		<SimpleData name="LAT">1.66294218969084</SimpleData>
-		<SimpleData name="LONG">103.498239729022</SimpleData>
+		<SimpleData name="LAT">1.662988</SimpleData>
+		<SimpleData name="LONG">103.498308</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>103.498239729022,1.66294218969084,0</coordinates></Point>
+      <Point><coordinates>103.498308,1.662988,0</coordinates></Point>
   </Placemark>
   <Placemark id="plus_hala_selatan_done.344">
 	<name>SELATAN PLUS</name>
@@ -4830,10 +4830,10 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">34300</SimpleData>
 		<SimpleData name="angle">306.987214828306</SimpleData>
-		<SimpleData name="LAT">1.66348063028057</SimpleData>
-		<SimpleData name="LONG">103.497517738657</SimpleData>
+		<SimpleData name="LAT">1.66353</SimpleData>
+		<SimpleData name="LONG">103.497595</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>103.497517738657,1.66348063028057,0</coordinates></Point>
+      <Point><coordinates>103.497595,1.66353,0</coordinates></Point>
   </Placemark>
   <Placemark id="plus_hala_selatan_done.345">
 	<name>SELATAN PLUS</name>
@@ -4844,10 +4844,10 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">34400</SimpleData>
 		<SimpleData name="angle">308.459026270715</SimpleData>
-		<SimpleData name="LAT">1.66403855552019</SimpleData>
-		<SimpleData name="LONG">103.496810452929</SimpleData>
+		<SimpleData name="LAT">1.664087</SimpleData>
+		<SimpleData name="LONG">103.496892</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>103.496810452929,1.66403855552019,0</coordinates></Point>
+      <Point><coordinates>103.496892,1.664087,0</coordinates></Point>
   </Placemark>
   <Placemark id="plus_hala_selatan_done.346">
 	<name>SELATAN PLUS</name>
@@ -4858,10 +4858,10 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">34500</SimpleData>
 		<SimpleData name="angle">308.459026270715</SimpleData>
-		<SimpleData name="LAT">1.66460051785803</SimpleData>
-		<SimpleData name="LONG">103.496106265731</SimpleData>
+		<SimpleData name="LAT">1.66465</SimpleData>
+		<SimpleData name="LONG">103.496184</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>103.496106265731,1.66460051785803,0</coordinates></Point>
+      <Point><coordinates>103.496184,1.66465,0</coordinates></Point>
   </Placemark>
   <Placemark id="plus_hala_selatan_done.347">
 	<name>SELATAN PLUS</name>
@@ -4872,10 +4872,10 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">34600</SimpleData>
 		<SimpleData name="angle">308.459026270715</SimpleData>
-		<SimpleData name="LAT">1.66516247957481</SimpleData>
-		<SimpleData name="LONG">103.495402078219</SimpleData>
+		<SimpleData name="LAT">1.665213</SimpleData>
+		<SimpleData name="LONG">103.49547</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>103.495402078219,1.66516247957481,0</coordinates></Point>
+      <Point><coordinates>103.49547,1.665213,0</coordinates></Point>
   </Placemark>
   <Placemark id="plus_hala_selatan_done.348">
 	<name>SELATAN PLUS</name>
@@ -4886,10 +4886,10 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">34700</SimpleData>
 		<SimpleData name="angle">310.135278826877</SimpleData>
-		<SimpleData name="LAT">1.66574283189417</SimpleData>
-		<SimpleData name="LONG">103.494712824257</SimpleData>
+		<SimpleData name="LAT">1.665782</SimpleData>
+		<SimpleData name="LONG">103.494768</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>103.494712824257,1.66574283189417,0</coordinates></Point>
+      <Point><coordinates>103.494768,1.665782,0</coordinates></Point>
   </Placemark>
   <Placemark id="plus_hala_selatan_done.349">
 	<name>SELATAN PLUS</name>
@@ -4900,10 +4900,10 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">34800</SimpleData>
 		<SimpleData name="angle">310.135278826877</SimpleData>
-		<SimpleData name="LAT">1.66632528071448</SimpleData>
-		<SimpleData name="LONG">103.494025272835</SimpleData>
+		<SimpleData name="LAT">1.666356</SimpleData>
+		<SimpleData name="LONG">103.494081</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>103.494025272835,1.66632528071448,0</coordinates></Point>
+      <Point><coordinates>103.494081,1.666356,0</coordinates></Point>
   </Placemark>
   <Placemark id="plus_hala_selatan_done.350">
 	<name>SELATAN PLUS</name>
@@ -4914,10 +4914,10 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">34900</SimpleData>
 		<SimpleData name="angle">310.135278826877</SimpleData>
-		<SimpleData name="LAT">1.66690772892019</SimpleData>
-		<SimpleData name="LONG">103.493337721072</SimpleData>
+		<SimpleData name="LAT">1.666929</SimpleData>
+		<SimpleData name="LONG">103.493394</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>103.493337721072,1.66690772892019,0</coordinates></Point>
+      <Point><coordinates>103.493394,1.666929,0</coordinates></Point>
   </Placemark>
   <Placemark id="plus_hala_selatan_done.351">
 	<name>SELATAN PLUS</name>
@@ -5922,10 +5922,10 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">42100</SimpleData>
 		<SimpleData name="angle">310.642970359125</SimpleData>
-		<SimpleData name="LAT">1.71006999631881</SimpleData>
-		<SimpleData name="LONG">103.44493734501</SimpleData>
+		<SimpleData name="LAT">1.710073</SimpleData>
+		<SimpleData name="LONG">103.444986</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>103.44493734501,1.71006999631881,0</coordinates></Point>
+      <Point><coordinates>103.444986,1.710073,0</coordinates></Point>
   </Placemark>
   <Placemark id="plus_hala_selatan_done.423">
 	<name>SELATAN PLUS</name>
@@ -5936,10 +5936,10 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">42200</SimpleData>
 		<SimpleData name="angle">310.642970359125</SimpleData>
-		<SimpleData name="LAT">1.71065850716478</SimpleData>
-		<SimpleData name="LONG">103.444254922574</SimpleData>
+		<SimpleData name="LAT">1.710689</SimpleData>
+		<SimpleData name="LONG">103.444315</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>103.444254922574,1.71065850716478,0</coordinates></Point>
+      <Point><coordinates>103.444315,1.710689,0</coordinates></Point>
   </Placemark>
   <Placemark id="plus_hala_selatan_done.424">
 	<name>SELATAN PLUS</name>
@@ -5950,10 +5950,10 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">42300</SimpleData>
 		<SimpleData name="angle">311.400302027378</SimpleData>
-		<SimpleData name="LAT">1.71125571300533</SimpleData>
-		<SimpleData name="LONG">103.443580004986</SimpleData>
+		<SimpleData name="LAT">1.71129</SimpleData>
+		<SimpleData name="LONG">103.443634</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>103.443580004986,1.71125571300533,0</coordinates></Point>
+      <Point><coordinates>103.443634,1.71129,0</coordinates></Point>
   </Placemark>
   <Placemark id="plus_hala_selatan_done.425">
 	<name>SELATAN PLUS</name>
@@ -5964,10 +5964,10 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">42400</SimpleData>
 		<SimpleData name="angle">311.400302027378</SimpleData>
-		<SimpleData name="LAT">1.71185324782689</SimpleData>
-		<SimpleData name="LONG">103.442905371514</SimpleData>
+		<SimpleData name="LAT">1.711885</SimpleData>
+		<SimpleData name="LONG">103.442963</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>103.442905371514,1.71185324782689,0</coordinates></Point>
+      <Point><coordinates>103.442963,1.711885,0</coordinates></Point>
   </Placemark>
   <Placemark id="plus_hala_selatan_done.426">
 	<name>SELATAN PLUS</name>
@@ -5978,10 +5978,10 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">42500</SimpleData>
 		<SimpleData name="angle">311.400302027378</SimpleData>
-		<SimpleData name="LAT">1.71245078202115</SimpleData>
-		<SimpleData name="LONG">103.442230737673</SimpleData>
+		<SimpleData name="LAT">1.712475</SimpleData>
+		<SimpleData name="LONG">103.442287</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>103.442230737673,1.71245078202115,0</coordinates></Point>
+      <Point><coordinates>103.442287,1.712475,0</coordinates></Point>
   </Placemark>
   <Placemark id="plus_hala_selatan_done.427">
 	<name>SELATAN PLUS</name>
@@ -5992,10 +5992,10 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">42600</SimpleData>
 		<SimpleData name="angle">311.400302027378</SimpleData>
-		<SimpleData name="LAT">1.71304831558785</SimpleData>
-		<SimpleData name="LONG">103.441556103463</SimpleData>
+		<SimpleData name="LAT">1.71307</SimpleData>
+		<SimpleData name="LONG">103.441606</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>103.441556103463,1.71304831558785,0</coordinates></Point>
+      <Point><coordinates>103.441606,1.71307,0</coordinates></Point>
   </Placemark>
   <Placemark id="plus_hala_selatan_done.428">
 	<name>SELATAN PLUS</name>
@@ -6006,10 +6006,10 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">42700</SimpleData>
 		<SimpleData name="angle">311.400302027378</SimpleData>
-		<SimpleData name="LAT">1.71364584852674</SimpleData>
-		<SimpleData name="LONG">103.440881468883</SimpleData>
+		<SimpleData name="LAT">1.71366</SimpleData>
+		<SimpleData name="LONG">103.44093</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>103.440881468883,1.71364584852674,0</coordinates></Point>
+      <Point><coordinates>103.44093,1.71366,0</coordinates></Point>
   </Placemark>
   <Placemark id="plus_hala_selatan_done.429">
 	<name>SELATAN PLUS</name>
@@ -6020,10 +6020,10 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">42800</SimpleData>
 		<SimpleData name="angle">311.400302027378</SimpleData>
-		<SimpleData name="LAT">1.71424338083757</SimpleData>
-		<SimpleData name="LONG">103.440206833934</SimpleData>
+		<SimpleData name="LAT">1.71425</SimpleData>
+		<SimpleData name="LONG">103.440249</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>103.440206833934,1.71424338083757,0</coordinates></Point>
+      <Point><coordinates>103.440249,1.71425,0</coordinates></Point>
   </Placemark>
   <Placemark id="plus_hala_selatan_done.430">
 	<name>SELATAN PLUS</name>
@@ -6034,10 +6034,10 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">42900</SimpleData>
 		<SimpleData name="angle">311.400302027378</SimpleData>
-		<SimpleData name="LAT">1.71484091252009</SimpleData>
-		<SimpleData name="LONG">103.439532198616</SimpleData>
+		<SimpleData name="LAT">1.714861</SimpleData>
+		<SimpleData name="LONG">103.439573</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>103.439532198616,1.71484091252009,0</coordinates></Point>
+      <Point><coordinates>103.439573,1.714861,0</coordinates></Point>
   </Placemark>
   <Placemark id="plus_hala_selatan_done.431">
 	<name>SELATAN PLUS</name>
@@ -6048,10 +6048,10 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">43000</SimpleData>
 		<SimpleData name="angle">310.700664086788</SimpleData>
-		<SimpleData name="LAT">1.71544147650662</SimpleData>
-		<SimpleData name="LONG">103.438860429828</SimpleData>
+		<SimpleData name="LAT">1.715445</SimpleData>
+		<SimpleData name="LONG">103.438897</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>103.438860429828,1.71544147650662,0</coordinates></Point>
+      <Point><coordinates>103.438897,1.715445,0</coordinates></Point>
   </Placemark>
   <Placemark id="plus_hala_selatan_done.432">
 	<name>SELATAN PLUS</name>
@@ -6062,10 +6062,10 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">43100</SimpleData>
 		<SimpleData name="angle">310.700664086788</SimpleData>
-		<SimpleData name="LAT">1.71603067286685</SimpleData>
-		<SimpleData name="LONG">103.438178593362</SimpleData>
+		<SimpleData name="LAT">1.716046</SimpleData>
+		<SimpleData name="LONG">103.438237</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>103.438178593362,1.71603067286685,0</coordinates></Point>
+      <Point><coordinates>103.438237,1.716046,0</coordinates></Point>
   </Placemark>
   <Placemark id="plus_hala_selatan_done.433">
 	<name>SELATAN PLUS</name>
@@ -6076,10 +6076,10 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">43200</SimpleData>
 		<SimpleData name="angle">310.700664086788</SimpleData>
-		<SimpleData name="LAT">1.71661986859429</SimpleData>
-		<SimpleData name="LONG">103.437496756537</SimpleData>
+		<SimpleData name="LAT">1.716684</SimpleData>
+		<SimpleData name="LONG">103.437567</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>103.437496756537,1.71661986859429,0</coordinates></Point>
+      <Point><coordinates>103.437567,1.716684,0</coordinates></Point>
   </Placemark>
   <Placemark id="plus_hala_selatan_done.434">
 	<name>SELATAN PLUS</name>
@@ -6090,10 +6090,10 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">43300</SimpleData>
 		<SimpleData name="angle">311.746547649667</SimpleData>
-		<SimpleData name="LAT">1.71721389446231</SimpleData>
-		<SimpleData name="LONG">103.436819118538</SimpleData>
+		<SimpleData name="LAT">1.717269</SimpleData>
+		<SimpleData name="LONG">103.436918</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>103.436819118538,1.71721389446231,0</coordinates></Point>
+      <Point><coordinates>103.436918,1.717269,0</coordinates></Point>
   </Placemark>
   <Placemark id="plus_hala_selatan_done.435">
 	<name>SELATAN PLUS</name>
@@ -6104,10 +6104,10 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">43400</SimpleData>
 		<SimpleData name="angle">311.746547649667</SimpleData>
-		<SimpleData name="LAT">1.71781551458592</SimpleData>
-		<SimpleData name="LONG">103.436148082077</SimpleData>
+		<SimpleData name="LAT">1.717864</SimpleData>
+		<SimpleData name="LONG">103.43621</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>103.436148082077,1.71781551458592,0</coordinates></Point>
+      <Point><coordinates>103.43621,1.717864,0</coordinates></Point>
   </Placemark>
   <Placemark id="plus_hala_selatan_done.436">
 	<name>SELATAN PLUS</name>
@@ -6118,10 +6118,10 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">43500</SimpleData>
 		<SimpleData name="angle">311.746547649667</SimpleData>
-		<SimpleData name="LAT">1.71841713408164</SimpleData>
-		<SimpleData name="LONG">103.43547704524</SimpleData>
+		<SimpleData name="LAT">1.718437</SimpleData>
+		<SimpleData name="LONG">103.435528</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>103.43547704524,1.71841713408164,0</coordinates></Point>
+      <Point><coordinates>103.435528,1.718437,0</coordinates></Point>
   </Placemark>
   <Placemark id="plus_hala_selatan_done.437">
 	<name>SELATAN PLUS</name>
@@ -6286,10 +6286,10 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">44700</SimpleData>
 		<SimpleData name="angle">305.384041244224</SimpleData>
-		<SimpleData name="LAT">1.72503978299561</SimpleData>
-		<SimpleData name="LONG">103.4269461241</SimpleData>
+		<SimpleData name="LAT">1.725124</SimpleData>
+		<SimpleData name="LONG">103.427026</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>103.4269461241,1.72503978299561,0</coordinates></Point>
+      <Point><coordinates>103.427026,1.725124,0</coordinates></Point>
   </Placemark>
   <Placemark id="plus_hala_selatan_done.449">
 	<name>SELATAN PLUS</name>
@@ -6300,10 +6300,10 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">44800</SimpleData>
 		<SimpleData name="angle">305.384041244224</SimpleData>
-		<SimpleData name="LAT">1.72556285801169</SimpleData>
-		<SimpleData name="LONG">103.426212962122</SimpleData>
+		<SimpleData name="LAT">1.72566</SimpleData>
+		<SimpleData name="LONG">103.426301</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>103.426212962122,1.72556285801169,0</coordinates></Point>
+      <Point><coordinates>103.426301,1.72566,0</coordinates></Point>
   </Placemark>
   <Placemark id="plus_hala_selatan_done.450">
 	<name>SELATAN PLUS</name>
@@ -6314,10 +6314,10 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">44900</SimpleData>
 		<SimpleData name="angle">305.384041244224</SimpleData>
-		<SimpleData name="LAT">1.72608593237056</SimpleData>
-		<SimpleData name="LONG">103.425479799872</SimpleData>
+		<SimpleData name="LAT">1.726191</SimpleData>
+		<SimpleData name="LONG">103.425599</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>103.425479799872,1.72608593237056,0</coordinates></Point>
+      <Point><coordinates>103.425599,1.726191,0</coordinates></Point>
   </Placemark>
   <Placemark id="plus_hala_selatan_done.451">
 	<name>SELATAN PLUS</name>
@@ -6328,10 +6328,10 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">45000</SimpleData>
 		<SimpleData name="angle">306.730215427213</SimpleData>
-		<SimpleData name="LAT">1.72662408877796</SimpleData>
-		<SimpleData name="LONG">103.424757531088</SimpleData>
+		<SimpleData name="LAT">1.726722</SimpleData>
+		<SimpleData name="LONG">103.424858</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>103.424757531088,1.72662408877796,0</coordinates></Point>
+      <Point><coordinates>103.424858,1.726722,0</coordinates></Point>
   </Placemark>
   <Placemark id="plus_hala_selatan_done.452">
 	<name>SELATAN PLUS</name>
@@ -6342,10 +6342,10 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">45100</SimpleData>
 		<SimpleData name="angle">306.730215427213</SimpleData>
-		<SimpleData name="LAT">1.72716434975948</SimpleData>
-		<SimpleData name="LONG">103.424036782546</SimpleData>
+		<SimpleData name="LAT">1.727247</SimpleData>
+		<SimpleData name="LONG">103.424118</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>103.424036782546,1.72716434975948,0</coordinates></Point>
+      <Point><coordinates>103.424118,1.727247,0</coordinates></Point>
   </Placemark>
   <Placemark id="plus_hala_selatan_done.453">
 	<name>SELATAN PLUS</name>
@@ -6356,10 +6356,10 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">45200</SimpleData>
 		<SimpleData name="angle">306.730215427213</SimpleData>
-		<SimpleData name="LAT">1.7277046100867</SimpleData>
-		<SimpleData name="LONG">103.423316033708</SimpleData>
+		<SimpleData name="LAT">1.727778</SimpleData>
+		<SimpleData name="LONG">103.423383</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>103.423316033708,1.7277046100867,0</coordinates></Point>
+      <Point><coordinates>103.423383,1.727778,0</coordinates></Point>
   </Placemark>
   <Placemark id="plus_hala_selatan_done.454">
 	<name>SELATAN PLUS</name>
@@ -6370,10 +6370,10 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">45300</SimpleData>
 		<SimpleData name="angle">306.730215427213</SimpleData>
-		<SimpleData name="LAT">1.72824486975937</SimpleData>
-		<SimpleData name="LONG">103.422595284575</SimpleData>
+		<SimpleData name="LAT">1.728314</SimpleData>
+		<SimpleData name="LONG">103.422648</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>103.422595284575,1.72824486975937,0</coordinates></Point>
+      <Point><coordinates>103.422648,1.728314,0</coordinates></Point>
   </Placemark>
   <Placemark id="plus_hala_selatan_done.455">
 	<name>SELATAN PLUS</name>
@@ -6384,10 +6384,10 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">45400</SimpleData>
 		<SimpleData name="angle">306.730215427213</SimpleData>
-		<SimpleData name="LAT">1.72878512877721</SimpleData>
-		<SimpleData name="LONG">103.421874535146</SimpleData>
+		<SimpleData name="LAT">1.728829</SimpleData>
+		<SimpleData name="LONG">103.421924</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>103.421874535146,1.72878512877721,0</coordinates></Point>
+      <Point><coordinates>103.421924,1.728829,0</coordinates></Point>
   </Placemark>
   <Placemark id="plus_hala_selatan_done.456">
 	<name>SELATAN PLUS</name>
@@ -8778,10 +8778,10 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">62500</SimpleData>
 		<SimpleData name="angle">324.198189177745</SimpleData>
-		<SimpleData name="LAT">1.81843838893105</SimpleData>
-		<SimpleData name="LONG">103.300442760018</SimpleData>
+		<SimpleData name="LAT">1.818474</SimpleData>
+		<SimpleData name="LONG">103.30056</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>103.300442760018,1.81843838893105,0</coordinates></Point>
+      <Point><coordinates>103.30056,1.818474,0</coordinates></Point>
   </Placemark>
   <Placemark id="plus_hala_selatan_done.627">
 	<name>SELATAN PLUS</name>
@@ -8792,10 +8792,10 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">62600</SimpleData>
 		<SimpleData name="angle">324.198189177745</SimpleData>
-		<SimpleData name="LAT">1.81917133632313</SimpleData>
-		<SimpleData name="LONG">103.299916333531</SimpleData>
+		<SimpleData name="LAT">1.819224</SimpleData>
+		<SimpleData name="LONG">103.300045</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>103.299916333531,1.81917133632313,0</coordinates></Point>
+      <Point><coordinates>103.300045,1.819224,0</coordinates></Point>
   </Placemark>
   <Placemark id="plus_hala_selatan_done.628">
 	<name>SELATAN PLUS</name>
@@ -8806,10 +8806,10 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">62700</SimpleData>
 		<SimpleData name="angle">326.801396468614</SimpleData>
-		<SimpleData name="LAT">1.81991491085135</SimpleData>
-		<SimpleData name="LONG">103.299405243103</SimpleData>
+		<SimpleData name="LAT">1.819964</SimpleData>
+		<SimpleData name="LONG">103.299513</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>103.299405243103,1.81991491085135,0</coordinates></Point>
+      <Point><coordinates>103.299513,1.819964,0</coordinates></Point>
   </Placemark>
   <Placemark id="plus_hala_selatan_done.629">
 	<name>SELATAN PLUS</name>
@@ -8820,10 +8820,10 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">62800</SimpleData>
 		<SimpleData name="angle">326.801396468614</SimpleData>
-		<SimpleData name="LAT">1.82067115935241</SimpleData>
-		<SimpleData name="LONG">103.298912442433</SimpleData>
+		<SimpleData name="LAT">1.820699</SimpleData>
+		<SimpleData name="LONG">103.298988</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>103.298912442433,1.82067115935241,0</coordinates></Point>
+      <Point><coordinates>103.298988,1.820699,0</coordinates></Point>
   </Placemark>
   <Placemark id="plus_hala_selatan_done.630">
 	<name>SELATAN PLUS</name>
