@@ -252,11 +252,9 @@ const layerZon = { 1: [], 2: [], 3: [], 4: [] };
 // INISIALISASI PETA
 // ============================================
 const map = L.map('map', {
-  // Sempadan diluaskan untuk meliputi seluruh Malaysia (Semenanjung + Sabah/Sarawak)
-  // supaya peta boleh diseret ke mana-mana negeri, bukan dikunci di Johor sahaja.
-  maxBounds: [[0.4, 98.8], [7.8, 119.8]],
-  maxBoundsViscosity: 0.6,
-  minZoom: 6,
+  maxBounds: [[1.2, 102.3], [3.0, 104.6]],
+  maxBoundsViscosity: 0.8,
+  minZoom: 8,
   maxZoom: 18,
 }).setView([1.85, 103.3], 9);
 
@@ -331,11 +329,6 @@ L.control.topBar = L.Control.extend({
   onRemove: function () {},
 });
 new L.control.topBar({ position: 'topright' }).addTo(map);
-
-// ============================================
-// SKALA JARAK (RUJUKAN ZOOM IN/OUT DALAM METER)
-// ============================================
-L.control.scale({ position: 'bottomright', metric: true, imperial: false, maxWidth: 120 }).addTo(map);
 
 // ============================================
 // FUNGSI KIRA JARAK (HAVERSINE)
@@ -597,10 +590,6 @@ map.on('click', function (e) {
     '#arah-btn-2',
     '#popup-btn',
     '#popup-modal',
-    '#route-btn',
-    '#route-modal',
-    '#route-overlay',
-    '.route-result-item',
     '#basemap-btn',
     '#basemap-panel',
     '.leaflet-control',
@@ -1186,261 +1175,6 @@ function senaraiBalai() {
 function flyToBalai(lat, lng) { map.flyTo([lat, lng], 15); toggleMenu(); }
 
 // ============================================
-// MOD ARAH (LALUAN DUA TITIK - DARI & KE)
-// ============================================
-let arahDariTitik = null; // { lat, lng, label }
-let arahKeTitik = null;
-let arahDariMarker = null;
-let arahKeMarker = null;
-let arahRouteLayer = null;
-let arahDariController = null;
-let arahKeController = null;
-let arahDariTimer = null;
-let arahKeTimer = null;
-let hasilArahDari = [];
-let hasilArahKe = [];
-
-const routeInputDari = document.getElementById('route-input-dari');
-const routeInputKe = document.getElementById('route-input-ke');
-const routeResultsDari = document.getElementById('route-results-dari');
-const routeResultsKe = document.getElementById('route-results-ke');
-
-function bukaModalArah() {
-  document.getElementById('route-overlay').classList.add('show');
-  document.getElementById('route-modal').classList.add('open');
-  setTimeout(() => routeInputDari.focus(), 300);
-}
-
-function tutupModalArah() {
-  document.getElementById('route-overlay').classList.remove('show');
-  document.getElementById('route-modal').classList.remove('open');
-  routeResultsDari.classList.remove('show');
-  routeResultsKe.classList.remove('show');
-}
-
-function geocodeUntukArah(query, jenis) {
-  const resultsDiv = jenis === 'dari' ? routeResultsDari : routeResultsKe;
-
-  if (!query || query.length < 3) {
-    resultsDiv.innerHTML = '';
-    resultsDiv.classList.remove('show');
-    return;
-  }
-
-  resultsDiv.innerHTML = '<div class="route-result-item" style="color:#999;">Mencari...</div>';
-  resultsDiv.classList.add('show');
-
-  const controller = new AbortController();
-  if (jenis === 'dari') {
-    if (arahDariController) arahDariController.abort();
-    arahDariController = controller;
-  } else {
-    if (arahKeController) arahKeController.abort();
-    arahKeController = controller;
-  }
-
-  // Tiada sekatan viewbox - carian meliputi seluruh Malaysia
-  const url = `api/geocode?q=${encodeURIComponent(query)}&countrycodes=my&limit=6&accept-language=ms&addressdetails=1`;
-
-  geocodeFetch(url, controller.signal)
-    .then((data) => {
-      if (jenis === 'dari' && arahDariController !== controller) return;
-      if (jenis === 'ke' && arahKeController !== controller) return;
-      if (jenis === 'dari') arahDariController = null; else arahKeController = null;
-
-      if (!data || data.length === 0) {
-        resultsDiv.innerHTML = '<div class="route-result-item" style="color:#999;">Tiada hasil dijumpai.</div>';
-        resultsDiv.classList.add('show');
-        return;
-      }
-
-      if (jenis === 'dari') hasilArahDari = data; else hasilArahKe = data;
-
-      let html = '';
-      data.forEach((item, i) => {
-        html += `<div class="route-result-item" data-index="${i}"><i class="fa-solid fa-location-dot"></i> ${escapeHtml(item.display_name)}</div>`;
-      });
-      resultsDiv.innerHTML = html;
-      resultsDiv.classList.add('show');
-    })
-    .catch((error) => {
-      if (error.name === 'AbortError') return;
-      console.error('Ralat geocode mod arah:', error);
-      resultsDiv.innerHTML = '<div class="route-result-item" style="color:red;">Ralat carian. Sila cuba lagi.</div>';
-      resultsDiv.classList.add('show');
-    });
-}
-
-routeInputDari.addEventListener('input', function () {
-  arahDariTitik = null;
-  const q = this.value.trim();
-  if (arahDariTimer) clearTimeout(arahDariTimer);
-  arahDariTimer = setTimeout(() => geocodeUntukArah(q, 'dari'), 350);
-});
-
-routeInputKe.addEventListener('input', function () {
-  arahKeTitik = null;
-  const q = this.value.trim();
-  if (arahKeTimer) clearTimeout(arahKeTimer);
-  arahKeTimer = setTimeout(() => geocodeUntukArah(q, 'ke'), 350);
-});
-
-routeResultsDari.addEventListener('click', function (e) {
-  const item = e.target.closest('.route-result-item[data-index]');
-  if (!item) return;
-  const idx = parseInt(item.getAttribute('data-index'), 10);
-  const hasil = hasilArahDari[idx];
-  if (!hasil) return;
-  arahDariTitik = { lat: parseFloat(hasil.lat), lng: parseFloat(hasil.lon), label: hasil.display_name };
-  routeInputDari.value = hasil.display_name.length > 60 ? hasil.display_name.substring(0, 60) + '...' : hasil.display_name;
-  routeResultsDari.classList.remove('show');
-});
-
-routeResultsKe.addEventListener('click', function (e) {
-  const item = e.target.closest('.route-result-item[data-index]');
-  if (!item) return;
-  const idx = parseInt(item.getAttribute('data-index'), 10);
-  const hasil = hasilArahKe[idx];
-  if (!hasil) return;
-  arahKeTitik = { lat: parseFloat(hasil.lat), lng: parseFloat(hasil.lon), label: hasil.display_name };
-  routeInputKe.value = hasil.display_name.length > 60 ? hasil.display_name.substring(0, 60) + '...' : hasil.display_name;
-  routeResultsKe.classList.remove('show');
-});
-
-document.addEventListener('click', function (e) {
-  if (!routeResultsDari.contains(e.target) && e.target !== routeInputDari) routeResultsDari.classList.remove('show');
-  if (!routeResultsKe.contains(e.target) && e.target !== routeInputKe) routeResultsKe.classList.remove('show');
-});
-
-function kosongkanInputArah(jenis) {
-  if (jenis === 'dari') {
-    routeInputDari.value = '';
-    arahDariTitik = null;
-    routeResultsDari.innerHTML = '';
-    routeResultsDari.classList.remove('show');
-  } else {
-    routeInputKe.value = '';
-    arahKeTitik = null;
-    routeResultsKe.innerHTML = '';
-    routeResultsKe.classList.remove('show');
-  }
-}
-
-function tukarDariKe() {
-  const tempTitik = arahDariTitik;
-  arahDariTitik = arahKeTitik;
-  arahKeTitik = tempTitik;
-  const tempVal = routeInputDari.value;
-  routeInputDari.value = routeInputKe.value;
-  routeInputKe.value = tempVal;
-}
-
-async function cariGeocodeSekali(query) {
-  try {
-    const url = `api/geocode?q=${encodeURIComponent(query)}&countrycodes=my&limit=1&accept-language=ms`;
-    const data = await geocodeFetch(url);
-    if (!data || data.length === 0) return null;
-    return { lat: parseFloat(data[0].lat), lng: parseFloat(data[0].lon), label: data[0].display_name };
-  } catch (e) {
-    console.error('Ralat cariGeocodeSekali:', e);
-    return null;
-  }
-}
-
-function tunjukRalatArah(mesej) {
-  const errDiv = document.getElementById('route-error');
-  errDiv.textContent = mesej;
-  errDiv.style.display = 'block';
-}
-
-async function cariLaluanDuaTitik() {
-  const errDiv = document.getElementById('route-error');
-  errDiv.style.display = 'none';
-
-  if (!arahDariTitik) {
-    const q = routeInputDari.value.trim();
-    if (q.length < 3) { tunjukRalatArah('Sila masukkan titik mula (Dari).'); return; }
-    const dicari = await cariGeocodeSekali(q);
-    if (!dicari) { tunjukRalatArah('Lokasi "Dari" tidak dijumpai.'); return; }
-    arahDariTitik = dicari;
-  }
-
-  if (!arahKeTitik) {
-    const q = routeInputKe.value.trim();
-    if (q.length < 3) { tunjukRalatArah('Sila masukkan destinasi (Ke).'); return; }
-    const dicari = await cariGeocodeSekali(q);
-    if (!dicari) { tunjukRalatArah('Lokasi "Ke" tidak dijumpai.'); return; }
-    arahKeTitik = dicari;
-  }
-
-  const btn = document.getElementById('route-cari-btn');
-  const btnHtmlAsal = btn.innerHTML;
-  btn.disabled = true;
-  btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Mencari laluan...';
-
-  try {
-    const url = `https://router.project-osrm.org/route/v1/driving/${arahDariTitik.lng},${arahDariTitik.lat};${arahKeTitik.lng},${arahKeTitik.lat}?geometries=geojson&overview=full&steps=false`;
-    const resp = await fetch(url);
-    if (!resp.ok) throw new Error(`OSRM ralat: ${resp.status}`);
-    const data = await resp.json();
-    if (data.code !== 'Ok' || !data.routes || data.routes.length === 0) throw new Error('Tiada laluan ditemui.');
-
-    const route = data.routes[0];
-    const coords = route.geometry.coordinates.map((c) => [c[1], c[0]]);
-
-    if (arahRouteLayer) map.removeLayer(arahRouteLayer);
-    arahRouteLayer = L.polyline(coords, { color: '#1976d2', weight: 6, opacity: 0.85 }).addTo(map);
-
-    if (arahDariMarker) map.removeLayer(arahDariMarker);
-    if (arahKeMarker) map.removeLayer(arahKeMarker);
-
-    arahDariMarker = L.marker([arahDariTitik.lat, arahDariTitik.lng], {
-      icon: L.icon({
-        iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-green.png',
-        shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-shadow.png',
-        iconSize: [25, 41], iconAnchor: [12, 41], popupAnchor: [1, -34], shadowSize: [41, 41],
-      }),
-    }).addTo(map).bindPopup(`<b><i class="fa-solid fa-circle-dot"></i> Dari</b><br>${arahDariTitik.label}`);
-
-    arahKeMarker = L.marker([arahKeTitik.lat, arahKeTitik.lng], {
-      icon: L.icon({
-        iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png',
-        shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-shadow.png',
-        iconSize: [25, 41], iconAnchor: [12, 41], popupAnchor: [1, -34], shadowSize: [41, 41],
-      }),
-    }).addTo(map).bindPopup(`<b><i class="fa-solid fa-flag-checkered"></i> Ke</b><br>${arahKeTitik.label}`);
-
-    map.fitBounds(arahRouteLayer.getBounds(), { padding: [60, 60] });
-
-    const jarakKm = (route.distance / 1000).toFixed(1);
-    const masaMin = Math.round(route.duration / 60);
-    const masaLabel = masaMin >= 60 ? `${Math.floor(masaMin / 60)} jam ${masaMin % 60} minit` : `${masaMin} minit`;
-
-    document.getElementById('route-jarak').textContent = `${jarakKm} km`;
-    document.getElementById('route-masa').textContent = masaLabel;
-    document.getElementById('route-summary').style.display = 'flex';
-
-    tutupModalArah();
-  } catch (err) {
-    console.error('Ralat cari laluan dua titik:', err);
-    tunjukRalatArah('Gagal dapatkan laluan. Sila semak sambungan internet atau cuba lagi.');
-  } finally {
-    btn.disabled = false;
-    btn.innerHTML = btnHtmlAsal;
-  }
-}
-
-function resetModalArah() {
-  kosongkanInputArah('dari');
-  kosongkanInputArah('ke');
-  document.getElementById('route-summary').style.display = 'none';
-  document.getElementById('route-error').style.display = 'none';
-  if (arahRouteLayer) { map.removeLayer(arahRouteLayer); arahRouteLayer = null; }
-  if (arahDariMarker) { map.removeLayer(arahDariMarker); arahDariMarker = null; }
-  if (arahKeMarker) { map.removeLayer(arahKeMarker); arahKeMarker = null; }
-}
-
-// ============================================
 // STOP TOUCH/MOUSE EVENT
 // ============================================
 const popupModal = document.getElementById('popup-modal');
@@ -1448,10 +1182,8 @@ const popupContent = document.getElementById('popup-content');
 const sideMenu = document.getElementById('side-menu');
 const menuBody = document.getElementById('menu-body');
 const searchResultsEl = document.getElementById('search-results');
-const routeModalEl = document.getElementById('route-modal');
-const routeContentEl = document.getElementById('route-content');
 
-[popupModal, popupContent, sideMenu, menuBody, searchResultsEl, routeModalEl, routeContentEl].forEach((el) => {
+[popupModal, popupContent, sideMenu, menuBody, searchResultsEl].forEach((el) => {
   if (el) {
     el.addEventListener('touchmove', function (e) { e.stopPropagation(); }, { passive: false });
     el.addEventListener('mousedown', function (e) { e.stopPropagation(); });
