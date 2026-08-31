@@ -1838,16 +1838,22 @@ window.togglePoligonBalai = async function(checkbox) {
 })();
 
 // ============================================
+// DEFAULT ACTIVE: TICK SEMUA CHECKBOX LEBUHRAYA & POLIGON
+// ============================================
+document.addEventListener('DOMContentLoaded', function() {
+  // Cari semua checkbox dalam menu-item-checkbox
+  const checkboxes = document.querySelectorAll('.menu-item-checkbox input[type="checkbox"]');
+  checkboxes.forEach(cb => {
+    cb.checked = true;
+    // Trigger event change untuk memuatkan dan papar lapisan
+    cb.dispatchEvent(new Event('change'));
+  });
+});
+
+// ============================================
 // MUAT DATA JENTERA (AUTOMATIK)
 // ============================================
 muatSemuaDataJentera();
 
-// ============================================
-// KML TIDAK DIMUAT SECARA AUTOMATIK – LAZY LOAD
-// ============================================
-// Semua KML akan dimuat hanya apabila checkbox diklik.
-// Tiada panggilan loadKMLData(), loadKMLPasirGudang(),
-// loadKMLLebuhrayaBaru() atau loadKMLPolygon() di sini.
-
-console.log('[OK] Peta Kawasan Jagaan JBPM Johor siap (Lazy Load KML, Lokasi Saya, Fallback Jarak Lurus)!');
+console.log('[OK] Peta Kawasan Jagaan JBPM Johor siap (Lazy Load KML, Lokasi Saya, Fallback Jarak Lurus, Default Checked)!');
 console.log('[INFO] 34 Balai | 4 Zon | Search dengan toggle arah untuk KM PLUS dan KM PG');
