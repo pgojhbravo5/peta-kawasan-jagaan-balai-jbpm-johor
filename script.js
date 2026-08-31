@@ -1602,6 +1602,66 @@ function binaLayerLebuhrayaBaru(mode) {
   console.log(`[OK] Layer ${cfg.labelMenu} sedia (dua arah, dengan titik KM setiap 100m).`);
 }
 
+// Cari titik KM dalam Map yang telah dibina untuk lebuhraya baru (SDE/Second Link/EDL)
+function cariKMLebuhrayaBaru(mode, query) {
+  const cfg = cariConfigLebuhraya(mode);
+  if (!cfg) return null;
+  const match = query.match(/^\s*(?:km\s*)?([\d.]+)\s*(?:km)?\s*$/i);
+  if (!match) return null;
+  const num = parseFloat(match[1]);
+  if (isNaN(num) || num < 0 || num > 300) return null;
+  const arah = arahCarian;
+  if (arah !== cfg.arah[0].key && arah !== cfg.arah[1].key) return null;
+  const kmKey = num.toFixed(1);
+  const petaKm = kmMapLebuhrayaBaru[mode] && kmMapLebuhrayaBaru[mode][arah];
+  const titik = petaKm ? petaKm.get(kmKey) : null;
+  if (!titik) return null;
+  return { lat: titik.lat, lng: titik.lng, km: kmKey, arah: arah };
+}
+
+// Jalankan carian KM untuk lebuhraya baru (SDE/Second Link/EDL) - dipanggil dari cari()
+async function cariKMLebuhrayaBaruJalankan(mode, query) {
+  const cfg = cariConfigLebuhraya(mode);
+  if (!cfg) return;
+  if (query.length === 0) { searchResults.classList.remove('show'); return; }
+
+  if (arahCarian !== cfg.arah[0].key && arahCarian !== cfg.arah[1].key) {
+    searchResults.innerHTML = `<div class="search-result-item" style="color:#cc0000;">Sila pilih arah (<i class="fa-solid fa-arrow-up"></i> ${cfg.arah[0].label} / <i class="fa-solid fa-arrow-down"></i> ${cfg.arah[1].label}) terlebih dahulu.</div>`;
+    searchResults.classList.add('show');
+    return;
+  }
+
+  // Muatkan data KML dahulu jika belum dimuat (cth: carian ditekan sebelum layer diaktifkan)
+  if (!kmlLoaded[mode]) {
+    searchResults.innerHTML = `<div class="search-result-item" style="color:#999;"><i class="fa-solid fa-spinner fa-spin"></i> Memuatkan data ${cfg.labelMenu}...</div>`;
+    searchResults.classList.add('show');
+    await loadKMLLebuhrayaBaru(mode);
+  }
+
+  const kmResult = cariKMLebuhrayaBaru(mode, query);
+  if (kmResult) {
+    searchResults.classList.remove('show');
+    map.flyTo([kmResult.lat, kmResult.lng], 15);
+    if (searchMarker) map.removeLayer(searchMarker);
+    const arahLabelObj = cfg.arah.find((a) => a.key === kmResult.arah);
+    const arahLabel = arahLabelObj ? arahLabelObj.label : '';
+    searchMarker = L.marker([kmResult.lat, kmResult.lng], {
+      icon: L.icon({
+        iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png',
+        shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-shadow.png',
+        iconSize: [25, 41], iconAnchor: [12, 41], popupAnchor: [1, -34], shadowSize: [41, 41],
+      }),
+    }).addTo(map).bindPopup(`<b><i class="fa-solid fa-road"></i> KM ${kmResult.km} (${cfg.labelMenu} - ${arahLabel})</b>`).openPopup();
+    searchInput.value = `KM ${kmResult.km} (${arahLabel})`;
+    if (mode === 'edl') updateInfoPanelEDL(parseFloat(kmResult.km), arahLabel);
+    else if (mode === 'sde') updateInfoPanelSDE(parseFloat(kmResult.km), arahLabel);
+    lokasiTerakhir = { lat: kmResult.lat, lng: kmResult.lng, alamat: `${cfg.labelMenu} KM ${kmResult.km} (${arahLabel})` };
+  } else {
+    searchResults.innerHTML = '<div class="search-result-item" style="color:#999;">Format KM tidak sah atau arah ini tiada data. Contoh: 10.5, km 15, 20</div>';
+    searchResults.classList.add('show');
+  }
+}
+
 window.toggleLebuhrayaBaru = async function(mode, checkbox) {
   const cfg = cariConfigLebuhraya(mode);
   if (!cfg) return;
