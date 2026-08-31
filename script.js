@@ -327,6 +327,10 @@ new L.control.topBar({ position: 'topright' }).addTo(map);
 // HALANG SEMUA UI (MENU, SEARCH, POPUP, BASEMAP,
 // PANEL INFO) DARIPADA "TEMBUS" KLIK KE PETA
 // ============================================
+const SELEKTOR_UI_PETA =
+  '#menu-btn, #side-menu, #overlay, #search-wrapper, #popup-btn, #popup-overlay, ' +
+  '#popup-modal, #basemap-btn, #basemap-panel, #info-panel-stack';
+
 [
   'menu-btn',
   'side-menu',
@@ -340,16 +344,26 @@ new L.control.topBar({ position: 'topright' }).addTo(map);
   'info-panel-stack',
 ].forEach((id) => {
   const el = document.getElementById(id);
-  if (el) L.DomEvent.disableClickPropagation(el);
+  if (!el) return;
+  // Halang bubbling standard Leaflet (click/dblclick/mousedown/touchstart/contextmenu)
+  // ke arah #map, tanpa menyentuh event handler asal pada butang/checkbox itu sendiri.
+  L.DomEvent.disableClickPropagation(el);
+  L.DomEvent.disableScrollPropagation(el);
 });
 
 // ============================================
 // KLIK PADA PETA -> PAPAR LAT/LONG
 // (Hanya untuk kawasan kosong; klik pada marker/
-// poligon/laluan sedia ada TIDAK akan papar lat/long)
+// poligon/laluan sedia ada ATAU mana-mana panel UI
+// TIDAK akan papar lat/long)
 // ============================================
 map.on('click', function (e) {
   const targetEl = e.originalEvent && e.originalEvent.target;
+
+  // Sekatan tambahan: kalau klik asal datang dari mana-mana panel UI
+  // (menu, search bar, mod, arah, popup, basemap, panel info) - abaikan terus.
+  if (targetEl && targetEl.closest && targetEl.closest(SELEKTOR_UI_PETA)) return;
+
   const tagNama = targetEl && targetEl.tagName ? targetEl.tagName.toLowerCase() : '';
   // Klik jatuh pada layer vektor sedia ada (poligon/laluan/circleMarker) - abaikan
   if (['path', 'circle', 'polygon', 'polyline', 'rect'].includes(tagNama)) return;
