@@ -352,6 +352,29 @@ const SELEKTOR_UI_PETA =
 });
 
 // ============================================
+// LAPISAN PERTAHANAN TAMBAHAN (TIDAK BERGANTUNG
+// PADA e.originalEvent.target Leaflet)
+// Rekod bila kali terakhir mana-mana UI (menu, search,
+// mod, arah, popup, basemap, panel info) disentuh/klik,
+// pada fasa "capture" di peringkat document - iaitu
+// PALING AWAL, sebelum Leaflet sempat proses apa-apa.
+// Klik peta yang berlaku sejurus selepas itu (dalam
+// tempoh singkat) akan diabaikan sepenuhnya.
+// ============================================
+let masaTerakhirKlikUI = 0;
+['pointerdown', 'mousedown', 'touchstart'].forEach((jenis) => {
+  document.addEventListener(
+    jenis,
+    function (evt) {
+      if (evt.target && evt.target.closest && evt.target.closest(SELEKTOR_UI_PETA)) {
+        masaTerakhirKlikUI = Date.now();
+      }
+    },
+    true // capture = true supaya ia berjalan paling awal (tidak menyekat apa-apa, cuma "mendengar")
+  );
+});
+
+// ============================================
 // KLIK PADA PETA -> PAPAR LAT/LONG
 // (Hanya untuk kawasan kosong; klik pada marker/
 // poligon/laluan sedia ada ATAU mana-mana panel UI
@@ -360,8 +383,11 @@ const SELEKTOR_UI_PETA =
 map.on('click', function (e) {
   const targetEl = e.originalEvent && e.originalEvent.target;
 
-  // Sekatan tambahan: kalau klik asal datang dari mana-mana panel UI
-  // (menu, search bar, mod, arah, popup, basemap, panel info) - abaikan terus.
+  // Lapisan 1: kalau tercatat UI baru sahaja disentuh/klik (dalam 350ms lepas)
+  // - abaikan, tidak kira apa target sebenar event Leaflet ni.
+  if (Date.now() - masaTerakhirKlikUI < 350) return;
+
+  // Lapisan 2: kalau klik asal (ikut Leaflet) datang dari mana-mana panel UI - abaikan.
   if (targetEl && targetEl.closest && targetEl.closest(SELEKTOR_UI_PETA)) return;
 
   const tagNama = targetEl && targetEl.tagName ? targetEl.tagName.toLowerCase() : '';
