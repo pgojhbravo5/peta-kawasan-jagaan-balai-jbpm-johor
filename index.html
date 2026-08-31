@@ -932,27 +932,32 @@
       /* ============================================
          PENUKAR LAYER PETA DASAR
          ============================================ */
-      #basemap-btn {
+      #basemap-btn,
+      #location-btn {
         position: absolute;
-        bottom: 24px;
         left: 12px;
         z-index: 1000;
-        width: 46px;
-        height: 46px;
+        width: 34px;
+        height: 34px;
         display: flex;
         align-items: center;
         justify-content: center;
         background: var(--surface-solid);
         color: var(--text-primary);
         border: 1px solid var(--border-color);
-        border-radius: var(--radius-md);
-        font-size: 18px;
+        border-radius: var(--radius-sm);
+        font-size: 15px;
         cursor: pointer;
         box-shadow: var(--shadow-soft);
         transition: var(--transition-fast);
       }
 
-      #basemap-btn:hover {
+      /* Saiz sama seperti butang Muat Semula & Skrin Penuh (.topbar-btn = 34x34) */
+      #basemap-btn { bottom: 24px; }
+      #location-btn { bottom: 68px; } /* 24 + 34 (tinggi basemap) + 10 (jarak) */
+
+      #basemap-btn:hover,
+      #location-btn:hover {
         color: var(--bomba-red);
         box-shadow: var(--shadow-medium);
         transform: translateY(-1px);
@@ -1316,7 +1321,9 @@
           font-size: 11.5px;
         }
 
-        #basemap-btn { bottom: 16px; left: 10px; width: 42px; height: 42px; font-size: 16px; }
+        #basemap-btn, #location-btn { left: 10px; }
+        #basemap-btn { bottom: 16px; }
+        #location-btn { bottom: 60px; } /* 16 + 34 + 10 */
         #basemap-panel { bottom: 16px; left: 58px; max-width: calc(100vw - 74px); overflow-x: auto; }
         .basemap-option { width: 64px; }
         .basemap-swatch { width: 56px; height: 44px; }

@@ -1772,41 +1772,9 @@ window.togglePoligonBalai = async function(checkbox) {
   btn.title = 'Lokasi Saya';
   btn.setAttribute('aria-label', 'Lokasi Saya');
   
-  // Gaya yang sama dengan #basemap-btn
-  Object.assign(btn.style, {
-    position: 'absolute',
-    bottom: '80px',          // 24px (basemap) + 46px (tinggi) + 10px (jarak)
-    left: '12px',
-    zIndex: '1000',
-    width: '46px',
-    height: '46px',
-    padding: '0',
-    boxSizing: 'border-box',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    background: '#ffffff',
-    color: '#1a2028',
-    border: '1px solid #e6e8ec',
-    borderRadius: '12px',
-    fontSize: '18px',
-    cursor: 'pointer',
-    boxShadow: '0 2px 10px rgba(15,23,32,0.08), 0 8px 24px rgba(15,23,32,0.08)',
-    transition: 'all 0.2s cubic-bezier(0.4,0,0.2,1)',
-    fontFamily: 'inherit'
-  });
-
-  // Hover effect (sama seperti basemap)
-  btn.addEventListener('mouseenter', () => {
-    btn.style.color = '#b71c1c';
-    btn.style.boxShadow = '0 8px 28px rgba(15,23,32,0.16), 0 2px 8px rgba(15,23,32,0.08)';
-    btn.style.transform = 'translateY(-1px)';
-  });
-  btn.addEventListener('mouseleave', () => {
-    btn.style.color = '#1a2028';
-    btn.style.boxShadow = '0 2px 10px rgba(15,23,32,0.08), 0 8px 24px rgba(15,23,32,0.08)';
-    btn.style.transform = 'translateY(0)';
-  });
+  // Saiz & kedudukan dikawal oleh CSS #location-btn (sama saiz dengan
+  // #basemap-btn dan butang Muat Semula/Skrin Penuh, termasuk pada mobile)
+  // supaya tiada lagi konflik dengan gaya inline lama.
 
   // Fungsi klik
   btn.addEventListener('click', function() {
@@ -1838,7 +1806,7 @@ window.togglePoligonBalai = async function(checkbox) {
         this.innerHTML = '<i class="fa-solid fa-location-crosshairs"></i>';
         this.disabled = false;
       },
-      { enableHAighAccuracy: true, timeout: 10000, maximumAge: 60000 }
+      { enableHighAccuracy: true, timeout: 10000, maximumAge: 60000 }
     );
   });
 
