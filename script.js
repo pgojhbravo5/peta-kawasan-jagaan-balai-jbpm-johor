@@ -277,10 +277,10 @@ let basemapSemasa = 'jalan';
 basemapLayers[basemapSemasa].addTo(map);
 
 // ============================================
-// FUNGSI BASEMAP – DIBUAT GLOBAL UNTUK HTML ONCLICK
+// FUNGSI TUKAR BASEMAP (dipanggil dari HTML)
 // ============================================
 window.pilihBasemap = function(kunci) {
-  if (!basemapLayers[kunci] || kunci === basemapSemasa) { window.tutupBasemapPanel(); return; }
+  if (!basemapLayers[kunci] || kunci === basemapSemasa) { tutupBasemapPanel(); return; }
   const current = basemapLayers[basemapSemasa];
   if (current instanceof L.LayerGroup) {
     map.removeLayer(current);
@@ -295,50 +295,30 @@ window.pilihBasemap = function(kunci) {
   }
   basemapSemasa = kunci;
   document.querySelectorAll('.basemap-option').forEach((el) => el.classList.toggle('active', el.dataset.basemap === kunci));
-  window.tutupBasemapPanel();
+  tutupBasemapPanel();
 };
 
-window.toggleBasemapPanel = function() {
+function toggleBasemapPanel() {
   const panel = document.getElementById('basemap-panel');
   const btn = document.getElementById('basemap-btn');
-  if (!panel || !btn) return;
   const buka = !panel.classList.contains('show');
   panel.classList.toggle('show', buka);
   btn.classList.toggle('active', buka);
-};
+}
 
-window.tutupBasemapPanel = function() {
-  const panel = document.getElementById('basemap-panel');
-  const btn = document.getElementById('basemap-btn');
-  if (panel) panel.classList.remove('show');
-  if (btn) btn.classList.remove('active');
-};
+function tutupBasemapPanel() {
+  document.getElementById('basemap-panel').classList.remove('show');
+  document.getElementById('basemap-btn').classList.remove('active');
+}
 
-// Tutup panel apabila klik di luar
-document.addEventListener('click', function(e) {
+document.addEventListener('click', function (e) {
   const panel = document.getElementById('basemap-panel');
   const btn = document.getElementById('basemap-btn');
   if (!panel || !btn) return;
   if (panel.classList.contains('show') && !panel.contains(e.target) && !btn.contains(e.target)) {
-    window.tutupBasemapPanel();
+    tutupBasemapPanel();
   }
 });
-
-// ============================================
-// EVENT LISTENER UNTUK BUTANG BASEMAP (PATCH)
-// ============================================
-(function attachBasemapListener() {
-  const btn = document.getElementById('basemap-btn');
-  if (btn) {
-    btn.addEventListener('click', function(e) {
-      e.preventDefault();
-      window.toggleBasemapPanel();
-    });
-    console.log('[OK] Event listener untuk butang basemap dipasang.');
-  } else {
-    console.warn('[AMARAN] Elemen #basemap-btn tidak dijumpai.');
-  }
-})();
 
 // ============================================
 // SUSUNAN BUTANG ZOOM & FULLSCREEN
@@ -444,7 +424,7 @@ map.on('click', function (e) {
     .openOn(map);
 });
 
-window.salinLatLong = function(lat, lng, btn) {
+function salinLatLong(lat, lng, btn) {
   const teks = `${lat}, ${lng}`;
   const tandaSalin = () => {
     if (!btn) return;
@@ -462,7 +442,7 @@ window.salinLatLong = function(lat, lng, btn) {
     try { document.execCommand('copy'); tandaSalin(); } catch (err) {}
     document.body.removeChild(textarea);
   }
-};
+}
 
 // ============================================
 // FUNGSI KIRA JARAK (HAVERSINE)
@@ -620,7 +600,7 @@ async function tunjukRoute(lat1, lng1, lat2, lng2, namaBalai) {
 // ============================================
 let lokasiTerakhir = null;
 
-window.bukaPopupBalai = async function(lat, lng, alamat) {
+async function bukaPopupBalai(lat, lng, alamat) {
   const modal = document.getElementById('popup-modal');
   const overlay = document.getElementById('popup-overlay');
   const content = document.getElementById('popup-content');
@@ -695,13 +675,16 @@ window.bukaPopupBalai = async function(lat, lng, alamat) {
   });
 
   content.innerHTML = html;
-};
+}
 
-window.tutupPopupBalai = function() {
+// ============================================
+// FUNGSI TUTUP POPUP
+// ============================================
+function tutupPopupBalai() {
   document.getElementById('popup-modal').classList.remove('open');
   document.getElementById('popup-overlay').classList.remove('show');
   if (routeLayer) { map.removeLayer(routeLayer); routeLayer = null; }
-};
+}
 
 // ============================================
 // PLOT SEMUA BALAI
@@ -797,33 +780,32 @@ function setBtnIcon(el, iconClass, label) {
   el.innerHTML = `<i class="fa-solid ${iconClass}"></i><span class="btn-label"> ${label}</span>`;
 }
 
-window.arah1UntukModeSemasa = function() {
+function arah1UntukModeSemasa() {
   if (modeCarian === 'pg') return 'pasirgudang';
   if (modeCarian === 'km') return 'utara';
   const cfg = cariConfigLebuhraya(modeCarian);
   return cfg ? cfg.arah[0].key : 'utara';
-};
-
-window.arah2UntukModeSemasa = function() {
+}
+function arah2UntukModeSemasa() {
   if (modeCarian === 'pg') return 'perling';
   if (modeCarian === 'km') return 'selatan';
   const cfg = cariConfigLebuhraya(modeCarian);
   return cfg ? cfg.arah[1].key : 'selatan';
-};
+}
 
-window.pilihArah = function(arah) {
+function pilihArah(arah) {
   arahCarian = arah;
   arahBtn1.classList.remove('active-arah');
   arahBtn2.classList.remove('active-arah');
-  if (arah === window.arah1UntukModeSemasa()) arahBtn1.classList.add('active-arah');
+  if (arah === arah1UntukModeSemasa()) arahBtn1.classList.add('active-arah');
   else arahBtn2.classList.add('active-arah');
   const query = document.getElementById('search-input').value.trim();
   if (query.length > 0) cari();
-};
+}
 
 const urutanModCarian = ['alamat', 'km', 'pg', ...lebuhrayaBaruConfig.map((c) => c.mode)];
 
-window.tukarMode = function() {
+function tukarMode() {
   const modeBtn = document.getElementById('mode-toggle');
   const searchInput = document.getElementById('search-input');
   const resultsDiv = document.getElementById('search-results');
@@ -843,7 +825,7 @@ window.tukarMode = function() {
     arahBtn1.style.display = 'flex'; arahBtn2.style.display = 'flex';
     setBtnIcon(arahBtn1, 'fa-arrow-up', 'Utara');
     setBtnIcon(arahBtn2, 'fa-arrow-down', 'Selatan');
-    window.pilihArah('utara');
+    pilihArah('utara');
   } else if (modeCarian === 'pg') {
     setBtnIcon(modeBtn, 'fa-road', 'KM PG');
     modeBtn.className = 'mode-btn active-pg';
@@ -851,7 +833,7 @@ window.tukarMode = function() {
     arahBtn1.style.display = 'flex'; arahBtn2.style.display = 'flex';
     setBtnIcon(arahBtn1, 'fa-arrow-up', 'Pasir Gudang');
     setBtnIcon(arahBtn2, 'fa-arrow-down', 'Perling');
-    window.pilihArah('pasirgudang');
+    pilihArah('pasirgudang');
   } else {
     const cfg = cariConfigLebuhraya(modeCarian);
     setBtnIcon(modeBtn, cfg.icon, cfg.labelBtn);
@@ -860,13 +842,12 @@ window.tukarMode = function() {
     arahBtn1.style.display = 'flex'; arahBtn2.style.display = 'flex';
     setBtnIcon(arahBtn1, 'fa-arrow-up', cfg.arah[0].label);
     setBtnIcon(arahBtn2, 'fa-arrow-down', cfg.arah[1].label);
-    window.pilihArah(cfg.arah[0].key);
+    pilihArah(cfg.arah[0].key);
   }
   resultsDiv.classList.remove('show');
   searchInput.focus();
   console.log('Mod carian sekarang:', modeCarian, 'Arah:', arahCarian);
-};
-
+}
 // ============================================
 // SEARCH
 // ============================================
@@ -1141,7 +1122,7 @@ document.addEventListener('click', function (e) {
   }
 });
 
-window.clearSearch = function() {
+function clearSearch() {
   if (carianAlamatController) { carianAlamatController.abort(); carianAlamatController = null; }
   if (carianAlamatTimer) { clearTimeout(carianAlamatTimer); carianAlamatTimer = null; }
   searchInput.value = '';
@@ -1153,7 +1134,7 @@ window.clearSearch = function() {
   if (routeLayer) { map.removeLayer(routeLayer); routeLayer = null; }
   tutupInfoPanel();
   lokasiTerakhir = null;
-};
+}
 
 searchInput.addEventListener('input', function () {
   const clearBtn = document.getElementById('search-clear');
@@ -1175,26 +1156,22 @@ searchInput.addEventListener('input', function () {
 // ============================================
 // SIDE MENU FUNCTIONS
 // ============================================
-window.toggleMenu = function() {
+function toggleMenu() {
   document.getElementById('side-menu').classList.toggle('open');
   document.getElementById('overlay').classList.toggle('show');
-};
-
-window.resetPeta = function() { map.setView([1.85, 103.3], 9); window.toggleMenu(); };
-
-window.toggleFilter = function() {
+}
+function resetPeta() { map.setView([1.85, 103.3], 9); toggleMenu(); }
+function toggleFilter() {
   const filterDiv = document.getElementById('filter-zon');
   filterDiv.style.display = filterDiv.style.display === 'none' ? 'block' : 'none';
-};
-
-window.toggleZon = function(zon, checkbox) {
+}
+function toggleZon(zon, checkbox) {
   layerZon[zon].forEach((layer) => {
     if (checkbox.checked) map.addLayer(layer);
     else map.removeLayer(layer);
   });
-};
-
-window.senaraiBalai = function() {
+}
+function senaraiBalai() {
   const listDiv = document.getElementById('list-balai');
   if (listDiv.style.display === 'none' || listDiv.style.display === '') {
     let html = '';
@@ -1206,9 +1183,8 @@ window.senaraiBalai = function() {
   } else {
     listDiv.style.display = 'none';
   }
-};
-
-window.flyToBalai = function(lat, lng) { map.flyTo([lat, lng], 15); window.toggleMenu(); };
+}
+function flyToBalai(lat, lng) { map.flyTo([lat, lng], 15); toggleMenu(); }
 
 // ============================================
 // STOP TOUCH/MOUSE EVENT (POPUP, MENU, SEARCH)
@@ -1533,7 +1509,7 @@ function binaLayerLebuhraya() {
 }
 
 // ============================================
-// TOGGLE FUNCTIONS (LAZY LOAD) – DIBUAT GLOBAL
+// TOGGLE FUNCTIONS (LAZY LOAD)
 // ============================================
 window.toggleKMMarker = async function(checkbox) {
   if (!layerKMMarker) {
@@ -1787,7 +1763,7 @@ window.togglePoligonBalai = async function(checkbox) {
 };
 
 // ============================================
-// BUTANG "LOKASI SAYA" – TAMBAH SECARA DINAMIK
+// BUTANG "LOKASI SAYA" – TAMBAH SECARA DINAMIK (SAIZ SERAGAM DENGAN BASEMAP)
 // ============================================
 (function tambahButangLokasi() {
   const btn = document.createElement('button');
@@ -1795,8 +1771,44 @@ window.togglePoligonBalai = async function(checkbox) {
   btn.innerHTML = '<i class="fa-solid fa-location-crosshairs"></i>';
   btn.title = 'Lokasi Saya';
   btn.setAttribute('aria-label', 'Lokasi Saya');
-  // Gaya diserahkan sepenuhnya kepada CSS di INDEXPETA.html
+  
+  // Gaya yang sama dengan #basemap-btn
+  Object.assign(btn.style, {
+    position: 'absolute',
+    bottom: '80px',          // 24px (basemap) + 46px (tinggi) + 10px (jarak)
+    left: '12px',
+    zIndex: '1000',
+    width: '46px',
+    height: '46px',
+    padding: '0',
+    boxSizing: 'border-box',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    background: '#ffffff',
+    color: '#1a2028',
+    border: '1px solid #e6e8ec',
+    borderRadius: '12px',
+    fontSize: '18px',
+    cursor: 'pointer',
+    boxShadow: '0 2px 10px rgba(15,23,32,0.08), 0 8px 24px rgba(15,23,32,0.08)',
+    transition: 'all 0.2s cubic-bezier(0.4,0,0.2,1)',
+    fontFamily: 'inherit'
+  });
 
+  // Hover effect (sama seperti basemap)
+  btn.addEventListener('mouseenter', () => {
+    btn.style.color = '#b71c1c';
+    btn.style.boxShadow = '0 8px 28px rgba(15,23,32,0.16), 0 2px 8px rgba(15,23,32,0.08)';
+    btn.style.transform = 'translateY(-1px)';
+  });
+  btn.addEventListener('mouseleave', () => {
+    btn.style.color = '#1a2028';
+    btn.style.boxShadow = '0 2px 10px rgba(15,23,32,0.08), 0 8px 24px rgba(15,23,32,0.08)';
+    btn.style.transform = 'translateY(0)';
+  });
+
+  // Fungsi klik
   btn.addEventListener('click', function() {
     if (!navigator.geolocation) {
       alert('Peranti anda tidak menyokong GPS.');
@@ -1826,10 +1838,11 @@ window.togglePoligonBalai = async function(checkbox) {
         this.innerHTML = '<i class="fa-solid fa-location-crosshairs"></i>';
         this.disabled = false;
       },
-      { enableHighAccuracy: true, timeout: 10000, maximumAge: 60000 }
+      { enableHAighAccuracy: true, timeout: 10000, maximumAge: 60000 }
     );
   });
 
+  // Tambah ke dalam map container
   document.getElementById('map').appendChild(btn);
 })();
 

@@ -964,40 +964,116 @@
         border-color: var(--bomba-red);
       }
 
-      /* ============================================
-         BUTANG LOKASI SAYA – SAIZ SAMA DENGAN BASEMAP
-         ============================================ */
-      #location-btn {
+      #basemap-panel {
         position: absolute;
-        bottom: 80px;          /* 24px (basemap) + 46px + 10px jarak */
-        left: 12px;
+        bottom: 24px;
+        left: 68px;
         z-index: 1000;
-        width: 46px;
-        height: 46px;
-        padding: 0;
-        box-sizing: border-box;
+        background: var(--surface);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid var(--border-color);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-medium);
+        padding: 12px;
+        display: none;
+        gap: 10px;
+        opacity: 0;
+        transform: translateY(6px);
+        transition: var(--transition-fast);
+      }
+
+      #basemap-panel.show {
         display: flex;
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .basemap-option {
+        width: 78px;
+        display: flex;
+        flex-direction: column;
         align-items: center;
-        justify-content: center;
-        background: #ffffff;
-        color: #1a2028;
-        border: 1px solid #e6e8ec;
-        border-radius: 12px;    /* var(--radius-md) */
-        font-size: 18px;
+        gap: 6px;
         cursor: pointer;
-        box-shadow: 0 2px 10px rgba(15,23,32,0.08), 0 8px 24px rgba(15,23,32,0.08);
-        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        border: none;
+        background: transparent;
+        padding: 0;
         font-family: inherit;
       }
 
-      #location-btn:hover {
-        color: #b71c1c;
-        box-shadow: 0 8px 28px rgba(15,23,32,0.16), 0 2px 8px rgba(15,23,32,0.08);
-        transform: translateY(-1px);
+      .basemap-swatch {
+        width: 68px;
+        height: 52px;
+        border-radius: var(--radius-sm);
+        border: 2px solid transparent;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #ffffff;
+        font-size: 17px;
+        box-shadow: 0 2px 6px rgba(15, 23, 32, 0.15);
+        transition: var(--transition-fast);
       }
 
-      #location-btn:active {
-        transform: translateY(0);
+      .basemap-option:hover .basemap-swatch {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 14px rgba(15, 23, 32, 0.22);
+      }
+
+      .basemap-option.active .basemap-swatch {
+        border-color: var(--bomba-red);
+        box-shadow: 0 0 0 3px rgba(var(--bomba-red-rgb), 0.18);
+      }
+
+      .basemap-option span {
+        font-size: 11px;
+        font-weight: 600;
+        color: var(--text-secondary);
+      }
+
+      .basemap-option.active span {
+        color: var(--bomba-red);
+      }
+
+      .basemap-swatch.swatch-jalan {
+        background: linear-gradient(135deg, #f1f4f6 0%, #c9d6df 100%);
+        color: #5f6b73;
+      }
+
+      .basemap-swatch.swatch-terang {
+        background: linear-gradient(135deg, #fbfbf9 0%, #e4e4df 100%);
+        color: #9a9a92;
+      }
+
+      .basemap-swatch.swatch-gelap {
+        background: linear-gradient(135deg, #2b2f36 0%, #10131a 100%);
+        color: #8a93a3;
+      }
+
+      .basemap-swatch.swatch-satelit {
+        background: linear-gradient(135deg, #2f5233 0%, #16321f 60%, #0c1f13 100%);
+        color: #d9e6c8;
+      }
+
+      /* Swatch baru untuk Hybrid (Esri+Labels) */
+      .basemap-swatch.swatch-hybrid {
+        background: linear-gradient(135deg, #2e5d3a 0%, #1b3b2a 60%, #0a1f13 100%);
+        color: #cfe0cb;
+        position: relative;
+        overflow: hidden;
+      }
+      .basemap-swatch.swatch-hybrid i {
+        position: relative;
+        z-index: 2;
+        text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+      }
+      .basemap-swatch.swatch-hybrid::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: repeating-linear-gradient(45deg, transparent, transparent 8px, rgba(255,255,255,0.08) 8px, rgba(255,255,255,0.08) 9px);
+        z-index: 1;
       }
 
       /* ============================================
@@ -1241,7 +1317,6 @@
         }
 
         #basemap-btn { bottom: 16px; left: 10px; width: 42px; height: 42px; font-size: 16px; }
-        #location-btn { bottom: 68px; left: 10px; width: 42px; height: 42px; font-size: 16px; }
         #basemap-panel { bottom: 16px; left: 58px; max-width: calc(100vw - 74px); overflow-x: auto; }
         .basemap-option { width: 64px; }
         .basemap-swatch { width: 56px; height: 44px; }
@@ -1378,8 +1453,8 @@
         </div>
       </div>
 
-      <!-- PENUKAR LAYER PETA DASAR (onclick telah dibuang) -->
-      <button id="basemap-btn" title="Peta Dasar" aria-label="Tukar Peta Dasar">
+      <!-- PENUKAR LAYER PETA DASAR -->
+      <button id="basemap-btn" onclick="toggleBasemapPanel()" title="Peta Dasar" aria-label="Tukar Peta Dasar">
         <i class="fa-solid fa-layer-group"></i>
       </button>
       <div id="basemap-panel">
