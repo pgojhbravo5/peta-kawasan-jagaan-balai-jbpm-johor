@@ -25,6 +25,8 @@ const dataBalai = [
   { nama: 'BBP Sebana Cove', zon: 2, daerah: 'Kota Tinggi', lat: 1.4111942637295485, lng: 104.20702710820935, tel: '07-8861641' },
   { nama: 'BBP Punggai', zon: 2, daerah: 'Kota Tinggi', lat: 1.42940813601492, lng: 104.27036571006252, tel: '07-8861952' },
   { nama: 'BBP Bandar Tenggara', zon: 2, daerah: 'Kulai', lat: 1.8512117790715301, lng: 103.61435888307892, tel: '07-8964498' },
+  { nama: 'BBP Kuala Rompin', zon: 2, daerah: 'Kuala Rompin/Pahang', lat: 2.7995459952468162, lng: 103.48859615474312, tel: '09-4146444' },
+
   // ZON 3 - KLUANG (8)
   { nama: 'BBP Penggaram', zon: 3, daerah: 'Batu Pahat', lat: 1.8587485315341812, lng: 102.94072309627684, tel: '07-4345757' },
   { nama: 'BBP Kluang', zon: 3, daerah: 'Kluang', lat: 2.0342273939975697, lng: 103.31953787937219, tel: '07-7724444' },
@@ -43,6 +45,7 @@ const dataBalai = [
   { nama: 'BBP Tangkak', zon: 4, daerah: 'Tangkak', lat: 2.2709401263413143, lng: 102.54347515009461, tel: '06-9783444' },
   { nama: 'BBP Pagoh', zon: 4, daerah: 'Muar', lat: 2.136905853626598, lng: 102.73936700820836, tel: '06-9741955' },
   { nama: 'BBP Jasin Bestari', zon: 4, daerah: 'Jasin/Negeri Melaka', lat: 2.2987006825702365, lng: 102.41515029627601, tel: '06-5293736' },
+  { nama: 'BBP Gemas', zon: 4, daerah: 'Bahau/Negeri Sembilan', lat: 2.578793081119071, lng: 102.6005081067373, tel: '07-9481333' },
 ];
 
 // ============================================
