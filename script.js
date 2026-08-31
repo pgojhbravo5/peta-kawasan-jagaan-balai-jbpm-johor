@@ -1763,7 +1763,7 @@ window.togglePoligonBalai = async function(checkbox) {
 };
 
 // ============================================
-// BUTANG "LOKASI SAYA" – TAMBAH SECARA DINAMIK
+// BUTANG "LOKASI SAYA" – TAMBAH SECARA DINAMIK (SAIZ SERAGAM DENGAN BASEMAP)
 // ============================================
 (function tambahButangLokasi() {
   const btn = document.createElement('button');
@@ -1771,13 +1771,17 @@ window.togglePoligonBalai = async function(checkbox) {
   btn.innerHTML = '<i class="fa-solid fa-location-crosshairs"></i>';
   btn.title = 'Lokasi Saya';
   btn.setAttribute('aria-label', 'Lokasi Saya');
+  
+  // Gaya yang sama dengan #basemap-btn
   Object.assign(btn.style, {
     position: 'absolute',
-    bottom: '80px',   // letak atas basemap (24px) + gap
+    bottom: '80px',          // 24px (basemap) + 46px (tinggi) + 10px (jarak)
     left: '12px',
     zIndex: '1000',
     width: '46px',
     height: '46px',
+    padding: '0',
+    boxSizing: 'border-box',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
@@ -1791,6 +1795,8 @@ window.togglePoligonBalai = async function(checkbox) {
     transition: 'all 0.2s cubic-bezier(0.4,0,0.2,1)',
     fontFamily: 'inherit'
   });
+
+  // Hover effect (sama seperti basemap)
   btn.addEventListener('mouseenter', () => {
     btn.style.color = '#b71c1c';
     btn.style.boxShadow = '0 8px 28px rgba(15,23,32,0.16), 0 2px 8px rgba(15,23,32,0.08)';
@@ -1801,6 +1807,8 @@ window.togglePoligonBalai = async function(checkbox) {
     btn.style.boxShadow = '0 2px 10px rgba(15,23,32,0.08), 0 8px 24px rgba(15,23,32,0.08)';
     btn.style.transform = 'translateY(0)';
   });
+
+  // Fungsi klik
   btn.addEventListener('click', function() {
     if (!navigator.geolocation) {
       alert('Peranti anda tidak menyokong GPS.');
@@ -1833,6 +1841,7 @@ window.togglePoligonBalai = async function(checkbox) {
       { enableHighAccuracy: true, timeout: 10000, maximumAge: 60000 }
     );
   });
+
   // Tambah ke dalam map container
   document.getElementById('map').appendChild(btn);
 })();
@@ -1841,11 +1850,9 @@ window.togglePoligonBalai = async function(checkbox) {
 // DEFAULT ACTIVE: TICK SEMUA CHECKBOX LEBUHRAYA & POLIGON
 // ============================================
 document.addEventListener('DOMContentLoaded', function() {
-  // Cari semua checkbox dalam menu-item-checkbox
   const checkboxes = document.querySelectorAll('.menu-item-checkbox input[type="checkbox"]');
   checkboxes.forEach(cb => {
     cb.checked = true;
-    // Trigger event change untuk memuatkan dan papar lapisan
     cb.dispatchEvent(new Event('change'));
   });
 });
@@ -1855,5 +1862,5 @@ document.addEventListener('DOMContentLoaded', function() {
 // ============================================
 muatSemuaDataJentera();
 
-console.log('[OK] Peta Kawasan Jagaan JBPM Johor siap (Lazy Load KML, Lokasi Saya, Fallback Jarak Lurus, Default Checked)!');
+console.log('[OK] Peta Kawasan Jagaan JBPM Johor siap (Lazy Load KML, Lokasi Saya, Fallback Jarak Lurus, Default Checked, Butang Seragam)!');
 console.log('[INFO] 34 Balai | 4 Zon | Search dengan toggle arah untuk KM PLUS dan KM PG');
