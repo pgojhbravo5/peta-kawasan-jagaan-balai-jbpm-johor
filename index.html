@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <base href="/peta-bomba/" />
     <title>Peta Kawasan Jagaan Balai Bomba Johor</title>
-    
+
     <!-- Leaflet CSS -->
     <link
       rel="stylesheet"
@@ -1056,6 +1056,26 @@
         color: #d9e6c8;
       }
 
+      /* Swatch baru untuk Hybrid (Esri+Labels) */
+      .basemap-swatch.swatch-hybrid {
+        background: linear-gradient(135deg, #2e5d3a 0%, #1b3b2a 60%, #0a1f13 100%);
+        color: #cfe0cb;
+        position: relative;
+        overflow: hidden;
+      }
+      .basemap-swatch.swatch-hybrid i {
+        position: relative;
+        z-index: 2;
+        text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+      }
+      .basemap-swatch.swatch-hybrid::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: repeating-linear-gradient(45deg, transparent, transparent 8px, rgba(255,255,255,0.08) 8px, rgba(255,255,255,0.08) 9px);
+        z-index: 1;
+      }
+
       /* ============================================
          SKALA JARAK PETA (KM/METER)
          ============================================ */
@@ -1453,6 +1473,11 @@
         <button class="basemap-option" data-basemap="satelit" onclick="pilihBasemap('satelit')">
           <div class="basemap-swatch swatch-satelit"><i class="fa-solid fa-satellite"></i></div>
           <span>Satelit</span>
+        </button>
+        <!-- BUTANG HYBRID BARU -->
+        <button class="basemap-option" data-basemap="hybrid" onclick="pilihBasemap('hybrid')">
+          <div class="basemap-swatch swatch-hybrid"><i class="fa-solid fa-globe"></i></div>
+          <span>Hibrid</span>
         </button>
       </div>
 
