@@ -301,17 +301,21 @@ window.pilihBasemap = function(kunci) {
 window.toggleBasemapPanel = function() {
   const panel = document.getElementById('basemap-panel');
   const btn = document.getElementById('basemap-btn');
+  if (!panel || !btn) return;
   const buka = !panel.classList.contains('show');
   panel.classList.toggle('show', buka);
   btn.classList.toggle('active', buka);
 };
 
 window.tutupBasemapPanel = function() {
-  document.getElementById('basemap-panel').classList.remove('show');
-  document.getElementById('basemap-btn').classList.remove('active');
+  const panel = document.getElementById('basemap-panel');
+  const btn = document.getElementById('basemap-btn');
+  if (panel) panel.classList.remove('show');
+  if (btn) btn.classList.remove('active');
 };
 
-document.addEventListener('click', function (e) {
+// Tutup panel apabila klik di luar
+document.addEventListener('click', function(e) {
   const panel = document.getElementById('basemap-panel');
   const btn = document.getElementById('basemap-btn');
   if (!panel || !btn) return;
@@ -319,6 +323,22 @@ document.addEventListener('click', function (e) {
     window.tutupBasemapPanel();
   }
 });
+
+// ============================================
+// EVENT LISTENER UNTUK BUTANG BASEMAP (PATCH)
+// ============================================
+(function attachBasemapListener() {
+  const btn = document.getElementById('basemap-btn');
+  if (btn) {
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      window.toggleBasemapPanel();
+    });
+    console.log('[OK] Event listener untuk butang basemap dipasang.');
+  } else {
+    console.warn('[AMARAN] Elemen #basemap-btn tidak dijumpai.');
+  }
+})();
 
 // ============================================
 // SUSUNAN BUTANG ZOOM & FULLSCREEN
