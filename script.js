@@ -355,22 +355,10 @@ const SELEKTOR_UI_PETA =
 ].forEach((id) => {
   const el = document.getElementById(id);
   if (!el) return;
-  // Halang bubbling standard Leaflet (click/dblclick/mousedown/touchstart/contextmenu)
-  // ke arah #map, tanpa menyentuh event handler asal pada butang/checkbox itu sendiri.
   L.DomEvent.disableClickPropagation(el);
   L.DomEvent.disableScrollPropagation(el);
 });
 
-// ============================================
-// LAPISAN PERTAHANAN TAMBAHAN (TIDAK BERGANTUNG
-// PADA e.originalEvent.target Leaflet)
-// Rekod bila kali terakhir mana-mana UI (menu, search,
-// mod, arah, popup, basemap, panel info) disentuh/klik,
-// pada fasa "capture" di peringkat document - iaitu
-// PALING AWAL, sebelum Leaflet sempat proses apa-apa.
-// Klik peta yang berlaku sejurus selepas itu (dalam
-// tempoh singkat) akan diabaikan sepenuhnya.
-// ============================================
 let masaTerakhirKlikUI = 0;
 ['pointerdown', 'mousedown', 'touchstart'].forEach((jenis) => {
   document.addEventListener(
@@ -380,28 +368,18 @@ let masaTerakhirKlikUI = 0;
         masaTerakhirKlikUI = Date.now();
       }
     },
-    true // capture = true supaya ia berjalan paling awal (tidak menyekat apa-apa, cuma "mendengar")
+    true
   );
 });
 
 // ============================================
 // KLIK PADA PETA -> PAPAR LAT/LONG
-// (Hanya untuk kawasan kosong; klik pada marker/
-// poligon/laluan sedia ada ATAU mana-mana panel UI
-// TIDAK akan papar lat/long)
 // ============================================
 map.on('click', function (e) {
   const targetEl = e.originalEvent && e.originalEvent.target;
-
-  // Lapisan 1: kalau tercatat UI baru sahaja disentuh/klik (dalam 350ms lepas)
-  // - abaikan, tidak kira apa target sebenar event Leaflet ni.
   if (Date.now() - masaTerakhirKlikUI < 350) return;
-
-  // Lapisan 2: kalau klik asal (ikut Leaflet) datang dari mana-mana panel UI - abaikan.
   if (targetEl && targetEl.closest && targetEl.closest(SELEKTOR_UI_PETA)) return;
-
   const tagNama = targetEl && targetEl.tagName ? targetEl.tagName.toLowerCase() : '';
-  // Klik jatuh pada layer vektor sedia ada (poligon/laluan/circleMarker) - abaikan
   if (['path', 'circle', 'polygon', 'polyline', 'rect'].includes(tagNama)) return;
 
   const latStr = e.latlng.lat.toFixed(6);
@@ -443,7 +421,7 @@ function salinLatLong(lat, lng, btn) {
 }
 
 // ============================================
-// FUNGSI KIRA JARAK (HAVERSINE)
+// FUNGSI KIRA JARAK (HAVERSINE) - HANYA UNTUK PEMILIHAN CALON AWAL
 // ============================================
 function kiraJarak(lat1, lon1, lat2, lon2) {
   const R = 6371;
@@ -476,64 +454,118 @@ function cariBalaiJagaan(lat, lng) {
 }
 
 // ============================================
-// FUNGSI CARI 4 BALAI TERDEKAT (OSRM)
+// KONSTAN UNTUK OSRM
 // ============================================
 const OSRM_TABLE_URL = 'https://router.project-osrm.org/table/v1/driving';
 const OSRM_TIMEOUT_MS = 5000;
-const BILANGAN_CALON_PRATAPIS = 8;
 
-async function cariBalaiTerdekat(lat, lng) {
-  const semuaJarakLurus = dataBalai.map((balai) => ({ ...balai, jarakLurus: kiraJarak(lat, lng, balai.lat, balai.lng) }))
-    .sort((a, b) => a.jarakLurus - b.jarakLurus);
-  const calon = semuaJarakLurus.slice(0, BILANGAN_CALON_PRATAPIS);
-  try {
-    const hasilRoute = await panggilOSRMTable(lat, lng, calon);
-    if (hasilRoute.length === 0) throw new Error('Tiada jarak route sah dikembalikan.');
-    hasilRoute.sort((a, b) => a.jarak - b.jarak);
-    return { data: hasilRoute.slice(0, 4), jenis: 'route' };
-  } catch (err) {
-    console.warn('[AMARAN] Gagal dapatkan jarak jalan (OSRM), guna jarak garis lurus sebagai fallback:', err);
-    const fallback = semuaJarakLurus.slice(0, 4).map((b) => ({ ...b, jarak: b.jarakLurus }));
-    return { data: fallback, jenis: 'lurus' };
-  }
-}
+// ============================================
+// FUNGSI BARU: DAPAT JARAK ROUTE DENGAN RETRY
+// ============================================
+async function dapatkanJarakRouteUntukBalai(lat, lng, senaraiBalai, maxRetry = 3) {
+  // senaraiBalai: array objek { lat, lng, ... }
+  // Pulangkan array sama dengan tambahan property 'jarak' (km)
+  if (!senaraiBalai || senaraiBalai.length === 0) return [];
 
-async function panggilOSRMTable(lat, lng, calon) {
-  const koordinatBalai = calon.map((b) => `${b.lng},${b.lat}`).join(';');
+  const N = senaraiBalai.length;
+  // Bina koordinat untuk OSRM table: semua balai + lokasi
+  const koordinatBalai = senaraiBalai.map(b => `${b.lng},${b.lat}`).join(';');
   const koordinatLokasi = `${lng},${lat}`;
   const koordinat = `${koordinatBalai};${koordinatLokasi}`;
-  const N = calon.length;
   const sources = Array.from({ length: N }, (_, i) => i).join(';');
   const destinations = `${N}`;
   const url = `${OSRM_TABLE_URL}/${koordinat}?sources=${sources}&destinations=${destinations}&annotations=distance`;
-  const controller = new AbortController();
-  const timeoutId = setTimeout(() => controller.abort(), OSRM_TIMEOUT_MS);
-  try {
-    const resp = await fetch(url, { signal: controller.signal });
-    if (!resp.ok) throw new Error(`OSRM membalas ralat: ${resp.status}`);
-    const data = await resp.json();
-    if (data.code !== 'Ok' || !Array.isArray(data.distances) || data.distances.length !== N) throw new Error('Format respons OSRM tidak dijangka.');
-    return calon.map((balai, i) => {
-      const meter = data.distances[i]?.[0];
-      return { ...balai, jarak: meter === null || meter === undefined ? null : meter / 1000 };
-    }).filter((b) => b.jarak !== null);
-  } finally { clearTimeout(timeoutId); }
+
+  let percubaan = 0;
+  while (percubaan < maxRetry) {
+    try {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), OSRM_TIMEOUT_MS);
+      const resp = await fetch(url, { signal: controller.signal });
+      clearTimeout(timeoutId);
+      if (!resp.ok) throw new Error(`OSRM table ralat: ${resp.status}`);
+      const data = await resp.json();
+      if (data.code !== 'Ok' || !Array.isArray(data.distances) || data.distances.length !== N) {
+        throw new Error('Format respons OSRM tidak dijangka.');
+      }
+      // Salin balai dengan jarak (km)
+      const hasil = senaraiBalai.map((b, i) => {
+        const meter = data.distances[i]?.[0];
+        if (meter === undefined || meter === null) throw new Error(`Jarak untuk balai ${b.nama} tiada.`);
+        return { ...b, jarak: meter / 1000 };
+      });
+      return hasil;
+    } catch (err) {
+      percubaan++;
+      if (percubaan >= maxRetry) {
+        // Lempar ralat supaya pemanggil tahu gagal total
+        throw new Error(`Gagal mendapatkan jarak route selepas ${maxRetry} percubaan: ${err.message}`);
+      }
+      // Tunggu dengan backoff (1s, 2s, 4s...)
+      const tungguMs = 1000 * Math.pow(2, percubaan - 1);
+      await new Promise(resolve => setTimeout(resolve, tungguMs));
+    }
+  }
 }
 
-async function dapatkanJarakRouteSebenar(lat1, lng1, lat2, lng2) {
-  const controller = new AbortController();
-  const timeoutId = setTimeout(() => controller.abort(), OSRM_TIMEOUT_MS);
+// ============================================
+// FUNGSI CARI 4 BALAI TERDEKAT + SG (HANYA ROUTE)
+// ============================================
+async function cariBalaiTerdekatRoute(lat, lng) {
+  // 1. Cari balai SG
+  const namaSG = cariBalaiJagaan(lat, lng);
+  let balaiSG = null;
+  if (namaSG) {
+    balaiSG = dataBalai.find(b => b.nama === namaSG);
+  }
+
+  // 2. Pilih calon awal: 10 terdekat (kira lurus untuk pemilihan sahaja)
+  const semuaJarakLurus = dataBalai.map((balai) => ({
+    ...balai,
+    jarakLurus: kiraJarak(lat, lng, balai.lat, balai.lng)
+  })).sort((a, b) => a.jarakLurus - b.jarakLurus);
+
+  const BILANGAN_CALON = 10; // boleh adjust
+  const calon = semuaJarakLurus.slice(0, BILANGAN_CALON);
+
+  // 3. Jika SG wujud dan belum ada dalam calon, tambah
+  let calonSet = new Set(calon.map(b => b.nama));
+  if (balaiSG && !calonSet.has(balaiSG.nama)) {
+    calon.push(balaiSG);
+  }
+
+  // 4. Dapatkan jarak route untuk semua calon (dengan retry)
+  let calonDenganJarak;
   try {
-    const url = `https://router.project-osrm.org/route/v1/driving/${lng1},${lat1};${lng2},${lat2}?overview=false`;
-    const resp = await fetch(url, { signal: controller.signal });
-    if (!resp.ok) throw new Error(`OSRM route ralat: ${resp.status}`);
-    const data = await resp.json();
-    if (data.code !== 'Ok' || !data.routes || data.routes.length === 0) throw new Error('Tiada route ditemui untuk balai SG.');
-    return data.routes[0].distance / 1000;
+    calonDenganJarak = await dapatkanJarakRouteUntukBalai(lat, lng, calon);
   } catch (err) {
-    console.warn('[AMARAN] Gagal dapatkan jarak jalan (OSRM) untuk balai SG, guna jarak garis lurus sebagai fallback:', err);
-    return null;
-  } finally { clearTimeout(timeoutId); }
+    // Jika gagal total, lempar ralat ke atas untuk paparan mesej
+    throw new Error(`Tidak dapat mengira jarak jalan: ${err.message}`);
+  }
+
+  // 5. Susun mengikut jarak
+  calonDenganJarak.sort((a, b) => a.jarak - b.jarak);
+
+  // 6. Ambil 4 terdekat
+  const empatTerdekat = calonDenganJarak.slice(0, 4);
+
+  // 7. Jika SG ada, periksa sama ada ia dalam 4 terdekat
+  let finalList = [...empatTerdekat];
+  if (balaiSG) {
+    const adaDalamEmpat = empatTerdekat.some(b => b.nama === balaiSG.nama);
+    if (!adaDalamEmpat) {
+      // Cari balaiSG dalam calonDenganJarak (sudah ada jarak)
+      const sgWithJarak = calonDenganJarak.find(b => b.nama === balaiSG.nama);
+      if (sgWithJarak) {
+        finalList.push(sgWithJarak);
+      } else {
+        // Ini tidak sepatutnya berlaku, tapi jika tiada, kita abaikan
+        console.warn('Balai SG tidak dijumpai dalam calonDenganJarak.');
+      }
+    }
+  }
+
+  return { data: finalList, jenis: 'route' };
 }
 
 // ============================================
@@ -582,52 +614,42 @@ async function bukaPopupBalai(lat, lng, alamat) {
   }
 
   lokasiTerakhir = { lat, lng, alamat };
-  content.innerHTML = `<div class="popup-placeholder">⏳ Mengira jarak jalan ke balai berdekatan...</div>`;
+  content.innerHTML = `<div class="popup-placeholder"><i class="fa-solid fa-spinner fa-spin"></i> Mengira jarak jalan ke balai berdekatan...</div>`;
   modal.classList.add('open'); overlay.classList.add('show');
 
-  const { data: terdekat, jenis } = await cariBalaiTerdekat(lat, lng);
-  if (!lokasiTerakhir || lokasiTerakhir.lat !== lat || lokasiTerakhir.lng !== lng) return;
+  try {
+    const { data: terdekat, jenis } = await cariBalaiTerdekatRoute(lat, lng);
+    // jenis sentiasa 'route' kerana tiada fallback lurus
+    if (!lokasiTerakhir || lokasiTerakhir.lat !== lat || lokasiTerakhir.lng !== lng) return;
 
-  const notaJenis = jenis === 'lurus' ? `<div style="font-size:11px;color:#c2703d;margin-bottom:10px;"><i class="fa-solid fa-triangle-exclamation"></i> Jarak jalan tidak dapat dikira buat masa ini — dipaparkan jarak garis lurus (anggaran).</div>` : '';
+    // Bina paparan
+    const namaJagaan = cariBalaiJagaan(lat, lng);
+    let html = `<div class="popup-location"><i class="fa-solid fa-location-dot"></i> ${alamat || 'Lokasi'}</div>`;
 
-  const namaJagaan = cariBalaiJagaan(lat, lng);
-  let balaiSG = null;
-  let senaraiAkhir = [...terdekat];
-  let notaJarakSGLurus = false;
-
-  if (namaJagaan) {
-    const idxDalamTerdekat = senaraiAkhir.findIndex((b) => b.nama === namaJagaan);
-    if (idxDalamTerdekat !== -1) {
-      balaiSG = senaraiAkhir[idxDalamTerdekat];
-    } else {
-      const dataJagaan = dataBalai.find((b) => b.nama === namaJagaan);
-      if (dataJagaan) {
-        let jarakSG = await dapatkanJarakRouteSebenar(lat, lng, dataJagaan.lat, dataJagaan.lng);
-        if (jarakSG === null) { jarakSG = kiraJarak(lat, lng, dataJagaan.lat, dataJagaan.lng); notaJarakSGLurus = true; }
-        balaiSG = { ...dataJagaan, jarak: jarakSG };
-        senaraiAkhir.push(balaiSG);
-      }
-    }
-  }
-
-  if (!lokasiTerakhir || lokasiTerakhir.lat !== lat || lokasiTerakhir.lng !== lng) return;
-
-  const notaJagaanLurus = notaJarakSGLurus ? `<div style="font-size:11px;color:#c2703d;margin-bottom:10px;"><i class="fa-solid fa-triangle-exclamation"></i> Jarak jalan balai SG tidak dapat dikira buat masa ini — dipaparkan jarak garis lurus (anggaran).</div>` : '';
-
-  let html = `<div class="popup-location"><i class="fa-solid fa-location-dot"></i> ${alamat || 'Lokasi'}</div>${notaJenis}${notaJagaanLurus}`;
-
-  senaraiAkhir.forEach((b, i) => {
-    const label = !balaiSG ? '' : b.nama === balaiSG.nama ? ' (SG)' : ' (TOA)';
-    html += `<div class="popup-balai-item" onclick="tunjukRoute(${b.lat}, ${b.lng}, ${lat}, ${lng}, '${b.nama}'); map.flyTo([${b.lat}, ${b.lng}], 15); tutupPopupBalai();">
+    terdekat.forEach((b, i) => {
+      const label = b.nama === namaJagaan ? ' (SG)' : ' (TOA)';
+      html += `<div class="popup-balai-item" onclick="tunjukRoute(${b.lat}, ${b.lng}, ${lat}, ${lng}, '${b.nama}'); map.flyTo([${b.lat}, ${b.lng}], 15); tutupPopupBalai();">
         <div>
           <div class="popup-balai-nama">${i + 1}. ${b.nama}${label}</div>
           <div class="popup-balai-info"><i class="fa-solid fa-building-shield"></i> ${namaZon[b.zon]} | <i class="fa-solid fa-phone"></i> <a class="popup-balai-call" href="tel:${b.tel}" onclick="event.stopPropagation();">${b.tel}</a></div>
         </div>
         <div class="popup-balai-jarak">${b.jarak.toFixed(1)} km</div>
       </div>`;
-  });
+    });
 
-  content.innerHTML = html;
+    content.innerHTML = html;
+  } catch (error) {
+    console.error('Ralat dalam bukaPopupBalai:', error);
+    if (!lokasiTerakhir || lokasiTerakhir.lat !== lat || lokasiTerakhir.lng !== lng) return;
+    content.innerHTML = `<div class="popup-placeholder" style="color:#c62828;">
+      <i class="fa-solid fa-triangle-exclamation"></i>
+      Gagal mengira jarak jalan.<br>
+      <span style="font-size:12px;">${error.message}</span><br><br>
+      <button onclick="bukaPopupBalai(${lat}, ${lng}, '${alamat || 'Lokasi'}')" style="padding:8px 16px;background:#b71c1c;color:#fff;border:none;border-radius:6px;cursor:pointer;">
+        <i class="fa-solid fa-rotate"></i> Cuba Semula
+      </button>
+    </div>`;
+  }
 }
 
 function tutupPopupBalai() {
@@ -1280,8 +1302,8 @@ function updateInfoPanelSDE(km, arahLabel = '') {
   const selatanDiv = document.getElementById('info-selatan-sde');
   const selatanJulat = document.getElementById('info-selatan-sde-julat');
 
-  const utara = cariBalaiArahSDE(km, 'UTARA');   // SENAI
-  const selatan = cariBalaiArahSDE(km, 'SELATAN'); // PENAWAR
+  const utara = cariBalaiArahSDE(km, 'UTARA');
+  const selatan = cariBalaiArahSDE(km, 'SELATAN');
 
   kmDisplay.innerHTML = `<i class="fa-solid fa-location-dot"></i> KM ${km.toFixed(1)} (SDE${arahLabel ? ' - ' + arahLabel : ''})`;
 
@@ -1493,15 +1515,10 @@ function parseKMLPointsDenganKM(kmlText) {
       }
     }
 
-    // Guna label "KM" sebenar dari KML jika ada.
-    // Kalau tiada, guna medan "distance" (meter) sebenar dari KML - masih data
-    // tulen dari fail, cuma unit berbeza (meter -> km), BUKAN anggaran.
     if (kmValue === null || isNaN(kmValue)) {
       if (jarakMeter !== null && !isNaN(jarakMeter)) {
         kmValue = jarakMeter / 1000;
       } else {
-        // TIADA data KM/distance sebenar untuk titik ini - JANGAN anggar/reka
-        // nilai (contohnya ikut turutan titik). Abaikan sahaja titik ini.
         bilanganTitikDiabaikan++;
         continue;
       }
@@ -1643,7 +1660,6 @@ function cariKMLebuhrayaBaruJalankan(mode, query) {
     searchInput.value = `${cfg.mode.toUpperCase()} KM ${kmResult.km} (${kmResult.arahLabel})`;
     lokasiTerakhir = { lat: kmResult.lat, lng: kmResult.lng, alamat: `${cfg.labelMenu} KM ${kmResult.km} (${kmResult.arahLabel})` };
 
-    // Papar kad kawasan jagaan EDL atau SDE secara automatik
     if (mode === 'edl') updateInfoPanelEDL(parseFloat(kmResult.km), kmResult.arahLabel);
     else if (mode === 'sde') updateInfoPanelSDE(parseFloat(kmResult.km), kmResult.arahLabel);
   } else {
