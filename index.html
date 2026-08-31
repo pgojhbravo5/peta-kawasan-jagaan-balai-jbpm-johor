@@ -1328,6 +1328,20 @@
         #basemap-panel { bottom: 46px; left: 58px; max-width: calc(100vw - 74px); overflow-x: auto; }
         .basemap-option { width: 64px; }
         .basemap-swatch { width: 56px; height: 44px; }
+
+        /* Butang Muat Semula, Skrin Penuh & Zoom +/- disusun sebaris (menegak)
+           dengan butang Peta Dasar & Lokasi Saya, bersambung ke atas */
+        .leaflet-control-topbar {
+          position: fixed;
+          left: 10px;
+          bottom: 134px; /* location-btn (90) + tinggi (34) + jarak (10) */
+          margin: 0;
+          flex-direction: column;
+        }
+        .leaflet-control-topbar .topbar-btn-border {
+          border-left: none;
+          border-top: 1px solid var(--border-color);
+        }
       }
     </style>
   </head>
