@@ -1057,6 +1057,50 @@
       }
 
       /* ============================================
+         POPUP KLIK PETA - LAT/LNG
+         ============================================ */
+      .koordinat-popup {
+        font-family: Arial, sans-serif;
+        min-width: 150px;
+      }
+
+      .koordinat-popup-baris {
+        font-size: 12.5px;
+        color: var(--text-primary);
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        margin-bottom: 8px;
+      }
+
+      .koordinat-popup-baris i {
+        color: var(--bomba-red);
+      }
+
+      .koordinat-popup-salin {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        border: 1px solid var(--border-color);
+        background: var(--bg-light);
+        color: var(--text-primary);
+        font-size: 11.5px;
+        font-weight: 600;
+        padding: 6px 8px;
+        border-radius: var(--radius-sm);
+        cursor: pointer;
+        transition: var(--transition-fast);
+      }
+
+      .koordinat-popup-salin:hover {
+        background: var(--bomba-red-light);
+        color: var(--bomba-red);
+        border-color: var(--bomba-red);
+      }
+
+      /* ============================================
          POPUP BALAI - STATUS JENTERA
          ============================================ */
       .leaflet-popup-content {

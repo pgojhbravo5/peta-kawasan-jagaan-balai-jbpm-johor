@@ -1672,3 +1672,67 @@ muatSemuaDataJentera();
 
 console.log('[OK] Peta Kawasan Jagaan JBPM Johor siap!');
 console.log('[INFO] 34 Balai | 4 Zon | Search dengan toggle arah untuk KM PLUS dan KM PG');
+
+// ============================================
+// KLIK PETA — PAPAR LAT/LNG
+// (Hanya untuk kawasan kosong; klik pada mana-mana
+//  layer/marker/polygon/popup/kawalan/butang diabaikan)
+// ============================================
+function targetAdalahLayerAtauKawalan(originalEvent) {
+  if (!originalEvent) return false;
+  const target = originalEvent.target;
+  if (!target || typeof target.closest !== 'function') return false;
+  return !!(
+    target.closest('.leaflet-interactive') ||   // marker, polygon, polyline, circleMarker
+    target.closest('.leaflet-marker-icon') ||    // ikon divIcon/marker
+    target.closest('.leaflet-marker-shadow') ||
+    target.closest('.leaflet-popup') ||          // popup sedia ada
+    target.closest('.leaflet-tooltip') ||        // tooltip (cth: km-tooltip)
+    target.closest('.leaflet-control') ||        // semua kawalan leaflet (zoom, dll)
+    target.closest('.leaflet-bar')
+  );
+}
+
+function salinLatLng(lat, lng, btn) {
+  const teks = `${lat}, ${lng}`;
+  const asal = btn ? btn.innerHTML : null;
+  const tandaBerjaya = () => {
+    if (btn) {
+      btn.innerHTML = '<i class="fa-solid fa-check"></i> Disalin';
+      setTimeout(() => { if (asal !== null) btn.innerHTML = asal; }, 1500);
+    }
+  };
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(teks).then(tandaBerjaya).catch(() => {});
+  } else {
+    const taSementara = document.createElement('textarea');
+    taSementara.value = teks;
+    taSementara.style.position = 'fixed';
+    taSementara.style.opacity = '0';
+    document.body.appendChild(taSementara);
+    taSementara.select();
+    try { document.execCommand('copy'); tandaBerjaya(); } catch (e) {}
+    document.body.removeChild(taSementara);
+  }
+}
+
+map.on('click', function (e) {
+  // Sekat papar lat/lng jika klik jatuh pada layer sedia ada
+  // (marker balai, poligon zon/balai, KM marker, lebuhraya, popup, kawalan/butang, dsb.)
+  if (targetAdalahLayerAtauKawalan(e.originalEvent)) return;
+
+  const lat = e.latlng.lat.toFixed(6);
+  const lng = e.latlng.lng.toFixed(6);
+
+  L.popup({ className: 'koordinat-popup-wrapper', closeButton: true })
+    .setLatLng(e.latlng)
+    .setContent(
+      `<div class="koordinat-popup">
+        <div class="koordinat-popup-baris"><i class="fa-solid fa-location-crosshairs"></i> <b>${lat}, ${lng}</b></div>
+        <button type="button" class="koordinat-popup-salin" onclick="salinLatLng(${lat}, ${lng}, this)">
+          <i class="fa-solid fa-copy"></i> Salin Koordinat
+        </button>
+      </div>`
+    )
+    .openOn(map);
+});
