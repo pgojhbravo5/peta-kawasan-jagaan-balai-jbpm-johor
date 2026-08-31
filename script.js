@@ -25,8 +25,6 @@ const dataBalai = [
   { nama: 'BBP Sebana Cove', zon: 2, daerah: 'Kota Tinggi', lat: 1.4111942637295485, lng: 104.20702710820935, tel: '07-8861641' },
   { nama: 'BBP Punggai', zon: 2, daerah: 'Kota Tinggi', lat: 1.42940813601492, lng: 104.27036571006252, tel: '07-8861952' },
   { nama: 'BBP Bandar Tenggara', zon: 2, daerah: 'Kulai', lat: 1.8512117790715301, lng: 103.61435888307892, tel: '07-8964498' },
-  { nama: 'BBP Kuala Rompin', zon: 2, daerah: 'Kuala Rompin/Pahang', lat: 2.7995459952468162, lng: 103.48859615474312, tel: '09-4146444' },
-
   // ZON 3 - KLUANG (8)
   { nama: 'BBP Penggaram', zon: 3, daerah: 'Batu Pahat', lat: 1.8587485315341812, lng: 102.94072309627684, tel: '07-4345757' },
   { nama: 'BBP Kluang', zon: 3, daerah: 'Kluang', lat: 2.0342273939975697, lng: 103.31953787937219, tel: '07-7724444' },
@@ -45,14 +43,6 @@ const dataBalai = [
   { nama: 'BBP Tangkak', zon: 4, daerah: 'Tangkak', lat: 2.2709401263413143, lng: 102.54347515009461, tel: '06-9783444' },
   { nama: 'BBP Pagoh', zon: 4, daerah: 'Muar', lat: 2.136905853626598, lng: 102.73936700820836, tel: '06-9741955' },
   { nama: 'BBP Jasin Bestari', zon: 4, daerah: 'Jasin/Negeri Melaka', lat: 2.2987006825702365, lng: 102.41515029627601, tel: '06-5293736' },
-  { nama: 'BBP Gemas', zon: 4, daerah: 'Bahau/Negeri Sembilan', lat: 2.578793081119071, lng: 102.6005081067373, tel: '07-9481333' },
-];
-
-// Senarai balai yang berada di luar negeri Johor
-const balaiLuarNegeri = [
-  'BBP Kuala Rompin',
-  'BBP Gemas',
-  'BBP Jasin Bestari'
 ];
 
 // ============================================
@@ -252,11 +242,9 @@ const layerZon = { 1: [], 2: [], 3: [], 4: [] };
 // INISIALISASI PETA
 // ============================================
 const map = L.map('map', {
-  // Sempadan longgar meliputi seluruh Malaysia (Semenanjung + Sabah/Sarawak)
-  // supaya peta boleh di-drag/pan ke mana-mana negeri, bukan dikunci Johor sahaja.
-  maxBounds: [[-1.0, 97.5], [8.0, 121.5]],
-  maxBoundsViscosity: 0.6,
-  minZoom: 6,
+  maxBounds: [[1.2, 102.3], [3.0, 104.6]],
+  maxBoundsViscosity: 0.8,
+  minZoom: 8,
   maxZoom: 18,
 }).setView([1.85, 103.3], 9);
 
@@ -272,18 +260,6 @@ const basemapLayers = {
 
 let basemapSemasa = 'jalan';
 basemapLayers[basemapSemasa].addTo(map);
-
-// ============================================
-// RUJUKAN JARAK (SCALE BAR) - UNIT METER/KM
-// ============================================
-// Bar rujukan jarak di sudut kiri bawah peta, akan bertukar automatik
-// (meter apabila zoom masuk, kilometer apabila zoom keluar).
-L.control.scale({
-  position: 'bottomright',
-  metric: true,
-  imperial: false,
-  maxWidth: 140,
-}).addTo(map);
 
 function pilihBasemap(kunci) {
   if (!basemapLayers[kunci] || kunci === basemapSemasa) { tutupBasemapPanel(); return; }
@@ -483,8 +459,7 @@ async function bukaPopupBalai(lat, lng, alamat) {
     }
   }
 
-  const namaBalaiSGSediaAda = lokasiTerakhir ? lokasiTerakhir.namaBalaiSG : null;
-  lokasiTerakhir = { lat, lng, alamat, namaBalaiSG: namaBalaiSGSediaAda || null };
+  lokasiTerakhir = { lat, lng, alamat };
   content.innerHTML = `<div class="popup-placeholder">⏳ Mengira jarak jalan ke balai berdekatan...</div>`;
   modal.classList.add('open'); overlay.classList.add('show');
 
@@ -493,29 +468,23 @@ async function bukaPopupBalai(lat, lng, alamat) {
 
   const notaJenis = jenis === 'lurus' ? `<div style="font-size:11px;color:#c2703d;margin-bottom:10px;"><i class="fa-solid fa-triangle-exclamation"></i> Jarak jalan tidak dapat dikira buat masa ini — dipaparkan jarak garis lurus (anggaran).</div>` : '';
 
-  // Utamakan balai jagaan mengikut KM+arah lebuhraya (dataKawasanBalai / EDL / SDE),
-  // kerana ia lebih tepat berbanding poligon KML am (cariBalaiJagaan) untuk lokasi
-  // yang dicari melalui carian KM (cth: KM 50 PLUS SELATAN -> BBP RENGGAM).
-  // Poligon KML hanya digunakan sebagai fallback untuk lokasi bukan-KM (cth: carian alamat).
-  const namaJagaan = (lokasiTerakhir && lokasiTerakhir.namaBalaiSG) ? lokasiTerakhir.namaBalaiSG : cariBalaiJagaan(lat, lng);
+  const namaJagaan = cariBalaiJagaan(lat, lng);
   let balaiSG = null;
   let senaraiAkhir = [...terdekat];
   let notaJarakSGLurus = false;
 
   if (namaJagaan) {
-    const dataJagaan = dataBalai.find((b) => b.nama.toUpperCase() === namaJagaan.toUpperCase());
-    if (dataJagaan) {
-      // Balai SG (kawasan jagaan) SENTIASA guna jarak route sebenar melalui panggilan
-      // OSRM route tunggal (dapatkanJarakRouteSebenar) - tidak bergantung pada hasil
-      // OSRM Table (cariBalaiTerdekat), kerana Table boleh gagal/fallback ke garis lurus
-      // untuk keseluruhan senarai walaupun route tunggal untuk SG masih boleh berjaya.
-      let jarakSG = await dapatkanJarakRouteSebenar(lat, lng, dataJagaan.lat, dataJagaan.lng);
-      if (jarakSG === null) { jarakSG = kiraJarak(lat, lng, dataJagaan.lat, dataJagaan.lng); notaJarakSGLurus = true; }
-      balaiSG = { ...dataJagaan, jarak: jarakSG };
-
-      const idxDalamTerdekat = senaraiAkhir.findIndex((b) => b.nama.toUpperCase() === dataJagaan.nama.toUpperCase());
-      if (idxDalamTerdekat !== -1) senaraiAkhir[idxDalamTerdekat] = balaiSG;
-      else senaraiAkhir.push(balaiSG);
+    const idxDalamTerdekat = senaraiAkhir.findIndex((b) => b.nama === namaJagaan);
+    if (idxDalamTerdekat !== -1) {
+      balaiSG = senaraiAkhir[idxDalamTerdekat];
+    } else {
+      const dataJagaan = dataBalai.find((b) => b.nama === namaJagaan);
+      if (dataJagaan) {
+        let jarakSG = await dapatkanJarakRouteSebenar(lat, lng, dataJagaan.lat, dataJagaan.lng);
+        if (jarakSG === null) { jarakSG = kiraJarak(lat, lng, dataJagaan.lat, dataJagaan.lng); notaJarakSGLurus = true; }
+        balaiSG = { ...dataJagaan, jarak: jarakSG };
+        senaraiAkhir.push(balaiSG);
+      }
     }
   }
 
@@ -559,11 +528,7 @@ function buatIkonBalai(warna) {
 }
 
 dataBalai.forEach((balai) => {
-  // Tentukan warna: jika balai dalam senarai luar negeri, gunakan kelabu gelap, selain itu ikut zon
-  let warna = warnaZon[balai.zon];
-  if (balaiLuarNegeri.includes(balai.nama)) {
-    warna = '#4a4a4a'; // kelabu gelap
-  }
+  const warna = warnaZon[balai.zon];
   const marker = L.marker([balai.lat, balai.lng], { icon: buatIkonBalai(warna) }).addTo(map);
   layerZon[balai.zon].push(marker);
 
@@ -583,152 +548,6 @@ ${telefonFallback}${infoKetua}
   marker.bindPopup(binaPopupBalai, { maxWidth: 300, minWidth: 260 });
   markerBalaiRujukan.push({ marker, bina: binaPopupBalai });
 });
-
-// ============================================
-// KLIK PETA UNTUK DAPATKAN KOORDINAT (PENAPISAN UI YANG SANGAT KETAT)
-// ============================================
-let coordPopup = null;
-
-map.on('click', function (e) {
-  // Abaikan jika klik berasal dari mana-mana elemen interaktif
-  const target = e.originalEvent.target;
-  
-  // Senarai lengkap elemen UI yang perlu diabaikan – termasuk semua butang, input, label, pautan, dan elemen Leaflet
-  const uiSelectors = [
-    'button',          // semua butang (termasuk mode switch, arah, cari, tutup, dll.)
-    'input',           // semua input
-    'label',           // semua label
-    'a',               // semua pautan
-    '#menu-btn',
-    '#side-menu',
-    '#search-container',
-    '#search-results',
-    '#search-btn',
-    '.mode-btn',
-    '.arah-btn',
-    '#mode-toggle',
-    '#arah-btn-1',
-    '#arah-btn-2',
-    '#popup-btn',
-    '#popup-modal',
-    '#basemap-btn',
-    '#basemap-panel',
-    '.leaflet-control',
-    '.leaflet-control-zoom',
-    '.leaflet-top',
-    '.leaflet-bottom',
-    '.leaflet-popup',
-    '.leaflet-popup-content',
-    '#info-panel-stack',
-    '.info-panel-card',
-    '#info-panel',
-    '#info-panel-edl',
-    '#info-panel-sde',
-    '.leaflet-pane',
-    '.leaflet-overlay-pane',
-    '.leaflet-marker-pane',
-    '.leaflet-tile-pane',
-    '.leaflet-shadow-pane'
-  ];
-
-  // Semak jika target atau parent-nya sepadan dengan mana-mana selector
-  for (const selector of uiSelectors) {
-    if (target.closest(selector)) {
-      return; // abaikan klik ini
-    }
-  }
-
-  // Jika klik pada peta (bukan UI), teruskan
-  const lat = e.latlng.lat;
-  const lng = e.latlng.lng;
-  const latFixed = lat.toFixed(6);
-  const lngFixed = lng.toFixed(6);
-  const coordText = `${latFixed}, ${lngFixed}`;
-
-  if (coordPopup) {
-    map.closePopup(coordPopup);
-    coordPopup = null;
-  }
-
-  const content = document.createElement('div');
-  content.innerHTML = `
-    <div style="font-weight:700;margin-bottom:4px;"><i class="fa-solid fa-location-crosshairs"></i> Koordinat</div>
-    <div style="font-size:13px;font-family:monospace;margin-bottom:6px;">${coordText}</div>
-    <button id="copy-coord-btn" class="copy-coord-btn" style="background:var(--bomba-red);color:white;border:none;padding:4px 10px;border-radius:4px;cursor:pointer;font-size:14px;display:inline-flex;align-items:center;gap:4px;border:1px solid transparent;">
-      <i class="fa-regular fa-copy"></i>
-    </button>
-    <div id="copy-msg" class="coord-copy-msg" style="color:#2e7d32;font-size:12px;margin-top:4px;display:none;"><i class="fa-solid fa-check-circle"></i> Disalin!</div>
-  `;
-
-  coordPopup = L.popup({
-    className: 'coord-popup',
-    closeButton: true,
-    autoClose: true,
-    maxWidth: 280,
-  })
-    .setLatLng(e.latlng)
-    .setContent(content)
-    .openOn(map);
-});
-
-// Event delegation untuk butang salin koordinat
-document.addEventListener('click', function (event) {
-  const btn = event.target.closest('#copy-coord-btn');
-  if (!btn) return;
-
-  const popupContainer = btn.closest('.leaflet-popup-content');
-  if (!popupContainer) return;
-
-  const coordDiv = popupContainer.querySelector('div[style*="font-family:monospace"]');
-  if (!coordDiv) return;
-
-  const coordText = coordDiv.textContent.trim();
-  const msg = popupContainer.querySelector('#copy-msg');
-
-  if (navigator.clipboard && navigator.clipboard.writeText) {
-    navigator.clipboard.writeText(coordText).then(() => {
-      if (msg) { msg.style.display = 'block'; setTimeout(() => { msg.style.display = 'none'; }, 2000); }
-    }).catch(() => { fallbackSalin(coordText, msg); });
-  } else {
-    fallbackSalin(coordText, msg);
-  }
-  event.stopPropagation();
-});
-
-function fallbackSalin(coordText, msg) {
-  const textArea = document.createElement('textarea');
-  textArea.value = coordText;
-  textArea.style.position = 'fixed';
-  textArea.style.left = '-9999px';
-  document.body.appendChild(textArea);
-  textArea.select();
-  try {
-    document.execCommand('copy');
-    if (msg) { msg.style.display = 'block'; setTimeout(() => { msg.style.display = 'none'; }, 2000); }
-  } catch (e) {
-    alert('Gagal menyalin. Sila salin secara manual: ' + coordText);
-  }
-  document.body.removeChild(textArea);
-}
-
-// ============================================
-// HALANG KLIK PADA SEMUA ELEMEN CARIAN DARIPADA MENCETUSKAN POPUP KOORDINAT
-// ============================================
-document.querySelectorAll('#search-container button, #search-container .mode-btn, #search-container .arah-btn, #mode-toggle, #arah-btn-1, #arah-btn-2, #search-btn, #search-container input, #search-container label').forEach(function(el) {
-  el.addEventListener('click', function(e) {
-    e.stopPropagation();
-  });
-  el.addEventListener('touchstart', function(e) {
-    e.stopPropagation();
-  }, { passive: false });
-});
-
-document.getElementById('search-container').addEventListener('click', function(e) {
-  e.stopPropagation();
-});
-document.getElementById('search-container').addEventListener('touchstart', function(e) {
-  e.stopPropagation();
-}, { passive: false });
 
 // ============================================
 // MODE CARIAN
@@ -809,43 +628,21 @@ function pilihArah(arah) {
   if (query.length > 0) cari();
 }
 
-const urutanModCarian = ['alamat', 'km', 'pg', ...lebuhrayaBaruConfig.map((c) => c.mode), 'laluan'];
+const urutanModCarian = ['alamat', 'km', 'pg', ...lebuhrayaBaruConfig.map((c) => c.mode)];
 
 function tukarMode() {
   const modeBtn = document.getElementById('mode-toggle');
   const searchInput = document.getElementById('search-input');
   const resultsDiv = document.getElementById('search-results');
-  const searchClearBtn = document.getElementById('search-clear');
-  const searchBtnEl = document.getElementById('search-btn');
-  const searchIconPrefix = document.querySelector('.search-icon-prefix');
-  const laluanPanel = document.getElementById('laluan-panel');
 
   const indexSemasa = urutanModCarian.indexOf(modeCarian);
   modeCarian = urutanModCarian[(indexSemasa + 1) % urutanModCarian.length];
-
-  // Reset paparan lalai setiap kali tukar mod - elemen carian tunggal ditunjuk,
-  // panel laluan (dari-ke) disembunyikan, kemudian ubah suai ikut mod yang dipilih.
-  searchInput.style.display = '';
-  searchClearBtn.style.display = '';
-  searchBtnEl.style.display = '';
-  if (searchIconPrefix) searchIconPrefix.style.display = '';
-  if (laluanPanel) laluanPanel.style.display = 'none';
-  arahBtn1.style.display = 'none'; arahBtn2.style.display = 'none';
 
   if (modeCarian === 'alamat') {
     setBtnIcon(modeBtn, 'fa-location-dot', 'Alamat');
     modeBtn.className = 'mode-btn active-alamat';
     searchInput.placeholder = 'Cari alamat atau tempat...';
-  } else if (modeCarian === 'laluan') {
-    setBtnIcon(modeBtn, 'fa-route', 'Arah');
-    modeBtn.className = 'mode-btn active-laluan';
-    // Dalam mod ini, carian tunggal digantikan sepenuhnya oleh panel Dari/Ke.
-    searchInput.style.display = 'none';
-    searchClearBtn.style.display = 'none';
-    searchBtnEl.style.display = 'none';
-    if (searchIconPrefix) searchIconPrefix.style.display = 'none';
-    if (laluanPanel) laluanPanel.style.display = 'flex';
-    setTimeout(() => document.getElementById('laluan-dari-input')?.focus(), 0);
+    arahBtn1.style.display = 'none'; arahBtn2.style.display = 'none';
   } else if (modeCarian === 'km') {
     setBtnIcon(modeBtn, 'fa-road', 'KM PLUS');
     modeBtn.className = 'mode-btn active-km';
@@ -873,10 +670,9 @@ function tukarMode() {
     pilihArah(cfg.arah[0].key);
   }
   resultsDiv.classList.remove('show');
-  if (modeCarian !== 'laluan') searchInput.focus();
+  searchInput.focus();
   console.log('Mod carian sekarang:', modeCarian, 'Arah:', arahCarian);
 }
-
 // ============================================
 // SEARCH
 // ============================================
@@ -950,11 +746,6 @@ async function geocodeFetch(url, signal) {
   return data;
 }
 
-// Kawasan bias carian alamat - kini meliputi seluruh Malaysia (bukan Johor sahaja),
-// selaras dengan peta yang boleh di-drag ke mana-mana negeri. bounded=0 bermaksud
-// ini cuma keutamaan/bias, bukan sekatan keras - hasil di luar kawasan ini masih boleh muncul.
-const VIEWBOX_MALAYSIA = '97.5,8.0,121.5,-1.0';
-
 function cariAlamat(query, autoSelect = true) {
   if (carianAlamatController) { carianAlamatController.abort(); carianAlamatController = null; }
   if (query.length === 0) { searchResults.classList.remove('show'); return; }
@@ -968,7 +759,8 @@ function cariAlamat(query, autoSelect = true) {
 
   const controller = new AbortController();
   carianAlamatController = controller;
-  const url = `api/geocode?q=${encodeURIComponent(query)}&countrycodes=my&limit=8&accept-language=ms&addressdetails=1&viewbox=${VIEWBOX_MALAYSIA}&bounded=0`;
+  const viewboxJohor = '102.4,2.75,104.35,1.2';
+  const url = `api/geocode?q=${encodeURIComponent(query)}&countrycodes=my&limit=8&accept-language=ms&addressdetails=1&viewbox=${viewboxJohor}&bounded=0`;
 
   geocodeFetch(url, controller.signal)
     .then((data) => {
@@ -1000,7 +792,8 @@ function cariAlamat(query, autoSelect = true) {
 function cariAlamatQueryRingkas(queryRingkas, queryAsal, controllerLama) {
   const controller = new AbortController();
   carianAlamatController = controller;
-  const url = `api/geocode?q=${encodeURIComponent(queryRingkas)}&countrycodes=my&limit=8&accept-language=ms&addressdetails=1&viewbox=${VIEWBOX_MALAYSIA}&bounded=0`;
+  const viewboxJohor = '102.4,2.75,104.35,1.2';
+  const url = `api/geocode?q=${encodeURIComponent(queryRingkas)}&countrycodes=my&limit=8&accept-language=ms&addressdetails=1&viewbox=${viewboxJohor}&bounded=0`;
 
   geocodeFetch(url, controller.signal)
     .then((data) => {
@@ -1069,8 +862,7 @@ function cariKMPlus(query) {
     }).addTo(map).bindPopup(`<b><i class="fa-solid fa-location-dot"></i> KM ${kmResult.km} (PLUS - ${arahLabel})</b>`).openPopup();
     searchInput.value = `KM ${kmResult.km} (${arahLabel})`;
     updateInfoPanel(parseFloat(kmResult.km), 'PLUS', arahLabel);
-    const balaiJagaanKM = cariBalaiArah(parseFloat(kmResult.km), kmResult.arah.toUpperCase());
-    lokasiTerakhir = { lat: kmResult.lat, lng: kmResult.lng, alamat: `KM ${kmResult.km} (PLUS - ${arahLabel})`, namaBalaiSG: balaiJagaanKM ? balaiJagaanKM.balai : null };
+    lokasiTerakhir = { lat: kmResult.lat, lng: kmResult.lng, alamat: `KM ${kmResult.km} (PLUS - ${arahLabel})` };
   } else {
     searchResults.innerHTML = '<div class="search-result-item" style="color:#999;">Format KM tidak sah atau arah ini tiada data. Contoh: 23.5, km 45, 100</div>';
     searchResults.classList.add('show');
@@ -1166,8 +958,6 @@ function clearSearch() {
   if (searchMarker) { map.removeLayer(searchMarker); searchMarker = null; }
   if (routeLayer) { map.removeLayer(routeLayer); routeLayer = null; }
   tutupInfoPanel();
-  tutupInfoPanelEDL();
-  tutupInfoPanelSDE();
   lokasiTerakhir = null;
 }
 
@@ -1187,204 +977,6 @@ searchInput.addEventListener('input', function () {
     carianAlamatTimer = setTimeout(function () { cariAlamat(query, false); }, 350);
   }
 });
-
-// ============================================
-// MOD ARAH / LALUAN (DARI -> KE, 2 LOKASI)
-// ============================================
-const laluanState = {
-  dari: { coord: null, controller: null, timer: null, inputEl: null, resultsEl: null, marker: null },
-  ke: { coord: null, controller: null, timer: null, inputEl: null, resultsEl: null, marker: null },
-};
-let laluanRouteLayer = null;
-
-function laluanCariAlamat(side, query) {
-  const state = laluanState[side];
-  if (state.controller) { state.controller.abort(); state.controller = null; }
-  if (query.length < 3) {
-    state.resultsEl.innerHTML = '<div class="search-result-item" style="color:#999;">Minimum 3 aksara.</div>';
-    state.resultsEl.classList.add('show');
-    return;
-  }
-  state.resultsEl.innerHTML = '<div class="search-result-item" style="color:#999;">Mencari...</div>';
-  state.resultsEl.classList.add('show');
-
-  const controller = new AbortController();
-  state.controller = controller;
-  const url = `api/geocode?q=${encodeURIComponent(query)}&countrycodes=my&limit=6&accept-language=ms&addressdetails=1&viewbox=${VIEWBOX_MALAYSIA}&bounded=0`;
-
-  geocodeFetch(url, controller.signal)
-    .then((data) => {
-      if (state.controller !== controller) return;
-      state.controller = null;
-      if (!data || data.length === 0) {
-        state.resultsEl.innerHTML = '<div class="search-result-item" style="color:#999;">Tiada hasil dijumpai.</div>';
-        state.resultsEl.classList.add('show');
-        return;
-      }
-      let html = '';
-      data.forEach((item) => {
-        html += `<div class="search-result-item" data-side="${side}" data-lat="${item.lat}" data-lng="${item.lon}" data-nama="${escapeHtml(item.display_name)}"><i class="fa-solid fa-location-dot"></i> ${escapeHtml(item.display_name)}</div>`;
-      });
-      state.resultsEl.innerHTML = html;
-      state.resultsEl.classList.add('show');
-    })
-    .catch((error) => {
-      if (error.name === 'AbortError') return;
-      if (state.controller !== controller) return;
-      state.controller = null;
-      console.error('Ralat carian laluan (' + side + '):', error);
-      state.resultsEl.innerHTML = '<div class="search-result-item" style="color:red;">Ralat carian. Sila cuba lagi.</div>';
-      state.resultsEl.classList.add('show');
-    });
-}
-
-function laluanKemaskiniMarker(side) {
-  const state = laluanState[side];
-  if (state.marker) { map.removeLayer(state.marker); state.marker = null; }
-  if (!state.coord) return;
-  const isDari = side === 'dari';
-  state.marker = L.marker([state.coord.lat, state.coord.lng], {
-    icon: L.divIcon({
-      className: 'laluan-point-icon',
-      html: `<div class="laluan-point ${isDari ? 'laluan-point-a' : 'laluan-point-b'}"><span>${isDari ? 'A' : 'B'}</span></div>`,
-      iconSize: [26, 26],
-      iconAnchor: [13, 13],
-    }),
-  }).addTo(map).bindPopup(`<b>${isDari ? 'Dari' : 'Ke'}:</b><br>${state.coord.label}`);
-}
-
-function laluanPilihLokasi(side, lat, lng, nama) {
-  const state = laluanState[side];
-  state.coord = { lat: parseFloat(lat), lng: parseFloat(lng), label: nama };
-  state.inputEl.value = nama.length > 45 ? nama.substring(0, 45) + '...' : nama;
-  state.resultsEl.classList.remove('show');
-  laluanKemaskiniMarker(side);
-  if (laluanState.dari.coord && laluanState.ke.coord) laluanCariLaluan();
-}
-
-async function laluanCariLaluan() {
-  const dari = laluanState.dari.coord;
-  const ke = laluanState.ke.coord;
-  const infoEl = document.getElementById('laluan-info');
-  if (!dari || !ke) {
-    infoEl.innerHTML = '<div class="laluan-info-msg">Sila pilih lokasi "Dari" dan "Ke" daripada senarai cadangan.</div>';
-    return;
-  }
-  if (laluanRouteLayer) { map.removeLayer(laluanRouteLayer); laluanRouteLayer = null; }
-  infoEl.innerHTML = '<div class="laluan-info-msg"><i class="fa-solid fa-spinner fa-spin"></i> Mengira laluan...</div>';
-  try {
-    const url = `https://router.project-osrm.org/route/v1/driving/${dari.lng},${dari.lat};${ke.lng},${ke.lat}?geometries=geojson&overview=full&steps=false`;
-    const response = await fetch(url);
-    if (!response.ok) throw new Error('Gagal dapatkan laluan');
-    const data = await response.json();
-    if (data.code !== 'Ok' || !data.routes || data.routes.length === 0) throw new Error('Tiada laluan ditemui');
-    const route = data.routes[0];
-    const coords = route.geometry.coordinates.map((c) => [c[1], c[0]]);
-    laluanRouteLayer = L.polyline(coords, { color: '#00897b', weight: 5, opacity: 0.85 }).addTo(map);
-    map.fitBounds(laluanRouteLayer.getBounds(), { padding: [60, 60] });
-    const jarakKm = (route.distance / 1000).toFixed(1);
-    const masaMinit = Math.round(route.duration / 60);
-    const masaTeks = masaMinit >= 60 ? `${Math.floor(masaMinit / 60)} jam ${masaMinit % 60} minit` : `${masaMinit} minit`;
-    infoEl.innerHTML = `<div class="laluan-info-hasil"><i class="fa-solid fa-road"></i> Jarak: <b>${jarakKm} km</b>&nbsp;&nbsp;|&nbsp;&nbsp;<i class="fa-solid fa-clock"></i> Anggaran: <b>${masaTeks}</b></div>`;
-  } catch (error) {
-    console.error('Ralat laluan arah:', error);
-    infoEl.innerHTML = '<div class="laluan-info-msg" style="color:#cc0000;">Gagal dapatkan laluan. Sila cuba lagi.</div>';
-  }
-}
-
-function laluanInitInput(side, inputEl, resultsEl) {
-  laluanState[side].inputEl = inputEl;
-  laluanState[side].resultsEl = resultsEl;
-
-  inputEl.addEventListener('input', function () {
-    const query = this.value.trim();
-    const state = laluanState[side];
-    state.coord = null;
-    if (state.timer) { clearTimeout(state.timer); state.timer = null; }
-    if (query.length === 0) {
-      if (state.controller) { state.controller.abort(); state.controller = null; }
-      resultsEl.classList.remove('show');
-      return;
-    }
-    state.timer = setTimeout(function () { laluanCariAlamat(side, query); }, 350);
-  });
-
-  inputEl.addEventListener('keydown', function (e) {
-    if (e.key === 'Enter') {
-      e.preventDefault();
-      const state = laluanState[side];
-      if (state.timer) { clearTimeout(state.timer); state.timer = null; }
-      laluanCariAlamat(side, this.value.trim());
-    }
-  });
-
-  resultsEl.addEventListener('click', function (e) {
-    const item = e.target.closest('.search-result-item[data-lat]');
-    if (!item) return;
-    laluanPilihLokasi(item.dataset.side, item.dataset.lat, item.dataset.lng, item.dataset.nama);
-  });
-}
-
-const laluanDariInputEl = document.getElementById('laluan-dari-input');
-const laluanKeInputEl = document.getElementById('laluan-ke-input');
-if (laluanDariInputEl && laluanKeInputEl) {
-  laluanInitInput('dari', laluanDariInputEl, document.getElementById('laluan-dari-results'));
-  laluanInitInput('ke', laluanKeInputEl, document.getElementById('laluan-ke-results'));
-
-  document.getElementById('laluan-cari-btn').addEventListener('click', function (e) {
-    e.preventDefault();
-    laluanCariLaluan();
-  });
-
-  document.getElementById('laluan-swap-btn').addEventListener('click', function () {
-    const dariCoord = laluanState.dari.coord;
-    const keCoord = laluanState.ke.coord;
-    const dariVal = laluanDariInputEl.value;
-    const keVal = laluanKeInputEl.value;
-    laluanState.dari.coord = keCoord;
-    laluanState.ke.coord = dariCoord;
-    laluanDariInputEl.value = keVal;
-    laluanKeInputEl.value = dariVal;
-    laluanKemaskiniMarker('dari');
-    laluanKemaskiniMarker('ke');
-    if (laluanState.dari.coord && laluanState.ke.coord) laluanCariLaluan();
-  });
-
-  document.querySelectorAll('.laluan-clear-btn').forEach((btn) => {
-    btn.addEventListener('click', function () {
-      const side = this.dataset.target;
-      const state = laluanState[side];
-      state.coord = null;
-      state.inputEl.value = '';
-      state.resultsEl.classList.remove('show');
-      state.resultsEl.innerHTML = '';
-      laluanKemaskiniMarker(side);
-      if (laluanRouteLayer) { map.removeLayer(laluanRouteLayer); laluanRouteLayer = null; }
-      document.getElementById('laluan-info').innerHTML = '';
-      state.inputEl.focus();
-    });
-  });
-
-  // Tutup dropdown cadangan bila klik di luar panel laluan
-  document.addEventListener('click', function (e) {
-    const panel = document.getElementById('laluan-panel');
-    if (panel && !panel.contains(e.target)) {
-      document.getElementById('laluan-dari-results').classList.remove('show');
-      document.getElementById('laluan-ke-results').classList.remove('show');
-    }
-  });
-
-  // Elak touch/scroll di panel laluan menyebabkan gangguan pada peta di belakang
-  ['laluan-panel', 'laluan-dari-results', 'laluan-ke-results'].forEach((id) => {
-    const el = document.getElementById(id);
-    if (!el) return;
-    el.addEventListener('click', function (e) { e.stopPropagation(); });
-    el.addEventListener('mousedown', function (e) { e.stopPropagation(); });
-    el.addEventListener('touchstart', function (e) { e.stopPropagation(); }, { passive: false });
-    el.addEventListener('touchmove', function (e) { e.stopPropagation(); }, { passive: false });
-    el.addEventListener('wheel', function (e) { e.stopPropagation(); });
-  });
-}
 
 // ============================================
 // SIDE MENU FUNCTIONS
@@ -1576,26 +1168,6 @@ function updateInfoPanelSDE(km, arahLabel = '') {
 function tutupInfoPanelSDE() { const panel = document.getElementById('info-panel-sde'); if (panel) panel.style.display = 'none'; }
 
 // ============================================
-// PEMETAAN ARAH -> UTARA/SELATAN UNTUK JADUAL KAWASAN JAGAAN EDL/SDE
-// (PG dan Second Link tiada jadual kawasan jagaan KM, jadi tiada kemasukan di sini -
-// akan fallback ke poligon KML am dalam bukaPopupBalai)
-// ============================================
-const petaArahKawasanJagaan = {
-  edl: { pandan: 'UTARA', woodland: 'SELATAN' },   // UTARA=PANDAN, SELATAN=WOODLAND
-  sde: { senai: 'UTARA', penawar: 'SELATAN' },     // UTARA=SENAI, SELATAN=PENAWAR
-};
-
-function cariBalaiJagaanLebuhrayaBaru(mode, km, arahKey) {
-  const petaArah = petaArahKawasanJagaan[mode];
-  if (!petaArah) return null;
-  const arahUpper = petaArah[arahKey];
-  if (!arahUpper) return null;
-  if (mode === 'edl') return cariBalaiArahEDL(km, arahUpper);
-  if (mode === 'sde') return cariBalaiArahSDE(km, arahUpper);
-  return null;
-}
-
-// ============================================
 // DATA KM – MUAT KML PLUS & PG
 // ============================================
 let dataKM_Utara = [], dataKM_Selatan = [], dataKMPG_PasirGudang = [], dataKMPG_Perling = [];
@@ -1691,9 +1263,7 @@ function binaLayerKMMarker() {
       marker.on('click', function () {
         const kmNum = parseFloat(kmValue);
         updateInfoPanel(kmNum, 'PLUS', labelArah);
-        const arahUpper = labelArah.toUpperCase();
-        const balaiJagaanKM = cariBalaiArah(kmNum, arahUpper);
-        lokasiTerakhir = { lat: p.lat, lng: p.lng, alamat: `KM ${kmValue} (PLUS - ${labelArah})`, namaBalaiSG: balaiJagaanKM ? balaiJagaanKM.balai : null };
+        lokasiTerakhir = { lat: p.lat, lng: p.lng, alamat: `KM ${kmValue} (PLUS - ${labelArah})` };
       });
       layerKMMarker.addLayer(marker);
     });
@@ -1855,17 +1425,15 @@ function binaLayerLebuhrayaBaru(mode) {
     layer.addLayer(polyline);
   }
 
-  function tambahMarkerKM(arr, warna, label, arahKey) {
+  function tambahMarkerKM(arr, warna, label) {
     arr.forEach((p) => {
       const kmValue = p.km.toFixed(1);
-      const kmNum = parseFloat(kmValue);
       const marker = L.circleMarker([p.lat, p.lng], { radius: 4, fillColor: warna, color: warna, weight: 1, opacity: 0.8, fillOpacity: 0.9 });
       marker.bindTooltip(`<b><i class="fa-solid fa-location-dot"></i> ${kmValue} KM (${cfg.labelMenu} - ${label})</b>`, { permanent: false, direction: 'top', offset: [0, -8], className: 'km-tooltip' });
       marker.on('click', function () {
-        if (cfg.mode === 'edl') updateInfoPanelEDL(kmNum, label);
-        else if (cfg.mode === 'sde') updateInfoPanelSDE(kmNum, label);
-        const balaiJagaanKM = cariBalaiJagaanLebuhrayaBaru(cfg.mode, kmNum, arahKey);
-        lokasiTerakhir = { lat: p.lat, lng: p.lng, alamat: `${cfg.labelMenu} KM ${kmValue} (${label})`, namaBalaiSG: balaiJagaanKM ? balaiJagaanKM.balai : null };
+        if (cfg.mode === 'edl') updateInfoPanelEDL(parseFloat(kmValue), label);
+        else if (cfg.mode === 'sde') updateInfoPanelSDE(parseFloat(kmValue), label);
+        lokasiTerakhir = { lat: p.lat, lng: p.lng, alamat: `${cfg.labelMenu} KM ${kmValue} (${label})` };
       });
       layer.addLayer(marker);
     });
@@ -1873,8 +1441,8 @@ function binaLayerLebuhrayaBaru(mode) {
 
   tambahGarisan(arr1, cfg.warnaGaris[0], cfg.arah[0].label);
   tambahGarisan(arr2, cfg.warnaGaris[1], cfg.arah[1].label);
-  tambahMarkerKM(arr1, cfg.warnaGaris[0], cfg.arah[0].label, cfg.arah[0].key);
-  tambahMarkerKM(arr2, cfg.warnaGaris[1], cfg.arah[1].label, cfg.arah[1].key);
+  tambahMarkerKM(arr1, cfg.warnaGaris[0], cfg.arah[0].label);
+  tambahMarkerKM(arr2, cfg.warnaGaris[1], cfg.arah[1].label);
 
   layerLebuhrayaBaru[mode].layer = layer;
   console.log(`[OK] Layer ${cfg.labelMenu} sedia (dua arah, dengan titik KM setiap 100m).`);
@@ -1937,9 +1505,9 @@ function cariKMLebuhrayaBaruJalankan(mode, query) {
     }).addTo(map).bindPopup(`<b><i class="fa-solid fa-road"></i> KM ${kmResult.km} (${cfg.labelMenu} - ${kmResult.arahLabel})</b>`).openPopup();
 
     searchInput.value = `${cfg.mode.toUpperCase()} KM ${kmResult.km} (${kmResult.arahLabel})`;
-    const balaiJagaanKM = cariBalaiJagaanLebuhrayaBaru(mode, parseFloat(kmResult.km), kmResult.arah);
-    lokasiTerakhir = { lat: kmResult.lat, lng: kmResult.lng, alamat: `${cfg.labelMenu} KM ${kmResult.km} (${kmResult.arahLabel})`, namaBalaiSG: balaiJagaanKM ? balaiJagaanKM.balai : null };
+    lokasiTerakhir = { lat: kmResult.lat, lng: kmResult.lng, alamat: `${cfg.labelMenu} KM ${kmResult.km} (${kmResult.arahLabel})` };
 
+    // Papar kad kawasan jagaan EDL atau SDE secara automatik
     if (mode === 'edl') updateInfoPanelEDL(parseFloat(kmResult.km), kmResult.arahLabel);
     else if (mode === 'sde') updateInfoPanelSDE(parseFloat(kmResult.km), kmResult.arahLabel);
   } else {
@@ -2098,6 +1666,6 @@ loadKMLPasirGudang();
 loadKMLPolygon();
 lebuhrayaBaruConfig.forEach((cfg) => loadKMLLebuhrayaBaru(cfg.mode));
 muatSemuaDataJentera();
- 
+
 console.log('[OK] Peta Kawasan Jagaan JBPM Johor siap!');
 console.log('[INFO] 34 Balai | 4 Zon | Search dengan toggle arah untuk KM PLUS dan KM PG');
