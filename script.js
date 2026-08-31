@@ -1675,22 +1675,35 @@ console.log('[INFO] 34 Balai | 4 Zon | Search dengan toggle arah untuk KM PLUS d
 
 // ============================================
 // KLIK PETA — PAPAR LAT/LNG
-// (Hanya untuk kawasan kosong; klik pada mana-mana
-//  layer/marker/polygon/popup/kawalan/butang diabaikan)
+// (Hanya untuk kawasan kosong latar peta; klik pada
+//  search bar, menu, popup, panel basemap, kawalan,
+//  atau mana-mana layer/marker/polygon diabaikan)
+//
+// NOTA: elemen #map ialah container Leaflet itu sendiri,
+// jadi search-wrapper/menu-btn/popup-modal/basemap-panel/
+// info-panel-stack (yang diletak sebagai anak #map dalam
+// index.html) turut berada dalam zon klik Leaflet.
+// Sebab itu kita guna SENARAI BENAR (whitelist): klik
+// dikira sah HANYA jika ia jatuh di dalam ".leaflet-map-pane"
+// (iaitu pane jubin/tile sebenar) DAN bukan pada layer.
 // ============================================
-function targetAdalahLayerAtauKawalan(originalEvent) {
+function targetAdalahLatarPetaSahaja(originalEvent) {
   if (!originalEvent) return false;
   const target = originalEvent.target;
   if (!target || typeof target.closest !== 'function') return false;
-  return !!(
-    target.closest('.leaflet-interactive') ||   // marker, polygon, polyline, circleMarker
-    target.closest('.leaflet-marker-icon') ||    // ikon divIcon/marker
-    target.closest('.leaflet-marker-shadow') ||
-    target.closest('.leaflet-popup') ||          // popup sedia ada
-    target.closest('.leaflet-tooltip') ||        // tooltip (cth: km-tooltip)
-    target.closest('.leaflet-control') ||        // semua kawalan leaflet (zoom, dll)
-    target.closest('.leaflet-bar')
+
+  // Mesti di dalam pane peta sebenar (tile/overlay/marker/tooltip/popup pane).
+  // Semua UI custom (search bar, menu, popup modal, panel basemap, info panel)
+  // berada DI LUAR pane ini walaupun secara visual ia di atas peta.
+  const dalamPanePeta = target.closest('.leaflet-map-pane');
+  if (!dalamPanePeta) return false;
+
+  // Di dalam pane peta, masih perlu sekat kalau kena layer/kawalan/popup/tooltip.
+  const kenaLayer = target.closest(
+    '.leaflet-interactive, .leaflet-marker-icon, .leaflet-marker-shadow, ' +
+    '.leaflet-popup, .leaflet-tooltip, .leaflet-control, .leaflet-bar'
   );
+  return !kenaLayer;
 }
 
 function salinLatLng(lat, lng, btn) {
@@ -1717,9 +1730,9 @@ function salinLatLng(lat, lng, btn) {
 }
 
 map.on('click', function (e) {
-  // Sekat papar lat/lng jika klik jatuh pada layer sedia ada
-  // (marker balai, poligon zon/balai, KM marker, lebuhraya, popup, kawalan/butang, dsb.)
-  if (targetAdalahLayerAtauKawalan(e.originalEvent)) return;
+  // Papar lat/lng HANYA jika klik jatuh pada latar peta kosong
+  // (bukan search bar, menu, popup, panel basemap, kawalan, atau mana-mana layer)
+  if (!targetAdalahLatarPetaSahaja(e.originalEvent)) return;
 
   const lat = e.latlng.lat.toFixed(6);
   const lng = e.latlng.lng.toFixed(6);
