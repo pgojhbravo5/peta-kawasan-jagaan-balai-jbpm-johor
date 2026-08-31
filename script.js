@@ -1465,7 +1465,7 @@ function parseKMLPointsDenganKM(kmlText) {
   const kmlDoc = parser.parseFromString(kmlText, 'text/xml');
   const placemarks = kmlDoc.getElementsByTagName('Placemark');
   const points = [];
-  let guna_anggaran_fallback = false;
+  let bilanganTitikDiabaikan = 0;
 
   for (let i = 0; i < placemarks.length; i++) {
     const pm = placemarks[i];
@@ -1493,16 +1493,24 @@ function parseKMLPointsDenganKM(kmlText) {
       }
     }
 
+    // Guna label "KM" sebenar dari KML jika ada.
+    // Kalau tiada, guna medan "distance" (meter) sebenar dari KML - masih data
+    // tulen dari fail, cuma unit berbeza (meter -> km), BUKAN anggaran.
     if (kmValue === null || isNaN(kmValue)) {
-      if (jarakMeter !== null) kmValue = jarakMeter / 1000;
-      else kmValue = i * 0.1;
-      guna_anggaran_fallback = true;
+      if (jarakMeter !== null && !isNaN(jarakMeter)) {
+        kmValue = jarakMeter / 1000;
+      } else {
+        // TIADA data KM/distance sebenar untuk titik ini - JANGAN anggar/reka
+        // nilai (contohnya ikut turutan titik). Abaikan sahaja titik ini.
+        bilanganTitikDiabaikan++;
+        continue;
+      }
     }
     points.push({ lat, lng, km: kmValue });
   }
 
-  if (guna_anggaran_fallback) {
-    console.warn('[AMARAN] Sebahagian/semua titik dalam fail KML ini tiada label "KM" sebenar - nilai KM dianggarkan.');
+  if (bilanganTitikDiabaikan > 0) {
+    console.warn(`[AMARAN] ${bilanganTitikDiabaikan} titik dalam fail KML ini diabaikan kerana tiada label "KM" atau "distance" yang sah - TIADA nilai KM direka/anggar untuk titik tersebut.`);
   }
   points.sort((a, b) => a.km - b.km);
   return points;
