@@ -953,8 +953,9 @@
       }
 
       /* Saiz sama seperti butang Muat Semula & Skrin Penuh (.topbar-btn = 34x34) */
-      #basemap-btn { bottom: 24px; }
-      #location-btn { bottom: 68px; } /* 24 + 34 (tinggi basemap) + 10 (jarak) */
+      /* Dinaikkan sedikit supaya tidak tertutup nota attribution Leaflet (cth. bila mod Hibrid dibuka) */
+      #basemap-btn { bottom: 46px; }
+      #location-btn { bottom: 90px; } /* 46 + 34 (tinggi basemap) + 10 (jarak) */
 
       #basemap-btn:hover,
       #location-btn:hover {
@@ -971,7 +972,7 @@
 
       #basemap-panel {
         position: absolute;
-        bottom: 24px;
+        bottom: 46px;
         left: 68px;
         z-index: 1000;
         background: var(--surface);
@@ -1322,9 +1323,9 @@
         }
 
         #basemap-btn, #location-btn { left: 10px; }
-        #basemap-btn { bottom: 16px; }
-        #location-btn { bottom: 60px; } /* 16 + 34 + 10 */
-        #basemap-panel { bottom: 16px; left: 58px; max-width: calc(100vw - 74px); overflow-x: auto; }
+        #basemap-btn { bottom: 38px; }
+        #location-btn { bottom: 82px; } /* 38 + 34 + 10 */
+        #basemap-panel { bottom: 38px; left: 58px; max-width: calc(100vw - 74px); overflow-x: auto; }
         .basemap-option { width: 64px; }
         .basemap-swatch { width: 56px; height: 44px; }
       }
