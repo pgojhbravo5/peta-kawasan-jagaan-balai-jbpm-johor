@@ -483,7 +483,8 @@ async function bukaPopupBalai(lat, lng, alamat) {
     }
   }
 
-  lokasiTerakhir = { lat, lng, alamat };
+  const namaBalaiSGSediaAda = lokasiTerakhir ? lokasiTerakhir.namaBalaiSG : null;
+  lokasiTerakhir = { lat, lng, alamat, namaBalaiSG: namaBalaiSGSediaAda || null };
   content.innerHTML = `<div class="popup-placeholder">⏳ Mengira jarak jalan ke balai berdekatan...</div>`;
   modal.classList.add('open'); overlay.classList.add('show');
 
