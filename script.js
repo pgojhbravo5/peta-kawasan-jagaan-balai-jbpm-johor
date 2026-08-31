@@ -277,10 +277,10 @@ let basemapSemasa = 'jalan';
 basemapLayers[basemapSemasa].addTo(map);
 
 // ============================================
-// FUNGSI TUKAR BASEMAP (dipanggil dari HTML)
+// FUNGSI BASEMAP – DIBUAT GLOBAL UNTUK HTML ONCLICK
 // ============================================
 window.pilihBasemap = function(kunci) {
-  if (!basemapLayers[kunci] || kunci === basemapSemasa) { tutupBasemapPanel(); return; }
+  if (!basemapLayers[kunci] || kunci === basemapSemasa) { window.tutupBasemapPanel(); return; }
   const current = basemapLayers[basemapSemasa];
   if (current instanceof L.LayerGroup) {
     map.removeLayer(current);
@@ -295,28 +295,28 @@ window.pilihBasemap = function(kunci) {
   }
   basemapSemasa = kunci;
   document.querySelectorAll('.basemap-option').forEach((el) => el.classList.toggle('active', el.dataset.basemap === kunci));
-  tutupBasemapPanel();
+  window.tutupBasemapPanel();
 };
 
-function toggleBasemapPanel() {
+window.toggleBasemapPanel = function() {
   const panel = document.getElementById('basemap-panel');
   const btn = document.getElementById('basemap-btn');
   const buka = !panel.classList.contains('show');
   panel.classList.toggle('show', buka);
   btn.classList.toggle('active', buka);
-}
+};
 
-function tutupBasemapPanel() {
+window.tutupBasemapPanel = function() {
   document.getElementById('basemap-panel').classList.remove('show');
   document.getElementById('basemap-btn').classList.remove('active');
-}
+};
 
 document.addEventListener('click', function (e) {
   const panel = document.getElementById('basemap-panel');
   const btn = document.getElementById('basemap-btn');
   if (!panel || !btn) return;
   if (panel.classList.contains('show') && !panel.contains(e.target) && !btn.contains(e.target)) {
-    tutupBasemapPanel();
+    window.tutupBasemapPanel();
   }
 });
 
@@ -424,7 +424,7 @@ map.on('click', function (e) {
     .openOn(map);
 });
 
-function salinLatLong(lat, lng, btn) {
+window.salinLatLong = function(lat, lng, btn) {
   const teks = `${lat}, ${lng}`;
   const tandaSalin = () => {
     if (!btn) return;
@@ -442,7 +442,7 @@ function salinLatLong(lat, lng, btn) {
     try { document.execCommand('copy'); tandaSalin(); } catch (err) {}
     document.body.removeChild(textarea);
   }
-}
+};
 
 // ============================================
 // FUNGSI KIRA JARAK (HAVERSINE)
@@ -600,7 +600,7 @@ async function tunjukRoute(lat1, lng1, lat2, lng2, namaBalai) {
 // ============================================
 let lokasiTerakhir = null;
 
-async function bukaPopupBalai(lat, lng, alamat) {
+window.bukaPopupBalai = async function(lat, lng, alamat) {
   const modal = document.getElementById('popup-modal');
   const overlay = document.getElementById('popup-overlay');
   const content = document.getElementById('popup-content');
@@ -675,16 +675,13 @@ async function bukaPopupBalai(lat, lng, alamat) {
   });
 
   content.innerHTML = html;
-}
+};
 
-// ============================================
-// FUNGSI TUTUP POPUP
-// ============================================
-function tutupPopupBalai() {
+window.tutupPopupBalai = function() {
   document.getElementById('popup-modal').classList.remove('open');
   document.getElementById('popup-overlay').classList.remove('show');
   if (routeLayer) { map.removeLayer(routeLayer); routeLayer = null; }
-}
+};
 
 // ============================================
 // PLOT SEMUA BALAI
@@ -780,32 +777,33 @@ function setBtnIcon(el, iconClass, label) {
   el.innerHTML = `<i class="fa-solid ${iconClass}"></i><span class="btn-label"> ${label}</span>`;
 }
 
-function arah1UntukModeSemasa() {
+window.arah1UntukModeSemasa = function() {
   if (modeCarian === 'pg') return 'pasirgudang';
   if (modeCarian === 'km') return 'utara';
   const cfg = cariConfigLebuhraya(modeCarian);
   return cfg ? cfg.arah[0].key : 'utara';
-}
-function arah2UntukModeSemasa() {
+};
+
+window.arah2UntukModeSemasa = function() {
   if (modeCarian === 'pg') return 'perling';
   if (modeCarian === 'km') return 'selatan';
   const cfg = cariConfigLebuhraya(modeCarian);
   return cfg ? cfg.arah[1].key : 'selatan';
-}
+};
 
-function pilihArah(arah) {
+window.pilihArah = function(arah) {
   arahCarian = arah;
   arahBtn1.classList.remove('active-arah');
   arahBtn2.classList.remove('active-arah');
-  if (arah === arah1UntukModeSemasa()) arahBtn1.classList.add('active-arah');
+  if (arah === window.arah1UntukModeSemasa()) arahBtn1.classList.add('active-arah');
   else arahBtn2.classList.add('active-arah');
   const query = document.getElementById('search-input').value.trim();
   if (query.length > 0) cari();
-}
+};
 
 const urutanModCarian = ['alamat', 'km', 'pg', ...lebuhrayaBaruConfig.map((c) => c.mode)];
 
-function tukarMode() {
+window.tukarMode = function() {
   const modeBtn = document.getElementById('mode-toggle');
   const searchInput = document.getElementById('search-input');
   const resultsDiv = document.getElementById('search-results');
@@ -825,7 +823,7 @@ function tukarMode() {
     arahBtn1.style.display = 'flex'; arahBtn2.style.display = 'flex';
     setBtnIcon(arahBtn1, 'fa-arrow-up', 'Utara');
     setBtnIcon(arahBtn2, 'fa-arrow-down', 'Selatan');
-    pilihArah('utara');
+    window.pilihArah('utara');
   } else if (modeCarian === 'pg') {
     setBtnIcon(modeBtn, 'fa-road', 'KM PG');
     modeBtn.className = 'mode-btn active-pg';
@@ -833,7 +831,7 @@ function tukarMode() {
     arahBtn1.style.display = 'flex'; arahBtn2.style.display = 'flex';
     setBtnIcon(arahBtn1, 'fa-arrow-up', 'Pasir Gudang');
     setBtnIcon(arahBtn2, 'fa-arrow-down', 'Perling');
-    pilihArah('pasirgudang');
+    window.pilihArah('pasirgudang');
   } else {
     const cfg = cariConfigLebuhraya(modeCarian);
     setBtnIcon(modeBtn, cfg.icon, cfg.labelBtn);
@@ -842,12 +840,13 @@ function tukarMode() {
     arahBtn1.style.display = 'flex'; arahBtn2.style.display = 'flex';
     setBtnIcon(arahBtn1, 'fa-arrow-up', cfg.arah[0].label);
     setBtnIcon(arahBtn2, 'fa-arrow-down', cfg.arah[1].label);
-    pilihArah(cfg.arah[0].key);
+    window.pilihArah(cfg.arah[0].key);
   }
   resultsDiv.classList.remove('show');
   searchInput.focus();
   console.log('Mod carian sekarang:', modeCarian, 'Arah:', arahCarian);
-}
+};
+
 // ============================================
 // SEARCH
 // ============================================
@@ -1122,7 +1121,7 @@ document.addEventListener('click', function (e) {
   }
 });
 
-function clearSearch() {
+window.clearSearch = function() {
   if (carianAlamatController) { carianAlamatController.abort(); carianAlamatController = null; }
   if (carianAlamatTimer) { clearTimeout(carianAlamatTimer); carianAlamatTimer = null; }
   searchInput.value = '';
@@ -1134,7 +1133,7 @@ function clearSearch() {
   if (routeLayer) { map.removeLayer(routeLayer); routeLayer = null; }
   tutupInfoPanel();
   lokasiTerakhir = null;
-}
+};
 
 searchInput.addEventListener('input', function () {
   const clearBtn = document.getElementById('search-clear');
@@ -1156,22 +1155,26 @@ searchInput.addEventListener('input', function () {
 // ============================================
 // SIDE MENU FUNCTIONS
 // ============================================
-function toggleMenu() {
+window.toggleMenu = function() {
   document.getElementById('side-menu').classList.toggle('open');
   document.getElementById('overlay').classList.toggle('show');
-}
-function resetPeta() { map.setView([1.85, 103.3], 9); toggleMenu(); }
-function toggleFilter() {
+};
+
+window.resetPeta = function() { map.setView([1.85, 103.3], 9); window.toggleMenu(); };
+
+window.toggleFilter = function() {
   const filterDiv = document.getElementById('filter-zon');
   filterDiv.style.display = filterDiv.style.display === 'none' ? 'block' : 'none';
-}
-function toggleZon(zon, checkbox) {
+};
+
+window.toggleZon = function(zon, checkbox) {
   layerZon[zon].forEach((layer) => {
     if (checkbox.checked) map.addLayer(layer);
     else map.removeLayer(layer);
   });
-}
-function senaraiBalai() {
+};
+
+window.senaraiBalai = function() {
   const listDiv = document.getElementById('list-balai');
   if (listDiv.style.display === 'none' || listDiv.style.display === '') {
     let html = '';
@@ -1183,8 +1186,9 @@ function senaraiBalai() {
   } else {
     listDiv.style.display = 'none';
   }
-}
-function flyToBalai(lat, lng) { map.flyTo([lat, lng], 15); toggleMenu(); }
+};
+
+window.flyToBalai = function(lat, lng) { map.flyTo([lat, lng], 15); window.toggleMenu(); };
 
 // ============================================
 // STOP TOUCH/MOUSE EVENT (POPUP, MENU, SEARCH)
@@ -1509,7 +1513,7 @@ function binaLayerLebuhraya() {
 }
 
 // ============================================
-// TOGGLE FUNCTIONS (LAZY LOAD)
+// TOGGLE FUNCTIONS (LAZY LOAD) – DIBUAT GLOBAL
 // ============================================
 window.toggleKMMarker = async function(checkbox) {
   if (!layerKMMarker) {
