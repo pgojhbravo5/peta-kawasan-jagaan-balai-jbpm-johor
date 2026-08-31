@@ -324,6 +324,75 @@ L.control.topBar = L.Control.extend({
 new L.control.topBar({ position: 'topright' }).addTo(map);
 
 // ============================================
+// HALANG SEMUA UI (MENU, SEARCH, POPUP, BASEMAP,
+// PANEL INFO) DARIPADA "TEMBUS" KLIK KE PETA
+// ============================================
+[
+  'menu-btn',
+  'side-menu',
+  'overlay',
+  'search-wrapper',
+  'popup-btn',
+  'popup-overlay',
+  'popup-modal',
+  'basemap-btn',
+  'basemap-panel',
+  'info-panel-stack',
+].forEach((id) => {
+  const el = document.getElementById(id);
+  if (el) L.DomEvent.disableClickPropagation(el);
+});
+
+// ============================================
+// KLIK PADA PETA -> PAPAR LAT/LONG
+// (Hanya untuk kawasan kosong; klik pada marker/
+// poligon/laluan sedia ada TIDAK akan papar lat/long)
+// ============================================
+map.on('click', function (e) {
+  const targetEl = e.originalEvent && e.originalEvent.target;
+  const tagNama = targetEl && targetEl.tagName ? targetEl.tagName.toLowerCase() : '';
+  // Klik jatuh pada layer vektor sedia ada (poligon/laluan/circleMarker) - abaikan
+  if (['path', 'circle', 'polygon', 'polyline', 'rect'].includes(tagNama)) return;
+
+  const latStr = e.latlng.lat.toFixed(6);
+  const lngStr = e.latlng.lng.toFixed(6);
+  const kandungan = `
+    <div class="latlng-popup">
+      <div class="latlng-popup-title"><i class="fa-solid fa-location-crosshairs"></i> Koordinat</div>
+      <div class="latlng-popup-baris"><b>Lat:</b> ${latStr}</div>
+      <div class="latlng-popup-baris"><b>Long:</b> ${lngStr}</div>
+      <button class="latlng-popup-copy" type="button" onclick="salinLatLong('${latStr}', '${lngStr}', this)">
+        <i class="fa-solid fa-copy"></i> Salin Koordinat
+      </button>
+    </div>`;
+
+  L.popup({ className: 'latlng-popup-wrapper', closeButton: true, maxWidth: 220 })
+    .setLatLng(e.latlng)
+    .setContent(kandungan)
+    .openOn(map);
+});
+
+function salinLatLong(lat, lng, btn) {
+  const teks = `${lat}, ${lng}`;
+  const tandaSalin = () => {
+    if (!btn) return;
+    const asal = btn.innerHTML;
+    btn.innerHTML = '<i class="fa-solid fa-check"></i> Disalin';
+    setTimeout(() => { btn.innerHTML = asal; }, 1500);
+  };
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(teks).then(tandaSalin).catch(() => {});
+  } else {
+    const textarea = document.createElement('textarea');
+    textarea.value = teks;
+    document.body.appendChild(textarea);
+    textarea.select();
+    try { document.execCommand('copy'); tandaSalin(); } catch (err) {}
+    document.body.removeChild(textarea);
+  }
+}
+
+// ============================================
 // FUNGSI KIRA JARAK (HAVERSINE)
 // ============================================
 function kiraJarak(lat1, lon1, lat2, lon2) {
@@ -1672,80 +1741,3 @@ muatSemuaDataJentera();
 
 console.log('[OK] Peta Kawasan Jagaan JBPM Johor siap!');
 console.log('[INFO] 34 Balai | 4 Zon | Search dengan toggle arah untuk KM PLUS dan KM PG');
-
-// ============================================
-// KLIK PETA — PAPAR LAT/LNG
-// (Hanya untuk kawasan kosong latar peta; klik pada
-//  search bar, menu, popup, panel basemap, kawalan,
-//  atau mana-mana layer/marker/polygon diabaikan)
-//
-// NOTA: elemen #map ialah container Leaflet itu sendiri,
-// jadi search-wrapper/menu-btn/popup-modal/basemap-panel/
-// info-panel-stack (yang diletak sebagai anak #map dalam
-// index.html) turut berada dalam zon klik Leaflet.
-// Sebab itu kita guna SENARAI BENAR (whitelist): klik
-// dikira sah HANYA jika ia jatuh di dalam ".leaflet-map-pane"
-// (iaitu pane jubin/tile sebenar) DAN bukan pada layer.
-// ============================================
-function targetAdalahLatarPetaSahaja(originalEvent) {
-  if (!originalEvent) return false;
-  const target = originalEvent.target;
-  if (!target || typeof target.closest !== 'function') return false;
-
-  // Mesti di dalam pane peta sebenar (tile/overlay/marker/tooltip/popup pane).
-  // Semua UI custom (search bar, menu, popup modal, panel basemap, info panel)
-  // berada DI LUAR pane ini walaupun secara visual ia di atas peta.
-  const dalamPanePeta = target.closest('.leaflet-map-pane');
-  if (!dalamPanePeta) return false;
-
-  // Di dalam pane peta, masih perlu sekat kalau kena layer/kawalan/popup/tooltip.
-  const kenaLayer = target.closest(
-    '.leaflet-interactive, .leaflet-marker-icon, .leaflet-marker-shadow, ' +
-    '.leaflet-popup, .leaflet-tooltip, .leaflet-control, .leaflet-bar'
-  );
-  return !kenaLayer;
-}
-
-function salinLatLng(lat, lng, btn) {
-  const teks = `${lat}, ${lng}`;
-  const asal = btn ? btn.innerHTML : null;
-  const tandaBerjaya = () => {
-    if (btn) {
-      btn.innerHTML = '<i class="fa-solid fa-check"></i> Disalin';
-      setTimeout(() => { if (asal !== null) btn.innerHTML = asal; }, 1500);
-    }
-  };
-  if (navigator.clipboard && navigator.clipboard.writeText) {
-    navigator.clipboard.writeText(teks).then(tandaBerjaya).catch(() => {});
-  } else {
-    const taSementara = document.createElement('textarea');
-    taSementara.value = teks;
-    taSementara.style.position = 'fixed';
-    taSementara.style.opacity = '0';
-    document.body.appendChild(taSementara);
-    taSementara.select();
-    try { document.execCommand('copy'); tandaBerjaya(); } catch (e) {}
-    document.body.removeChild(taSementara);
-  }
-}
-
-map.on('click', function (e) {
-  // Papar lat/lng HANYA jika klik jatuh pada latar peta kosong
-  // (bukan search bar, menu, popup, panel basemap, kawalan, atau mana-mana layer)
-  if (!targetAdalahLatarPetaSahaja(e.originalEvent)) return;
-
-  const lat = e.latlng.lat.toFixed(6);
-  const lng = e.latlng.lng.toFixed(6);
-
-  L.popup({ className: 'koordinat-popup-wrapper', closeButton: true })
-    .setLatLng(e.latlng)
-    .setContent(
-      `<div class="koordinat-popup">
-        <div class="koordinat-popup-baris"><i class="fa-solid fa-location-crosshairs"></i> <b>${lat}, ${lng}</b></div>
-        <button type="button" class="koordinat-popup-salin" onclick="salinLatLng(${lat}, ${lng}, this)">
-          <i class="fa-solid fa-copy"></i> Salin Koordinat
-        </button>
-      </div>`
-    )
-    .openOn(map);
-});

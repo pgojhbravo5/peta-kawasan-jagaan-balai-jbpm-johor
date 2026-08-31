@@ -1057,54 +1057,64 @@
       }
 
       /* ============================================
-         POPUP KLIK PETA - LAT/LNG
+         POPUP BALAI - STATUS JENTERA
          ============================================ */
-      .koordinat-popup {
-        font-family: Arial, sans-serif;
-        min-width: 150px;
+      .leaflet-popup-content {
+        margin: 12px 14px;
       }
 
-      .koordinat-popup-baris {
-        font-size: 12.5px;
-        color: var(--text-primary);
+      /* ============================================
+         POPUP LAT/LONG (KLIK KAWASAN KOSONG PETA)
+         ============================================ */
+      .latlng-popup-wrapper .leaflet-popup-content-wrapper {
+        border-radius: var(--radius-md);
+        box-shadow: var(--shadow-medium);
+      }
+
+      .latlng-popup {
+        font-family: "Inter", sans-serif;
+        min-width: 160px;
+      }
+
+      .latlng-popup-title {
         display: flex;
         align-items: center;
         gap: 6px;
-        margin-bottom: 8px;
-      }
-
-      .koordinat-popup-baris i {
+        font-weight: 700;
+        font-size: 12.5px;
         color: var(--bomba-red);
+        text-transform: uppercase;
+        letter-spacing: 0.4px;
+        margin-bottom: 6px;
       }
 
-      .koordinat-popup-salin {
+      .latlng-popup-baris {
+        font-family: Arial, sans-serif;
+        font-size: 12.5px;
+        color: var(--text-primary);
+        line-height: 1.6;
+      }
+
+      .latlng-popup-copy {
+        margin-top: 8px;
         width: 100%;
         display: flex;
         align-items: center;
         justify-content: center;
         gap: 6px;
-        border: 1px solid var(--border-color);
+        padding: 6px 10px;
         background: var(--bg-light);
-        color: var(--text-primary);
+        border: 1px solid var(--border-color);
+        border-radius: var(--radius-sm);
         font-size: 11.5px;
         font-weight: 600;
-        padding: 6px 8px;
-        border-radius: var(--radius-sm);
+        color: var(--text-primary);
         cursor: pointer;
         transition: var(--transition-fast);
       }
 
-      .koordinat-popup-salin:hover {
-        background: var(--bomba-red-light);
-        color: var(--bomba-red);
-        border-color: var(--bomba-red);
-      }
-
-      /* ============================================
-         POPUP BALAI - STATUS JENTERA
-         ============================================ */
-      .leaflet-popup-content {
-        margin: 12px 14px;
+      .latlng-popup-copy:hover {
+        background: #eceef1;
       }
 
       .balai-popup-nama {
