@@ -492,17 +492,13 @@ async function bukaPopupBalai(lat, lng, alamat) {
 
   const notaJenis = jenis === 'lurus' ? `<div style="font-size:11px;color:#c2703d;margin-bottom:10px;"><i class="fa-solid fa-triangle-exclamation"></i> Jarak jalan tidak dapat dikira buat masa ini — dipaparkan jarak garis lurus (anggaran).</div>` : '';
 
-  // Utamakan balai jagaan mengikut KM+arah lebuhraya (dataKawasanBalai / EDL / SDE),
-  // kerana ia lebih tepat berbanding poligon KML am (cariBalaiJagaan) untuk lokasi
-  // yang dicari melalui carian KM (cth: KM 50 PLUS SELATAN -> BBP RENGGAM).
-  // Poligon KML hanya digunakan sebagai fallback untuk lokasi bukan-KM (cth: carian alamat).
-  const namaJagaan = (lokasiTerakhir && lokasiTerakhir.namaBalaiSG) ? lokasiTerakhir.namaBalaiSG : cariBalaiJagaan(lat, lng);
+  const namaJagaan = cariBalaiJagaan(lat, lng);
   let balaiSG = null;
   let senaraiAkhir = [...terdekat];
   let notaJarakSGLurus = false;
 
   if (namaJagaan) {
-    const dataJagaan = dataBalai.find((b) => b.nama.toUpperCase() === namaJagaan.toUpperCase());
+    const dataJagaan = dataBalai.find((b) => b.nama === namaJagaan);
     if (dataJagaan) {
       // Balai SG (kawasan jagaan) SENTIASA guna jarak route sebenar melalui panggilan
       // OSRM route tunggal (dapatkanJarakRouteSebenar) - tidak bergantung pada hasil
@@ -512,7 +508,7 @@ async function bukaPopupBalai(lat, lng, alamat) {
       if (jarakSG === null) { jarakSG = kiraJarak(lat, lng, dataJagaan.lat, dataJagaan.lng); notaJarakSGLurus = true; }
       balaiSG = { ...dataJagaan, jarak: jarakSG };
 
-      const idxDalamTerdekat = senaraiAkhir.findIndex((b) => b.nama.toUpperCase() === dataJagaan.nama.toUpperCase());
+      const idxDalamTerdekat = senaraiAkhir.findIndex((b) => b.nama === namaJagaan);
       if (idxDalamTerdekat !== -1) senaraiAkhir[idxDalamTerdekat] = balaiSG;
       else senaraiAkhir.push(balaiSG);
     }
@@ -1068,8 +1064,7 @@ function cariKMPlus(query) {
     }).addTo(map).bindPopup(`<b><i class="fa-solid fa-location-dot"></i> KM ${kmResult.km} (PLUS - ${arahLabel})</b>`).openPopup();
     searchInput.value = `KM ${kmResult.km} (${arahLabel})`;
     updateInfoPanel(parseFloat(kmResult.km), 'PLUS', arahLabel);
-    const balaiJagaanKM = cariBalaiArah(parseFloat(kmResult.km), kmResult.arah.toUpperCase());
-    lokasiTerakhir = { lat: kmResult.lat, lng: kmResult.lng, alamat: `KM ${kmResult.km} (PLUS - ${arahLabel})`, namaBalaiSG: balaiJagaanKM ? balaiJagaanKM.balai : null };
+    lokasiTerakhir = { lat: kmResult.lat, lng: kmResult.lng, alamat: `KM ${kmResult.km} (PLUS - ${arahLabel})` };
   } else {
     searchResults.innerHTML = '<div class="search-result-item" style="color:#999;">Format KM tidak sah atau arah ini tiada data. Contoh: 23.5, km 45, 100</div>';
     searchResults.classList.add('show');
@@ -1575,26 +1570,6 @@ function updateInfoPanelSDE(km, arahLabel = '') {
 function tutupInfoPanelSDE() { const panel = document.getElementById('info-panel-sde'); if (panel) panel.style.display = 'none'; }
 
 // ============================================
-// PEMETAAN ARAH -> UTARA/SELATAN UNTUK JADUAL KAWASAN JAGAAN EDL/SDE
-// (PG dan Second Link tiada jadual kawasan jagaan KM, jadi tiada kemasukan di sini -
-// akan fallback ke poligon KML am dalam bukaPopupBalai)
-// ============================================
-const petaArahKawasanJagaan = {
-  edl: { pandan: 'UTARA', woodland: 'SELATAN' },   // UTARA=PANDAN, SELATAN=WOODLAND
-  sde: { senai: 'UTARA', penawar: 'SELATAN' },     // UTARA=SENAI, SELATAN=PENAWAR
-};
-
-function cariBalaiJagaanLebuhrayaBaru(mode, km, arahKey) {
-  const petaArah = petaArahKawasanJagaan[mode];
-  if (!petaArah) return null;
-  const arahUpper = petaArah[arahKey];
-  if (!arahUpper) return null;
-  if (mode === 'edl') return cariBalaiArahEDL(km, arahUpper);
-  if (mode === 'sde') return cariBalaiArahSDE(km, arahUpper);
-  return null;
-}
-
-// ============================================
 // DATA KM – MUAT KML PLUS & PG
 // ============================================
 let dataKM_Utara = [], dataKM_Selatan = [], dataKMPG_PasirGudang = [], dataKMPG_Perling = [];
@@ -1690,9 +1665,7 @@ function binaLayerKMMarker() {
       marker.on('click', function () {
         const kmNum = parseFloat(kmValue);
         updateInfoPanel(kmNum, 'PLUS', labelArah);
-        const arahUpper = labelArah.toUpperCase();
-        const balaiJagaanKM = cariBalaiArah(kmNum, arahUpper);
-        lokasiTerakhir = { lat: p.lat, lng: p.lng, alamat: `KM ${kmValue} (PLUS - ${labelArah})`, namaBalaiSG: balaiJagaanKM ? balaiJagaanKM.balai : null };
+        lokasiTerakhir = { lat: p.lat, lng: p.lng, alamat: `KM ${kmValue} (PLUS - ${labelArah})` };
       });
       layerKMMarker.addLayer(marker);
     });
@@ -1854,17 +1827,15 @@ function binaLayerLebuhrayaBaru(mode) {
     layer.addLayer(polyline);
   }
 
-  function tambahMarkerKM(arr, warna, label, arahKey) {
+  function tambahMarkerKM(arr, warna, label) {
     arr.forEach((p) => {
       const kmValue = p.km.toFixed(1);
-      const kmNum = parseFloat(kmValue);
       const marker = L.circleMarker([p.lat, p.lng], { radius: 4, fillColor: warna, color: warna, weight: 1, opacity: 0.8, fillOpacity: 0.9 });
       marker.bindTooltip(`<b><i class="fa-solid fa-location-dot"></i> ${kmValue} KM (${cfg.labelMenu} - ${label})</b>`, { permanent: false, direction: 'top', offset: [0, -8], className: 'km-tooltip' });
       marker.on('click', function () {
-        if (cfg.mode === 'edl') updateInfoPanelEDL(kmNum, label);
-        else if (cfg.mode === 'sde') updateInfoPanelSDE(kmNum, label);
-        const balaiJagaanKM = cariBalaiJagaanLebuhrayaBaru(cfg.mode, kmNum, arahKey);
-        lokasiTerakhir = { lat: p.lat, lng: p.lng, alamat: `${cfg.labelMenu} KM ${kmValue} (${label})`, namaBalaiSG: balaiJagaanKM ? balaiJagaanKM.balai : null };
+        if (cfg.mode === 'edl') updateInfoPanelEDL(parseFloat(kmValue), label);
+        else if (cfg.mode === 'sde') updateInfoPanelSDE(parseFloat(kmValue), label);
+        lokasiTerakhir = { lat: p.lat, lng: p.lng, alamat: `${cfg.labelMenu} KM ${kmValue} (${label})` };
       });
       layer.addLayer(marker);
     });
@@ -1872,8 +1843,8 @@ function binaLayerLebuhrayaBaru(mode) {
 
   tambahGarisan(arr1, cfg.warnaGaris[0], cfg.arah[0].label);
   tambahGarisan(arr2, cfg.warnaGaris[1], cfg.arah[1].label);
-  tambahMarkerKM(arr1, cfg.warnaGaris[0], cfg.arah[0].label, cfg.arah[0].key);
-  tambahMarkerKM(arr2, cfg.warnaGaris[1], cfg.arah[1].label, cfg.arah[1].key);
+  tambahMarkerKM(arr1, cfg.warnaGaris[0], cfg.arah[0].label);
+  tambahMarkerKM(arr2, cfg.warnaGaris[1], cfg.arah[1].label);
 
   layerLebuhrayaBaru[mode].layer = layer;
   console.log(`[OK] Layer ${cfg.labelMenu} sedia (dua arah, dengan titik KM setiap 100m).`);
@@ -1936,8 +1907,7 @@ function cariKMLebuhrayaBaruJalankan(mode, query) {
     }).addTo(map).bindPopup(`<b><i class="fa-solid fa-road"></i> KM ${kmResult.km} (${cfg.labelMenu} - ${kmResult.arahLabel})</b>`).openPopup();
 
     searchInput.value = `${cfg.mode.toUpperCase()} KM ${kmResult.km} (${kmResult.arahLabel})`;
-    const balaiJagaanKM = cariBalaiJagaanLebuhrayaBaru(mode, parseFloat(kmResult.km), kmResult.arah);
-    lokasiTerakhir = { lat: kmResult.lat, lng: kmResult.lng, alamat: `${cfg.labelMenu} KM ${kmResult.km} (${kmResult.arahLabel})`, namaBalaiSG: balaiJagaanKM ? balaiJagaanKM.balai : null };
+    lokasiTerakhir = { lat: kmResult.lat, lng: kmResult.lng, alamat: `${cfg.labelMenu} KM ${kmResult.km} (${kmResult.arahLabel})` };
 
     if (mode === 'edl') updateInfoPanelEDL(parseFloat(kmResult.km), kmResult.arahLabel);
     else if (mode === 'sde') updateInfoPanelSDE(parseFloat(kmResult.km), kmResult.arahLabel);
