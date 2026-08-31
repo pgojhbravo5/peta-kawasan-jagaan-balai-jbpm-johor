@@ -245,9 +245,9 @@ const layerZon = { 1: [], 2: [], 3: [], 4: [] };
 // INISIALISASI PETA
 // ============================================
 const map = L.map('map', {
-  maxBounds: [[1.2, 102.3], [3.0, 104.6]],
+  maxBounds: [[0.5, 99.0], [7.8, 119.6]],
   maxBoundsViscosity: 0.8,
-  minZoom: 8,
+  minZoom: 6,
   maxZoom: 18,
 }).setView([1.85, 103.3], 9);
 
@@ -322,6 +322,16 @@ L.control.topBar = L.Control.extend({
   onRemove: function () {},
 });
 new L.control.topBar({ position: 'topright' }).addTo(map);
+
+// ============================================
+// SKALA JARAK PETA (KM/METER) - PENJURU BAWAH KANAN
+// ============================================
+L.control.scale({
+  position: 'bottomright',
+  metric: true,
+  imperial: false,
+  maxWidth: 150,
+}).addTo(map);
 
 // ============================================
 // HALANG SEMUA UI (MENU, SEARCH, POPUP, BASEMAP,
@@ -639,8 +649,14 @@ function buatIkonBalai(warna) {
   });
 }
 
+// ============================================
+// BALAI DI LUAR SEMPADAN JOHOR (WARNA KHAS - KELABU CERAH)
+// ============================================
+const warnaBalaiLuarNegeri = '#B0B7BF';
+const namaBalaiLuarNegeri = ['BBP Kuala Rompin', 'BBP Jasin Bestari', 'BBP Gemas'];
+
 dataBalai.forEach((balai) => {
-  const warna = warnaZon[balai.zon];
+  const warna = namaBalaiLuarNegeri.includes(balai.nama) ? warnaBalaiLuarNegeri : warnaZon[balai.zon];
   const marker = L.marker([balai.lat, balai.lng], { icon: buatIkonBalai(warna) }).addTo(map);
   layerZon[balai.zon].push(marker);
 
