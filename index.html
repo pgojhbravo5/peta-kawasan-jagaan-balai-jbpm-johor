@@ -970,6 +970,75 @@
         border-color: var(--bomba-red);
       }
 
+      #location-btn.active {
+        background: #4285F4;
+        color: #ffffff;
+        border-color: #4285F4;
+      }
+
+      /* Jarum kompas dalam butang topbar - sentiasa tunjuk ke Utara sebenar */
+      .leaflet-control-topbar .topbar-btn #compass-needle {
+        display: inline-block;
+        color: #e53935;
+        font-size: 18px;
+        transition: transform 0.2s ease-out;
+        transform-origin: center 60%;
+      }
+
+      /* Penanda lokasi LIVE (macam Waze/Google Maps) - titik biru + anak panah arah + kesan nadi */
+      .live-location-wrap { position: relative; width: 42px; height: 42px; }
+
+      .live-location-pulse {
+        position: absolute;
+        top: 50%; left: 50%;
+        width: 42px; height: 42px;
+        margin: -21px 0 0 -21px;
+        background: rgba(66, 133, 244, 0.28);
+        border-radius: 50%;
+        animation: liveLocationPulse 2.2s ease-out infinite;
+      }
+
+      @keyframes liveLocationPulse {
+        0% { transform: scale(0.45); opacity: 0.85; }
+        100% { transform: scale(1.6); opacity: 0; }
+      }
+
+      .live-location-dot {
+        position: absolute;
+        top: 50%; left: 50%;
+        width: 16px; height: 16px;
+        margin: -8px 0 0 -8px;
+        background: #4285F4;
+        border: 3px solid #ffffff;
+        border-radius: 50%;
+        box-shadow: 0 1px 6px rgba(0,0,0,0.45);
+        z-index: 2;
+      }
+
+      /* Anak panah arah (heading) - putar mengelilingi pusat titik biru */
+      .live-location-arrow {
+        position: absolute;
+        top: 50%; left: 50%;
+        width: 14px; height: 16px;
+        margin-left: -7px;
+        margin-top: -16px;
+        transform-origin: 50% 100%;
+        transform: rotate(0deg);
+        transition: transform 0.2s ease-out;
+        z-index: 1;
+      }
+
+      .live-location-arrow::before {
+        content: '';
+        position: absolute;
+        bottom: 0; left: 0;
+        width: 0; height: 0;
+        border-left: 7px solid transparent;
+        border-right: 7px solid transparent;
+        border-bottom: 16px solid #4285F4;
+        filter: drop-shadow(0 1px 2px rgba(0,0,0,0.35));
+      }
+
       #basemap-panel {
         position: absolute;
         bottom: 54px;
@@ -1421,7 +1490,7 @@
             <div class="info-baris"><i class="fa-solid fa-pen-ruler"></i> Poligon Kawasan Balai(Asal) dibina oleh: Pesara Bomba En Sufian Bin Mohamed Lis</div>
             <div class="info-baris"><i class="fa-solid fa-code"></i> Dibangunkan dan dikemaskini semula oleh: PB Mohamad Aidil, PB Mohd Shafrie & PB Malik</div>
             <div class="info-baris"><i class="fa-solid fa-copyright"></i> 2026 PGO Johor</div>
-            <div class="info-baris"><i class="fa-solid fa-code-branch"></i> Versi 1.2 -31 Ogos 2026</div>
+            <div class="info-baris"><i class="fa-solid fa-code-branch"></i> Versi 1.2 - 31 Ogos 2026</div>
           </div>
         </div>
       </div>
