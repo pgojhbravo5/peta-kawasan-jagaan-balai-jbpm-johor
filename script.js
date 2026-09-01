@@ -267,9 +267,6 @@ const hybridLayer = L.layerGroup([esriSatellite, cartoLabels]);
 
 const basemapLayers = {
   jalan: L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '© OpenStreetMap | JBPM Johor', maxZoom: 19 }),
-  terang: L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', { attribution: '© OpenStreetMap © CARTO | JBPM Johor', subdomains: 'abcd', maxZoom: 19 }),
-  gelap: L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', { attribution: '© OpenStreetMap © CARTO | JBPM Johor', subdomains: 'abcd', maxZoom: 19 }),
-  satelit: L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', { attribution: 'Sumber: Esri, Maxar, Earthstar Geographics | JBPM Johor', maxZoom: 19 }),
   hybrid: hybridLayer,
 };
 
