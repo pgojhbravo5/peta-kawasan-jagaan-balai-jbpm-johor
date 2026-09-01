@@ -339,6 +339,10 @@ L.control.topBar = L.Control.extend({
       const mapDiv = document.getElementById('map');
       if (!document.fullscreenElement) { mapDiv.requestFullscreen(); } else { document.exitFullscreen(); }
     }, true);
+    buatBtn('<i id="compass-needle" class="fa-solid fa-caret-up"></i>', 'Kompas (Arah Utara)', function () {
+      if (typeof mintaKebenaranOrientasi === 'function') mintaKebenaranOrientasi();
+      if (liveTrackingActive && liveLocationMarker) { map.flyTo(liveLocationMarker.getLatLng(), map.getZoom()); }
+    }, true);
     buatBtn('−', 'Zoom Out', function () { map.zoomOut(); }, true);
     buatBtn('+', 'Zoom In', function () { map.zoomIn(); }, true);
     L.DomEvent.disableClickPropagation(container);
@@ -1823,51 +1827,157 @@ window.togglePoligonBalai = async function(checkbox) {
 };
 
 // ============================================
+// LOKASI LIVE (MACAM WAZE) - GPS BERGERAK REAL-TIME + KOMPAS
+// ============================================
+let watchIdLive = null;
+let liveTrackingActive = false;
+let liveLocationMarker = null;
+let liveAccuracyCircle = null;
+let currentHeading = null;
+let orientasiDipasang = false;
+
+function kemaskiniPutaranKompas(heading) {
+  const needle = document.getElementById('compass-needle');
+  if (needle) needle.style.transform = `rotate(${-heading}deg)`; // jarum sentiasa tunjuk Utara sebenar
+  const arrowEl = document.getElementById('live-location-arrow');
+  if (arrowEl) arrowEl.style.transform = `rotate(${heading}deg)`; // anak panah tunjuk arah menghadap
+}
+
+function pasangPendengarOrientasi() {
+  if (orientasiDipasang) return;
+  orientasiDipasang = true;
+
+  function kendaliOrientasi(e) {
+    let heading = null;
+    if (typeof e.webkitCompassHeading === 'number' && !isNaN(e.webkitCompassHeading)) {
+      heading = e.webkitCompassHeading; // iOS Safari - sudah ikut jam dari Utara
+    } else if (typeof e.alpha === 'number' && !isNaN(e.alpha)) {
+      heading = 360 - e.alpha; // Android
+    }
+    if (heading === null) return;
+    heading = (heading + 360) % 360;
+    currentHeading = heading;
+    kemaskiniPutaranKompas(heading);
+  }
+
+  if ('ondeviceorientationabsolute' in window) {
+    window.addEventListener('deviceorientationabsolute', kendaliOrientasi, true);
+  } else {
+    window.addEventListener('deviceorientation', kendaliOrientasi, true);
+  }
+}
+
+async function mintaKebenaranOrientasi() {
+  if (typeof DeviceOrientationEvent !== 'undefined' && typeof DeviceOrientationEvent.requestPermission === 'function') {
+    try {
+      const state = await DeviceOrientationEvent.requestPermission();
+      if (state === 'granted') pasangPendengarOrientasi();
+    } catch (e) {
+      console.warn('Kebenaran kompas ditolak/gagal:', e);
+    }
+  } else {
+    pasangPendengarOrientasi();
+  }
+}
+
+function iconLokasiLive() {
+  return L.divIcon({
+    className: '',
+    html: '<div class="live-location-wrap">'
+        +   '<div class="live-location-pulse"></div>'
+        +   '<div class="live-location-arrow" id="live-location-arrow"></div>'
+        +   '<div class="live-location-dot"></div>'
+        + '</div>',
+    iconSize: [42, 42],
+    iconAnchor: [21, 21],
+  });
+}
+
+function mulaLokasiLive(btn) {
+  if (!navigator.geolocation) {
+    alert('Peranti anda tidak menyokong GPS.');
+    return;
+  }
+  liveTrackingActive = true;
+  btn.classList.add('active');
+  btn.innerHTML = '<i class="fa-solid fa-location-crosshairs fa-spin"></i>';
+
+  mintaKebenaranOrientasi();
+
+  let pertamaKali = true;
+  watchIdLive = navigator.geolocation.watchPosition(
+    (pos) => {
+      const lat = pos.coords.latitude;
+      const lng = pos.coords.longitude;
+      const ketepatan = pos.coords.accuracy || 20;
+
+      if (typeof pos.coords.heading === 'number' && !isNaN(pos.coords.heading)) {
+        currentHeading = pos.coords.heading; // heading GPS (bila bergerak) lebih tepat dari kompas
+      }
+
+      if (!liveLocationMarker) {
+        liveLocationMarker = L.marker([lat, lng], { icon: iconLokasiLive(), zIndexOffset: 1000 }).addTo(map);
+      } else {
+        liveLocationMarker.setLatLng([lat, lng]);
+      }
+
+      if (!liveAccuracyCircle) {
+        liveAccuracyCircle = L.circle([lat, lng], { radius: ketepatan, color: '#4285F4', weight: 1, fillColor: '#4285F4', fillOpacity: 0.08 }).addTo(map);
+      } else {
+        liveAccuracyCircle.setLatLng([lat, lng]);
+        liveAccuracyCircle.setRadius(ketepatan);
+      }
+
+      if (currentHeading !== null) kemaskiniPutaranKompas(currentHeading);
+
+      if (pertamaKali) {
+        map.flyTo([lat, lng], 16);
+        pertamaKali = false;
+      } else {
+        map.panTo([lat, lng], { animate: true });
+      }
+
+      btn.innerHTML = '<i class="fa-solid fa-location-crosshairs"></i>';
+      lokasiTerakhir = { lat, lng, alamat: 'Lokasi Semasa (Live)' };
+    },
+    (err) => {
+      alert('Gagal mengesan lokasi: ' + err.message);
+      hentikanLokasiLive(btn);
+    },
+    { enableHighAccuracy: true, timeout: 15000, maximumAge: 2000 }
+  );
+}
+
+function hentikanLokasiLive(btn) {
+  liveTrackingActive = false;
+  if (watchIdLive !== null) { navigator.geolocation.clearWatch(watchIdLive); watchIdLive = null; }
+  if (liveLocationMarker) { map.removeLayer(liveLocationMarker); liveLocationMarker = null; }
+  if (liveAccuracyCircle) { map.removeLayer(liveAccuracyCircle); liveAccuracyCircle = null; }
+  btn.classList.remove('active');
+  btn.innerHTML = '<i class="fa-solid fa-location-crosshairs"></i>';
+}
+
+// ============================================
 // BUTANG "LOKASI SAYA" – TAMBAH SECARA DINAMIK (SAIZ SERAGAM DENGAN BASEMAP)
 // ============================================
 (function tambahButangLokasi() {
   const btn = document.createElement('button');
   btn.id = 'location-btn';
   btn.innerHTML = '<i class="fa-solid fa-location-crosshairs"></i>';
-  btn.title = 'Lokasi Saya';
-  btn.setAttribute('aria-label', 'Lokasi Saya');
-  
+  btn.title = 'Lokasi Saya (Live)';
+  btn.setAttribute('aria-label', 'Lokasi Saya Secara Live');
+
   // Saiz & kedudukan dikawal oleh CSS #location-btn (sama saiz dengan
   // #basemap-btn dan butang Muat Semula/Skrin Penuh, termasuk pada mobile)
   // supaya tiada lagi konflik dengan gaya inline lama.
 
-  // Fungsi klik
+  // Tekan sekali: mula jejak live (macam Waze). Tekan lagi: henti jejak.
   btn.addEventListener('click', function() {
-    if (!navigator.geolocation) {
-      alert('Peranti anda tidak menyokong GPS.');
-      return;
+    if (liveTrackingActive) {
+      hentikanLokasiLive(this);
+    } else {
+      mulaLokasiLive(this);
     }
-    this.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i>';
-    this.disabled = true;
-    navigator.geolocation.getCurrentPosition(
-      (pos) => {
-        const lat = pos.coords.latitude;
-        const lng = pos.coords.longitude;
-        map.flyTo([lat, lng], 15);
-        if (searchMarker) map.removeLayer(searchMarker);
-        searchMarker = L.marker([lat, lng], {
-          icon: L.icon({
-            iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png',
-            shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-shadow.png',
-            iconSize: [25, 41], iconAnchor: [12, 41], popupAnchor: [1, -34], shadowSize: [41, 41],
-          }),
-        }).addTo(map).bindPopup('<b><i class="fa-solid fa-location-dot"></i> Lokasi Anda</b>').openPopup();
-        lokasiTerakhir = { lat, lng, alamat: 'Lokasi Semasa' };
-        this.innerHTML = '<i class="fa-solid fa-location-crosshairs"></i>';
-        this.disabled = false;
-      },
-      (err) => {
-        alert('Gagal mengesan lokasi: ' + err.message);
-        this.innerHTML = '<i class="fa-solid fa-location-crosshairs"></i>';
-        this.disabled = false;
-      },
-      { enableHighAccuracy: true, timeout: 10000, maximumAge: 60000 }
-    );
   });
 
   // Tambah ke dalam map container
