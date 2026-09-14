@@ -29,7 +29,7 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">0</SimpleData>
 		<SimpleData name="angle">63.6125169042818</SimpleData>
-		<SimpleData name="KM">KM 0.0</SimpleData>
+		<SimpleData name="KM">KM 0.1</SimpleData>
 		<SimpleData name="Latitude">1.4684800000</SimpleData>
 		<SimpleData name="Longitude">103.7695300000</SimpleData>
 	</SchemaData></ExtendedData>
@@ -44,7 +44,7 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">100</SimpleData>
 		<SimpleData name="angle">72.3927535001284</SimpleData>
-		<SimpleData name="KM">KM 0.1</SimpleData>
+		<SimpleData name="KM">KM 0.2</SimpleData>
 		<SimpleData name="Latitude">1.4688809870</SimpleData>
 		<SimpleData name="Longitude">103.7703305843</SimpleData>
 	</SchemaData></ExtendedData>
@@ -59,7 +59,7 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">200</SimpleData>
 		<SimpleData name="angle">78.4144934278115</SimpleData>
-		<SimpleData name="KM">KM 0.2</SimpleData>
+		<SimpleData name="KM">KM 0.3</SimpleData>
 		<SimpleData name="Latitude">1.4690759160</SimpleData>
 		<SimpleData name="Longitude">103.7712069273</SimpleData>
 	</SchemaData></ExtendedData>
@@ -74,7 +74,7 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">300</SimpleData>
 		<SimpleData name="angle">80.3306520933938</SimpleData>
-		<SimpleData name="KM">KM 0.3</SimpleData>
+		<SimpleData name="KM">KM 0.4</SimpleData>
 		<SimpleData name="Latitude">1.4692355253</SimpleData>
 		<SimpleData name="Longitude">103.7720914909</SimpleData>
 	</SchemaData></ExtendedData>
@@ -89,7 +89,7 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">400</SimpleData>
 		<SimpleData name="angle">77.9180937791477</SimpleData>
-		<SimpleData name="KM">KM 0.4</SimpleData>
+		<SimpleData name="KM">KM 0.5</SimpleData>
 		<SimpleData name="Latitude">1.4694092859</SimpleData>
 		<SimpleData name="Longitude">103.7729733602</SimpleData>
 	</SchemaData></ExtendedData>
@@ -104,7 +104,7 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">500</SimpleData>
 		<SimpleData name="angle">71.7059472307956</SimpleData>
-		<SimpleData name="KM">KM 0.5</SimpleData>
+		<SimpleData name="KM">KM 0.6</SimpleData>
 		<SimpleData name="Latitude">1.4696036282</SimpleData>
 		<SimpleData name="Longitude">103.7738508846</SimpleData>
 	</SchemaData></ExtendedData>
@@ -119,7 +119,7 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">600</SimpleData>
 		<SimpleData name="angle">50.5540830729628</SimpleData>
-		<SimpleData name="KM">KM 0.6</SimpleData>
+		<SimpleData name="KM">KM 0.7</SimpleData>
 		<SimpleData name="Latitude">1.4700638467</SimpleData>
 		<SimpleData name="Longitude">103.7746176563</SimpleData>
 	</SchemaData></ExtendedData>
@@ -134,7 +134,7 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">700</SimpleData>
 		<SimpleData name="angle">51.5499028981051</SimpleData>
-		<SimpleData name="KM">KM 0.7</SimpleData>
+		<SimpleData name="KM">KM 0.8</SimpleData>
 		<SimpleData name="Latitude">1.4706353592</SimpleData>
 		<SimpleData name="Longitude">103.7753141991</SimpleData>
 	</SchemaData></ExtendedData>
@@ -149,7 +149,7 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">800</SimpleData>
 		<SimpleData name="angle">26.7430434117376</SimpleData>
-		<SimpleData name="KM">KM 0.8</SimpleData>
+		<SimpleData name="KM">KM 0.9</SimpleData>
 		<SimpleData name="Latitude">1.4711954005</SimpleData>
 		<SimpleData name="Longitude">103.7760177002</SimpleData>
 	</SchemaData></ExtendedData>
@@ -164,7 +164,7 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">900</SimpleData>
 		<SimpleData name="angle">50.4055976886449</SimpleData>
-		<SimpleData name="KM">KM 0.9</SimpleData>
+		<SimpleData name="KM">KM 1.0</SimpleData>
 		<SimpleData name="Latitude">1.4717654963</SimpleData>
 		<SimpleData name="Longitude">103.7767145955</SimpleData>
 	</SchemaData></ExtendedData>
@@ -179,7 +179,7 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">1000</SimpleData>
 		<SimpleData name="angle">50.7382924853271</SimpleData>
-		<SimpleData name="KM">KM 1.0</SimpleData>
+		<SimpleData name="KM">KM 1.1</SimpleData>
 		<SimpleData name="Latitude">1.4723261947</SimpleData>
 		<SimpleData name="Longitude">103.7774182364</SimpleData>
 	</SchemaData></ExtendedData>
@@ -194,7 +194,7 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">1100</SimpleData>
 		<SimpleData name="angle">53.584993609484</SimpleData>
-		<SimpleData name="KM">KM 1.1</SimpleData>
+		<SimpleData name="KM">KM 1.2</SimpleData>
 		<SimpleData name="Latitude">1.4728687323</SimpleData>
 		<SimpleData name="Longitude">103.7781372035</SimpleData>
 	</SchemaData></ExtendedData>
@@ -209,7 +209,7 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">1200</SimpleData>
 		<SimpleData name="angle">51.8417318636017</SimpleData>
-		<SimpleData name="KM">KM 1.2</SimpleData>
+		<SimpleData name="KM">KM 1.3</SimpleData>
 		<SimpleData name="Latitude">1.4734121917</SimpleData>
 		<SimpleData name="Longitude">103.7788554000</SimpleData>
 	</SchemaData></ExtendedData>
@@ -224,7 +224,7 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">1300</SimpleData>
 		<SimpleData name="angle">50.7382505068092</SimpleData>
-		<SimpleData name="KM">KM 1.3</SimpleData>
+		<SimpleData name="KM">KM 1.4</SimpleData>
 		<SimpleData name="Latitude">1.4739690568</SimpleData>
 		<SimpleData name="Longitude">103.7795631404</SimpleData>
 	</SchemaData></ExtendedData>
@@ -239,7 +239,7 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">1400</SimpleData>
 		<SimpleData name="angle">41.8465476740952</SimpleData>
-		<SimpleData name="KM">KM 1.4</SimpleData>
+		<SimpleData name="KM">KM 1.5</SimpleData>
 		<SimpleData name="Latitude">1.4745816441</SimpleData>
 		<SimpleData name="Longitude">103.7802214614</SimpleData>
 	</SchemaData></ExtendedData>
@@ -254,7 +254,7 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">1500</SimpleData>
 		<SimpleData name="angle">21.959167602952</SimpleData>
-		<SimpleData name="KM">KM 1.5</SimpleData>
+		<SimpleData name="KM">KM 1.6</SimpleData>
 		<SimpleData name="Latitude">1.4753536476</SimpleData>
 		<SimpleData name="Longitude">103.7806794590</SimpleData>
 	</SchemaData></ExtendedData>
@@ -269,7 +269,7 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">1600</SimpleData>
 		<SimpleData name="angle">9.08519955291678</SimpleData>
-		<SimpleData name="KM">KM 1.6</SimpleData>
+		<SimpleData name="KM">KM 1.7</SimpleData>
 		<SimpleData name="Latitude">1.4762416467</SimpleData>
 		<SimpleData name="Longitude">103.7808445941</SimpleData>
 	</SchemaData></ExtendedData>
@@ -284,7 +284,7 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">1700</SimpleData>
 		<SimpleData name="angle">9.08519955291678</SimpleData>
-		<SimpleData name="KM">KM 1.7</SimpleData>
+		<SimpleData name="KM">KM 1.8</SimpleData>
 		<SimpleData name="Latitude">1.4771348967</SimpleData>
 		<SimpleData name="Longitude">103.7809860253</SimpleData>
 	</SchemaData></ExtendedData>
@@ -299,7 +299,7 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">1800</SimpleData>
 		<SimpleData name="angle">21.959188122573</SimpleData>
-		<SimpleData name="KM">KM 1.8</SimpleData>
+		<SimpleData name="KM">KM 1.9</SimpleData>
 		<SimpleData name="Latitude">1.4780229701</SimpleData>
 		<SimpleData name="Longitude">103.7811551880</SimpleData>
 	</SchemaData></ExtendedData>
@@ -314,7 +314,7 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">1900</SimpleData>
 		<SimpleData name="angle">26.7429852202608</SimpleData>
-		<SimpleData name="KM">KM 1.9</SimpleData>
+		<SimpleData name="KM">KM 2.0</SimpleData>
 		<SimpleData name="Latitude">1.4788558269</SimpleData>
 		<SimpleData name="Longitude">103.7815029135</SimpleData>
 	</SchemaData></ExtendedData>
@@ -329,7 +329,7 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">2000</SimpleData>
 		<SimpleData name="angle">26.0195196663462</SimpleData>
-		<SimpleData name="KM">KM 2.0</SimpleData>
+		<SimpleData name="KM">KM 2.1</SimpleData>
 		<SimpleData name="Latitude">1.4796742190</SimpleData>
 		<SimpleData name="Longitude">103.7818856373</SimpleData>
 	</SchemaData></ExtendedData>
@@ -344,7 +344,7 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">2100</SimpleData>
 		<SimpleData name="angle">26.7429825241556</SimpleData>
-		<SimpleData name="KM">KM 2.1</SimpleData>
+		<SimpleData name="KM">KM 2.2</SimpleData>
 		<SimpleData name="Latitude">1.4804835197</SimpleData>
 		<SimpleData name="Longitude">103.7822867599</SimpleData>
 	</SchemaData></ExtendedData>
@@ -359,7 +359,7 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">2200</SimpleData>
 		<SimpleData name="angle">26.4085866939661</SimpleData>
-		<SimpleData name="KM">KM 2.2</SimpleData>
+		<SimpleData name="KM">KM 2.3</SimpleData>
 		<SimpleData name="Latitude">1.4812954381</SimpleData>
 		<SimpleData name="Longitude">103.7826807956</SimpleData>
 	</SchemaData></ExtendedData>
@@ -374,7 +374,7 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">2300</SimpleData>
 		<SimpleData name="angle">26.7429790790618</SimpleData>
-		<SimpleData name="KM">KM 2.3</SimpleData>
+		<SimpleData name="KM">KM 2.4</SimpleData>
 		<SimpleData name="Latitude">1.4821086151</SimpleData>
 		<SimpleData name="Longitude">103.7830743076</SimpleData>
 	</SchemaData></ExtendedData>
@@ -389,7 +389,7 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">2400</SimpleData>
 		<SimpleData name="angle">25.4649396842981</SimpleData>
-		<SimpleData name="KM">KM 2.4</SimpleData>
+		<SimpleData name="KM">KM 2.5</SimpleData>
 		<SimpleData name="Latitude">1.4829208020</SimpleData>
 		<SimpleData name="Longitude">103.7834698295</SimpleData>
 	</SchemaData></ExtendedData>
@@ -404,7 +404,7 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">2500</SimpleData>
 		<SimpleData name="angle">25.4649396842981</SimpleData>
-		<SimpleData name="KM">KM 2.5</SimpleData>
+		<SimpleData name="KM">KM 2.6</SimpleData>
 		<SimpleData name="Latitude">1.4837376604</SimpleData>
 		<SimpleData name="Longitude">103.7838558175</SimpleData>
 	</SchemaData></ExtendedData>
@@ -419,7 +419,7 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">2600</SimpleData>
 		<SimpleData name="angle">25.2971961777614</SimpleData>
-		<SimpleData name="KM">KM 2.6</SimpleData>
+		<SimpleData name="KM">KM 2.7</SimpleData>
 		<SimpleData name="Latitude">1.4845536231</SimpleData>
 		<SimpleData name="Longitude">103.7842408025</SimpleData>
 	</SchemaData></ExtendedData>
@@ -434,7 +434,7 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">2700</SimpleData>
 		<SimpleData name="angle">25.2971961777614</SimpleData>
-		<SimpleData name="KM">KM 2.7</SimpleData>
+		<SimpleData name="KM">KM 2.8</SimpleData>
 		<SimpleData name="Latitude">1.4853716155</SimpleData>
 		<SimpleData name="Longitude">103.7846244128</SimpleData>
 	</SchemaData></ExtendedData>
@@ -449,7 +449,7 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">2800</SimpleData>
 		<SimpleData name="angle">30.9277245821494</SimpleData>
-		<SimpleData name="KM">KM 2.8</SimpleData>
+		<SimpleData name="KM">KM 2.9</SimpleData>
 		<SimpleData name="Latitude">1.4861779652</SimpleData>
 		<SimpleData name="Longitude">103.7850306820</SimpleData>
 	</SchemaData></ExtendedData>
@@ -464,7 +464,7 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">2900</SimpleData>
 		<SimpleData name="angle">31.6987715522316</SimpleData>
-		<SimpleData name="KM">KM 2.9</SimpleData>
+		<SimpleData name="KM">KM 3.0</SimpleData>
 		<SimpleData name="Latitude">1.4869500091</SimpleData>
 		<SimpleData name="Longitude">103.7854974249</SimpleData>
 	</SchemaData></ExtendedData>
@@ -479,7 +479,7 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">3000</SimpleData>
 		<SimpleData name="angle">31.6987715522316</SimpleData>
-		<SimpleData name="KM">KM 3.0</SimpleData>
+		<SimpleData name="KM">KM 3.1</SimpleData>
 		<SimpleData name="Latitude">1.4877198570</SimpleData>
 		<SimpleData name="Longitude">103.7859692672</SimpleData>
 	</SchemaData></ExtendedData>
@@ -494,7 +494,7 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">3100</SimpleData>
 		<SimpleData name="angle">8.61604533748276</SimpleData>
-		<SimpleData name="KM">KM 3.1</SimpleData>
+		<SimpleData name="KM">KM 3.2</SimpleData>
 		<SimpleData name="Latitude">1.4885658711</SimpleData>
 		<SimpleData name="Longitude">103.7862618807</SimpleData>
 	</SchemaData></ExtendedData>
@@ -509,7 +509,7 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">3200</SimpleData>
 		<SimpleData name="angle">346.956686441056</SimpleData>
-		<SimpleData name="KM">KM 3.2</SimpleData>
+		<SimpleData name="KM">KM 3.3</SimpleData>
 		<SimpleData name="Latitude">1.4894674686</SimpleData>
 		<SimpleData name="Longitude">103.7862490457</SimpleData>
 	</SchemaData></ExtendedData>
@@ -524,7 +524,7 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">3300</SimpleData>
 		<SimpleData name="angle">331.267359916272</SimpleData>
-		<SimpleData name="KM">KM 3.3</SimpleData>
+		<SimpleData name="KM">KM 3.4</SimpleData>
 		<SimpleData name="Latitude">1.4902930142</SimpleData>
 		<SimpleData name="Longitude">103.7858947197</SimpleData>
 	</SchemaData></ExtendedData>
@@ -539,7 +539,7 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">3400</SimpleData>
 		<SimpleData name="angle">331.267359916272</SimpleData>
-		<SimpleData name="KM">KM 3.4</SimpleData>
+		<SimpleData name="KM">KM 3.5</SimpleData>
 		<SimpleData name="Latitude">1.4910859236</SimpleData>
 		<SimpleData name="Longitude">103.7854622238</SimpleData>
 	</SchemaData></ExtendedData>
@@ -554,7 +554,7 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">3500</SimpleData>
 		<SimpleData name="angle">331.485617167657</SimpleData>
-		<SimpleData name="KM">KM 3.5</SimpleData>
+		<SimpleData name="KM">KM 3.6</SimpleData>
 		<SimpleData name="Latitude">1.4918791012</SimpleData>
 		<SimpleData name="Longitude">103.7850302156</SimpleData>
 	</SchemaData></ExtendedData>
@@ -569,7 +569,7 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">3600</SimpleData>
 		<SimpleData name="angle">331.485617167657</SimpleData>
-		<SimpleData name="KM">KM 3.6</SimpleData>
+		<SimpleData name="KM">KM 3.7</SimpleData>
 		<SimpleData name="Latitude">1.4926736623</SimpleData>
 		<SimpleData name="Longitude">103.7846007232</SimpleData>
 	</SchemaData></ExtendedData>
@@ -584,7 +584,7 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">3700</SimpleData>
 		<SimpleData name="angle">334.776239340343</SimpleData>
-		<SimpleData name="KM">KM 3.7</SimpleData>
+		<SimpleData name="KM">KM 3.8</SimpleData>
 		<SimpleData name="Latitude">1.4934862125</SimpleData>
 		<SimpleData name="Longitude">103.7842064629</SimpleData>
 	</SchemaData></ExtendedData>
@@ -599,7 +599,7 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">3800</SimpleData>
 		<SimpleData name="angle">0.0317202497801728</SimpleData>
-		<SimpleData name="KM">KM 3.8</SimpleData>
+		<SimpleData name="KM">KM 3.9</SimpleData>
 		<SimpleData name="Latitude">1.4942864718</SimpleData>
 		<SimpleData name="Longitude">103.7837900000</SimpleData>
 	</SchemaData></ExtendedData>
@@ -614,7 +614,7 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">3900</SimpleData>
 		<SimpleData name="angle">333.022408621382</SimpleData>
-		<SimpleData name="KM">KM 3.9</SimpleData>
+		<SimpleData name="KM">KM 4.0</SimpleData>
 		<SimpleData name="Latitude">1.4950884994</SimpleData>
 		<SimpleData name="Longitude">103.7833753055</SimpleData>
 	</SchemaData></ExtendedData>
@@ -629,7 +629,7 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">4000</SimpleData>
 		<SimpleData name="angle">333.00616284843</SimpleData>
-		<SimpleData name="KM">KM 4.0</SimpleData>
+		<SimpleData name="KM">KM 4.1</SimpleData>
 		<SimpleData name="Latitude">1.4958924183</SimpleData>
 		<SimpleData name="Longitude">103.7829635688</SimpleData>
 	</SchemaData></ExtendedData>
@@ -644,7 +644,7 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">4100</SimpleData>
 		<SimpleData name="angle">332.532696117144</SimpleData>
-		<SimpleData name="KM">KM 4.1</SimpleData>
+		<SimpleData name="KM">KM 4.2</SimpleData>
 		<SimpleData name="Latitude">1.4966977079</SimpleData>
 		<SimpleData name="Longitude">103.7825542890</SimpleData>
 	</SchemaData></ExtendedData>
@@ -659,7 +659,7 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">4200</SimpleData>
 		<SimpleData name="angle">332.235552282388</SimpleData>
-		<SimpleData name="KM">KM 4.2</SimpleData>
+		<SimpleData name="KM">KM 4.3</SimpleData>
 		<SimpleData name="Latitude">1.4974973489</SimpleData>
 		<SimpleData name="Longitude">103.7821342458</SimpleData>
 	</SchemaData></ExtendedData>
@@ -674,7 +674,7 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">4300</SimpleData>
 		<SimpleData name="angle">326.632616378513</SimpleData>
-		<SimpleData name="KM">KM 4.3</SimpleData>
+		<SimpleData name="KM">KM 4.4</SimpleData>
 		<SimpleData name="Latitude">1.4982776002</SimpleData>
 		<SimpleData name="Longitude">103.7816829517</SimpleData>
 	</SchemaData></ExtendedData>
@@ -689,7 +689,7 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">4400</SimpleData>
 		<SimpleData name="angle">321.000098870861</SimpleData>
-		<SimpleData name="KM">KM 4.4</SimpleData>
+		<SimpleData name="KM">KM 4.5</SimpleData>
 		<SimpleData name="Latitude">1.4990032351</SimpleData>
 		<SimpleData name="Longitude">103.7811471162</SimpleData>
 	</SchemaData></ExtendedData>
@@ -704,7 +704,7 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">4500</SimpleData>
 		<SimpleData name="angle">316.89527278672</SimpleData>
-		<SimpleData name="KM">KM 4.5</SimpleData>
+		<SimpleData name="KM">KM 4.6</SimpleData>
 		<SimpleData name="Latitude">1.4996844750</SimpleData>
 		<SimpleData name="Longitude">103.7805568681</SimpleData>
 	</SchemaData></ExtendedData>
@@ -719,7 +719,7 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">4600</SimpleData>
 		<SimpleData name="angle">314.064745042809</SimpleData>
-		<SimpleData name="KM">KM 4.6</SimpleData>
+		<SimpleData name="KM">KM 4.7</SimpleData>
 		<SimpleData name="Latitude">1.5003248298</SimpleData>
 		<SimpleData name="Longitude">103.7799222583</SimpleData>
 	</SchemaData></ExtendedData>
@@ -734,7 +734,7 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">4700</SimpleData>
 		<SimpleData name="angle">312.496895317748</SimpleData>
-		<SimpleData name="KM">KM 4.7</SimpleData>
+		<SimpleData name="KM">KM 4.8</SimpleData>
 		<SimpleData name="Latitude">1.5009428224</SimpleData>
 		<SimpleData name="Longitude">103.7792660788</SimpleData>
 	</SchemaData></ExtendedData>
@@ -749,7 +749,7 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">4800</SimpleData>
 		<SimpleData name="angle">312.496895317748</SimpleData>
-		<SimpleData name="KM">KM 4.8</SimpleData>
+		<SimpleData name="KM">KM 4.9</SimpleData>
 		<SimpleData name="Latitude">1.5015534976</SimpleData>
 		<SimpleData name="Longitude">103.7786030598</SimpleData>
 	</SchemaData></ExtendedData>
@@ -764,7 +764,7 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">4900</SimpleData>
 		<SimpleData name="angle">313.022030988176</SimpleData>
-		<SimpleData name="KM">KM 4.9</SimpleData>
+		<SimpleData name="KM">KM 5.0</SimpleData>
 		<SimpleData name="Latitude">1.5021694992</SimpleData>
 		<SimpleData name="Longitude">103.7779449296</SimpleData>
 	</SchemaData></ExtendedData>
@@ -779,7 +779,7 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">5000</SimpleData>
 		<SimpleData name="angle">313.576821870229</SimpleData>
-		<SimpleData name="KM">KM 5.0</SimpleData>
+		<SimpleData name="KM">KM 5.1</SimpleData>
 		<SimpleData name="Latitude">1.5027910698</SimpleData>
 		<SimpleData name="Longitude">103.7772920635</SimpleData>
 	</SchemaData></ExtendedData>
@@ -794,7 +794,7 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">5100</SimpleData>
 		<SimpleData name="angle">312.875210120293</SimpleData>
-		<SimpleData name="KM">KM 5.1</SimpleData>
+		<SimpleData name="KM">KM 5.2</SimpleData>
 		<SimpleData name="Latitude">1.5034127308</SimpleData>
 		<SimpleData name="Longitude">103.7766392170</SimpleData>
 	</SchemaData></ExtendedData>
@@ -809,7 +809,7 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">5200</SimpleData>
 		<SimpleData name="angle">313.381180909299</SimpleData>
-		<SimpleData name="KM">KM 5.2</SimpleData>
+		<SimpleData name="KM">KM 5.3</SimpleData>
 		<SimpleData name="Latitude">1.5040365122</SimpleData>
 		<SimpleData name="Longitude">103.7759884082</SimpleData>
 	</SchemaData></ExtendedData>
@@ -824,7 +824,7 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">5300</SimpleData>
 		<SimpleData name="angle">312.403413435443</SimpleData>
-		<SimpleData name="KM">KM 5.3</SimpleData>
+		<SimpleData name="KM">KM 5.4</SimpleData>
 		<SimpleData name="Latitude">1.5046512614</SimpleData>
 		<SimpleData name="Longitude">103.7753291618</SimpleData>
 	</SchemaData></ExtendedData>
@@ -839,7 +839,7 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">5400</SimpleData>
 		<SimpleData name="angle">313.452857140198</SimpleData>
-		<SimpleData name="KM">KM 5.4</SimpleData>
+		<SimpleData name="KM">KM 5.5</SimpleData>
 		<SimpleData name="Latitude">1.5052643127</SimpleData>
 		<SimpleData name="Longitude">103.7746684717</SimpleData>
 	</SchemaData></ExtendedData>
@@ -854,7 +854,7 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">5500</SimpleData>
 		<SimpleData name="angle">318.030720421051</SimpleData>
-		<SimpleData name="KM">KM 5.5</SimpleData>
+		<SimpleData name="KM">KM 5.6</SimpleData>
 		<SimpleData name="Latitude">1.5059068922</SimpleData>
 		<SimpleData name="Longitude">103.7740369912</SimpleData>
 	</SchemaData></ExtendedData>
@@ -869,7 +869,7 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">5600</SimpleData>
 		<SimpleData name="angle">325.48171098081</SimpleData>
-		<SimpleData name="KM">KM 5.6</SimpleData>
+		<SimpleData name="KM">KM 5.7</SimpleData>
 		<SimpleData name="Latitude">1.5066240871</SimpleData>
 		<SimpleData name="Longitude">103.7734908878</SimpleData>
 	</SchemaData></ExtendedData>
@@ -884,7 +884,7 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">5700</SimpleData>
 		<SimpleData name="angle">327.953456235437</SimpleData>
-		<SimpleData name="KM">KM 5.7</SimpleData>
+		<SimpleData name="KM">KM 5.8</SimpleData>
 		<SimpleData name="Latitude">1.5073762611</SimpleData>
 		<SimpleData name="Longitude">103.7729962760</SimpleData>
 	</SchemaData></ExtendedData>
@@ -899,7 +899,7 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">5800</SimpleData>
 		<SimpleData name="angle">327.953456235437</SimpleData>
-		<SimpleData name="KM">KM 5.8</SimpleData>
+		<SimpleData name="KM">KM 5.9</SimpleData>
 		<SimpleData name="Latitude">1.5081426741</SimpleData>
 		<SimpleData name="Longitude">103.7725189487</SimpleData>
 	</SchemaData></ExtendedData>
@@ -914,7 +914,7 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">5900</SimpleData>
 		<SimpleData name="angle">327.519806196449</SimpleData>
-		<SimpleData name="KM">KM 5.9</SimpleData>
+		<SimpleData name="KM">KM 6.0</SimpleData>
 		<SimpleData name="Latitude">1.5089068003</SimpleData>
 		<SimpleData name="Longitude">103.7720380265</SimpleData>
 	</SchemaData></ExtendedData>
@@ -929,7 +929,7 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">6000</SimpleData>
 		<SimpleData name="angle">325.876961601751</SimpleData>
-		<SimpleData name="KM">KM 6.0</SimpleData>
+		<SimpleData name="KM">KM 6.1</SimpleData>
 		<SimpleData name="Latitude">1.5096609375</SimpleData>
 		<SimpleData name="Longitude">103.7715420647</SimpleData>
 	</SchemaData></ExtendedData>
@@ -944,7 +944,7 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">6100</SimpleData>
 		<SimpleData name="angle">326.173806518893</SimpleData>
-		<SimpleData name="KM">KM 6.1</SimpleData>
+		<SimpleData name="KM">KM 6.2</SimpleData>
 		<SimpleData name="Latitude">1.5104108039</SimpleData>
 		<SimpleData name="Longitude">103.7710394640</SimpleData>
 	</SchemaData></ExtendedData>
@@ -959,7 +959,7 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">6200</SimpleData>
 		<SimpleData name="angle">319.538347191378</SimpleData>
-		<SimpleData name="KM">KM 6.2</SimpleData>
+		<SimpleData name="KM">KM 6.3</SimpleData>
 		<SimpleData name="Latitude">1.5111146458</SimpleData>
 		<SimpleData name="Longitude">103.7704754522</SimpleData>
 	</SchemaData></ExtendedData>
@@ -974,7 +974,7 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">6300</SimpleData>
 		<SimpleData name="angle">317.577226828652</SimpleData>
-		<SimpleData name="KM">KM 6.3</SimpleData>
+		<SimpleData name="KM">KM 6.4</SimpleData>
 		<SimpleData name="Latitude">1.5117900844</SimpleData>
 		<SimpleData name="Longitude">103.7698799233</SimpleData>
 	</SchemaData></ExtendedData>
@@ -989,7 +989,7 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">6400</SimpleData>
 		<SimpleData name="angle">318.011580501805</SimpleData>
-		<SimpleData name="KM">KM 6.4</SimpleData>
+		<SimpleData name="KM">KM 6.5</SimpleData>
 		<SimpleData name="Latitude">1.5124612903</SimpleData>
 		<SimpleData name="Longitude">103.7692774496</SimpleData>
 	</SchemaData></ExtendedData>
@@ -1004,7 +1004,7 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">6500</SimpleData>
 		<SimpleData name="angle">320.564308435898</SimpleData>
-		<SimpleData name="KM">KM 6.5</SimpleData>
+		<SimpleData name="KM">KM 6.6</SimpleData>
 		<SimpleData name="Latitude">1.5131284845</SimpleData>
 		<SimpleData name="Longitude">103.7686712400</SimpleData>
 	</SchemaData></ExtendedData>
@@ -1019,7 +1019,7 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">6600</SimpleData>
 		<SimpleData name="angle">321.194775569607</SimpleData>
-		<SimpleData name="KM">KM 6.6</SimpleData>
+		<SimpleData name="KM">KM 6.7</SimpleData>
 		<SimpleData name="Latitude">1.5138278284</SimpleData>
 		<SimpleData name="Longitude">103.7681017374</SimpleData>
 	</SchemaData></ExtendedData>
@@ -1034,7 +1034,7 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">6700</SimpleData>
 		<SimpleData name="angle">321.747833439771</SimpleData>
-		<SimpleData name="KM">KM 6.7</SimpleData>
+		<SimpleData name="KM">KM 6.8</SimpleData>
 		<SimpleData name="Latitude">1.5145350990</SimpleData>
 		<SimpleData name="Longitude">103.7675414910</SimpleData>
 	</SchemaData></ExtendedData>
@@ -1049,7 +1049,7 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">6800</SimpleData>
 		<SimpleData name="angle">328.907788384783</SimpleData>
-		<SimpleData name="KM">KM 6.8</SimpleData>
+		<SimpleData name="KM">KM 6.9</SimpleData>
 		<SimpleData name="Latitude">1.5152799262</SimpleData>
 		<SimpleData name="Longitude">103.7670340443</SimpleData>
 	</SchemaData></ExtendedData>
@@ -1064,7 +1064,7 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">6900</SimpleData>
 		<SimpleData name="angle">335.934575680959</SimpleData>
-		<SimpleData name="KM">KM 6.9</SimpleData>
+		<SimpleData name="KM">KM 7.0</SimpleData>
 		<SimpleData name="Latitude">1.5160669564</SimpleData>
 		<SimpleData name="Longitude">103.7665924638</SimpleData>
 	</SchemaData></ExtendedData>
@@ -1079,7 +1079,7 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">7000</SimpleData>
 		<SimpleData name="angle">337.283108568273</SimpleData>
-		<SimpleData name="KM">KM 7.0</SimpleData>
+		<SimpleData name="KM">KM 7.1</SimpleData>
 		<SimpleData name="Latitude">1.5168913036</SimpleData>
 		<SimpleData name="Longitude">103.7662227902</SimpleData>
 	</SchemaData></ExtendedData>
@@ -1094,7 +1094,7 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">7100</SimpleData>
 		<SimpleData name="angle">336.565805270988</SimpleData>
-		<SimpleData name="KM">KM 7.1</SimpleData>
+		<SimpleData name="KM">KM 7.2</SimpleData>
 		<SimpleData name="Latitude">1.5177260563</SimpleData>
 		<SimpleData name="Longitude">103.7658767993</SimpleData>
 	</SchemaData></ExtendedData>
@@ -1109,7 +1109,7 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">7200</SimpleData>
 		<SimpleData name="angle">334.777528727386</SimpleData>
-		<SimpleData name="KM">KM 7.2</SimpleData>
+		<SimpleData name="KM">KM 7.3</SimpleData>
 		<SimpleData name="Latitude">1.5185482390</SimpleData>
 		<SimpleData name="Longitude">103.7655023880</SimpleData>
 	</SchemaData></ExtendedData>
@@ -1124,7 +1124,7 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">7300</SimpleData>
 		<SimpleData name="angle">337.945518465471</SimpleData>
-		<SimpleData name="KM">KM 7.3</SimpleData>
+		<SimpleData name="KM">KM 7.4</SimpleData>
 		<SimpleData name="Latitude">1.5193815161</SimpleData>
 		<SimpleData name="Longitude">103.7651530984</SimpleData>
 	</SchemaData></ExtendedData>
@@ -1139,7 +1139,7 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">7400</SimpleData>
 		<SimpleData name="angle">337.945518465471</SimpleData>
-		<SimpleData name="KM">KM 7.4</SimpleData>
+		<SimpleData name="KM">KM 7.5</SimpleData>
 		<SimpleData name="Latitude">1.5202196495</SimpleData>
 		<SimpleData name="Longitude">103.7648151414</SimpleData>
 	</SchemaData></ExtendedData>
@@ -1154,7 +1154,7 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">7500</SimpleData>
 		<SimpleData name="angle">332.330286662832</SimpleData>
-		<SimpleData name="KM">KM 7.5</SimpleData>
+		<SimpleData name="KM">KM 7.6</SimpleData>
 		<SimpleData name="Latitude">1.5210504622</SimpleData>
 		<SimpleData name="Longitude">103.7644619328</SimpleData>
 	</SchemaData></ExtendedData>
@@ -1169,7 +1169,7 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">7600</SimpleData>
 		<SimpleData name="angle">326.174388981443</SimpleData>
-		<SimpleData name="KM">KM 7.6</SimpleData>
+		<SimpleData name="KM">KM 7.7</SimpleData>
 		<SimpleData name="Latitude">1.5218413008</SimpleData>
 		<SimpleData name="Longitude">103.7640291328</SimpleData>
 	</SchemaData></ExtendedData>
@@ -1184,7 +1184,7 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">7700</SimpleData>
 		<SimpleData name="angle">316.896515958374</SimpleData>
-		<SimpleData name="KM">KM 7.7</SimpleData>
+		<SimpleData name="KM">KM 7.8</SimpleData>
 		<SimpleData name="Latitude">1.5225461554</SimpleData>
 		<SimpleData name="Longitude">103.7634680622</SimpleData>
 	</SchemaData></ExtendedData>
@@ -1199,7 +1199,7 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">7800</SimpleData>
 		<SimpleData name="angle">314.850720353984</SimpleData>
-		<SimpleData name="KM">KM 7.8</SimpleData>
+		<SimpleData name="KM">KM 7.9</SimpleData>
 		<SimpleData name="Latitude">1.5231865638</SimpleData>
 		<SimpleData name="Longitude">103.7628334362</SimpleData>
 	</SchemaData></ExtendedData>
@@ -1214,7 +1214,7 @@
 		<SimpleData name="visibility">-1</SimpleData>
 		<SimpleData name="distance">7900</SimpleData>
 		<SimpleData name="angle">305.278087623883</SimpleData>
-		<SimpleData name="KM">KM 7.9</SimpleData>
+		<SimpleData name="KM">KM 8.0</SimpleData>
 		<SimpleData name="Latitude">1.5237270340</SimpleData>
 		<SimpleData name="Longitude">103.7621163584</SimpleData>
 	</SchemaData></ExtendedData>
