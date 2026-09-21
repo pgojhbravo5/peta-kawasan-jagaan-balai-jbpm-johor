@@ -94,7 +94,7 @@ const dataKetuaBalaiTel = {
   'BENUT': { ketua: 'PPgB Mohamad Aznil Ikhwan bin Ibrahim', telBalai: ['07-6905839', '07-6905840'], telBimbit: null },
   'KOTA TINGGI': { ketua: 'PKPgB Mohd Khairul Sufian bin Dahari', telBalai: ['07-8831444'], telBimbit: '019-2317865' },
   'SUNGAI RENGIT': { ketua: 'PKPgB Baharuddin bin Idris', telBalai: ['07-8246770'], telBimbit: '019-6517865' },
-  'PENAWAR': { ketua: 'PKPgB Soleh bin Nasir', telBalai: ['07-8223692'], telBimbit: '019-7177842' },
+  'PENAWAR': { ketua: 'PBT II Sharol bin Suboh(Pemangku)', telBalai: ['07-8223692'], telBimbit: '019-6511778' },
   'MERSING': { ketua: 'PKPgB Mohd Alias bin Hussin', telBalai: ['07-7994444'], telBimbit: '019-7277842' },
   'ENDAU': { ketua: 'PBK I Asrul bin Ahmad (Pemangku K.B.)', telBalai: ['07-7945444'], telBimbit: '019-3197865' },
   'SEBANA COVE': { ketua: 'PPgB Umar Hafiz bin Roslee Amir', telBalai: ['07-8861641'], telBimbit: '019-3547865' },
