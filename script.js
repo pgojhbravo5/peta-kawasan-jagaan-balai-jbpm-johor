@@ -498,6 +498,19 @@ function kiraJarak(lat1, lon1, lat2, lon2) {
 }
 
 // ============================================
+// CARI PBS TERDEKAT (JARAK LURUS - HAVERSINE)
+// ============================================
+function cariPBSTerdekat(lat, lng, bilangan = 2) {
+  if (!dataPBS || dataPBS.length === 0) return [];
+  const semua = dataPBS.map((pbs) => ({
+    ...pbs,
+    jarak: kiraJarak(lat, lng, pbs.lat, pbs.lng),
+  }));
+  semua.sort((a, b) => a.jarak - b.jarak);
+  return semua.slice(0, bilangan);
+}
+
+// ============================================
 // FUNGSI TITIK-DALAM-POLIGON
 // ============================================
 function titikDalamPoligon(lat, lng, poligon) {
@@ -714,6 +727,24 @@ async function bukaPopupBalai(lat, lng, alamat) {
       <div class="popup-balai-jarak">${b.jarak.toFixed(1)} km</div>
     </div>`;
   });
+
+  // 👇 BARU: Senarai PBS (Bomba Sukarela) terdekat — sekurang-kurangnya 2
+  const pbsTerdekat = cariPBSTerdekat(lat, lng, 2);
+  if (pbsTerdekat.length > 0) {
+    html += `<div class="popup-pbs-section">
+      <div class="popup-pbs-title"><i class="fa-solid fa-people-group"></i> Bomba Sukarela Terdekat</div>`;
+    pbsTerdekat.forEach((p, i) => {
+      html += `<div class="popup-pbs-item" onclick="map.flyTo([${p.lat}, ${p.lng}], 15); tutupPopupBalai();">
+        <div>
+          <div class="popup-pbs-nama">${i + 1}. ${p.nama}</div>
+          <div class="popup-balai-info"><i class="fa-solid fa-people-group"></i> ${namaZon[p.zon]} | PBS</div>
+        </div>
+        <div class="popup-pbs-jarak">${p.jarak.toFixed(1)} km</div>
+      </div>`;
+    });
+    html += `</div>`;
+  }
+  // 👆 TAMAT BARU
 
   content.innerHTML = html;
 }

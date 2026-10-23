@@ -776,6 +776,60 @@
       }
 
       /* ============================================
+         SEKSYEN PBS DALAM POPUP BALAI TERDEKAT
+         ============================================ */
+      .popup-pbs-section {
+        margin-top: 16px;
+        padding-top: 14px;
+        border-top: 2px dashed var(--border-color);
+      }
+
+      .popup-pbs-title {
+        font-weight: 700;
+        font-size: 12.5px;
+        color: #1A5276;
+        margin-bottom: 8px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        text-transform: uppercase;
+        letter-spacing: 0.4px;
+      }
+
+      .popup-pbs-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 8px;
+        border-bottom: 1px solid #f0f0f0;
+        cursor: pointer;
+        transition: var(--transition-fast);
+      }
+
+      .popup-pbs-item:hover {
+        background: #eaf2f8;
+        padding-left: 12px;
+      }
+
+      .popup-pbs-item:last-child {
+        border-bottom: none;
+      }
+
+      .popup-pbs-nama {
+        font-weight: 700;
+        font-size: 13px;
+        color: #1A5276;
+      }
+
+      .popup-pbs-jarak {
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--text-primary);
+        flex-shrink: 0;
+        margin-left: 12px;
+      }
+      
+      /* ============================================
          TIMBUNAN KAD KAWASAN JAGAAN (SEMUA LEBUHRAYA)
       ============================================ */
       #info-panel-stack {
@@ -1546,7 +1600,7 @@
             <input type="checkbox" onchange="togglePoligonBalai(this)" />
             Kawasan Jagaan Balai
           </label>
-          
+
           <label class="menu-item-checkbox">
             <input type="checkbox" onchange="toggleKMMarker(this)" />
             Lebuhraya PLUS
