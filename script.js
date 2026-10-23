@@ -49,6 +49,46 @@ const dataBalai = [
 ];
 
 // ============================================
+// DATA PBS (PASUKAN BOMBA SUKARELA) - 30 LOKASI
+// ============================================
+const dataPBS = [
+  // ZON 1 - JOHOR BAHRU
+  { nama: 'PBS Ulu Tiram', zon: 1, lat: 1.599899, lng: 103.815419 },
+  { nama: 'PBS Felda Ulu Tebrau', zon: 1, lat: 1.631196, lng: 103.755129 },
+  { nama: 'PBS Kelapa Sawit Kulai', zon: 1, lat: 1.667473, lng: 103.531193 },
+  { nama: 'PBS Benut', zon: 1, lat: 1.641252, lng: 103.258634 },
+  { nama: 'PBS Senai', zon: 1, lat: 1.613934, lng: 103.660017 },
+  { nama: 'PBS Kulai Besar', zon: 1, lat: 1.647583, lng: 103.614217 },
+  { nama: 'PBS Nusajaya', zon: 1, lat: 1.481694, lng: 103.668102 },
+  { nama: 'PBS Pekan Parit Sikom', zon: 1, lat: 1.589794, lng: 103.407784 },
+  { nama: 'PBS Permas', zon: 1, lat: 1.339180, lng: 103.462629 },
+  { nama: 'PBS Mount Austin', zon: 1, lat: 1.544390, lng: 103.777363 },
+  // ZON 2 - KOTA TINGGI
+  { nama: 'PBS KRT Sungai Rengit', zon: 2, lat: 1.352771, lng: 104.223694 },
+  { nama: 'PBS Bandar Mersing', zon: 2, lat: 2.411473, lng: 103.849983 },
+  { nama: 'PBS KWN Endau', zon: 2, lat: 2.649962, lng: 103.626389 },
+  // ZON 3 - KLUANG
+  { nama: 'PBS Parit Raja', zon: 3, lat: 1.835365, lng: 103.119115 },
+  { nama: 'PBS KMGJB-DUN Semarang', zon: 3, lat: 1.915941, lng: 103.180955 },
+  { nama: 'PBS Sri Gading', zon: 3, lat: 1.855124, lng: 103.030029 },
+  { nama: 'PBS Simpang Renggam', zon: 3, lat: 1.828364, lng: 103.310768 },
+  { nama: 'PBS Paloh', zon: 3, lat: 2.188125, lng: 103.196502 },
+  { nama: 'PBS Kahang', zon: 3, lat: 2.218442, lng: 103.545535 },
+  { nama: 'PBS Senggarang', zon: 3, lat: 1.750762, lng: 103.060739 },
+  { nama: 'PBS Parit Tengah', zon: 3, lat: 1.678707, lng: 103.184512 },
+  { nama: 'PBS CRSM Ayer Hitam', zon: 3, lat: 1.866583, lng: 102.978207 },
+  { nama: 'PBS Layang Layang', zon: 3, lat: 1.884094, lng: 103.402056 },
+  // ZON 4 - MUAR
+  { nama: 'PBS RT Jementah', zon: 4, lat: 2.439958, lng: 102.686332 },
+  { nama: 'PBS Pekan Air Panas', zon: 4, lat: 2.471725, lng: 103.053070 },
+  { nama: 'PBS Kg Bekok', zon: 4, lat: 2.296991, lng: 103.131727 },
+  { nama: 'PBS RT CHA"AH', zon: 4, lat: 2.246756, lng: 103.040444 },
+  { nama: 'PBS Bukit Gambir', zon: 4, lat: 2.306094, lng: 102.614177 },
+  { nama: 'PBS Mukim Ayer Hitam', zon: 4, lat: 2.011844, lng: 102.809095 },
+  { nama: 'PBS Bukit Kepong', zon: 4, lat: 2.343681, lng: 102.825602 },
+];
+
+// ============================================
 // STATUS JENTERA (CFRT / EMRS / WATER TANKER)
 // ============================================
 const csvJenteraUrl = {
@@ -726,6 +766,56 @@ ${telefonFallback}${infoKetua}
 });
 
 // ============================================
+// PLOT SEMUA PBS (PASUKAN BOMBA SUKARELA)
+// ============================================
+function buatIkonPBS(warna) {
+  return L.divIcon({
+    className: 'pbs-marker-icon',
+    html: `<i class="fa-solid fa-people-group" style="color:${warna};"></i>`,
+    iconSize: [22, 22],
+    iconAnchor: [11, 18],
+    popupAnchor: [0, -16],
+  });
+}
+
+const layerPBS = { 1: [], 2: [], 3: [], 4: [] };
+const zonaAktifPBS = { 1: true, 2: true, 3: true, 4: true };
+let pbsMasterVisible = true;
+
+dataPBS.forEach((pbs) => {
+  const warna = warnaZon[pbs.zon];
+  const marker = L.marker([pbs.lat, pbs.lng], { icon: buatIkonPBS(warna) });
+  marker.bindPopup(
+    `<div class="balai-popup-info">
+      <strong class="balai-popup-nama"><i class="fa-solid fa-people-group"></i> ${pbs.nama}</strong><br>
+      <b>Zon:</b> ${namaZon[pbs.zon]}<br>
+      <b>Jenis:</b> Pasukan Bomba Sukarela (PBS)<br>
+      <b><i class="fa-solid fa-location-dot"></i> Lat,Lng:</b> ${pbs.lat}, ${pbs.lng}
+    </div>`,
+    { maxWidth: 280, minWidth: 240 }
+  );
+  layerPBS[pbs.zon].push(marker);
+  // Default: dipaparkan pada peta
+  marker.addTo(map);
+});
+
+function syncPBSVisibility() {
+  Object.keys(layerPBS).forEach((z) => {
+    layerPBS[z].forEach((m) => {
+      const patutTunjuk = pbsMasterVisible && zonaAktifPBS[z];
+      if (patutTunjuk && !map.hasLayer(m)) map.addLayer(m);
+      else if (!patutTunjuk && map.hasLayer(m)) map.removeLayer(m);
+    });
+  });
+}
+
+function togglePBS(checkbox) {
+  pbsMasterVisible = checkbox.checked;
+  syncPBSVisibility();
+}
+window.togglePBS = togglePBS;
+
+// ============================================
 // MODE CARIAN
 // ============================================
 let modeCarian = 'alamat';
@@ -1167,17 +1257,23 @@ function toggleFilter() {
   filterDiv.style.display = filterDiv.style.display === 'none' ? 'block' : 'none';
 }
 function toggleZon(zon, checkbox) {
+  zonaAktifPBS[zon] = checkbox.checked;
   layerZon[zon].forEach((layer) => {
     if (checkbox.checked) map.addLayer(layer);
     else map.removeLayer(layer);
   });
+  syncPBSVisibility();
 }
 function senaraiBalai() {
   const listDiv = document.getElementById('list-balai');
   if (listDiv.style.display === 'none' || listDiv.style.display === '') {
-    let html = '';
+    let html = '<div style="font-weight:bold;padding:6px 4px;color:#cc0000;"><i class="fa-solid fa-building-shield"></i> Balai Bomba (BBP)</div>';
     dataBalai.forEach((b) => {
       html += `<div onclick="flyToBalai(${b.lat}, ${b.lng})"><i class="fa-solid fa-building-shield"></i> ${b.nama} <small style="color:#999;">(${namaZon[b.zon]})</small></div>`;
+    });
+    html += '<div style="font-weight:bold;padding:6px 4px;color:#1A5276;margin-top:8px;"><i class="fa-solid fa-people-group"></i> Bomba Sukarela (PBS)</div>';
+    dataPBS.forEach((p) => {
+      html += `<div onclick="flyToBalai(${p.lat}, ${p.lng})"><i class="fa-solid fa-people-group"></i> ${p.nama} <small style="color:#999;">(${namaZon[p.zon]})</small></div>`;
     });
     listDiv.innerHTML = html;
     listDiv.style.display = 'block';
@@ -1998,4 +2094,5 @@ document.addEventListener('DOMContentLoaded', function() {
 muatSemuaDataJentera();
 
 console.log('[OK] Peta Kawasan Jagaan JBPM Johor siap (Lazy Load KML, Lokasi Saya, Fallback Jarak Lurus, Default Checked, Butang Seragam)!');
-console.log('[INFO] 34 Balai | 4 Zon | Search dengan toggle arah untuk KM PLUS dan KM PG');
+console.log('[OK] Data PBS (Pasukan Bomba Sukarela) - 30 lokasi ditambah.');
+console.log('[INFO] 34 Balai | 30 PBS | 4 Zon | Search dengan toggle arah untuk KM PLUS dan KM PG');
