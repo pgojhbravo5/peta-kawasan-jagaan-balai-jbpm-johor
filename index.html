@@ -1398,6 +1398,92 @@
         }
       }
 
+            /* ===== MINI MAP GOOGLE MY MAPS ===== */
+            #mini-gmap {
+        position: absolute;
+        right: 10px;
+        bottom: 40px;
+        width: 190px;
+        height: 130px;
+        z-index: 1100;
+        border-radius: var(--radius-md);
+        overflow: hidden;
+        background: var(--surface-solid);
+        border: 2px solid var(--bomba-red);
+        box-shadow: var(--shadow-medium);
+        cursor: pointer;
+        transition: var(--transition-fast);
+      }
+      #mini-gmap:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(var(--bomba-red-rgb), 0.4); }
+      #mini-gmap iframe { width: 100%; height: 100%; border: 0; pointer-events: none; }
+
+      #mini-gmap-label {
+        position: absolute;
+        left: 0; right: 0; bottom: 0;
+        padding: 4px 8px;
+        background: linear-gradient(135deg, var(--bomba-red) 0%, var(--bomba-red-dark) 100%);
+        color: #fff;
+        font-size: 10.5px;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      #mini-gmap-hide {
+        position: absolute;
+        top: 4px; right: 4px;
+        width: 22px; height: 22px;
+        border: none; border-radius: 50%;
+        background: rgba(255,255,255,0.92);
+        color: var(--text-primary);
+        font-size: 12px;
+        cursor: pointer;
+        z-index: 2;
+      }
+      #mini-gmap-hide:hover { color: var(--bomba-red); }
+
+      #gmap-modal {
+        position: fixed; inset: 0;
+        z-index: 3500;
+        background: rgba(0,0,0,0.55);
+        backdrop-filter: blur(2px);
+        display: none;
+        align-items: center; justify-content: center;
+      }
+      #gmap-modal.show { display: flex; }
+      #gmap-modal-box {
+        width: min(1100px, 94vw);
+        height: min(780px, 88vh);
+        background: #fff;
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        display: flex; flex-direction: column;
+        box-shadow: var(--shadow-medium);
+      }
+      #gmap-modal-head {
+        display: flex; align-items: center; justify-content: space-between;
+        padding: 12px 16px;
+        background: linear-gradient(135deg, var(--bomba-red) 0%, var(--bomba-red-dark) 100%);
+        color: #fff; font-weight: 700; font-size: 13.5px;
+      }
+      #gmap-modal-head a, #gmap-modal-head button {
+        color: #fff; background: rgba(255,255,255,0.15);
+        border: none; border-radius: var(--radius-sm);
+        padding: 6px 10px; margin-left: 8px;
+        font-size: 12px; font-weight: 600; text-decoration: none; cursor: pointer;
+      }
+      #gmap-modal-head a:hover, #gmap-modal-head button:hover { background: rgba(255,255,255,0.3); }
+      #gmap-modal iframe { flex: 1; width: 100%; border: 0; }
+
+      /* Elak bertindih dengan kad Kawasan Jagaan */
+      #info-panel-stack { bottom: 185px; }
+
+      @media (max-width: 600px) {
+        #mini-gmap { width: 120px; height: 90px; bottom: 46px; right: 10px; }
+        #mini-gmap-label { font-size: 9px; padding: 3px 6px; }
+        #info-panel-stack { bottom: 145px; }
+      }
+
       /* ===== NEW: MINI MAP GOOGLE MY MAPS ===== */
       /* (tampal keseluruhan CSS dari langkah 1 jawapan sebelum ini di sini:
          #mini-gmap, #mini-gmap-label, #mini-gmap-hide, #gmap-modal ...,
