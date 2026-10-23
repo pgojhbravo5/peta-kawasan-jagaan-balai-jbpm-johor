@@ -1755,12 +1755,13 @@
     let gmapDragged = false; // NEW: true jika baru lepas drag, supaya tidak buka modal
 
     function bukaGmapModal() {
-      if (gmapDragged) { gmapDragged = false; return; } // NEW
-      const f = document.getElementById('gmap-modal-frame');
-      if (!f.src) f.src = GMAP_EMBED;
-      document.getElementById('gmap-modal').classList.add('show');
-    }
-    function tutupGmapModal() {
+  if (gmapDragged) { gmapDragged = false; return; }
+  const f = document.getElementById('gmap-modal-frame');
+  if (!f.src) f.src = GMAP_VIEW;   // NEW: guna viewer penuh (ada carian), bukan embed
+  document.getElementById('gmap-modal').classList.add('show');
+}
+
+function tutupGmapModal() {
       document.getElementById('gmap-modal').classList.remove('show');
     }
     function sembunyiMiniGmap() {
