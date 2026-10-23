@@ -1397,8 +1397,14 @@
           border-top: 1px solid var(--border-color);
         }
       }
+
+      /* ===== NEW: MINI MAP GOOGLE MY MAPS ===== */
+      /* (tampal keseluruhan CSS dari langkah 1 jawapan sebelum ini di sini:
+         #mini-gmap, #mini-gmap-label, #mini-gmap-hide, #gmap-modal ...,
+         #info-panel-stack { bottom: 185px; } dan @media (max-width: 600px) { ... }) */
     </style>
   </head>
+  
   <body>
     <div id="map">
       <!-- MENU -->
@@ -1614,7 +1620,58 @@
       </div>
     </div>
 
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <script src="script.js"></script>
-  </body>
+     <!-- NEW: MINI MAP GOOGLE MY MAPS -->
+     <div id="mini-gmap" onclick="bukaGmapModal()" title="Klik untuk besarkan">
+      <iframe id="mini-gmap-frame" loading="lazy" title="Mini Map Kawasan Jagaan"></iframe>
+      <button id="mini-gmap-hide" onclick="event.stopPropagation(); sembunyiMiniGmap()" aria-label="Sembunyi">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <div id="mini-gmap-label"><i class="fa-solid fa-up-right-and-down-left-from-center"></i> Peta Kawasan Jagaan</div>
+    </div>
+
+    <div id="gmap-modal" onclick="if(event.target===this) tutupGmapModal()">
+      <div id="gmap-modal-box">
+        <div id="gmap-modal-head">
+          <span><i class="fa-solid fa-map"></i> Peta Kawasan Jagaan Balai (18.10.2026)</span>
+          <span>
+            <a id="gmap-open-link" href="#" target="_blank" rel="noopener"><i class="fa-solid fa-arrow-up-right-from-square"></i> Buka di Google Maps</a>
+            <button onclick="tutupGmapModal()"><i class="fa-solid fa-xmark"></i> Tutup</button>
+          </span>
+        </div>
+        <iframe id="gmap-modal-frame" title="Peta Kawasan Jagaan Penuh" allowfullscreen></iframe>
+      </div>
+    </div>
+    <!-- /NEW -->
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <!-- NEW: MINI MAP GOOGLE MY MAPS -->
+  <script>
+    const GMAP_MID = '1-GJQXNg1VMZxRv0Bgrf1PT-jRsx7aus';
+    const GMAP_PARAMS = '&ll=1.5316676416937844%2C103.54410098863885&z=11';
+    const GMAP_EMBED = 'https://www.google.com/maps/d/embed?mid=' + GMAP_MID + GMAP_PARAMS;
+    const GMAP_VIEW  = 'https://www.google.com/maps/d/viewer?mid=' + GMAP_MID + GMAP_PARAMS;
+
+    document.getElementById('mini-gmap-frame').src = GMAP_EMBED;
+    document.getElementById('gmap-open-link').href = GMAP_VIEW;
+
+    function bukaGmapModal() {
+      const f = document.getElementById('gmap-modal-frame');
+      if (!f.src) f.src = GMAP_EMBED;
+      document.getElementById('gmap-modal').classList.add('show');
+    }
+    function tutupGmapModal() {
+      document.getElementById('gmap-modal').classList.remove('show');
+    }
+    function sembunyiMiniGmap() {
+      document.getElementById('mini-gmap').style.display = 'none';
+      document.getElementById('info-panel-stack').style.bottom = '';
+    }
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') tutupGmapModal(); });
+  </script>
+  <!-- /NEW -->
+
+  <script src="script.js"></script>
+</body>
 </html>
