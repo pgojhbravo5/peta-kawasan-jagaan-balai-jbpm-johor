@@ -1484,10 +1484,20 @@
         #info-panel-stack { bottom: 145px; }
       }
 
-      /* ===== NEW: MINI MAP GOOGLE MY MAPS ===== */
-      /* (tampal keseluruhan CSS dari langkah 1 jawapan sebelum ini di sini:
-         #mini-gmap, #mini-gmap-label, #mini-gmap-hide, #gmap-modal ...,
-         #info-panel-stack { bottom: 185px; } dan @media (max-width: 600px) { ... }) */
+      /* ===== NEW: MINI MAP BOLEH DRAG ===== */
+      #mini-gmap {
+        touch-action: none;      /* elak skrol/zum halaman semasa drag di telefon */
+        user-select: none;
+        -webkit-user-select: none;
+        cursor: grab;
+      }
+      #mini-gmap.dragging {
+        cursor: grabbing;
+        transition: none;
+        transform: none;
+        opacity: 0.9;
+        box-shadow: 0 14px 34px rgba(0, 0, 0, 0.35);
+      }
     </style>
   </head>
   
@@ -1742,7 +1752,10 @@
     document.getElementById('mini-gmap-frame').src = GMAP_EMBED;
     document.getElementById('gmap-open-link').href = GMAP_VIEW;
 
+    let gmapDragged = false; // NEW: true jika baru lepas drag, supaya tidak buka modal
+
     function bukaGmapModal() {
+      if (gmapDragged) { gmapDragged = false; return; } // NEW
       const f = document.getElementById('gmap-modal-frame');
       if (!f.src) f.src = GMAP_EMBED;
       document.getElementById('gmap-modal').classList.add('show');
@@ -1755,7 +1768,80 @@
       document.getElementById('info-panel-stack').style.bottom = '';
     }
     document.addEventListener('keydown', e => { if (e.key === 'Escape') tutupGmapModal(); });
+
+    /* ===== NEW: DRAG MINI MAP ===== */
+    (function () {
+      const el = document.getElementById('mini-gmap');
+      const KEY = 'miniGmapPos';
+      const THRESHOLD = 5; // px, di bawah ini dikira klik biasa
+      let sx, sy, sl, st, active = false;
+
+      // Elak peta Leaflet ikut tergerak/klik semasa mini map disentuh
+      if (window.L && L.DomEvent) {
+        L.DomEvent.disableClickPropagation(el);
+        L.DomEvent.disableScrollPropagation(el);
+      }
+
+      function setPos(l, t) {
+        const p = el.offsetParent || document.body;
+        const maxL = Math.max(0, p.clientWidth - el.offsetWidth);
+        const maxT = Math.max(0, p.clientHeight - el.offsetHeight);
+        l = Math.min(Math.max(0, l), maxL);
+        t = Math.min(Math.max(0, t), maxT);
+        el.style.left = l + 'px';
+        el.style.top = t + 'px';
+        el.style.right = 'auto';
+        el.style.bottom = 'auto';
+        return { l, t };
+      }
+
+      // Pulihkan kedudukan tersimpan
+      try {
+        const saved = JSON.parse(localStorage.getItem(KEY));
+        if (saved) setPos(saved.l, saved.t);
+      } catch (e) {}
+
+      el.addEventListener('pointerdown', e => {
+        if (e.target.closest('#mini-gmap-hide')) return; // jangan drag bila tekan butang X
+        if (e.pointerType === 'mouse' && e.button !== 0) return;
+        active = true;
+        gmapDragged = false;
+        sx = e.clientX; sy = e.clientY;
+        sl = el.offsetLeft; st = el.offsetTop;
+        el.setPointerCapture(e.pointerId);
+      });
+
+      el.addEventListener('pointermove', e => {
+        if (!active) return;
+        const dx = e.clientX - sx;
+        const dy = e.clientY - sy;
+        if (!gmapDragged && Math.hypot(dx, dy) < THRESHOLD) return;
+        gmapDragged = true;
+        el.classList.add('dragging');
+        setPos(sl + dx, st + dy);
+      });
+
+      function tamatDrag(e) {
+        if (!active) return;
+        active = false;
+        el.classList.remove('dragging');
+        try { el.releasePointerCapture(e.pointerId); } catch (err) {}
+        if (gmapDragged) {
+          try {
+            localStorage.setItem(KEY, JSON.stringify({ l: el.offsetLeft, t: el.offsetTop }));
+          } catch (err) {}
+        }
+      }
+      el.addEventListener('pointerup', tamatDrag);
+      el.addEventListener('pointercancel', tamatDrag);
+
+      // Pastikan kekal dalam skrin bila saiz tetingkap berubah / telefon diputar
+      window.addEventListener('resize', () => {
+        if (el.style.left) setPos(el.offsetLeft, el.offsetTop);
+      });
+    })();
   </script>
+  
   <!-- /NEW -->
 
   <script src="script.js"></script>
